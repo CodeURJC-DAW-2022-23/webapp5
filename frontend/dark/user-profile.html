@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<!--
+  Name: Youplay - Game Template based on Bootstrap
+  Version: 3.0.0
+  Author: nK
+  Website: http://nkdev.info
+  Support: http://nk.ticksy.com
+  Purchase: http://themeforest.net/item/youplay-game-template-based-on-bootstrap/11306207?ref=_nK
+  License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+  Copyright 2016.
+-->
+<html>
+
+
+<!-- Mirrored from html.nkdev.info/youplay/dark/user-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 May 2016 12:57:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>youplay</title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- Icon -->
+  <link rel="icon" type="image/png" href="assets/images/icon.png">
+  <!-- Google Fonts -->
+
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="../assets/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" type="text/css" href="../assets/bower_components/font-awesome/css/font-awesome.min.css" />
+
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" type="text/css" href="../assets/bower_components/magnific-popup/dist/magnific-popup.css" />
+  <!-- Youplay -->
+
+  <link rel="stylesheet" type="text/css" href="../assets/youplay/css/youplay.min.css" />
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
+  <!-- RTL (uncomment this to enable RTL support) -->
+  <!-- <link rel="stylesheet" type="text/css" href="../assets/youplay/css/youplay-rtl.css" /> -->
+
+</head>
+
+
+<body>
+
+  <!-- Preloader -->
+  <div class="page-preloader preloader-wrapp">
+    <img src="assets/images/logo.png" alt="">
+    <div class="preloader"></div>
+  </div>
+  <!-- /Preloader -->
+
+  <!-- Navbar -->
+  <nav class="navbar-youplay navbar navbar-default navbar-fixed-top ">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="off-canvas" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index-2.html">
+          <img src="assets/images/logo.png" alt="">
+        </a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown dropdown-hover ">
+            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      Store <span class="caret"></span> <span class="label">games</span>
+                    </a>
+            <div class="dropdown-menu">
+              <ul role="menu">
+                <li><a href="store-1.html">Store Style 1</a>
+                </li>
+                <li><a href="store-2.html">Store Style 2</a>
+                </li>
+                <li><a href="cart.html">Cart</a>
+                </li>
+              </ul>
+              <ul role="menu">
+                <li><a href="store-product-1.html">Product Style 1</a>
+                </li>
+                <li><a href="store-product-2.html">Product Style 2</a>
+                </li>
+                <li><a href="checkout.html">Checkout</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown dropdown-hover ">
+            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      Blog <span class="caret"></span> <span class="label">news</span>
+                    </a>
+            <div class="dropdown-menu">
+              <ul role="menu">
+                <li><a href="blog-1.html">Blog Style 1</a>
+                </li>
+                <li><a href="blog-2.html">Blog Style 2</a>
+                </li>
+                <li><a href="blog-3.html">Blog Style 3</a>
+                </li>
+              </ul>
+              <ul role="menu">
+                <li><a href="blog-post-1.html">Blog Post 1</a>
+                </li>
+                <li><a href="blog-post-2.html">Blog Post 2</a>
+                </li>
+                <li><a href="blog-post-3.html">Blog Post 3</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown dropdown-hover active">
+            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      Features <span class="caret"></span> <span class="label">full list</span>
+                    </a>
+            <div class="dropdown-menu">
+              <ul role="menu">
+                <li class="dropdown dropdown-submenu pull-left active">
+                  <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User</a>
+                  <div class="dropdown-menu">
+                    <ul role="menu">
+                      <li><a href="user-activity.html">Activity</a>
+                      </li>
+                      <li class="active"><a href="user-profile.html">Profile</a>
+                      </li>
+                      <li><a href="user-messages.html">Messages</a>
+                      </li>
+                      <li><a href="user-messages-compose.html">Messages Compose</a>
+                      </li>
+                      <li><a href="user-settings.html">Settings</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li><a href="forums.html">Forums</a>
+                </li>
+                <li><a href="forums-topics.html">Forums Topics</a>
+                </li>
+                <li><a href="forums-single-topic.html">Single Topic</a>
+                </li>
+                <li><a href="matches-list.html">Matches List</a>
+                </li>
+                <li><a href="match.html">Match</a>
+                </li>
+                <li><a href="match-2.html">Match with Maps</a>
+                </li>
+              </ul>
+              <ul role="menu">
+                <li><a href="widgets.html">Widgets <span class="badge bg-default">New</span></a>
+                </li>
+                <li><a href="components.html">Components</a>
+                </li>
+                <li><a href="coming-soon.html">Coming Soon</a>
+                </li>
+                <li><a href="contact.html">Contact Us</a>
+                </li>
+                <li><a href="search.html">Search</a>
+                </li>
+                <li><a href="login.html">Login</a>
+                </li>
+                <li><a href="404.html">404</a>
+                </li>
+                <li><a href="blank.html">Blank</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown dropdown-hover">
+            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      John Doe <span class="badge bg-default">2</span> <span class="caret"></span> <span class="label">it is you</span>
+                    </a>
+            <div class="dropdown-menu">
+              <ul role="menu">
+                <li><a href="http://html.nkdev.info/youplay/documentation">Documentation</a>
+                </li>
+                <li><a href="http://themeforest.net/item/youplay-game-template-based-on-bootstrap/11306207?ref=_nK">Purchase</a>
+                </li>
+                <li class="divider"></li>
+
+                <li><a href="user-profile.html">Profile <span class="badge pull-right bg-warning">13</span></a>
+                </li>
+                <li><a href="cart.html">My Cart <span class="badge pull-right bg-default">3</span></a>
+                </li>
+                <li class="divider"></li>
+
+                <li><a href="login.html">Log Out</a>
+                </li>
+                <li class="dropdown dropdown-submenu pull-left">
+                  <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">More..</a>
+                  <div class="dropdown-menu">
+                    <ul role="menu">
+                      <li><a href="#!">3rd level</a>
+                      </li>
+                      <li><a href="#!">3rd level</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="search-toggle" href="search.html">
+              <i class="fa fa-search"></i>
+            </a>
+          </li>
+          <li class="dropdown dropdown-hover dropdown-cart">
+            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <i class="fa fa-shopping-cart"></i>
+            </a>
+            <div class="dropdown-menu" style="width: 300px;">
+              <div class="row youplay-side-news">
+                <div class="col-xs-3 col-md-4">
+                  <a href="#" class="angled-img">
+                    <div class="img">
+
+                      <img src="assets/images/game-bloodborne-500x375.jpg" alt="">
+                    </div>
+                  </a>
+                </div>
+                <div class="col-xs-9 col-md-8">
+                  <a href="#" style="text-decoration: none;" class="pull-right mr-10"><i class="fa fa-times"></i></a>
+
+                  <h4 class="ellipsis"><a href="#">Bloodborne</a></h4>
+                  <span class="quantity">1 × <span class="amount">$50.00</span></span>
+                </div>
+              </div>
+
+              <div class="row youplay-side-news">
+                <div class="col-xs-3 col-md-4">
+                  <a href="#" class="angled-img">
+                    <div class="img">
+
+                      <img src="assets/images/game-kingdoms-of-amalur-reckoning-500x375.jpg" alt="">
+                    </div>
+                  </a>
+                </div>
+                <div class="col-xs-9 col-md-8">
+                  <a href="#" style="text-decoration: none;" class="pull-right mr-10"><i class="fa fa-times"></i></a>
+
+                  <h4 class="ellipsis"><a href="#">Kingdoms of Amalur</a></h4>
+                  <span class="quantity">1 × <span class="amount">$20.00</span></span>
+                </div>
+              </div>
+
+              <div class="ml-20 mr-20 pull-right"><strong>Subtotal:</strong>  <span class="amount">$70.00</span>
+              </div>
+
+              <div class="btn-group pull-right m-15">
+                <a href="#" class="btn btn-default btn-sm">View Cart</a>
+                <a href="#" class="btn btn-default btn-sm">Checkout</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- /Navbar -->
+
+
+  <!-- Main Content -->
+  <section class="content-wrap">
+
+    <!-- Banner -->
+    <div class="youplay-banner banner-top youplay-banner-parallax small">
+      <div class="image" style="background-image: url('assets/images/game-diablo-iii-1400x656.jpg')">
+      </div>
+
+      <div class="youplay-user-navigation">
+        <div class="container">
+          <ul>
+            <li><a href="user-activity.html">Activity</a>
+            </li>
+            <li class="active"><a href="user-profile.html">Profile</a>
+            </li>
+            <li><a href="user-messages.html">Messages <span class="badge">6</span></a>
+            </li>
+            <li><a href="user-settings.html">Settings</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info">
+        <div>
+          <div class="container youplay-user">
+            <a href="assets/images/user-photo.jpg" class="angled-img image-popup">
+              <div class="img">
+                <img src="assets/images/user-avatar.jpg" alt="">
+              </div>
+              <i class="fa fa-search-plus icon"></i>
+            </a>
+            <!--
+                -->
+            <div class="user-data">
+              <h2>John Doe</h2>
+              <div class="location"><i class="fa fa-map-marker"></i> Los Angeles</div>
+              <div class="activity">
+                <div>
+                  <div class="num">69</div>
+                  <div class="title">Posts</div>
+                </div>
+                <div>
+                  <div class="num">12</div>
+                  <div class="title">Games</div>
+                </div>
+                <div>
+                  <div class="num">689</div>
+                  <div class="title">Followers</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container mt-20">
+            <a href="#!" class="btn btn-sm btn-default ml-0">Add Friend</a>
+            <a href="#!" class="btn btn-sm btn-default">Private Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Banner -->
+
+    <div class="container youplay-content">
+
+      <div class="row">
+
+        <div class="col-md-9">
+
+          <h3 class="mt-0 mb-20">John Doe</h3>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td style="width: 200px;">
+                  <p>Hometown</p>
+                </td>
+                <td>
+                  <p><a href="#">New York</a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Relationship status</p>
+                </td>
+                <td>
+                  <p><a href="#">Married</a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Studied at</p>
+                </td>
+                <td>
+                  <p><a href="#">New York University, NYU</a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Languages</p>
+                </td>
+                <td>
+                  <p><a href="#">English</a>, <a href="#">Japan</a>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="mt-40 mb-20">Contact Information</h3>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td style="width: 200px;">
+                  <p>Current City</p>
+                </td>
+                <td>
+                  <p><a href="#">New York</a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Mobile</p>
+                </td>
+                <td>
+                  <p>+1 *** ** ** 11 11</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Instagram</p>
+                </td>
+                <td>
+                  <p><a href="#">@instagram</a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Twitter</p>
+                </td>
+                <td>
+                  <p><a href="#">#twitter</a>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="mt-40 mb-20">Personal Information</h3>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td style="width: 200px;">
+                  <p>Current City</p>
+                </td>
+                <td>
+                  <p><a href="#">New York</a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Favorite games</p>
+                </td>
+                <td>
+                  <p><a href="#">Bloodborne</a>, <a href="#">Dark Souls II</a>, <a href="#">Kingdoms of Amalur</a>, <a href="#">The Witcher</a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>About Me</p>
+                </td>
+                <td>
+                  <p>Netus. Nascetur arcu amet accumsan natoque. Augue aptent euismod sed magna diam nostra, molestie mi felis. Egestas nisl ante posuere dui Nostra tempus pulvinar at dui augue mattis placerat iaculis hac arcu rutrum.</p>
+
+                  <p>Vel <strong>class</strong> lectus auctor interdum. Mi <strong>nec</strong> senectus commodo sed suscipit vitae parturient, risus vivamus quisque dolor aliquet amet. Etiam penatibus nascetur netus. Non leo eu vitae sem laoreet. Varius in
+                    augue. Mollis convallis.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- Left Side -->
+        <div class="col-md-3">
+          <div class="side-block">
+            <h4 class="block-title">About</h4>
+            <div class="block-content">
+              Ecce dabo Pinkman Isai OK? Sicut locutus est tibi, et datus est, et hic sine Semper consequat volumus ... et ille in urbe ista licet? Et infernus, ubi tu non Virginiae ornare vel ipsum. Ut enim Albuquerque et ille eum iure hic, et ego ducam te ad iustitiam.
+            </div>
+          </div>
+          <div class="side-block">
+            <h4 class="block-title">Location</h4>
+            <div class="block-content pt-5">
+              <div class="responsive-embed responsive-embed-16x9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423284.59051352815!2d-118.41173249999999!3d34.0204989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2z0JvQvtGBLdCQ0L3QtNC20LXQu9C10YEsINCa0LDQu9C40YTQvtGA0L3QuNGPLCDQodCo0JA!5e0!3m2!1sru!2sru!4v1430158354122"
+                width="600" height="450"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Left Side -->
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="youplay-footer-parallax">
+      <div class="wrapper" style="background-image: url('assets/images/footer-bg.jpg')">
+
+        <!-- Social Buttons -->
+        <div class="social">
+          <div class="container">
+            <h3>Connect socially with <strong>youplay</strong></h3>
+
+            <div class="social-icons">
+              <div class="social-icon">
+                <a href="#!">
+                  <i class="fa fa-facebook-square"></i>
+                  <span>Like on Facebook</span>
+                </a>
+              </div>
+              <div class="social-icon">
+                <a href="#!">
+                  <i class="fa fa-twitter-square"></i>
+                  <span>Follow on Twitter</span>
+                </a>
+              </div>
+              <div class="social-icon">
+                <a href="#!">
+                  <i class="fa fa-twitch"></i>
+                  <span>Watch on Twitch</span>
+                </a>
+              </div>
+              <div class="social-icon">
+                <a href="#!">
+                  <i class="fa fa-youtube-square"></i>
+                  <span>Watch on Youtube</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Social Buttons -->
+
+        <!-- Copyright -->
+        <div class="copyright">
+          <div class="container">
+            <strong>nK</strong> &copy; 2016. All rights reserved
+          </div>
+        </div>
+        <!-- /Copyright -->
+
+      </div>
+    </footer>
+    <!-- /Footer -->
+
+
+  </section>
+  <!-- /Main Content -->
+
+  <!-- Search Block -->
+  <div class="search-block">
+    <a href="#!" class="search-toggle glyphicon glyphicon-remove"></a>
+    <form action="http://html.nkdev.info/youplay/dark/search.html">
+      <div class="youplay-input">
+        <input type="text" name="search" placeholder="Search...">
+      </div>
+    </form>
+  </div>
+  <!-- /Search Block -->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Hexagon Progress -->
+  <script type="text/javascript" src="../assets/bower_components/HexagonProgress/jquery.hexagonprogress.min.js"></script>
+
+
+  <!-- Bootstrap -->
+  <script type="text/javascript" src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- Jarallax -->
+  <script type="text/javascript" src="../assets/bower_components/jarallax/dist/jarallax.min.js"></script>
+
+  <!-- Smooth Scroll -->
+  <script type="text/javascript" src="../assets/bower_components/smoothscroll-for-websites/SmoothScroll.js"></script>
+
+  <!-- Magnific Popup -->
+  <script type="text/javascript" src="../assets/bower_components/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+  <!-- Youplay -->
+  <script type="text/javascript" src="../assets/youplay/js/youplay.min.js"></script>
+
+  <!-- init youplay -->
+  <script>
+    if(typeof youplay !== 'undefined') {
+        youplay.init({
+            // enable parallax
+            parallax:         true,
+    
+            // set small navbar on load
+            navbarSmall:      false,
+    
+            // enable fade effect between pages
+            fadeBetweenPages: true,
+    
+            // twitter and instagram php paths
+            php: {
+                twitter: './php/twitter/tweet.php',
+                instagram: './php/instagram/instagram.php'
+            }
+        });
+    }
+  </script>
+
+
+</body>
+
+
+<!-- Mirrored from html.nkdev.info/youplay/dark/user-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 May 2016 12:57:37 GMT -->
+</html>
