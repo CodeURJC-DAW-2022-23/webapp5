@@ -2338,6 +2338,17 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endCo
 zoom: 1;
 }
 
+
+@font-face {
+  font-family: 'revicons';
+  src: url(revicons.eot_5510888);
+  src: url(revicons.eot_5510888#iefix) format('embedded-opentype'),
+       url(revicons.woff_5510888) format('woff'),
+       url(revicons.ttf_5510888) format('truetype'),
+       url(revicons.svg5510888#revicons) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 /*
