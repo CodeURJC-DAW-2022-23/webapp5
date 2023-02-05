@@ -170,7 +170,7 @@
       <div class="info">
         <div>
           <div class="container">
-            <h1>Register form</h1>
+            <h1>Register</h1>
           </div>
         </div>
       </div>
@@ -191,7 +191,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <p>Surname:</p>
+            <p>Last Name:</p>
             <div class="youplay-input">
               <input type="text" name="billing_surname" placeholder="Surname">
             </div>
@@ -201,7 +201,7 @@
           <div class="col-md-6">
             <p>Email:</p>
             <div class="youplay-input">
-              <input type="text"  name="billing_email" placeholder="email">
+              <input type="text" name="billing_email" placeholder="email">
             </div>
           </div>
           <div class="col-md-6">
@@ -211,41 +211,38 @@
             </div>
           </div>
         </div>
-          <div class="row">
-            <div class="col-md-6">
-              <p>Password:</p>
-              <div class="youplay-input">
-                <input type="password" name="billing_password" placeholder="Password">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <p>Repeat Password:</p>
-              <div class="youplay-input">
-                <input type="password" name="billing_rppassword" placeholder="Password">
-              </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Password:</p>
+            <div class="youplay-input">
+              <input type="password" name="billing_password" placeholder="Password">
             </div>
           </div>
-</div>
-        <p>About me:</p>
-        <div class="youplay-textarea">
-          <textarea name="billing_description" rows="5" placeholder="Description"></textarea>
+          <div class="col-md-6">
+            <p>Repeat Password:</p>
+            <div class="youplay-input">
+              <input type="password" name="billing_rppassword" placeholder="Password">
+            </div>
+          </div>
         </div>
+      </div>
+      <p>About me:</p>
+      <div class="youplay-textarea">
+        <textarea name="billing_description" rows="5" placeholder="Description"></textarea>
+      </div>
 
-        <div class="youplay-checkbox">
-          <input type="checkbox" name="create_account" id="checkbox1" checked>
-          <label for="checkbox1">Create the account?</label>
-        </div>
-        <!-- /Billing Information -->
+      <div class="align-right">
+        <a class="btn btn-lg" onclick="checkForm()">Create Account</a>
+      </div>
+      <!-- /Billing Information -->
       <label id="wrongpass"></label>
       <label id="wrongemail"></label>
-</div>
+    </div>
 
-        <!-- Order Button -->
-        <div class="align-right">
-          <a  class="btn btn-lg" onclick="checkForm()">Register</a>
-        </div>
-        <!-- /Order Button -->
-      </div>
+    <!-- Order Button -->
+
+    <!-- /Order Button -->
+    </div>
     </div>
     </div>
 
@@ -320,7 +317,7 @@
       var password = document.getElementsByName("billing_password")[0].value;
       var rppassword = document.getElementsByName("billing_rppassword")[0].value;
       if (password === "") {
-        document.getElementsByName("billing_password")[0].placeholder= "password is empty";
+        document.getElementsByName("billing_password")[0].placeholder = "password is empty";
         return false;
       }
       if (password !== rppassword) {
@@ -328,7 +325,7 @@
         document.getElementById("wrongpass").textContent = "password are not the same";
         return false;
       }
-      else{
+      else {
         document.getElementById("wrongpass").textContent = "";
       }
       return true;
@@ -337,7 +334,7 @@
       var email = document.getElementsByName("billing_email")[0].value;
       var rpemail = document.getElementsByName("billing_rpemail")[0].value;
       if (email === "") {
-        document.getElementsByName("billing_email")[0].placeholder= "email is empty";
+        document.getElementsByName("billing_email")[0].placeholder = "email is empty";
         return false;
       }
       if (email !== rpemail) {
@@ -345,15 +342,15 @@
         document.getElementById("wrongemail").textContent = "Email are not the same";
         return false;
       }
-      else{
+      else {
         document.getElementById("wrongemail").textContent = "";
       }
       return true;
     }
     function checkForm() {
-        if (checkName() && checkEmail() && checkPassword()) {
-          alert("success");
-        }
+      if (checkName() && checkEmail() && checkPassword()) {
+        alert("success");
+      }
     }
   </script>
 
