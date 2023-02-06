@@ -70,43 +70,40 @@ Search films by title. Furthermore, the application will show games recomendatio
 ### Unregistered users 
 
 **Initial menu:** 
-This is the main page where the user can enter his profile, view his cart, proceed to checkout and view the available games, and can enter their respective pages to view the specifications, screenshots of the game and its features.
+This is the main page where the user can view his cart, proceed to checkout and view the available games, and can enter their respective pages to view the specifications, screenshots of the game and its features.
  
 ![avatar](screenshots/main1.png) 
 ![avatar](screenshots/main2.png) 
 ![avatar](screenshots/main3.png) 
- 
-**Login:** 
-Screen that will allow registered users to log in giving their email and password. All users have access to this screen even though only registered users will be able to end this process. 
- 
-![avatar](ImagesPhase3/Login.png) 
-
- **Login error:** 
-Screen that will appear when the user is trying to login and he writes his credentials wrong. 
-
-![avatar](ImagesPhase3/ErrorLogin.png) 
 
 **Register:** 
-Screen that will allow new users to sing up in Advice.me and access exclusive content and services. 
+Screen that will allow new users to sing up in KeyWhale. 
  
-![avatar](ImagesPhase3/Register.png) 
+![avatar](screenshots/register.png) 
 
-**Taken User Name:** 
-Screen that will apear when he tries to register with a nickname that is already taken. 
-
-![avatar](ImagesPhase3/TakenUserName.png) 
-
-**Film description:** 
-Screen that will display information, image and assessments about the film. Also, at the bottom of the page related films will appear. 
+**Game:** 
+Screen that will display information, images and features about the game. Also, at the bottom of the page reviews of the game will appear. 
  
-![avatar](ImagesPhase3/FilmUnregistered.png) 
+![avatar](screenshots/game1.png) 
+![avatar](screenshots/game2.png) 
 
-**Search film:** 
-Screen that will display the films that contains the words that you searched. 
+**Search:** 
+Screen that will display the games that contains the words that you searched. 
  
-![avatar](ImagesPhase3/SearchFilms.png) 
+![avatar](screenshots/search.png)  
 
-### Unregistered users 
+**Cart:** 
+Page that shows all the games in the cart showing them, their price, and the total price of the cart.
+ 
+![avatar](screenshots/cart.png)  
+
+**Checkout:** 
+Page containing a form for the billing information of the user who is going to buy on the site. Unregistered users should check the checkbox for register a new user.
+ 
+![avatar](screenshots/checkout1.png)  
+![avatar](screenshots/checkout2.png)   
+
+### Registered users 
 
 **Initial menu:** 
 This is the main page where the user can enter his profile, view his cart, proceed to checkout and view the available games, and can enter their respective pages to view the specifications, screenshots of the game and its features.
@@ -147,7 +144,7 @@ Page that shows all the games in the cart showing them, their price, and the tot
 ![avatar](screenshots/cart.png)  
 
 **Checkout:** 
-Pagina que contiene un formulario para los datos de facturación del usuario que va a comprar en la pagina 
+Page containing a form for the billing information of the user who is going to buy on the site. 
  
 ![avatar](screenshots/checkout1.png)  
 ![avatar](screenshots/checkout2.png)   
