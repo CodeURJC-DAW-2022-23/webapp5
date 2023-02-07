@@ -149,38 +149,41 @@ Page containing a form for the billing information of the user who is going to b
 ![avatar](screenshots/checkout1.png)  
 ![avatar](screenshots/checkout2.png)   
 
-### Admin 
+### Admin
 
 **Initial menu:** 
-First screen of the webpage that contains a list of films splitted by genre and a circle graph that informs the most famous film genres of Advice.me. Admins will have access to the "Post film" button. 
+This is the main page where the admin can enter his profile, view the available games, and add or delete more games, enter their respective pages to view or change the specifications, screenshots of the game and its features.
  
-![avatar](ImagesPhase3/MenuAdmin.png) 
+![avatar](screenshots/main1.png) 
+![avatar](screenshots/main2.png) 
+![avatar](screenshots/main3.png) 
+ 
 
-**Add film:** 
-Screen that will allow admins to add films to the database. 
+**Profile:** 
+Screen that will display information and profile logo.
  
-![avatar](ImagesPhase3/AddFilm.png) 
+![avatar](screenshots/profile.png)
 
-**Film description:** 
-Screen that will display information, images and assessments about the film. Admins can eliminate the film and its assesments. Also, admins will be able to enter in the edit film page. 
+**Game:** 
+Screen that will display information, images and features about the game. Also, at the bottom of the page reviews of the game will appear. The admin have control of all the page so he can change any info of the game, delete reviews that are out of context, etc. 
  
-![avatar](ImagesPhase3/FilmAdmin.png) 
+![avatar](screenshots/game1.png) 
+![avatar](screenshots/game2.png) 
 
-**Edit film:** 
-Screen that will allow admins to edit the information from any film and save it in the database. 
+**Search:** 
+Screen that will display the games that contains the words that you searched. 
  
-![avatar](ImagesPhase3/EditFilm.png)
+![avatar](screenshots/search.png)  
 
-**Search films:** 
-Screen that will allow the user to watch a list of films that contains a certain word/words in their tittle. 
+**GameForm:** 
+Screen that will allow admins to add a new game with all its features in KeyWhale.
  
-![avatar](ImagesPhase3/SearchFilmAdmin.png)
+![avatar](screenshots/GameForm.png)
 
 ## Navigation Diagram
 * Blue = Unregistered users.
 * Yellow = Registered users.
 * Green = Admins.
-* Red = Error pages.
 
 ![diagram](ImagesPhase3/NavigationDiagram.png)
 
