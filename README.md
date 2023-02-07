@@ -29,10 +29,7 @@
 - User
 - Game
 - Game Review
-- Game Company
 - Purchase
-
-User purchase game. Game has reviews. Companies own games.
 
 ![avatar](screenshots/ER.jpg)
 
