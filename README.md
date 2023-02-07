@@ -34,6 +34,8 @@
 
 User purchase game. Game has reviews. Companies own games.
 
+![avatar](screenshots/ER.png)
+
 #### Users
 
 - **Anonymous**: This type of users will be able to see the games of the sore. However, they will not be able to purchase games and he will not receive recomended games.
