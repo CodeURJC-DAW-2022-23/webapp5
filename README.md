@@ -34,7 +34,7 @@
 
 User purchase game. Game has reviews. Companies own games.
 
-![avatar](screenshots/ER.png)
+![avatar](screenshots/ER.jpg)
 
 #### Users
 
