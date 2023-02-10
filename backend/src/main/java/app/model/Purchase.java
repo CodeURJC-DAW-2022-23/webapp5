@@ -27,7 +27,7 @@ public class Purchase {
     private LocalDate date = LocalDate.now();
 
     public Purchase(){
-        
+
     }
 
     public Purchase(List<Game> games, User user) {

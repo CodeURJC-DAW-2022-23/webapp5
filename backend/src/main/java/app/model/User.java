@@ -1,7 +1,6 @@
 package app.model;
 
 import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,7 +13,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -36,18 +34,16 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 
-    @OneToMany
-    private List<Purchase> purchases = new ArrayList<>();
-
     @Lob
 	@JsonIgnore
-	private Blob profilePircture;
+	private Blob profilePirctureFile;
+    private String profilePircture;
 
     public User(){
         
     }
 
-    public User(String mail, String encodedPassword, String name, String lastName, String aboutMe, List<String> roles, Blob profilePircture) {
+    public User(String mail, String encodedPassword, String name, String lastName, String aboutMe, List<String> roles, Blob profilePirctureFile, String profilePircture) {
         super();
         this.mail = mail;
         this.encodedPassword = encodedPassword;
@@ -55,6 +51,7 @@ public class User {
         this.lastName = lastName;
         this.aboutMe = aboutMe;
         this.roles = roles;
+        this.profilePirctureFile = profilePirctureFile;
         this.profilePircture = profilePircture;
     }
 
@@ -123,19 +120,21 @@ public class User {
         this.roles = roles;
     }
 
-    public List<Purchase> getPurchases() {
-        return this.purchases;
+    public Blob getProfilePirctureFile() {
+        return this.profilePirctureFile;
     }
 
-    public void setPurchases(List<Purchase> purchases) {
-        this.purchases = purchases;
+    public void setProfilePirctureFile(Blob profilePirctureFile) {
+        this.profilePirctureFile = profilePirctureFile;
     }
 
-    public Blob getProfilePircture() {
+
+    public String getProfilePircture() {
         return this.profilePircture;
     }
 
-    public void setProfilePircture(Blob profilePircture) {
+    public void setProfilePircture(String profilePircture) {
         this.profilePircture = profilePircture;
     }
+
 }

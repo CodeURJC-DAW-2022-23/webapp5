@@ -6,8 +6,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,15 +29,21 @@ public class Game {
 	private float price;
 	private String category;
 
-	@Lob
-	@JsonIgnore
-	private Blob titleImage;
+	@ElementCollection(fetch=FetchType.EAGER)
+	@Column(length = 50000)
+	private List<String> gameplayImages = new ArrayList<>();
 
 	@Lob
 	@JsonIgnore
-	private List<Blob> gameplayImages =  new ArrayList<>();
+	private Blob titleImageFile;
+	private String titleImage;
 
-	@OneToMany
+	@Lob
+	@JsonIgnore
+	@ElementCollection(fetch=FetchType.EAGER)
+	private List<Blob> gameplayImagesFiles = new ArrayList<>();
+
+	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Review> reviews = new ArrayList<>();
 
 	@Column(length = 50000)
@@ -44,12 +53,15 @@ public class Game {
 
 	}
 
-	public Game(String name, String description, float price, String category, Blob titleImage, List<Blob> gameplayImages, String minimumRequirements) {
+	public Game(String name, String description, float price, String category, Blob titleImageFile, String titleImage, List<Blob> gameplayImagesFiles, List<String> gameplayImages, String minimumRequirements) {
+		super();
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.category = category;
+		this.titleImageFile = titleImageFile;
 		this.titleImage = titleImage;
+		this.gameplayImagesFiles = gameplayImagesFiles;
 		this.gameplayImages = gameplayImages;
 		this.minimumRequirements = minimumRequirements;
 	}
@@ -95,22 +107,6 @@ public class Game {
 		this.category = category;
 	}
 
-	public Blob getTitleImage() {
-		return this.titleImage;
-	}
-
-	public void setTitleImage(Blob titleImage) {
-		this.titleImage = titleImage;
-	}
-
-	public List<Blob> getGameplayImages() {
-		return this.gameplayImages;
-	}
-
-	public void setGameplayImages(List<Blob> gameplayImages) {
-		this.gameplayImages = gameplayImages;
-	}
-
 	public List<Review> getReviews() {
 		return this.reviews;
 	}
@@ -126,5 +122,47 @@ public class Game {
 	public void setMinimumRequirements(String minimumRequirements) {
 		this.minimumRequirements = minimumRequirements;
 	}
+
+
+	public Blob getTitleImageFile() {
+		return this.titleImageFile;
+	}
+
+	public void setTitleImageFile(Blob titleImageFile) {
+		this.titleImageFile = titleImageFile;
+	}
+
+	public String getTitleImage() {
+		return this.titleImage;
+	}
+
+	public void setTitleImage(String titleImage) {
+		this.titleImage = titleImage;
+	}
+
+	public List<Blob> getGameplayImagesFiles() {
+		return this.gameplayImagesFiles;
+	}
+
+	public void setGameplayImagesFiles(List<Blob> gameplayImagesFiles) {
+		this.gameplayImagesFiles = gameplayImagesFiles;
+	}
+
+	public List<String> getGameplayImages() {
+		return this.gameplayImages;
+	}
+
+	public void setGameplayImages(List<String> gameplayImages) {
+		this.gameplayImages = gameplayImages;
+	}
+
+	public void addGamplayImage(Blob gameplayImage) {
+		this.gameplayImagesFiles.add(gameplayImage);
+	}
+
+	public void addReview(Review review) {
+		this.reviews.add(review);
+	}
+
 
 }
