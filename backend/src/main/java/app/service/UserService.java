@@ -19,17 +19,15 @@ public class UserService {
 		users.save(user);
 	}
 
+	public void findByMail(String mail) {
+		users.findByMail(mail);
+	}
+
 	public List<User> findAll() {
 		return users.findAll();
 	}
 
 	public Optional<User> findById(long id) {
 		return users.findById(id);
-	}
-
-
-	public void deleteById(long id) {
-
-		users.deleteById(id);
 	}
 }

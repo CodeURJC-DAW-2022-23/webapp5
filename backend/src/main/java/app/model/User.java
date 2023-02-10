@@ -55,7 +55,6 @@ public class User {
         this.profilePircture = profilePircture;
     }
 
-
     public long getId() {
         return this.id;
     }

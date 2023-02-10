@@ -22,7 +22,7 @@ public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	private String name;
 	@Column(length = 50000)
 	private String description;

@@ -23,13 +23,16 @@ public class GameService {
 		return games.findAll();
 	}
 
+	public List<Game> findByName(String category) {
+		return games.findByCategory(category);
+	}
+
 	public Optional<Game> findById(long id) {
 		return games.findById(id);
 	}
 
 
 	public void deleteById(long id) {
-
 		games.deleteById(id);
 	}
 }
