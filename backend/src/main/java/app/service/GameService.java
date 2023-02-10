@@ -31,7 +31,6 @@ public class GameService {
 		return games.findById(id);
 	}
 
-
 	public void deleteById(long id) {
 		games.deleteById(id);
 	}
