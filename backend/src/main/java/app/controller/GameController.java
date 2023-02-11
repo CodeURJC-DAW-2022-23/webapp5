@@ -1,18 +1,17 @@
 package app.controller;
-
-import jakarta.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import app.service.*;
-import app.model.*;
 
 @Controller
 public class GameController {
         
-        @Autowired
-        private GameService games;
 
+        @GetMapping("/")
+	public String showBooks(Model model) {
+
+		return "index";
+	}
 
 }

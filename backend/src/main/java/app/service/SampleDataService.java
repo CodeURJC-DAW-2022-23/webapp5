@@ -10,16 +10,20 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import app.model.Game;
 import app.model.Purchase;
 import app.model.Review;
 import app.model.User;
-import jakarta.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 
 @Service
 public class SampleDataService {
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private GameService games;
@@ -33,7 +37,7 @@ public class SampleDataService {
 	@Autowired
 	private PurchaseService purchases;
 
-	@PostConstruct
+
 	public void init() throws IOException {
 		List<Game> generatedGames = generateGames();
 
@@ -43,18 +47,7 @@ public class SampleDataService {
 			users.save(user);
 		}
 
-		List<Review> generatedReviews = generateReviews(generatedGames, generatedUsers);
 
-		for (Game game : generatedGames) {
-			games.save(game);
-		}
-
-
-
-		List<Purchase> generatedPurchases = generatePurchases(generatedGames, generatedUsers);
-		for (Purchase purchase : generatedPurchases) {
-			purchases.save(purchase);
-		}
 	}
 
 	private List<Review> generateReviews(List<Game> generatedGames, List<User> generatedUsers) {
@@ -93,7 +86,7 @@ public class SampleDataService {
 			user.setName(name);
 			user.setLastName(lastName);
 			user.setMail(name + lastName +"@gmail.com");
-			user.setEncodedPassword("12345678");
+			user.setEncodedPassword(passwordEncoder.encode("12345678"));
 			user.setAboutMe("I am the user "+ name + " " + lastName);
 			user.setProfilePircture("/static/images/avatar.png");
 			setProfilePicture(user, user.getProfilePircture());
@@ -106,7 +99,7 @@ public class SampleDataService {
 			user.setName(name);
 			user.setLastName(lastName);
 			user.setMail(name + lastName +"@gmail.com");
-			user.setEncodedPassword("12345678");
+			user.setEncodedPassword(passwordEncoder.encode("12345678"));
 			user.setAboutMe("I am the admin "+ name + " " + lastName);
 			user.setProfilePircture("/static/images/avatar");
 			setProfilePicture(user, user.getProfilePircture());
