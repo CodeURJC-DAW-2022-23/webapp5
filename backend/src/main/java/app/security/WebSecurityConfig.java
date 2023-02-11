@@ -12,31 +12,49 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    RepositoryUserDetailsService userDetailsService;
+	@Autowired
+	RepositoryUserDetailsService userDetailsService;
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder(10, new SecureRandom());
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10, new SecureRandom());
-    }
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
+    
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Public pages
+    	
+    	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll();
+        http.authorizeRequests().antMatchers("/loginerror").permitAll();
+        http.authorizeRequests().antMatchers("/register").permitAll();
+        http.authorizeRequests().antMatchers("/search").permitAll();
+        http.authorizeRequests().antMatchers("/product").permitAll();
+        
 
+        // Private pages
+        http.authorizeRequests().antMatchers("/profile").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/cart").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/checkout").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/newGame").hasAnyRole("ADMIN");
 
         // Login form
         http.formLogin().loginPage("/login");
+        http.formLogin().usernameParameter("username");
+        http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/");
+        http.formLogin().failureUrl("/loginerror");
 
         // Logout
-        http.logout().logoutSuccessUrl("/");
+        http.logout().logoutUrl("/logout");
+        http.logout().logoutSuccessUrl("/login");
     }
 }

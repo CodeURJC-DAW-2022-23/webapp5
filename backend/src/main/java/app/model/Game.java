@@ -21,7 +21,7 @@ import javax.persistence.OneToMany;
 public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 
 	private String name;
 	@Column(name = "description", columnDefinition = "TEXT")
@@ -40,7 +40,7 @@ public class Game {
 
 	@Lob
 	@JsonIgnore
-	@ElementCollection(fetch=FetchType.EAGER)
+	@ElementCollection(fetch=FetchType.LAZY)
 	private List<Blob> gameplayImagesFiles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -67,11 +67,11 @@ public class Game {
 	}
 
 
-	public long getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

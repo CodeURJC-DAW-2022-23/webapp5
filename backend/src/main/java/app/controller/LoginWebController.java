@@ -15,4 +15,9 @@ public class LoginWebController {
 	public String loginerror() {
 		return "loginerror";
 	}
+
+	@RequestMapping("/register")
+	public String register() {
+		return "register";
+	}
 }

@@ -16,7 +16,7 @@ public class Purchase {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 
     @ManyToMany
     private List<Game> games;
@@ -36,11 +36,11 @@ public class Purchase {
     }
 
 
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,6 +1,7 @@
 package app.model;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,9 +17,10 @@ import javax.persistence.Lob;
 
 @Entity
 public class User {
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
     @Id
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
     private String mail;
     private String encodedPassword;
@@ -31,7 +33,7 @@ public class User {
     @Column(name = "billingInformation", columnDefinition = "TEXT")
     private String billingInformation;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection(fetch=FetchType.EAGER)
 	private List<String> roles;
 
     @Lob
@@ -55,11 +57,11 @@ public class User {
         this.profilePircture = profilePircture;
     }
 
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -112,11 +114,14 @@ public class User {
     }
 
     public List<String> getRoles() {
+        for (String string : roles) {
+            System.out.println(string);
+        }
         return this.roles;
     }
 
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
+    public void setRoles(String ... roles) {
+        this.roles = List.of(roles);
     }
 
     public Blob getProfilePirctureFile() {
