@@ -19,8 +19,12 @@ public class UserService {
 		users.save(user);
 	}
 
-	public void findByMail(String mail) {
-		users.findByMail(mail);
+	public Optional<User> findByMail(String mail) {
+		return users.findByMail(mail);
+	}
+
+	public Optional<User> findByName(String mail) {
+		return users.findByMail(mail);
 	}
 
 	public List<User> findAll() {

@@ -1,13 +1,13 @@
     <li class="dropdown dropdown-hover">
-      <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+      <a href="/profile" data-toggle="dropdown" role="button" aria-expanded="false">
           {{userName}}<span class="badge bg-default">2</span> <span class="caret"></span> <span class="label">it is
           you</span>
       </a>
       <div class="dropdown-menu">
         <ul role="menu">
-          <li><a href="user-profile.html">Profile <span class="badge pull-right bg-warning">13</span></a>
+          <li><a href="/profile">Profile <span class="badge pull-right bg-warning">13</span></a>
           </li>
-          <li><a href="cart.html">My Cart <span class="badge pull-right bg-default">3</span></a>
+          <li><a href="/cart">My Cart <span class="badge pull-right bg-default">3</span></a>
           </li>
           <li class="divider"></li>
 
@@ -23,12 +23,12 @@
       </div>
     </li>
     <li>
-      <a href="search.html">
+      <a href="/search">
         <i class="fa fa-search"></i>
       </a>
     </li>
     <li class="dropdown dropdown-hover dropdown-cart">
-      <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+      <a href="/cart" data-toggle="dropdown" role="button" aria-expanded="false">
         <i class="fa fa-shopping-cart"></i>
       </a>
       <div class="dropdown-menu" style="width: 300px;">
@@ -74,8 +74,15 @@
         </div>
 
         <div class="btn-group pull-right m-15">
-          <a href="cart.html" class="btn btn-default btn-sm">View Cart</a>
-          <a href="checkout.html" class="btn btn-default btn-sm">Checkout</a>
+          <a href="/cart" class="btn btn-default btn-sm">View Cart</a>
+          <a href="/checkout" class="btn btn-default btn-sm">Checkout</a>
         </div>
       </div>
     </li>
+    {{#admin}}
+    <li class="dropdown dropdown-hover">
+      <a href="/newGame" data-toggle="dropdown" role="button" aria-expanded="false">
+          New Game
+      </a>
+    </li>
+		{{/admin}}
