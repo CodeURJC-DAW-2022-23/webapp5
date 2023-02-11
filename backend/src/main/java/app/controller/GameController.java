@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class GameController {
-        
-
-        @GetMapping("/")
+	@GetMapping("/")
 	public String showBooks(Model model) {
 
 		return "index";

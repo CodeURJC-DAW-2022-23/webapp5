@@ -25,7 +25,7 @@ public class Review {
 
     private int rating;
 
-    @Column(length = 50000)
+    @Column(name = "comment", columnDefinition = "TEXT")
     private String comment;
 
     public Review() {

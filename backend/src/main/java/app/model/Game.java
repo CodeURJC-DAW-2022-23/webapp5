@@ -24,13 +24,13 @@ public class Game {
 	private long id;
 
 	private String name;
-	@Column(length = 50000)
+	@Column(name = "description", columnDefinition = "TEXT")
 	private String description;
 	private float price;
 	private String category;
 
 	@ElementCollection(fetch=FetchType.LAZY)
-	@Column(length = 50000)
+	@Column(name = "gameplayImages", columnDefinition = "TEXT")
 	private List<String> gameplayImages = new ArrayList<>();
 
 	@Lob
@@ -40,13 +40,13 @@ public class Game {
 
 	@Lob
 	@JsonIgnore
-	@ElementCollection(fetch=FetchType.LAZY)
+	@ElementCollection(fetch=FetchType.EAGER)
 	private List<Blob> gameplayImagesFiles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Review> reviews = new ArrayList<>();
 
-	@Column(length = 50000)
+	@Column(name = "requirements", columnDefinition = "TEXT")
 	private String minimumRequirements;
 
 	public Game() {

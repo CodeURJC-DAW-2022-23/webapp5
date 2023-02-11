@@ -16,8 +16,8 @@ import javax.persistence.Lob;
 
 @Entity
 public class User {
-    @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
 	private long id;
 
     private String mail;
@@ -25,10 +25,10 @@ public class User {
     private String name;
     private String lastName;
 
-    @Column(length = 50000)
+    @Column(name = "aboutMe", columnDefinition = "TEXT")
     private String aboutMe;
 
-    @Column(length = 50000)
+    @Column(name = "billingInformation", columnDefinition = "TEXT")
     private String billingInformation;
 
     @ElementCollection(fetch = FetchType.LAZY)
