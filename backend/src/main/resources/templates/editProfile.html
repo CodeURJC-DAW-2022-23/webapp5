@@ -63,9 +63,13 @@
       <div class="youplay-textarea">
         <textarea name="aboutMe" rows="5" placeholder="Description">{{aboutMe}}</textarea>
       </div>
-      <div class="youplay-input">
-        <input type="file" name="imageField" accept=".png, .jpg, .jpeg"/>
-      </div>
+
+      
+  
+        <label for="imageUpload">      <div class="align-left">
+          <a class="btn btn-lg">New Profile Picture</a>
+        </div></label>
+        <input id="imageUpload" type="file" name="imageField" accept=".png, .jpg, .jpeg"/>
 
 			<input type="hidden" name="_csrf" value="{{token}}" />
 
