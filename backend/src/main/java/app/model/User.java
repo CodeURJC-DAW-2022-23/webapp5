@@ -44,17 +44,12 @@ public class User{
         
     }
 
-    public User(String mail, String encodedPassword, String name, String lastName, String aboutMe, List<String> roles, Blob profilePirctureFile, String profilePircture) {
-        super();
-        this.mail = mail;
-        this.encodedPassword = encodedPassword;
-        this.name = name;
-        this.lastName = lastName;
+    public User(String name, String lastName, String encodedPassword,  String aboutMe) {
+		this.name = name;
+		this.encodedPassword = encodedPassword;
         this.aboutMe = aboutMe;
-        this.roles = roles;
-        this.profilePirctureFile = profilePirctureFile;
-        this.profilePircture = profilePircture;
-    }
+        this.lastName = lastName;
+	}
 
     public User(String name, String lastName, String mail, String encodedPassword,  String aboutMe, String... roles) {
 		this.name = name;
