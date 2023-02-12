@@ -1,7 +1,6 @@
 package app.model;
 
 import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 
 @Entity
-public class User {
+public class User{
 
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,6 +55,15 @@ public class User {
         this.profilePirctureFile = profilePirctureFile;
         this.profilePircture = profilePircture;
     }
+
+    public User(String name, String lastName, String mail, String encodedPassword,  String aboutMe, String... roles) {
+		this.name = name;
+		this.mail = mail;
+		this.encodedPassword = encodedPassword;
+		this.roles = List.of(roles);
+        this.aboutMe = aboutMe;
+        this.lastName = lastName;
+	}
 
     public Long getId() {
         return this.id;
@@ -140,5 +148,10 @@ public class User {
     public void setProfilePircture(String profilePircture) {
         this.profilePircture = profilePircture;
     }
+
+    @Override
+	public String toString() {
+		return this.mail;
+	}
 
 }

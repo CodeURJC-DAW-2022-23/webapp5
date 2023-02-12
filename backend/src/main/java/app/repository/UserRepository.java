@@ -10,6 +10,5 @@ import app.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByMail(String mail);
     Optional<User> findByName(String name);
-    Optional<User> findById(long id);
     List<String> findRolesByName(String name);
 }

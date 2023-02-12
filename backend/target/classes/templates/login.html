@@ -23,6 +23,11 @@
                 <div class="youplay-input">
                   <input type="password" name="password" placeholder="Password">
                 </div>
+                {{#error}}
+                <div class="alert alert-danger" role="alert">
+                  <strong>Credentials are not correct!</strong> Please try again.
+                </div>
+                {{/error}}
                 <button class="btn btn-default db">Login</button>
                 <input type="hidden" name="_csrf" value="{{token}}"/>
               </form>

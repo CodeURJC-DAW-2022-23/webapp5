@@ -32,6 +32,12 @@ public class UserService {
 	}
 
 	public Optional<User> findById(long id) {
-		return users.findById(id);
+		Optional<User> findById = users.findById(id);
+		return findById;
+	}
+
+	public boolean existMail(String name) {
+		Optional<User> user = findByMail(name);
+		return user.isPresent();
 	}
 }

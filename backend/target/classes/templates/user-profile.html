@@ -20,22 +20,23 @@
         </div>
       </div>
 
+      {{#user}}
       <div class="info">
+        
         <div>
           <div class="container youplay-user">
-            <a href="/images/user-photo.jpg" class="angled-img image-popup">
+            <a class="angled-img image-popup">
               <div class="img">
-                <img src="/images/user-avatar.jpg" alt="">
+                <img src="/{{id}}/imageProfile">
               </div>
-              <i class="fa fa-search-plus icon"></i>
             </a>
             <!--
                 -->
             <div class="user-data">
-              <h2>John Doe</h2>
+              <h2>{{name}} {{lastName}}</h2>
               <div class="activity">
                 <div>
-                  <div class="num">12</div>
+                  <div class="num">{{gamesNumber}}</div>
                   <div class="title">Games</div>
                 </div>
               </div>
@@ -70,10 +71,7 @@
                   <p>About Me</p>
                 </td>
                 <td>
-                  <p>Netus. Nascetur arcu amet accumsan natoque. Augue aptent euismod sed magna diam nostra, molestie mi felis. Egestas nisl ante posuere dui Nostra tempus pulvinar at dui augue mattis placerat iaculis hac arcu rutrum.</p>
-
-                  <p>Vel <strong>class</strong> lectus auctor interdum. Mi <strong>nec</strong> senectus commodo sed suscipit vitae parturient, risus vivamus quisque dolor aliquet amet. Etiam penatibus nascetur netus. Non leo eu vitae sem laoreet. Varius in
-                    augue. Mollis convallis.</p>
+                  <p>{{aboutMe}}</p>
                 </td>
               </tr>
             </tbody>
@@ -81,19 +79,10 @@
 
         </div>
 
-        <!-- Left Side -->
-        <div class="col-md-3">
-          <div class="side-block">
-            <h4 class="block-title">About</h4>
-            <div class="block-content">
-              Ecce dabo Pinkman Isai OK? Sicut locutus est tibi, et datus est, et hic sine Semper consequat volumus ... et ille in urbe ista licet? Et infernus, ubi tu non Virginiae ornare vel ipsum. Ut enim Albuquerque et ille eum iure hic, et ego ducam te ad iustitiam.
-            </div>
-          </div>
-        </div>
-        <!-- Left Side -->
 
       </div>
 
     </div>
+    {{/user}}
 
 {{>FooterImport}}

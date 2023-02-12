@@ -20,7 +20,7 @@
     </div>
     <!-- /Banner -->
 
-
+    <form action="/register" method="post" id="registerForm" >
     <div class="container youplay-content">
 
       <div class="col-md-12">
@@ -30,13 +30,13 @@
           <div class="col-md-6">
             <p>Name:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_name" placeholder="Name">
+              <input type="text" name="name" placeholder="Name">
             </div>
           </div>
           <div class="col-md-6">
             <p>Last Name:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_surname" placeholder="Surname">
+              <input type="text" name="lastName" placeholder="Surname">
             </div>
           </div>
         </div>
@@ -44,13 +44,13 @@
           <div class="col-md-6">
             <p>Email:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_email" placeholder="email">
+              <input type="text" name="mail" placeholder="email">
             </div>
           </div>
           <div class="col-md-6">
             <p>Repeat Email:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_rpemail" placeholder="email">
+              <input type="text" name="rmail" placeholder="email">
             </div>
           </div>
         </div>
@@ -58,21 +58,29 @@
           <div class="col-md-6">
             <p>Password:</p>
             <div class="youplay-input">
-              <input type="password" name="billing_password" placeholder="Password">
+              <input type="password" name="encodedPassword" placeholder="Password">
             </div>
           </div>
           <div class="col-md-6">
             <p>Repeat Password:</p>
             <div class="youplay-input">
-              <input type="password" name="billing_rppassword" placeholder="Password">
+              <input type="password" name="rpassword" placeholder="Password">
             </div>
           </div>
         </div>
       </div>
       <p>About me:</p>
       <div class="youplay-textarea">
-        <textarea name="billing_description" rows="5" placeholder="Description"></textarea>
+        <textarea name="aboutMe" rows="5" placeholder="Description"></textarea>
       </div>
+
+      {{#error}}
+      <div class="alert alert-danger" role="alert">
+        <strong>Email is linked to an existing account!</strong> Please login or use other email.
+      </div>
+      {{/error}}
+      <input type="hidden" name="roles" value="USER" />
+			<input type="hidden" name="_csrf" value="{{token}}" />
 
       <div class="align-right">
         <a class="btn btn-lg" onclick="checkForm()">Create Account</a>
@@ -81,6 +89,7 @@
       <label id="wrongpass"></label>
       <label id="wrongemail"></label>
     </div>
+    </form>
 
     <!-- Order Button -->
 
@@ -149,18 +158,18 @@
       });
     }
     function checkName() {
-      var name = document.getElementsByName("billing_name")[0].value;
+      var name = document.getElementsByName("name")[0].value;
       if (name === "") {
-        document.getElementsByName("billing_name")[0].placeholder = "Name is empty";
+        document.getElementsByName("name")[0].placeholder = "Name is empty";
         return false;
       }
       return true;
     }
     function checkPassword() {
-      var password = document.getElementsByName("billing_password")[0].value;
-      var rppassword = document.getElementsByName("billing_rppassword")[0].value;
+      var password = document.getElementsByName("encodedPassword")[0].value;
+      var rppassword = document.getElementsByName("rpassword")[0].value;
       if (password === "") {
-        document.getElementsByName("billing_password")[0].placeholder = "password is empty";
+        document.getElementsByName("encodedPassword")[0].placeholder = "password is empty";
         return false;
       }
       if (password !== rppassword) {
@@ -174,10 +183,10 @@
       return true;
     }
     function checkEmail() {
-      var email = document.getElementsByName("billing_email")[0].value;
-      var rpemail = document.getElementsByName("billing_rpemail")[0].value;
+      var email = document.getElementsByName("mail")[0].value;
+      var rpemail = document.getElementsByName("rmail")[0].value;
       if (email === "") {
-        document.getElementsByName("billing_email")[0].placeholder = "email is empty";
+        document.getElementsByName("mail")[0].placeholder = "email is empty";
         return false;
       }
       if (email !== rpemail) {
@@ -192,7 +201,7 @@
     }
     function checkForm() {
       if (checkName() && checkEmail() && checkPassword()) {
-        alert("success");
+        document.getElementById("registerForm").submit();
       }
     }
   </script>
