@@ -19,8 +19,12 @@ public class UserService {
 		users.save(user);
 	}
 
-	public void findByMail(String mail) {
-		users.findByMail(mail);
+	public Optional<User> findByMail(String mail) {
+		return users.findByMail(mail);
+	}
+
+	public Optional<User> findByName(String mail) {
+		return users.findByMail(mail);
 	}
 
 	public List<User> findAll() {
@@ -28,6 +32,12 @@ public class UserService {
 	}
 
 	public Optional<User> findById(long id) {
-		return users.findById(id);
+		Optional<User> findById = users.findById(id);
+		return findById;
+	}
+
+	public boolean existMail(String name) {
+		Optional<User> user = findByMail(name);
+		return user.isPresent();
 	}
 }

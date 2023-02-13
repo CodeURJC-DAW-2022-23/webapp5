@@ -10,13 +10,14 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import app.model.Game;
 import app.model.Purchase;
 import app.model.Review;
 import app.model.User;
-import jakarta.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 
 @Service
 public class SampleDataService {
@@ -28,22 +29,21 @@ public class SampleDataService {
 	private UserService users;
 
 	@Autowired
-	private ReviewService reviews;
+	private PurchaseService purchases;
 
 	@Autowired
-	private PurchaseService purchases;
+	private PasswordEncoder passwordEncoder;
 
 	@PostConstruct
 	public void init() throws IOException {
-		List<Game> generatedGames = generateGames();
 
 
 		List<User> generatedUsers = generateUsers();
 		for (User user : generatedUsers) {
 			users.save(user);
 		}
-
-		List<Review> generatedReviews = generateReviews(generatedGames, generatedUsers);
+		List<Game> generatedGames = generateGames();
+		generateReviews(generatedGames, generatedUsers);
 
 		for (Game game : generatedGames) {
 			games.save(game);
@@ -93,9 +93,10 @@ public class SampleDataService {
 			user.setName(name);
 			user.setLastName(lastName);
 			user.setMail(name + lastName +"@gmail.com");
-			user.setEncodedPassword("12345678");
+			user.setEncodedPassword(passwordEncoder.encode("12345678"));
 			user.setAboutMe("I am the user "+ name + " " + lastName);
 			user.setProfilePircture("/static/images/avatar.png");
+			user.setRoles("USER");
 			setProfilePicture(user, user.getProfilePircture());
 			users.add(user);
 		}
@@ -106,12 +107,19 @@ public class SampleDataService {
 			user.setName(name);
 			user.setLastName(lastName);
 			user.setMail(name + lastName +"@gmail.com");
-			user.setEncodedPassword("12345678");
+			user.setEncodedPassword(passwordEncoder.encode("12345678"));
 			user.setAboutMe("I am the admin "+ name + " " + lastName);
 			user.setProfilePircture("/static/images/avatar");
+			user.setRoles("USER", "ADMIN");
 			setProfilePicture(user, user.getProfilePircture());
 			users.add(user);
 		}
+		User user = new User();
+		user.setMail("1");
+		user.setEncodedPassword(passwordEncoder.encode("1"));
+		user.setRoles("USER");
+		user.setName("1");
+		users.add(user);
 		return users;
 	}
 

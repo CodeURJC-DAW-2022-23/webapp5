@@ -6,31 +6,31 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 
 	private String name;
-	@Column(length = 50000)
+	@Column(name = "description", columnDefinition = "TEXT")
 	private String description;
 	private float price;
 	private String category;
 
-	@ElementCollection(fetch=FetchType.EAGER)
-	@Column(length = 50000)
+	@ElementCollection(fetch=FetchType.LAZY)
+	@Column(name = "gameplayImages", columnDefinition = "TEXT")
 	private List<String> gameplayImages = new ArrayList<>();
 
 	@Lob
@@ -40,13 +40,13 @@ public class Game {
 
 	@Lob
 	@JsonIgnore
-	@ElementCollection(fetch=FetchType.EAGER)
+	@ElementCollection(fetch=FetchType.LAZY)
 	private List<Blob> gameplayImagesFiles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Review> reviews = new ArrayList<>();
 
-	@Column(length = 50000)
+	@Column(name = "requirements", columnDefinition = "TEXT")
 	private String minimumRequirements;
 
 	public Game() {
@@ -67,11 +67,11 @@ public class Game {
 	}
 
 
-	public long getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

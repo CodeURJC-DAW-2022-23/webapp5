@@ -5,33 +5,34 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
-public class User {
+public class User{
+
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 
     private String mail;
     private String encodedPassword;
     private String name;
     private String lastName;
 
-    @Column(length = 50000)
+    @Column(name = "aboutMe", columnDefinition = "TEXT")
     private String aboutMe;
 
-    @Column(length = 50000)
+    @Column(name = "billingInformation", columnDefinition = "TEXT")
     private String billingInformation;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch=FetchType.EAGER)
 	private List<String> roles;
 
     @Lob
@@ -43,23 +44,27 @@ public class User {
         
     }
 
-    public User(String mail, String encodedPassword, String name, String lastName, String aboutMe, List<String> roles, Blob profilePirctureFile, String profilePircture) {
-        super();
-        this.mail = mail;
-        this.encodedPassword = encodedPassword;
-        this.name = name;
-        this.lastName = lastName;
+    public User(String name, String lastName, String encodedPassword,  String aboutMe) {
+		this.name = name;
+		this.encodedPassword = encodedPassword;
         this.aboutMe = aboutMe;
-        this.roles = roles;
-        this.profilePirctureFile = profilePirctureFile;
-        this.profilePircture = profilePircture;
-    }
+        this.lastName = lastName;
+	}
 
-    public long getId() {
+    public User(String name, String lastName, String mail, String encodedPassword,  String aboutMe, String... roles) {
+		this.name = name;
+		this.mail = mail;
+		this.encodedPassword = encodedPassword;
+		this.roles = List.of(roles);
+        this.aboutMe = aboutMe;
+        this.lastName = lastName;
+	}
+
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -112,11 +117,14 @@ public class User {
     }
 
     public List<String> getRoles() {
+        for (String string : roles) {
+            System.out.println(string);
+        }
         return this.roles;
     }
 
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
+    public void setRoles(String ... roles) {
+        this.roles = List.of(roles);
     }
 
     public Blob getProfilePirctureFile() {
@@ -135,5 +143,10 @@ public class User {
     public void setProfilePircture(String profilePircture) {
         this.profilePircture = profilePircture;
     }
+
+    @Override
+	public String toString() {
+		return this.mail;
+	}
 
 }
