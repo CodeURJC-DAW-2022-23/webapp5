@@ -28,6 +28,14 @@ public class Game {
 	private String description;
 	private float price;
 	private String category;
+	private String os;
+	private String processor;
+	private String memory;
+	private String graphics;
+	private String directX;
+	private String network;
+	private String hardDrive;
+	private String soundCard;
 
 	@ElementCollection(fetch=FetchType.LAZY)
 	@Column(name = "gameplayImages", columnDefinition = "TEXT")
@@ -46,14 +54,11 @@ public class Game {
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Review> reviews = new ArrayList<>();
 
-	@Column(name = "requirements", columnDefinition = "TEXT")
-	private String minimumRequirements;
-
 	public Game() {
 
 	}
 
-	public Game(String name, String description, float price, String category, Blob titleImageFile, String titleImage, List<Blob> gameplayImagesFiles, List<String> gameplayImages, String minimumRequirements) {
+	public Game(String name, String description, float price, String category, Blob titleImageFile, String titleImage, List<Blob> gameplayImagesFiles, List<String> gameplayImages) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -63,7 +68,6 @@ public class Game {
 		this.titleImage = titleImage;
 		this.gameplayImagesFiles = gameplayImagesFiles;
 		this.gameplayImages = gameplayImages;
-		this.minimumRequirements = minimumRequirements;
 	}
 
 
@@ -81,6 +85,14 @@ public class Game {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getMemory() {
+		return this.memory;
+	}
+
+	public void setMemory(String memory) {
+		this.memory = memory;
 	}
 
 	public String getDescription() {
@@ -115,13 +127,63 @@ public class Game {
 		this.reviews = reviews;
 	}
 
-	public String getMinimumRequirements() {
-		return this.minimumRequirements;
+	public String getOs() {
+		return this.os;
 	}
 
-	public void setMinimumRequirements(String minimumRequirements) {
-		this.minimumRequirements = minimumRequirements;
+	public void setOs(String os) {
+		this.os = os;
 	}
+
+	public String getProcessor() {
+		return this.processor;
+	}
+
+	public void setProcessor(String processor) {
+		this.processor = processor;
+	}
+
+	public String getGraphics() {
+		return this.graphics;
+	}
+
+	public void setGraphics(String graphics) {
+		this.graphics = graphics;
+	}
+
+	public String getDirectX() {
+		return this.directX;
+	}
+
+	public void setDirectX(String directX) {
+		this.directX = directX;
+	}
+
+	public String getNetwork() {
+		return this.network;
+	}
+
+	public void setNetwork(String network) {
+		this.network = network;
+	}
+
+	public String getHardDrive() {
+		return this.hardDrive;
+	}
+
+	public void setHardDrive(String hardDrive) {
+		this.hardDrive = hardDrive;
+	}
+
+	public String getSoundCard() {
+		return this.soundCard;
+	}
+
+	public void setSoundCard(String soundCard) {
+		this.soundCard = soundCard;
+	}
+
+
 
 
 	public Blob getTitleImageFile() {
