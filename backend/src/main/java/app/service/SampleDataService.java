@@ -160,14 +160,21 @@ public class SampleDataService {
 			String fileName = string.toLowerCase().replace(' ', '-');
 			g1.setTitleImage("/static/images/game-"+ fileName+"-500x375.jpg");
 			setGameImage(g1, g1.getTitleImage());
-			g1.setMinimumRequirements("Se necesita un buen ordenador");
+			g1.setOs("Windows 7");
+			g1.setProcessor("Dual core from Intel or AMD at 2.8 GHz");
+			g1.setMemory("4 GB RAM");
+			g1.setGraphics("NVIDIA GeForce GTX 260 or AMD Radeon HD 4870 (512 MB VRAM with Shader Model 4.0 or higher)");
+			g1.setDirectX("Version 11");
+			g1.setNetwork("Broadband Internet connection");
+			g1.setHardDrive("50 GB available space");
+			g1.setSoundCard("DirectX 9.0c compatible sound card");
 			for (int index = 2; index <= 7; index++) {
 				g1.getGameplayImages()
-						.add("/static/images/game-"+ fileName + "-" + String.valueOf(index) + "-1920x1080.jpg");
+						.add("/static/images/game-"+fileName+"-"+index+"-1920x1080.jpg");
 			}
+			setGameplayImage(g1, g1.getGameplayImages());
 			games.add(g1);
 		}
-		setGameplayImage(games.get(0), games.get(0).getGameplayImages());
 		return games;
 	}
 

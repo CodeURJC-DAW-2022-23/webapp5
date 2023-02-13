@@ -60,7 +60,12 @@ public class UserController {
 
 	@GetMapping("/profile/{id}")
 	public String profile(Model model, @PathVariable long id) {
-		User user = userService.findById(id).orElseThrow();
+		User user;
+		try{
+			user = userService.findById(id).orElseThrow();
+		}catch(Exception e){
+			return "redirect:/error";
+		}
 		if (user.getId().equals(currentUser.getId())) {
             model.addAttribute("user", user);
             model.addAttribute("gamesNumber", purchaseService.numberOfGames(user));
@@ -88,7 +93,6 @@ public class UserController {
 			model.addAttribute("user", user);
 			return "editProfile";
 		}
-		
 		return "redirect:/error";
 	}
 
