@@ -158,7 +158,7 @@ public class SampleDataService {
 			g1.setPrice(29.99f);
 			g1.setCategory("Action");
 			String fileName = string.toLowerCase().replace(' ', '-');
-			g1.setTitleImage("/static/images/game-"+ fileName+"-500x375.jpg");
+			g1.setTitleImage("/static/images/game-"+ fileName+".jpg");
 			setGameImage(g1, g1.getTitleImage());
 			g1.setOs("Windows 7");
 			g1.setProcessor("Dual core from Intel or AMD at 2.8 GHz");
@@ -170,7 +170,7 @@ public class SampleDataService {
 			g1.setSoundCard("DirectX 9.0c compatible sound card");
 			for (int index = 2; index <= 7; index++) {
 				g1.getGameplayImages()
-						.add("/static/images/game-"+fileName+"-"+index+"-1920x1080.jpg");
+						.add("/static/images/game-"+fileName+"-"+index+"-500x375.jpg");
 			}
 			setGameplayImage(g1, g1.getGameplayImages());
 			games.add(g1);
@@ -192,7 +192,11 @@ public class SampleDataService {
 	}
 
 	public void setGameImage(Game game, String classpathResource) throws IOException {
-		Resource image = new ClassPathResource(classpathResource);
-		game.setTitleImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+		try {
+			Resource image = new ClassPathResource(classpathResource);
+			game.setTitleImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

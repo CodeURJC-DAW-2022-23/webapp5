@@ -36,11 +36,11 @@ public class LoginWebController {
 	public void addAttributes(Model model, HttpServletRequest request) {
 
 		Principal principal = request.getUserPrincipal();
-		
+
 		if(principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
-			model.addAttribute("userName", currentUser.getName());
+			model.addAttribute("user", currentUser);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		} else {
 			model.addAttribute("logged", false);

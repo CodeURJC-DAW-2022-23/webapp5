@@ -28,8 +28,7 @@ public class IndexController {
 		if(principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
-			model.addAttribute("userName", currentUser.getName());
-			model.addAttribute("id", currentUser.getId());
+			model.addAttribute("user", currentUser);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		} else {
 			model.addAttribute("logged", false);
