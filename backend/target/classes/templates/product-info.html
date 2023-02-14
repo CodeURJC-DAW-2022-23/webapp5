@@ -87,8 +87,15 @@
             <br>
             <h2><span class="label label-default">${{price}}</span></h2>
             {{#logged}}
-            <a href="#!" class="btn btn-lg" title="Add to Cart">Add to Cart</a>
-              {{/logged}} 
+            {{^inCart}}
+            <a href="/addToCart/{{id}}" class="btn btn-lg" title="Add to Cart">Add to Cart</a>
+            {{/inCart}}
+            {{#inCart}}
+            <div class="alert" role="alert">
+              <strong>This game is already in your cart</strong>
+            </div>
+            {{/inCart}}
+              {{/logged}}
           </div>
         </div>
       </div>
@@ -107,6 +114,8 @@
       </a>
       {{/gameplayImagesFiles}}
     </div>
+
+
     <!-- /Images With Text -->
 
 

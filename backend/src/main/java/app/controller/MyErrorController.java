@@ -17,19 +17,4 @@ public class MyErrorController implements ErrorController {
     public String handleError() {
         return "error";
     }
-
-    @ModelAttribute
-	public void addAttributes(Model model, HttpServletRequest request) {
-
-		Principal principal = request.getUserPrincipal();
-
-
-		if(principal != null) {
-			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		} else {
-			model.addAttribute("logged", false);
-		}
-	}
 }

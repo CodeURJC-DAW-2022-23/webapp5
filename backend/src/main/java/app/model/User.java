@@ -1,10 +1,14 @@
 package app.model;
 
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -13,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User{
@@ -34,11 +39,16 @@ public class User{
 
     @ElementCollection(fetch=FetchType.EAGER)
 	private List<String> roles;
+    
+    @OneToMany
+	private List<Game> cart = new ArrayList<>();
 
     @Lob
 	@JsonIgnore
 	private Blob profilePirctureFile;
     private String profilePircture;
+
+    private float totalPrice = 0;
 
     public User(){
         
@@ -59,6 +69,17 @@ public class User{
         this.aboutMe = aboutMe;
         this.lastName = lastName;
 	}
+
+
+    public List<Game> getCart() {
+        return this.cart;
+    }
+
+    public void setCart(List<Game> cart) {
+        this.cart = cart;
+    }
+
+
 
     public Long getId() {
         return this.id;
@@ -144,9 +165,14 @@ public class User{
         this.profilePircture = profilePircture;
     }
 
-    @Override
-	public String toString() {
-		return this.mail;
-	}
+    public void addGameToCart(Game game){
+        this.cart.add(game);
+        this.totalPrice += game.getPrice();
+    }
+
+    public void removeGameFromCart(Game game){
+        this.cart.remove(game);
+        this.totalPrice -= game.getPrice();
+    }
 
 }

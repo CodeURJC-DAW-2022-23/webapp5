@@ -3,6 +3,7 @@ package app.model;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -225,6 +226,24 @@ public class Game {
 	public void addReview(Review review) {
 		this.reviews.add(review);
 	}
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		if (!(o instanceof Game)) {
+			return false;
+		}
+		Game game = (Game) o;
+		return Objects.equals(id, game.id) && Objects.equals(name, game.name) && Objects.equals(description, game.description) && price == game.price && Objects.equals(category, game.category) && Objects.equals(os, game.os) && Objects.equals(processor, game.processor) && Objects.equals(memory, game.memory) && Objects.equals(graphics, game.graphics) && Objects.equals(directX, game.directX) && Objects.equals(network, game.network) && Objects.equals(hardDrive, game.hardDrive) && Objects.equals(soundCard, game.soundCard) && Objects.equals(gameplayImages, game.gameplayImages) && Objects.equals(titleImageFile, game.titleImageFile) && Objects.equals(titleImage, game.titleImage) && Objects.equals(gameplayImagesFiles, game.gameplayImagesFiles) && Objects.equals(reviews, game.reviews);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, description, price, category, os, processor, memory, graphics, directX, network, hardDrive, soundCard, gameplayImages, titleImageFile, titleImage, gameplayImagesFiles, reviews);
+	}
+
 
 
 }
