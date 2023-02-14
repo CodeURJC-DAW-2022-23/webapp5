@@ -59,16 +59,20 @@ public class Game {
 
 	}
 
-	public Game(String name, String description, float price, String category, Blob titleImageFile, String titleImage, List<Blob> gameplayImagesFiles, List<String> gameplayImages) {
+	public Game(String category, String name, String price, String os, String processor, String memory, String directX, String network, String hardDrive, String soundCard, String description) {
 		super();
 		this.name = name;
 		this.description = description;
-		this.price = price;
+		this.price = Float.parseFloat(price);
 		this.category = category;
-		this.titleImageFile = titleImageFile;
-		this.titleImage = titleImage;
-		this.gameplayImagesFiles = gameplayImagesFiles;
-		this.gameplayImages = gameplayImages;
+		this.os = os;
+		this.graphics = "NVIDIA GeForce GTX 1050 Ti 4GB";
+		this.processor = processor;
+		this.memory = memory;
+		this.directX = directX;
+		this.network = network;
+		this.hardDrive = hardDrive;
+		this.soundCard = soundCard;
 	}
 
 

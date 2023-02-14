@@ -7,20 +7,18 @@
 
     <!-- Banner -->
     <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
-      <div class="image" style="background-image: url('/images/banner-blog-bg.jpg')">
-      </div>
-
+      <div class="image" style="background-image: url('/images/banner-blog-bg.jpg')"></div>
       <div class="info">
         <div>
           <div class="container">
-            <h1>game form</h1>
+            <h1>Game Form</h1>
           </div>
         </div>
       </div>
     </div>
     <!-- /Banner -->
 
-
+    <form action="/newGame" method="post" id="gameForm" >
     <div class="container youplay-content">
 
       <div class="col-md-12">
@@ -30,7 +28,7 @@
         <!-- Country -->
         <p>Categories:</p>
         <label class="youplay-select">
-          <select name="billing_country">
+          <select name="category">
             <option value="">Select Category</option>
             <option value="ACT">Action</option>
             <option value="ADV">Adventure</option>
@@ -46,33 +44,33 @@
           <div class="col-md-6">
             <p>Game Name:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_gamename" placeholder="Game Name">
+              <input type="text" name="name" placeholder="Game Name">
             </div>
           </div>
           <div class="col-md-6">
             <p>Price:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_price" placeholder="Price">
+              <input type="text" name="price" placeholder="Price">
             </div>
           </div>
         </div>
-<div class="row">
-        <div class="col-md-4">
-          <p>OS:</p>
-          <div class="youplay-input">
-            <input type="text" name="billing_os" placeholder="OS">
+        <div class="row">
+          <div class="col-md-4">
+            <p>OS:</p>
+            <div class="youplay-input">
+              <input type="text" name="os" placeholder="OS">
+            </div>
           </div>
-        </div>
-        <div class="col-md-4">
-        <p>Processor:</p>
-          <div class="youplay-input">
-          <input type="text" name="billing_processor" placeholder="Processor">
-          </div>
+          <div class="col-md-4">
+            <p>Processor:</p>
+            <div class="youplay-input">
+              <input type="text" name="processor" placeholder="Processor">
+            </div>
           </div>
           <div class="col-md-4">
             <p>Memory:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_memory" placeholder="Memory">
+              <input type="text" name="memory" placeholder="Memory">
             </div>
           </div>
         </div>
@@ -81,62 +79,66 @@
           <div class="col-md-6">
             <p>DirectX:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_directX" placeholder="DirectX">
+              <input type="text" name="directX" placeholder="DirectX">
             </div>
           </div>
           <div class="col-md-6">
             <p>Network:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_network" placeholder="Network">
+              <input type="text" name="network" placeholder="Network">
             </div>
           </div>
         </div>
-          <div class="row">
-            <div class="col-md-6">
-              <p>Hard Drive:</p>
-              <div class="youplay-input">
-                <input type="text" name="billing_harddrive" placeholder="Hard dreive">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <p>Sound Card:</p>
-              <div class="youplay-input">
-                <input type="text" name="billing_soundcard" placeholder="Sound Card">
-              </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Hard Drive:</p>
+            <div class="youplay-input">
+              <input type="text" name="hardDrive" placeholder="Hard dreive">
             </div>
           </div>
+          <div class="col-md-6">
+            <p>Sound Card:</p>
+            <div class="youplay-input">
+              <input type="text" name="soundCard" placeholder="Sound Card">
+            </div>
+          </div>
+        </div>
         <p>Images:</p>
         <div class="row">
           <div class="col-md-6">
             <p>Main Image:</p>
             <div class="youplay-input" >
-            <input type="file" placeholder="Sound Card">
-          </div>
+              <input type="file" name= "titleImageFile" placeholder="Main Image">
             </div>
-            <div class="col-md-6">
-              <p>Gameplay Images:</p>
-        <div class="youplay-input">
-          <input type="file" multiple>
+          </div>
+          <div class="col-md-6">
+            <p>Gameplay Images:</p>
+            <div class="youplay-input">
+              <input type="file" name = "gameplayImagesFiles" multiple>
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-</div>
         <p>Description:</p>
         <div class="youplay-textarea">
-          <textarea name="billing_description" rows="5" placeholder="Description"></textarea>
+          <textarea name="description" rows="5" placeholder="Description"></textarea>
         </div>
         <!-- /Billing Information -->
 
         <!-- Order Button -->
         <div class="align-right">
-          <a href="index.html" class="btn btn-lg">Create Game</a>
+          <a class="btn btn-lg" onclick="post()" >Create Game</a>
         </div>
         <!-- /Order Button -->
       </div>
 
-
-
     </div>
-    </div>
+    </form>
 
-{{>FooterImport}}
+    {{>FooterImport}}
+</section>
+
+<script>
+function post() {
+  document.getElementById("gameForm").submit();
+}
+</script>

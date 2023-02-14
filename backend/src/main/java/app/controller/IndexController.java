@@ -47,12 +47,6 @@ public class IndexController {
 		return "search";
 	}
 
-	@GetMapping("/newGame")
-	public String newGame(Model model) {
-
-		return "admin";
-	}
-
 	@GetMapping("/cart")
 	public String cart(Model model) {
 
