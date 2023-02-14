@@ -42,27 +42,63 @@ public class CartController {
 		}
 	}
 
-    @GetMapping("/addToCart/{id}")
-	public String addCart(Model model, @PathVariable long id) {
+    @GetMapping("/{userId}/addToCart/{id}")
+	public String addCart(Model model, @PathVariable long id, @PathVariable long userId) {
 		try{
 			Game game = gameService.findById(id).orElseThrow();
+			User user = userService.findById(userId).orElseThrow();
+			if (!user.getId().equals(currentUser.getId())) {
+				throw new Exception();
+			}
             currentUser.addGameToCart(game);
+			model.addAttribute("game", game);
             userService.save(currentUser);
-            model.addAttribute("game", game);
             return "redirect:/game/{id}";
 		}catch(Exception e){
 			return "redirect:/error";
 		}
 	}
-    
-    @GetMapping("/deleteFromCart/{id}")
-	public String deleteCart(Model model, @PathVariable long id) {
+
+	@GetMapping("/{userId}/deleteFromCart/{id}")
+	public String deleteFromCart(Model model, @PathVariable long id, @PathVariable long userId) {
 		try{
 			Game game = gameService.findById(id).orElseThrow();
+			User user = userService.findById(userId).orElseThrow();
+			if (!user.getId().equals(currentUser.getId())) {
+				throw new Exception();
+			}
             currentUser.removeGameFromCart(game);
-            model.addAttribute("game", game);
+            userService.save(currentUser);
+            return "redirect:/cart/{userId}";
+		}catch(Exception e){
+			return "redirect:/error";
+		}
+	}
+
+	@GetMapping("/{userId}/deleteCart/{id}")
+	public String deleteCart(Model model, @PathVariable long id, @PathVariable long userId) {
+		try{
+			Game game = gameService.findById(id).orElseThrow();
+			User user = userService.findById(userId).orElseThrow();
+			if (!user.getId().equals(currentUser.getId())) {
+				throw new Exception();
+			}
+            currentUser.removeGameFromCart(game);
             userService.save(currentUser);
             return "redirect:/";
+		}catch(Exception e){
+			return "redirect:/error";
+		}
+	}
+
+	@GetMapping("/cart/{id}")
+	public String cart(Model model, @PathVariable long id) {
+		try{
+			User user = userService.findById(id).orElseThrow();
+			if (!user.getId().equals(currentUser.getId())) {
+				throw new Exception();
+			}
+            return "cart";
 		}catch(Exception e){
 			return "redirect:/error";
 		}

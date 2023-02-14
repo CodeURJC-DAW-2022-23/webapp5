@@ -88,7 +88,7 @@
             <h2><span class="label label-default">${{price}}</span></h2>
             {{#logged}}
             {{^inCart}}
-            <a href="/addToCart/{{id}}" class="btn btn-lg" title="Add to Cart">Add to Cart</a>
+            <a href="/{{user.id}}/addToCart/{{id}}" class="btn btn-lg" title="Add to Cart">Add to Cart</a>
             {{/inCart}}
             {{#inCart}}
             <div class="alert" role="alert">
