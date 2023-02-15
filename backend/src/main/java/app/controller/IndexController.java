@@ -48,6 +48,15 @@ public class IndexController {
 		return "search";
 	}
 
+	@GetMapping("/cart")
+	public String cart(Model model) {
+
+		return "cart";
+	}
+
+	@GetMapping("/checkout")
+	public String checkout(Model model) {
+
 	@GetMapping("/newGame")
 	public String newGame(Model model) {
 

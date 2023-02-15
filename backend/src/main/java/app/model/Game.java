@@ -1,5 +1,6 @@
 package app.model;
 
+import java.io.File;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,16 +60,19 @@ public class Game {
 
 	}
 
-	public Game(String name, String description, float price, String category, Blob titleImageFile, String titleImage, List<Blob> gameplayImagesFiles, List<String> gameplayImages) {
-		super();
+	public Game(String category, String name, float price, String os, String processor, String memory, String directX, String network, String hardDrive, String soundCard, String graphics, String description) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.category = category;
-		this.titleImageFile = titleImageFile;
-		this.titleImage = titleImage;
-		this.gameplayImagesFiles = gameplayImagesFiles;
-		this.gameplayImages = gameplayImages;
+		this.os = os;
+		this.graphics = graphics;
+		this.processor = processor;
+		this.memory = memory;
+		this.directX = directX;
+		this.network = network;
+		this.hardDrive = hardDrive;
+		this.soundCard = soundCard;
 	}
 
 
