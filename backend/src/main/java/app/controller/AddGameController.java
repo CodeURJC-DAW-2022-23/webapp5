@@ -3,7 +3,6 @@ package app.controller;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.sql.Blob;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +27,27 @@ public class AddGameController {
 
 	@Autowired
 	private GameService gameService;
+
+
+	@Autowired
+	private UserService userService;
+
+	User currentUser;
+
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if(principal != null) {
+			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
+			model.addAttribute("logged", true);
+			model.addAttribute("currentUser", currentUser);
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
 
 	@GetMapping("/newGame")
 	public String newGame() {
