@@ -3,9 +3,12 @@ package app.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import app.model.Game;
 import app.model.Purchase;
 import app.model.User;
 import app.repository.PurchaseRepository;
@@ -27,12 +30,16 @@ public class PurchaseService {
 		purchases.deleteById(id);
 	}
 
-	public int numberOfGames(User user){
+	public Set<Game> purchasedGamesByUser(User user) {
 		List<Purchase> findByUser = purchases.findByUser(user);
-		int numberOfGames = 0;
+		Set<Game> games = new HashSet<>();
 		for (Purchase purchase : findByUser) {
-			numberOfGames += purchase.getGames().size();
+			games.addAll(purchase.getGames());
 		}
-		return numberOfGames;
+		return games;
+	}
+
+	public int numberOfGames(User user){
+		return purchasedGamesByUser(user).size();
 	}
 }

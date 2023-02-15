@@ -20,7 +20,7 @@
     </div>
     <!-- /Banner -->
 
-    {{#user}}
+    {{#currentUser}}
     <form action="/editProfile" method="post" id="editForm" enctype="multipart/form-data">
     <div class="container youplay-content">
       <div class="align-right">
@@ -69,8 +69,9 @@
         <label for="imageUpload">      <div class="align-left">
           <a class="btn btn-lg">New Profile Picture</a>
         </div></label>
-        <input id="imageUpload" type="file" name="imageField" accept=".png, .jpg, .jpeg"/>
-
+        <div class="imageInput">
+        <input type="file" id="imageUpload" name="imageField" accept=".png, .jpg, .jpeg"/>
+        </div>
 			<input type="hidden" name="_csrf" value="{{token}}" />
 
       <div class="align-right">
@@ -81,7 +82,7 @@
       <label id="wrongemail"></label>
     </div>
     </form>
-    {{/user}}
+    {{/currentUser}}
 
     <!-- Order Button -->
 

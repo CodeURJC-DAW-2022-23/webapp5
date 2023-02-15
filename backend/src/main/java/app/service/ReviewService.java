@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.model.Game;
 import app.model.Review;
+import app.model.User;
 import app.repository.ReviewRepository;
 
 @Service
@@ -29,5 +31,8 @@ public class ReviewService {
 	public void deleteById(long id) {
 		reviews.deleteById(id);
 	}
-
+	
+	public boolean reviewedByUser(User user, Game game){
+		return reviews.findByUserAndGame(user, game).isPresent();
+	}
 }

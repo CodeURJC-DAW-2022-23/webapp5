@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.Principal;
 import app.model.User;
@@ -28,7 +29,7 @@ public class IndexController {
 		if(principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
-			model.addAttribute("user", currentUser);
+			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		} else {
 			model.addAttribute("logged", false);
@@ -53,22 +54,8 @@ public class IndexController {
 		return "admin";
 	}
 
-	@GetMapping("/cart")
-	public String cart(Model model) {
-
-		return "cart";
-	}
-
-	@GetMapping("/checkout")
-	public String checkout(Model model) {
-
+	@GetMapping("/checkout/{id}")
+	public String checkout(Model model, @PathVariable long id) {
 		return "checkout";
 	}
-
-	@GetMapping("/product")
-	public String product(Model model) {
-
-		return "product-info";
-	}
-
 }
