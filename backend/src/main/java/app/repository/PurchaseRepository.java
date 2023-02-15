@@ -9,5 +9,6 @@ import app.model.User;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
     List<Purchase> findByUser(User user);
+    
 }
 

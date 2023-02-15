@@ -30,55 +30,22 @@
 
         <h2 class="mt-0">Your Games in Cart</h2>
 
+        {{#currentUser.cart}}
         <!-- Single Product Block -->
         <div class="item angled-bg">
           <div class="row">
             <div class="col-lg-2 col-md-3 col-xs-4">
-              <div class="angled-img">
+              <a href="/game/{{id}}" class="angled-img">
                 <div class="img">
-                  <img src="/images/game-skyrim-500x375.jpg" alt="">
+  
+                  <img src="/{{id}}/imageTitle" alt="">
                 </div>
-              </div>
+              </a>
             </div>
             <div class="col-lg-10 col-md-9 col-xs-8">
               <div class="row">
                 <div class="col-xs-6 col-md-9">
-                  <h4>Skyrim</h4>
-                  <div class="rating hidden-xs">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-md-3 align-right">
-                  <div class="price">
-                    $11.99
-                  </div>
-                  <a href="#!" class="remove glyphicon glyphicon-remove"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /Single Product Block -->
-
-        <!-- Single Product Block -->
-        <div class="item angled-bg">
-          <div class="row">
-            <div class="col-lg-2 col-md-3 col-xs-4">
-              <div class="angled-img">
-                <div class="img">
-                  <img src="/images/game-dragons-dogma-500x375.jpg" alt="">
-                  <div class="badge show bg-default">-30%</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-10 col-md-9 col-xs-8">
-              <div class="row">
-                <div class="col-xs-6 col-md-9">
-                  <h4>Dragons Dogma</h4>
+                  <h4><a href="/game/{{id}}">{{name}}</a></h4>
                   <div class="rating hidden-xs">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -89,55 +56,22 @@
                 </div>
                 <div class="col-xs-6 col-md-3 align-right">
                   <div class="price">
-                    $34.99 <sup><del>$49.99</del></sup>
+                    ${{price}}
                   </div>
-                  <a href="#!" class="remove glyphicon glyphicon-remove"></a>
+                  <a href="/{{currentUser.id}}/deleteFromCart/{{id}}" class="remove glyphicon glyphicon-remove"></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- /Single Product Block -->
-
-        <!-- Single Product Block -->
-        <div class="item angled-bg">
-          <div class="row">
-            <div class="col-lg-2 col-md-3 col-xs-4">
-              <div class="angled-img">
-                <div class="img">
-                  <img src="/images/game-the-witcher-500x375.jpg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-10 col-md-9 col-xs-8">
-              <div class="row">
-                <div class="col-xs-6 col-md-9">
-                  <h4>The Witcher</h4>
-                  <div class="rating hidden-xs">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                  </div>
-                </div>
-                <div class="col-xs-6 col-md-3 align-right">
-                  <div class="price">
-                    $14.99
-                  </div>
-                  <a href="#!" class="remove glyphicon glyphicon-remove"></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {{/currentUser.cart}}
         <!-- /Single Product Block -->
 
         <div class="align-right h3 mr-20 mb-20">
-          Total: <strong>$46.88</strong>
+          Total: <strong>${{currentUser.totalPrice}}</strong>
         </div>
         <div class="align-right">
-          <a href="checkout.html" class="btn btn-lg">Proceed to Checkout</a>
+          <a href="/checkout/{{currentUser.id}}" class="btn btn-lg">Proceed to Checkout</a>
         </div>
       </div>
 
@@ -190,7 +124,7 @@
               <div class="col-xs-3 col-md-4">
                 <a href="product-info.html" class="angled-img">
                   <div class="img">
-                    <img src="/images/game-bloodborne-500x375.jpg" alt="">
+                    <img src="/{{id}}/imageTitle" alt="">
                   </div>
                 </a>
               </div>

@@ -59,15 +59,18 @@ public class SampleDataService {
 
 	private List<Review> generateReviews(List<Game> generatedGames, List<User> generatedUsers) {
 		List<Review> reviews = new ArrayList<>();
+		boolean control = true;
 		for (Game game : generatedGames) {
 			for (User user : generatedUsers) {
+				if (control){
 				Review review = new Review();
 				review.setGame(game);
 				review.setUser(user);
 				review.setRating((int) (Math.random() * 5) + 1);
 				review.setComment("This is a comment for the game " + game.getName());
 				reviews.add(review);
-				game.addReview(review);
+				game.addReview(review);}
+				control = !control;
 			}
 		}
 		return reviews;
@@ -109,17 +112,11 @@ public class SampleDataService {
 			user.setMail(name + lastName +"@gmail.com");
 			user.setEncodedPassword(passwordEncoder.encode("12345678"));
 			user.setAboutMe("I am the admin "+ name + " " + lastName);
-			user.setProfilePircture("/static/images/avatar");
+			user.setProfilePircture("/static/images/avatar.png");
 			user.setRoles("USER", "ADMIN");
 			setProfilePicture(user, user.getProfilePircture());
 			users.add(user);
 		}
-		User user = new User();
-		user.setMail("1");
-		user.setEncodedPassword(passwordEncoder.encode("1"));
-		user.setRoles("USER");
-		user.setName("1");
-		users.add(user);
 		return users;
 	}
 
