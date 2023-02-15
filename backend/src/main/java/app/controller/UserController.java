@@ -5,6 +5,7 @@ package app.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import app.model.Game;
 import app.model.User;
 import app.service.PurchaseService;
 import app.service.UserService;
@@ -52,6 +54,7 @@ public class UserController {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
 			model.addAttribute("currentUser", currentUser);
+			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		} else {
 			model.addAttribute("logged", false);
@@ -68,7 +71,9 @@ public class UserController {
 		}
 		if (user.getId().equals(currentUser.getId())) {
             model.addAttribute("user", user);
-            model.addAttribute("gamesNumber", purchaseService.numberOfGames(user));
+			List<Game> purchasedGames = purchaseService.purchasedGames(user);
+			model.addAttribute("myGames", purchasedGames);
+            model.addAttribute("gamesNumber", purchasedGames.size());
 			return "user-profile";
 		}
 
@@ -114,7 +119,6 @@ public class UserController {
 			user.setProfilePirctureFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
 		} else {
 			User dbUser = userService.findById(user.getId()).orElseThrow();
-			
 			if (dbUser.getProfilePircture() != null) {
 				user.setProfilePirctureFile(BlobProxy.generateProxy(dbUser.getProfilePirctureFile().getBinaryStream(), dbUser.getProfilePirctureFile().length()));
 			}

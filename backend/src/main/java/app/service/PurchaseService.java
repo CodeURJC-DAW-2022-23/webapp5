@@ -12,6 +12,7 @@ import app.model.Game;
 import app.model.Purchase;
 import app.model.User;
 import app.repository.PurchaseRepository;
+import java.util.ArrayList;
 
 @Service
 public class PurchaseService {
@@ -37,6 +38,10 @@ public class PurchaseService {
 			games.addAll(purchase.getGames());
 		}
 		return games;
+	}
+
+	public List<Game> purchasedGames(User user){
+		return new ArrayList<>(purchasedGamesByUser(user));
 	}
 
 	public int numberOfGames(User user){
