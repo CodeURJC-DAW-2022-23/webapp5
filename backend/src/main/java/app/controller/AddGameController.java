@@ -31,15 +31,14 @@ public class AddGameController {
 
 	@GetMapping("/newGame")
 	public String newGame() {
-		System.out.println("Entrando en NewGame");
 		return "admin";
 	}
 
 	@PostMapping("/newGame")
-	public String newgameProcess(Model model, Game game, MultipartFile titleImageFile, List<MultipartFile> gameplayImagesFiles) throws IOException {
-		game.setTitleImageFile(BlobProxy.generateProxy(titleImageFile.getInputStream(), titleImageFile.getSize()));
-		game.setTitleImage(titleImageFile.getOriginalFilename());
-		game.setGameplayImagesFiles(gameplayImagesFiles.stream().map(file -> {
+	public String newgameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException{
+		game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+		game.setTitleImage("");
+		game.setGameplayImagesFiles(imageFields.stream().map(file -> {
 			try {
 				return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
 			} catch (IOException e) {
@@ -47,8 +46,8 @@ public class AddGameController {
 			}
 			return null;
 		}).collect(Collectors.toList()));
-		game.setGameplayImages(gameplayImagesFiles.stream().map(file -> file.getOriginalFilename()).collect(Collectors.toList()));
+		game.setGameplayImages(imageFields.stream().map(file -> "").collect(Collectors.toList()));
 		gameService.save(game);
-		return "redirect:/index";
+		return "redirect:/";
 	}
 }

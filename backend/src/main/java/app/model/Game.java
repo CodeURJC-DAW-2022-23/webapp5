@@ -60,13 +60,13 @@ public class Game {
 
 	}
 
-	public Game(String category, String name, float price, String os, String processor, String memory, String directX, String network, String hardDrive, String soundCard, String graphic, String description) {
+	public Game(String category, String name, float price, String os, String processor, String memory, String directX, String network, String hardDrive, String soundCard, String graphics, String description) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.category = category;
 		this.os = os;
-		this.graphics = graphic;
+		this.graphics = graphics;
 		this.processor = processor;
 		this.memory = memory;
 		this.directX = directX;
