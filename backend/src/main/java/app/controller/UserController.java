@@ -73,6 +73,7 @@ public class UserController {
             model.addAttribute("user", user);
 			List<Game> purchasedGames = purchaseService.purchasedGames(user);
 			model.addAttribute("myGames", purchasedGames);
+			model.addAttribute("haveGames", !purchasedGames.isEmpty());
             model.addAttribute("gamesNumber", purchasedGames.size());
 			return "user-profile";
 		}
