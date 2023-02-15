@@ -36,18 +36,18 @@ public class AddGameController {
 	}
 
 	@PostMapping("/newGame")
-	public String newgameProcess(Model model, Game game,  MultipartFile titleImageFile, List<MultipartFile> gameplayImagesFiles) throws IOException{
-		System.out.println("Entrando en POST NewGame");
+	public String newgameProcess(Model model, Game game, MultipartFile titleImageFile, List<MultipartFile> gameplayImagesFiles) throws IOException {
 		game.setTitleImageFile(BlobProxy.generateProxy(titleImageFile.getInputStream(), titleImageFile.getSize()));
-		List<Blob> imageList = gameplayImagesFiles.stream().map(f -> {
+		game.setTitleImage(titleImageFile.getOriginalFilename());
+		game.setGameplayImagesFiles(gameplayImagesFiles.stream().map(file -> {
 			try {
-				return BlobProxy.generateProxy(f.getInputStream(), f.getSize());
+				return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			return null;
-		}).collect(Collectors.toList());
-		game.setGameplayImagesFiles(imageList);
+		}).collect(Collectors.toList()));
+		game.setGameplayImages(gameplayImagesFiles.stream().map(file -> file.getOriginalFilename()).collect(Collectors.toList()));
 		gameService.save(game);
 		return "redirect:/index";
 	}
