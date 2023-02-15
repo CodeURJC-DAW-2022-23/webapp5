@@ -115,16 +115,20 @@
         </div>
 
         <p>Images:</p>
-        <label for="imageUpload"> <div class="align-left">
-            <a class="btn btn-lg">Gamecover Picture</a>
-          </div></label>
-        <input id="imageUpload" type="file" name="imageField" accept=".png,
+        <label for="imageUpload">      <div class="align-left">
+          <a class="btn btn-lg">Gamecover Picture</a>
+        </div></label>
+        <div class="imageInput">
+        <input type="file" id="imageUpload" name="imageField" accept=".png, .jpg, .jpeg"/>
+        </div>
+
+        <label for="imageUploads">      <div class="align-left">
+          <a class="btn btn-lg">Gameplay Pictures</a>
+        </div></label>
+        <div class="imageInput">
+          <input id="imageUploads" type="file" multiple name="imageFields" accept=".png,
           .jpg, .jpeg" required/>
-        <label for="imageUploads"> <div class="align-left">
-            <a class="btn btn-lg">Gameplay Pictures</a>
-          </div></label>
-        <input id="imageUploads" type="file" multiple name="imageFields" accept=".png,
-          .jpg, .jpeg" required/>
+        </div>
         <p>Description:</p>
         <div class="youplay-textarea">
           <textarea name="description" rows="5" placeholder="Description" required></textarea>

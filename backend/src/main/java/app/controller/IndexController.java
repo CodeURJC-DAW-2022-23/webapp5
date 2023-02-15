@@ -48,21 +48,6 @@ public class IndexController {
 		return "search";
 	}
 
-	@GetMapping("/cart")
-	public String cart(Model model) {
-
-		return "cart";
-	}
-
-	@GetMapping("/checkout")
-	public String checkout(Model model) {
-
-	@GetMapping("/newGame")
-	public String newGame(Model model) {
-
-		return "admin";
-	}
-
 	@GetMapping("/checkout/{id}")
 	public String checkout(Model model, @PathVariable long id) {
 		return "checkout";
