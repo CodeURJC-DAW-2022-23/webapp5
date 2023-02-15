@@ -30,7 +30,7 @@
 
         <h2 class="mt-0">Your Games in Cart</h2>
 
-        {{#user.cart}}
+        {{#currentUser.cart}}
         <!-- Single Product Block -->
         <div class="item angled-bg">
           <div class="row">
@@ -58,20 +58,20 @@
                   <div class="price">
                     ${{price}}
                   </div>
-                  <a href="/{{user.id}}/deleteFromCart/{{id}}" class="remove glyphicon glyphicon-remove"></a>
+                  <a href="/{{currentUser.id}}/deleteFromCart/{{id}}" class="remove glyphicon glyphicon-remove"></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {{/user.cart}}
+        {{/currentUser.cart}}
         <!-- /Single Product Block -->
 
         <div class="align-right h3 mr-20 mb-20">
-          Total: <strong>${{user.totalPrice}}</strong>
+          Total: <strong>${{currentUser.totalPrice}}</strong>
         </div>
         <div class="align-right">
-          <a href="/checkout/{{user.id}}" class="btn btn-lg">Proceed to Checkout</a>
+          <a href="/checkout/{{currentUser.id}}" class="btn btn-lg">Proceed to Checkout</a>
         </div>
       </div>
 

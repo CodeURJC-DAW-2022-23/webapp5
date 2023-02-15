@@ -1,6 +1,5 @@
 package app.controller;
 import java.security.Principal;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,7 +34,7 @@ public class CartController {
 		if(principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
-			model.addAttribute("user", currentUser);
+			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		} else {
 			model.addAttribute("logged", false);
@@ -48,6 +47,9 @@ public class CartController {
 			Game game = gameService.findById(id).orElseThrow();
 			User user = userService.findById(userId).orElseThrow();
 			if (!user.getId().equals(currentUser.getId())) {
+				throw new Exception();
+			}
+			if(currentUser.getCart().contains(game)) {
 				throw new Exception();
 			}
             currentUser.addGameToCart(game);

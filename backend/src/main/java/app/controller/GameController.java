@@ -2,7 +2,6 @@ package app.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import app.model.Game;
 import app.model.User;
 import app.service.GameService;
 import app.service.UserService;
+import app.service.PurchaseService;
+import app.service.ReviewService;
+import app.model.Review;
 
 @Controller
 public class GameController {
@@ -31,6 +34,12 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
+
+	@Autowired
+	private PurchaseService purchaseService;
+
+	@Autowired
+	private ReviewService reviewService;
 	
 	
 	User currentUser;
@@ -43,8 +52,7 @@ public class GameController {
 		if(principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
-			model.addAttribute("user", currentUser);
-			List<Game> cart = currentUser.getCart();
+			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		} else {
 			model.addAttribute("logged", false);
@@ -58,6 +66,8 @@ public class GameController {
             model.addAttribute("game", game);
 			if (currentUser != null){
 				model.addAttribute("inCart", currentUser.getCart().contains(game));
+				model.addAttribute("isBought", purchaseService.purchasedGamesByUser(currentUser).contains(game));
+				model.addAttribute("isReviewed", reviewService.reviewedByUser(currentUser, game));
 			}
             return "product-info";
 		}catch(Exception e){
@@ -84,6 +94,26 @@ public class GameController {
 			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").contentLength(game.get().getGameplayImagesFiles().get(index - 1).length()).body(file);
 		} else {
 			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@PostMapping("/{userId}/reviewGame/{id}")
+	public String reviewGame(Model model, @PathVariable long id, @PathVariable long userId, String comment, int reviewRate) {
+		try{
+			Game game = gameService.findById(id).orElseThrow();
+			User user = userService.findById(userId).orElseThrow();
+			if (!user.getId().equals(currentUser.getId())) {
+				throw new Exception();
+			}
+			if (reviewService.reviewedByUser(user, game)) {
+				throw new Exception();
+			}
+			Review review = new Review(user, game, reviewRate, comment);
+			game.addReview(review);
+			gameService.save(game);
+            return "redirect:/game/{id}";
+		}catch(Exception e){
+			return "redirect:/error";
 		}
 	}
 }
