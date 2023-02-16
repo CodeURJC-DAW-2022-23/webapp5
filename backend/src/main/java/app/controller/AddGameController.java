@@ -3,6 +3,7 @@ package app.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,6 +35,7 @@ public class AddGameController {
 	private UserService userService;
 
 	User currentUser;
+	Game currentGame;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -71,25 +74,59 @@ public class AddGameController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/editGame")
-	public String editGame() {
-		return "editGame";
+	@GetMapping("/editProfile/{id}")
+	public String editProfile(Model model, @PathVariable long id) {
+		Game game = gameService.findById(id).orElseThrow();
+		if (game.getId().equals(currentGame.getId())) {
+			model.addAttribute("game", game);
+			return "editGame";
+		}
+		return "redirect:/error";
 	}
 
 	@PostMapping("/editGame")
-	public String editgameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException{
-		game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-		game.setTitleImage("");
-		game.setGameplayImagesFiles(imageFields.stream().map(file -> {
-			try {
-				return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return null;
-		}).collect(Collectors.toList()));
-		game.setGameplayImages(imageFields.stream().map(file -> "").collect(Collectors.toList()));
-		gameService.save(game);
-		return "redirect:/";
+	public String editGameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException, SQLException {
+		updateImageGame(currentGame, imageField);
+		updateGameplayImages(currentGame, imageFields);
+		currentGame.setName(game.getName());
+		currentGame.setCategory(game.getCategory());
+		currentGame.setDirectX(game.getDirectX());
+		currentGame.setSoundCard(game.getSoundCard());
+		currentGame.setProcessor(game.getProcessor());
+		currentGame.setMemory(game.getMemory());
+		currentGame.setGraphics(game.getGraphics());
+		currentGame.setHardDrive(game.getHardDrive());
+		currentGame.setOs(game.getOs());
+		currentGame.setPrice(game.getPrice());
+		currentGame.setDescription(game.getDescription());
+		currentGame.setNetwork(game.getNetwork());
+		gameService.save(currentGame);
+		return "redirect:/game/" + currentGame.getId();
+	}
+
+	private void updateGameplayImages(Game game, List<MultipartFile> imageFields) {
+		if (imageFields != null) {
+			game.setGameplayImagesFiles(imageFields.stream().map(file -> {
+				try {
+					return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return null;
+			}).collect(Collectors.toList()));
+			game.setGameplayImages(imageFields.stream().map(file -> "").collect(Collectors.toList()));
+		}else{
+			Game dbGame = gameService.findById(game.getId()).orElseThrow();
+			game.setGameplayImagesFiles( dbGame.getGameplayImagesFiles());			
+		}
+	}
+
+	private void updateImageGame(Game game, MultipartFile imageField) throws IOException, SQLException {
+		if (!imageField.isEmpty()) {
+			game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+		} else {
+			Game dbGame = gameService.findById(game.getId()).orElseThrow();
+			game.setTitleImageFile(dbGame.getTitleImageFile());
+		}
 	}
 }
