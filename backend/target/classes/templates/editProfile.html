@@ -152,35 +152,14 @@
     }
     function checkName() {
       var name = document.getElementsByName("name")[0].value;
+      var lastName = document.getElementsByName("lastName")[0].value;
       if (name === "") {
-        document.getElementsByName("name")[0].placeholder = "Name is empty";
-        return false;
-      }
-      return true;
-    }
-    function checkPassword() {
-      var password = document.getElementsByName("encodedPassword")[0].value;
-      var rppassword = document.getElementsByName("rpassword")[0].value;
-      if (password !== rppassword) {
-        document.getElementById("wrongpass").style.color = "red";
-        document.getElementById("wrongpass").textContent = "password are not the same";
-        return false;
-      }
-      else {
-        document.getElementById("wrongpass").textContent = "";
-      }
-      return true;
-    }
-    function checkEmail() {
-      var email = document.getElementsByName("mail")[0].value;
-      var rpemail = document.getElementsByName("rmail")[0].value;
-      if (email === "") {
-        document.getElementsByName("mail")[0].placeholder = "email is empty";
-        return false;
-      }
-      if (email !== rpemail) {
         document.getElementById("wrongemail").style.color = "red";
-        document.getElementById("wrongemail").textContent = "Email are not the same";
+        document.getElementById("wrongemail").textContent = "Name cant be empty";
+        return false;
+      }else if (lastName ===""){
+        document.getElementById("wrongemail").style.color = "red";
+        document.getElementById("wrongemail").textContent = "Last name cant be empty";
         return false;
       }
       else {
@@ -188,6 +167,25 @@
       }
       return true;
     }
+
+    function checkPassword() {
+      var password = document.getElementsByName("encodedPassword")[0].value;
+      var rppassword = document.getElementsByName("rpassword")[0].value;
+      if (password.length < 8 && password.length != 0) {
+        document.getElementById("wrongemail").style.color = "red";
+        document.getElementById("wrongemail").textContent = "The new password should be at least 8 characters long";
+        return false;
+      }else if (password !== rppassword) {
+        document.getElementById("wrongemail").style.color = "red";
+        document.getElementById("wrongemail").textContent = "Passwords do not match";
+        return false;
+      }
+      else {
+        document.getElementById("wrongemail").textContent = "";
+      }
+      return true;
+    }
+
     function checkForm() {
       if (checkName() && checkPassword()) {
         document.getElementById("editForm").submit();

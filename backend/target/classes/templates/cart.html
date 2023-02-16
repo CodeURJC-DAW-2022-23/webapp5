@@ -27,8 +27,12 @@
     <div class="container youplay-content">
 
       <div class="col-md-9">
-
+        {{^emptyCart}}
         <h2 class="mt-0">Your Games in Cart</h2>
+        {{/emptyCart}}
+        {{#emptyCart}}
+        <h2 class="mt-0">Your Cart is Empty</h2>
+        {{/emptyCart}}
 
         {{#currentUser.cart}}
         <!-- Single Product Block -->
@@ -67,12 +71,15 @@
         {{/currentUser.cart}}
         <!-- /Single Product Block -->
 
+        {{^emptyCart}}
         <div class="align-right h3 mr-20 mb-20">
           Total: <strong>${{currentUser.totalPrice}}</strong>
         </div>
         <div class="align-right">
           <a href="/checkout/{{currentUser.id}}" class="btn btn-lg">Proceed to Checkout</a>
         </div>
+        {{/emptyCart}}
+
       </div>
 
       <!-- Right Side -->
