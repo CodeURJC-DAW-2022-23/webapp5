@@ -353,54 +353,25 @@
 
         <!-- Cart -->
         <h2>Your Games in Cart</h2>
-
+        {{#currentUser.cart}}
         <!-- Single Product Block -->
         <div class="item angled-bg">
           <div class="row">
             <div class="col-xs-6 col-md-9">
-              <h4 class="ml-20">Skyrim</h4>
+              <h4 class="ml-20">{{name}}</h4>
             </div>
             <div class="col-xs-6 col-md-3 align-right">
               <div class="price">
-                $11.99
+                ${{price}}
               </div>
             </div>
           </div>
         </div>
         <!-- /Single Product Block -->
-
-        <!-- Single Product Block -->
-        <div class="item angled-bg">
-          <div class="row">
-            <div class="col-xs-6 col-md-9">
-              <h4 class="ml-20">Dragons Dogma</h4>
-            </div>
-            <div class="col-xs-6 col-md-3 align-right">
-              <div class="price">
-                $34.99
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /Single Product Block -->
-
-        <!-- Single Product Block -->
-        <div class="item angled-bg">
-          <div class="row">
-            <div class="col-xs-6 col-md-9">
-              <h4 class="ml-20">The Witcher</h4>
-            </div>
-            <div class="col-xs-6 col-md-3 align-right">
-              <div class="price">
-                $14.99
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /Single Product Block -->
+        {{/currentUser.cart}}
 
         <div class="align-right h3 mr-20 mb-20">
-          Total: <strong>$46.88</strong>
+          Total: <strong>${{currentUser.totalPrice}}</strong>
         </div>
         <!-- Cart -->
 
