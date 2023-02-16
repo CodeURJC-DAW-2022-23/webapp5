@@ -51,11 +51,33 @@ public class AddGameController {
 
 	@GetMapping("/newGame")
 	public String newGame() {
-		return "admin";
+		return "newGame";
 	}
 
 	@PostMapping("/newGame")
 	public String newgameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException{
+		game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+		game.setTitleImage("");
+		game.setGameplayImagesFiles(imageFields.stream().map(file -> {
+			try {
+				return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}).collect(Collectors.toList()));
+		game.setGameplayImages(imageFields.stream().map(file -> "").collect(Collectors.toList()));
+		gameService.save(game);
+		return "redirect:/";
+	}
+
+	@GetMapping("/editGame")
+	public String editGame() {
+		return "editGame";
+	}
+
+	@PostMapping("/editGame")
+	public String editgameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException{
 		game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
 		game.setTitleImage("");
 		game.setGameplayImagesFiles(imageFields.stream().map(file -> {

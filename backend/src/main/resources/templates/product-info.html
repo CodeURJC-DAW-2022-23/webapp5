@@ -79,11 +79,14 @@
     <div class="youplay-banner youplay-banner-parallax banner-top">
       <div class="image" style="background-image: url('/{{id}}/imageTitle')">
       </div>
-
       <div class="info">
         <div>
           <div class="container">
             <h1>{{name}}</h1>
+            <div class="align-right">
+              <a class="btn btn-lg" href="/editGame" data-toggle="dropdown" role="button" aria-expanded="false">
+              Edit Game
+              </a></div>
             <br>
             <h2><span class="label label-default">${{price}}</span></h2>
             {{#logged}}
