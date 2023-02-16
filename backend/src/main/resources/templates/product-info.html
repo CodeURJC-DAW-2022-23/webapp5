@@ -177,7 +177,7 @@
 
         <!-- Reviews -->
         <div class="reviews-block mb-0">
-          <h2>Reviews <small>(3)</small></h2>
+          <h2>Reviews <small>({{starNumber}})</small></h2>
 
           <!-- Reviews List -->
           <ul class="reviews-list">
@@ -371,17 +371,18 @@
 
 <!-- Review Games -->
         <div class="side-block" class="rating-film">
+          {{#haveStars}}
           <div class="block-content p-0">
-            <h4 class="block-title">Average Stars: 3,5</h4>
-              
-            <label for="point" class="starValue">1</label><progress id="file" max="50" value="0"> 10% </progress><br>
-            <label for="point" class="starValue">2</label><progress id="file" max="50" value="30"> 20% </progress><br>
-            <label for="point" class="starValue">3</label><progress id="file" max="50" value="40"> 40% </progress><br>
-            <label for="point" class="starValue">4</label><progress id="file" max="50" value="50"> 50% </progress><br>
-            <label for="point" class="starValue">5</label><progress id="file" max="50" value="20"> 10% </progress><br>
-                        
+            <h4 class="block-title">Average Stars: {{averageStars}}</h4>
+              {{#ratings}}
+            <label for="point" class="starValue">{{-index}}</label><progress id="file" max="100" value="{{.}}"></progress> {{.}}%<br>
+            {{/ratings}}
             
           </div>
+          {{/haveStars}}
+          {{^haveStars}}
+          <h4 class="block-title">This game has no reviews yet</h4>
+          {{/haveStars}}
         </div>
         <!-- /Side Review Games -->
 

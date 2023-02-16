@@ -38,6 +38,10 @@ public class Game {
 	private String hardDrive;
 	private String soundCard;
 
+	private int totalRating = 0;
+
+    private int starDistribution[] = new int[] {0, 0, 0, 0, 0};
+
 	@ElementCollection(fetch=FetchType.LAZY)
 	@Column(name = "gameplayImages", columnDefinition = "TEXT")
 	private List<String> gameplayImages = new ArrayList<>();
@@ -151,6 +155,23 @@ public class Game {
 		return this.graphics;
 	}
 
+	
+    public int getTotalRating() {
+        return this.totalRating;
+    }
+
+    public void setTotalRating(int totalRating) {
+        this.totalRating = totalRating;
+    }
+
+	public int[] getStarDistribution() {
+		return this.starDistribution;
+	}
+
+	public void setStarDistribution(int[] starDistribution) {
+		this.starDistribution = starDistribution;
+	}
+
 	public void setGraphics(String graphics) {
 		this.graphics = graphics;
 	}
@@ -226,10 +247,18 @@ public class Game {
 		this.gameplayImagesFiles.add(gameplayImage);
 	}
 
-	public void addReview(Review review) {
-		this.reviews.add(review);
+	public String averageStars(){
+		if(this.reviews.size() == 0){
+			return "0";
+		}
+		return String.format("%.1f", (float)this.totalRating/this.reviews.size());
 	}
 
+	public void addReview(Review review) {
+		this.totalRating += review.getRating();
+		this.starDistribution[review.getRating()-1]++;
+		this.reviews.add(review);
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -246,6 +275,16 @@ public class Game {
 	public int hashCode() {
 		return Objects.hash(id, name, description, price, category, os, processor, memory, graphics, directX, network, hardDrive, soundCard, gameplayImages, titleImageFile, titleImage, gameplayImagesFiles, reviews);
 	}
+
+	public List<Integer> getStarDistributionInt() {
+		List<Integer> starDistributionInt = new ArrayList<>();
+		for(int i = 0; i < this.starDistribution.length; i++){
+			starDistributionInt.add((int)(((float)this.starDistribution[i]/this.reviews.size())*100));
+		}
+		return starDistributionInt;
+	}
+
+
 
 
 
