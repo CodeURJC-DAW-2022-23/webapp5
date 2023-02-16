@@ -71,7 +71,7 @@ public class UserController {
 		}
 		if (user.getId().equals(currentUser.getId())) {
             model.addAttribute("user", user);
-			List<Game> purchasedGames = purchaseService.purchasedGames(user);
+			List<Game> purchasedGames = purchaseService.purchasedGamesByUser(user);
 			model.addAttribute("myGames", purchasedGames);
 			model.addAttribute("haveGames", !purchasedGames.isEmpty());
             model.addAttribute("gamesNumber", purchasedGames.size());
