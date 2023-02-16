@@ -58,23 +58,14 @@ public class AddGameController {
 	}
 
 	@PostMapping("/newGame")
-	public String newgameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException{
-		game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-		game.setTitleImage("");
-		game.setGameplayImagesFiles(imageFields.stream().map(file -> {
-			try {
-				return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return null;
-		}).collect(Collectors.toList()));
-		game.setGameplayImages(imageFields.stream().map(file -> "").collect(Collectors.toList()));
+	public String newgameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException, SQLException{
+		updateImageGame(game, imageField);
+		updateGameplayImages(game, imageFields);
 		gameService.save(game);
 		return "redirect:/";
 	}
 
-	@GetMapping("/editProfile/{id}")
+	@GetMapping("/editGame/{id}")
 	public String editProfile(Model model, @PathVariable long id) {
 		Game game = gameService.findById(id).orElseThrow();
 		if (game.getId().equals(currentGame.getId())) {
@@ -88,19 +79,7 @@ public class AddGameController {
 	public String editGameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException, SQLException {
 		updateImageGame(currentGame, imageField);
 		updateGameplayImages(currentGame, imageFields);
-		currentGame.setName(game.getName());
-		currentGame.setCategory(game.getCategory());
-		currentGame.setDirectX(game.getDirectX());
-		currentGame.setSoundCard(game.getSoundCard());
-		currentGame.setProcessor(game.getProcessor());
-		currentGame.setMemory(game.getMemory());
-		currentGame.setGraphics(game.getGraphics());
-		currentGame.setHardDrive(game.getHardDrive());
-		currentGame.setOs(game.getOs());
-		currentGame.setPrice(game.getPrice());
-		currentGame.setDescription(game.getDescription());
-		currentGame.setNetwork(game.getNetwork());
-		gameService.save(currentGame);
+		currentGame.editGame(game);
 		return "redirect:/game/" + currentGame.getId();
 	}
 
@@ -124,6 +103,7 @@ public class AddGameController {
 	private void updateImageGame(Game game, MultipartFile imageField) throws IOException, SQLException {
 		if (!imageField.isEmpty()) {
 			game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+			game.setTitleImage("");
 		} else {
 			Game dbGame = gameService.findById(game.getId()).orElseThrow();
 			game.setTitleImageFile(dbGame.getTitleImageFile());

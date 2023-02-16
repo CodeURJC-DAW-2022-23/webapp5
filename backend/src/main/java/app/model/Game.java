@@ -230,6 +230,20 @@ public class Game {
 		this.reviews.add(review);
 	}
 
+	public void editGame(Game game){
+		this.setName(game.getName());
+		this.setCategory(game.getCategory());
+		this.setDirectX(game.getDirectX());
+		this.setSoundCard(game.getSoundCard());
+		this.setProcessor(game.getProcessor());
+		this.setMemory(game.getMemory());
+		this.setGraphics(game.getGraphics());
+		this.setHardDrive(game.getHardDrive());
+		this.setOs(game.getOs());
+		this.setPrice(game.getPrice());
+		this.setDescription(game.getDescription());
+		this.setNetwork(game.getNetwork());
+	}
 
 	@Override
 	public boolean equals(Object o) {
