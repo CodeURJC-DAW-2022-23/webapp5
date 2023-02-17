@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -69,6 +70,7 @@ public class GameController {
 			model.addAttribute("haveStars", game.getReviews().size() > 0);
 			model.addAttribute("starNumber", game.getReviews().size());
 			model.addAttribute("ratings", game.getStarDistributionInt());
+			model.addAttribute("thisReviews", reviewService.findByGame(game, PageRequest.of(0,6)));
 			if (currentUser != null){
 				model.addAttribute("inCart", currentUser.getCart().contains(game));
 				model.addAttribute("isBought", purchaseService.purchasedGamesByUser(currentUser).contains(game));

@@ -1,0 +1,31 @@
+{{#foundReviews}}
+            <!-- Kristen Bradley review -->
+            <li>
+              <article>
+                <div class="review-avatar pull-left">
+                  <img src="/{{user.id}}/imageProfile">
+                </div>
+                <div class="review-cont clearfix">
+                  <div class="rating pull-right">
+                    {{#stars}}
+                    <i class="fa fa-star"></i>
+                    {{/stars}}
+                    {{#noStars}}
+                    <i class="fa fa-star-o"></i>
+                    {{/noStars}}
+                  </div>
+                  {{#user}}
+                  <a class="review-author h4">{{name}} {{lastName}}</a>
+                  {{/user}}
+                  <div class="date"><i class="fa">
+                      <i class="fa fa-calendar"></i>
+                    </i> {{date}}</div>
+                  <div class="review-text">
+                    <p>
+                      {{comment}}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </li>
+            {{/foundReviews}}

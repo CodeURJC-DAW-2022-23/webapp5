@@ -6,11 +6,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import app.model.Game;
 import app.model.User;
@@ -45,18 +45,11 @@ public class SearchController {
 		}
     }
 
-    @GetMapping("/search")
-	public String search(Model model, String category) {
-        List<Game> gamesFound = gameService.findByCategoryAndName("", category);
-        model.addAttribute("games", gamesFound);
-        model.addAttribute("lastSearch", "");
-        model.addAttribute("found", gamesFound.size() > 0);
-		return "search";
-	}
-
-    @PostMapping("/search")
+    @RequestMapping("/search")
     public String search(Model model, String name, String category) {
-        List<Game> gamesFound = gameService.findByCategoryAndName(name, category);
+		if (name == null )
+			name = "";
+        List<Game> gamesFound = gameService.findByCategoryAndName(name, category, PageRequest.of(0,6));
         model.addAttribute("games", gamesFound);
         model.addAttribute("found", gamesFound.size() > 0);
         model.addAttribute("lastSearch", name);
