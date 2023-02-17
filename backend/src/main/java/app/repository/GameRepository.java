@@ -22,6 +22,11 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 
     @Query("SELECT COUNT(g) FROM Game g WHERE LOWER(g.name) LIKE %:name%")
     int countByName(String name);
+
+    int countById(long id);
+
+    @Query("SELECT g FROM Game g")
+    List<Game> findGames(Pageable pageable);
 }
 
 

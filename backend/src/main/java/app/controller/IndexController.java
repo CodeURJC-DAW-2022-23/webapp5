@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.data.domain.PageRequest;
 
 
 import app.service.GameService;
@@ -42,7 +43,7 @@ public class IndexController {
 
 	@GetMapping("/")
 	public String showBooks(Model model) {
-		model.addAttribute("allGames", gameService.findAll());
+		model.addAttribute("allGames", gameService.findGames(PageRequest.of(0,6)));
 		return "index";
 	}
 

@@ -188,26 +188,15 @@
           <!-- /Single Product Block -->
           {{/allGames}}
 
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="upcoming">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="/images/game-half-life-3.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Half-Life 3</h4>
-                <div class="date">
-                  <i class="fa fa-calendar"></i> never
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-        </div>
+          
 
+        </div>
+        <div class="isotope-list row vertical-gutter" id="moreIndexGames">
+        </div>
+        <button class="btn btn-default" id='btnMoreIndexGames'>Load More Games</button>
+        <div id="loaderIndexGame" class="lds-dual-ring hidden"></div>
       </div>
       <!-- /Games List -->
-
       <!-- Right Side -->
       <div class="col-md-3">
 
@@ -344,6 +333,7 @@
   <script type="text/javascript" src="/assets/bower_components/isotope/dist/isotope.pkgd.min.js"></script>
   <!-- Youplay -->
   <script type="text/javascript" src="/assets/youplay/js/youplay.min.js"></script>
+  <script type="text/javascript" src="../loadButton.js"></script>
 
   <!-- init youplay -->
   <script>

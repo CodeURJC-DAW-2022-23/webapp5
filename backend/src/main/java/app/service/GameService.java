@@ -20,8 +20,12 @@ public class GameService {
 		games.save(game);
 	}
 
-	public List<Game> findAll() {
-		return games.findAll();
+	public long countGames(){
+		return games.count();
+	}
+
+	public List<Game> findGames(Pageable pageable) {
+		return games.findGames(pageable);
 	}
 
 	public List<Game> findByName(String category) {

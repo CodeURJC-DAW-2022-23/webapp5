@@ -5,11 +5,12 @@ $(window).on("load", function(){
 	// Loading Button from profile
 	$('#btnMoreFoundGames').on("click",()=>functionMoreFoundGames('#moreFoundGames', '#loaderFoundGame', '#btnMoreFoundGames'))
     $('#btnGamesReview').on("click",()=>functionMoreFoundReviews('#moreReviewsGame', '#loaderGameReview', '#btnGamesReview'))
-
+    $('#btnMoreIndexGames').on("click",()=>functionMoreIndexGames('#moreIndexGames', '#loaderIndexGame', '#btnMoreIndexGames'))
 })
 
 var indexFoundGames;
 var indexGameReviews;
+var indexIndexGames;
 
 function ajaxCall(url, spinner, where, button) {
 	$.ajax({
@@ -31,16 +32,10 @@ function ajaxCall(url, spinner, where, button) {
 	});
 }
 
-function functionMoreFoundGames(where, spinner, button){
-    const urlParams = new URLSearchParams(window.location.search);
+function functionMoreIndexGames(where, spinner, button){
     value = indexFoundGames;
     this.indexFoundGames += 1;
-    
-    // Search parameter in url
-    var name = urlParams.get('name');
-    var category = urlParams.get('category');
-
-    url=('/moreFoundGames/' + value + "?category=" + category + "&name=" + name);
+    url=("/moreIndexGames/" + value);
     ajaxCall(url, spinner, where, button);
 }
 
@@ -52,6 +47,19 @@ function functionMoreFoundReviews(where, spinner, button){
     const arrayPath = window.location.pathname.split('/');
     const id= arrayPath[2];
     url=('/moreReviews/' + id + "/" + value);
+    ajaxCall(url, spinner, where, button);
+}
+
+function functionMoreFoundGames(where, spinner, button){
+    const urlParams = new URLSearchParams(window.location.search);
+    value = indexFoundGames;
+    this.indexFoundGames += 1;
+    
+    // Search parameter in url
+    var name = urlParams.get('name');
+    var category = urlParams.get('category');
+
+    url=('/moreFoundGames/' + value + "?category=" + category + "&name=" + name);
     ajaxCall(url, spinner, where, button);
 }
 
