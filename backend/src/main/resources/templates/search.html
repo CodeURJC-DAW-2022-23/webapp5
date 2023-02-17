@@ -24,11 +24,10 @@
 
     <div class="container youplay-search">
 
-      <form action="/search" method="post">
+      <form action="/search">
         <div class="youplay-input">
           <input type="text" name="name" value="{{lastSearch}}" placeholder="Search..." autofocus>
         </div>
-        <input type="hidden" name="_csrf" value="{{token}}" />
 
         <label class="youplay-select">
           <select name="category">
@@ -90,6 +89,9 @@
           </a>
           <!-- /Single Product Block -->
           {{/games}}
+          <div id="moreFoundGames"></div>
+          <button class="btn btn-default" id='btnMoreFoundGames'>Load More Games</button>
+          <div id="loaderFoundGame" class="lds-dual-ring hidden"></div>
         </div>
       </div>
 
