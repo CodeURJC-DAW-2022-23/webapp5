@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
+import app.service.GameService;
 import java.security.Principal;
 import app.model.User;
 import app.service.UserService;
@@ -15,7 +17,8 @@ import app.service.UserService;
 
 @Controller
 public class IndexController {
-
+	@Autowired
+	private GameService gameService;
 	@Autowired
 	private UserService userService;
 
@@ -39,7 +42,7 @@ public class IndexController {
 
 	@GetMapping("/")
 	public String showBooks(Model model) {
-
+		model.addAttribute("allGames", gameService.findAll());
 		return "index";
 	}
 
