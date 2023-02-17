@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import app.model.Game;
@@ -34,5 +35,13 @@ public class ReviewService {
 	
 	public boolean reviewedByUser(User user, Game game){
 		return reviews.findByUserAndGame(user, game).isPresent();
+	}
+
+	public List<Review> findByGame(Game game, Pageable pageable) {
+		return reviews.findByGame(game, pageable);
+	}
+
+	public int countByGame(Game game) {
+		return reviews.countByGame(game);
 	}
 }

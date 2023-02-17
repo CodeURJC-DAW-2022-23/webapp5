@@ -54,7 +54,6 @@
   <link rel="stylesheet" type="text/css" href="/css/custom.css" />
   <!-- RTL (uncomment this to enable RTL support) -->
   <!-- <link rel="stylesheet" type="text/css" href="/assets/youplay/css/youplay-rtl.css" /> -->
-
 </head>
 
 
@@ -181,7 +180,7 @@
 
           <!-- Reviews List -->
           <ul class="reviews-list">
-            {{#reviews}}
+            {{#thisReviews}}
             <!-- Kristen Bradley review -->
             <li>
               <article>
@@ -211,8 +210,12 @@
                 </div>
               </article>
             </li>
-            {{/reviews}}
+            {{/thisReviews}}
+            <div id="moreReviewsGame"></div>
+            <button class="btn btn-default" id='btnGamesReview'>Load More Reviews</button>
+            <div id="loaderGameReview" class="lds-dual-ring hidden"></div>
           </ul>
+
 
           <!-- /Reviews List -->
 
@@ -489,6 +492,8 @@
   <script type="text/javascript" src="/assets/bower_components/social-likes/dist/social-likes.min.js"></script>
   <!-- Youplay -->
   <script type="text/javascript" src="/assets/youplay/js/youplay.min.js"></script>
+
+  <script type="text/javascript" src="../loadButton.js"></script>
 
   <!-- init youplay -->
   <script>
