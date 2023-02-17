@@ -1,4 +1,8 @@
 package app.controller;
+
+import java.security.Principal;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,19 +10,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.security.Principal;
+import app.model.Game;
 import app.model.User;
+import app.service.GameService;
 import app.service.UserService;
 
-
 @Controller
-public class IndexController {
-
+public class SearchController {
+	
 	@Autowired
 	private UserService userService;
 
+    @Autowired
+    private GameService gameService;
+	
+	
 	User currentUser;
 
 	@ModelAttribute
@@ -35,16 +43,24 @@ public class IndexController {
 		} else {
 			model.addAttribute("logged", false);
 		}
+    }
+
+    @GetMapping("/search")
+	public String search(Model model, String category) {
+        List<Game> gamesFound = gameService.findByCategoryAndName("", category);
+        model.addAttribute("games", gamesFound);
+        model.addAttribute("lastSearch", "");
+        model.addAttribute("found", gamesFound.size() > 0);
+		return "search";
 	}
 
-	@GetMapping("/")
-	public String showBooks(Model model) {
+    @PostMapping("/search")
+    public String search(Model model, String name, String category) {
+        List<Game> gamesFound = gameService.findByCategoryAndName(name, category);
+        model.addAttribute("games", gamesFound);
+        model.addAttribute("found", gamesFound.size() > 0);
+        model.addAttribute("lastSearch", name);
+        return "search";
+    }
 
-		return "index";
-	}
-
-	@GetMapping("/checkout/{id}")
-	public String checkout(Model model, @PathVariable long id) {
-		return "checkout";
-	}
 }

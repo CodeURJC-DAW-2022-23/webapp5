@@ -34,4 +34,12 @@ public class GameService {
 	public void deleteById(long id) {
 		games.deleteById(id);
 	}
+
+	public List<Game> findByCategoryAndName(String name, String category) {
+		if (name == null )
+			name = "";
+		if (category == null || category.isEmpty())
+			return games.findByName(name);
+		return games.findByCategoryAndName(category, name);
+	}
 }
