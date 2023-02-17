@@ -2,6 +2,7 @@ package app.controller;
 
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
@@ -35,7 +36,6 @@ public class AddGameController {
 	private UserService userService;
 
 	User currentUser;
-	Game currentGame;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -66,21 +66,20 @@ public class AddGameController {
 	}
 
 	@GetMapping("/editGame/{id}")
-	public String editProfile(Model model, @PathVariable long id) {
-		Game game = gameService.findById(id).orElseThrow();
-		if (game.getId().equals(currentGame.getId())) {
-			model.addAttribute("game", game);
-			return "editGame";
-		}
-		return "redirect:/error";
+	public String editGame(Model model, @PathVariable long id) {
+		Game currentGame = gameService.findById(id).orElseThrow();
+		model.addAttribute("currentGame", currentGame);
+		return "editGame";
 	}
 
-	@PostMapping("/editGame")
-	public String editGameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException, SQLException {
+	@PostMapping("/editGame/{id}")
+	public String editGameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields, @PathVariable long id) throws IOException, SQLException {
+		Game currentGame = gameService.findById(id).orElseThrow();
 		updateImageGame(currentGame, imageField);
 		updateGameplayImages(currentGame, imageFields);
 		currentGame.editGame(game);
-		return "redirect:/game/" + currentGame.getId();
+		gameService.save(currentGame);
+		return "redirect:/game/" + id;
 	}
 
 	private void updateGameplayImages(Game game, List<MultipartFile> imageFields) {

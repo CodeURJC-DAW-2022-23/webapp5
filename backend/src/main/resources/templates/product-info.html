@@ -83,10 +83,12 @@
         <div>
           <div class="container">
             <h1>{{name}}</h1>
+            {{#admin}}
             <div class="align-right">
-              <a class="btn btn-lg" href="/editGame" data-toggle="dropdown" role="button" aria-expanded="false">
+              <a class="btn btn-lg" href="/editGame/{{id}}">
               Edit Game
               </a></div>
+            {{/admin}}}
             <br>
             <h2><span class="label label-default">${{price}}</span></h2>
             {{#logged}}
