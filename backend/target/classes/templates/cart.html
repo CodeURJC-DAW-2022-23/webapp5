@@ -34,7 +34,7 @@
         <h2 class="mt-0">Your Cart is Empty</h2>
         {{/emptyCart}}
 
-        {{#currentUser.cart}}
+        {{#userCart}}
         <!-- Single Product Block -->
         <div class="item angled-bg">
           <div class="row">
@@ -68,7 +68,10 @@
             </div>
           </div>
         </div>
-        {{/currentUser.cart}}
+        {{/userCart}}
+        <div id="moreCartGames"></div>
+        <button class="btn btn-default" id='btnMoreCartGames'>Load More Games</button>
+        <div id="loaderCartGame" class="lds-dual-ring hidden"></div>
         <!-- /Single Product Block -->
 
         {{^emptyCart}}
