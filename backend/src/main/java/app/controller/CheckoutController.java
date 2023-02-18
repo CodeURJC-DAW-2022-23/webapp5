@@ -62,12 +62,14 @@ public class CheckoutController {
     public String cartCheckout(Model model,@PathVariable long userId) {
         try{
             User user = userService.findById(userId).orElseThrow();
+            boolean lleno = true;
             if (!user.getId().equals(currentUser.getId())){
                 throw new Exception();
             } 
             if (currentUser.getCart().isEmpty()){
                 throw new Exception();
             } else if (currentUser.getBillingInformation() != null){
+                model.addAttribute("billingInfo", lleno);
                 return "checkout";
             } else {
                 userService.save(currentUser);
