@@ -82,7 +82,7 @@ public class AddGameController {
 	}
 
 	private void updateGameplayImages(Game game, List<MultipartFile> imageFields) {
-		if (imageFields != null && !imageFields.isEmpty()) {
+		if (!imageFields.get(0).getOriginalFilename().equals("") && !imageFields.isEmpty()) {
 			game.setGameplayImagesFiles(imageFields.stream().map(file -> {
 				try {
 					return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
