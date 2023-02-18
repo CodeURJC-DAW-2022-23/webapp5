@@ -8,13 +8,8 @@
         <h4>{{name}}</h4>
         <div class="row">
           <div class="col-xs-6">
-            <div class="rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
+            <div class="stars rateyo" data-rateyo-rating="{{averageStars}}" data-rateyo-num-stars="5"
+            data-rateyo-read-only="true"  data-rateyo-star-width= "18px" data-rateyo-rated-fill= "#FFFFFF"></div>
           </div>
           <div class="col-xs-6">
             <div class="price">
@@ -26,3 +21,11 @@
     </a>
   </div>
   {{/foundGames}}
+  <script>
+    $(function () {
+      $(".rateyo").rateYo().on("rateyo.change", function (data) {
+        var rating = data.rating;
+        $(this).parent().find('.result').text('rating :'+ rating);
+       });
+    });
+  </script>

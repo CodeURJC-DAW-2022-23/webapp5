@@ -169,11 +169,8 @@
                 <div class="row">
                   <div class="col-xs-6">
                     <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
+                      <div class="stars rateyo" data-rateyo-rating="{{averageStars}}" data-rateyo-num-stars="5"
+								        data-rateyo-read-only="true"  data-rateyo-star-width= "18px" data-rateyo-rated-fill= "#FFFFFF"></div>
                     </div>
                   </div>
                   <div class="col-xs-6">
@@ -334,7 +331,9 @@
   <!-- Youplay -->
   <script type="text/javascript" src="/assets/youplay/js/youplay.min.js"></script>
   <script type="text/javascript" src="../loadButton.js"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
   <!-- init youplay -->
   <script>
     if (typeof youplay !== 'undefined') {
@@ -355,6 +354,12 @@
         }
       });
     }
+    $(function () {
+      $(".rateyo").rateYo().on("rateyo.change", function (data) {
+        var rating = data.rating;
+        $(this).parent().find('.result').text('rating :'+ rating);
+       });
+    });
   </script>
 
 
