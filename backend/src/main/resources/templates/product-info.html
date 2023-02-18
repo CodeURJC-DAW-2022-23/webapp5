@@ -54,7 +54,6 @@
   <link rel="stylesheet" type="text/css" href="/css/custom.css" />
   <!-- RTL (uncomment this to enable RTL support) -->
   <!-- <link rel="stylesheet" type="text/css" href="/assets/youplay/css/youplay-rtl.css" /> -->
-
 </head>
 
 
@@ -84,6 +83,12 @@
         <div>
           <div class="container">
             <h1>{{name}}</h1>
+            {{#admin}}
+            <div class="align-right">
+              <a class="btn btn-lg" href="/editGame/{{id}}">
+              Edit Game
+              </a></div>
+            {{/admin}}
             <br>
             <h2><span class="label label-default">${{price}}</span></h2>
             {{#logged}}
@@ -177,11 +182,11 @@
 
         <!-- Reviews -->
         <div class="reviews-block mb-0">
-          <h2>Reviews <small>(3)</small></h2>
+          <h2>Reviews <small>({{starNumber}})</small></h2>
 
           <!-- Reviews List -->
           <ul class="reviews-list">
-            {{#reviews}}
+            {{#thisReviews}}
             <!-- Kristen Bradley review -->
             <li>
               <article>
@@ -211,8 +216,12 @@
                 </div>
               </article>
             </li>
-            {{/reviews}}
+            {{/thisReviews}}
+            <div id="moreReviewsGame"></div>
+            <button class="btn btn-default" id='btnGamesReview'>Load More Reviews</button>
+            <div id="loaderGameReview" class="lds-dual-ring hidden"></div>
           </ul>
+
 
           <!-- /Reviews List -->
 
@@ -259,42 +268,7 @@
       <!-- Right Side -->
       <div class="col-md-3">
 
-        <!-- Side Search -->
-        <div class="side-block">
-          <p>Search by Games:</p>
-          <form action="search.html">
-            <div class="youplay-input">
-              <input type="text" name="search" placeholder="enter search term">
-            </div>
-          </form>
-        </div>
-        <!-- /Side Search -->
-
-        <!-- Side Categories -->
-        <div class="side-block">
-          <h4 class="block-title">Categories</h4>
-          <ul class="block-content">
-            <li><a href="#!">All</a>
-            </li>
-            <li><a href="#!">Action</a>
-            </li>
-            <li><a href="#!">Adventure</a>
-            </li>
-            <li><a href="#!">Casual</a>
-            </li>
-            <li><a href="#!">Indie</a>
-            </li>
-            <li><a href="#!">Racing</a>
-            </li>
-            <li><a href="#!">RPG</a>
-            </li>
-            <li><a href="#!">Simulation</a>
-            </li>
-            <li><a href="#!">Strategy</a>
-            </li>
-          </ul>
-        </div>
-        <!-- /Side Categories -->
+        {{>SideSearchBlock}}
 
         <!-- Side Popular News -->
         <div class="side-block">
@@ -371,17 +345,18 @@
 
 <!-- Review Games -->
         <div class="side-block" class="rating-film">
+          {{#haveStars}}
           <div class="block-content p-0">
-            <h4 class="block-title">Average Stars: 3,5</h4>
-              
-            <label for="point" class="starValue">1</label><progress id="file" max="50" value="0"> 10% </progress><br>
-            <label for="point" class="starValue">2</label><progress id="file" max="50" value="30"> 20% </progress><br>
-            <label for="point" class="starValue">3</label><progress id="file" max="50" value="40"> 40% </progress><br>
-            <label for="point" class="starValue">4</label><progress id="file" max="50" value="50"> 50% </progress><br>
-            <label for="point" class="starValue">5</label><progress id="file" max="50" value="20"> 10% </progress><br>
-                        
+            <h4 class="block-title">Average Stars: {{averageStars}}</h4>
+              {{#ratings}}
+            <label for="point" class="starValue">{{-index}}</label><progress id="file" max="100" value="{{.}}"></progress> {{.}}%<br>
+            {{/ratings}}
             
           </div>
+          {{/haveStars}}
+          {{^haveStars}}
+          <h4 class="block-title">This game has no reviews yet</h4>
+          {{/haveStars}}
         </div>
         <!-- /Side Review Games -->
 
@@ -523,6 +498,8 @@
   <script type="text/javascript" src="/assets/bower_components/social-likes/dist/social-likes.min.js"></script>
   <!-- Youplay -->
   <script type="text/javascript" src="/assets/youplay/js/youplay.min.js"></script>
+
+  <script type="text/javascript" src="../loadButton.js"></script>
 
   <!-- init youplay -->
   <script>

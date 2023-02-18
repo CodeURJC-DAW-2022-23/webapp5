@@ -8,7 +8,7 @@
 
     <!-- Banner -->
     <div class="youplay-banner banner-top youplay-banner-parallax small">
-      <div class="image" style="background-image: url('/images/game-diablo-iii.jpg')">
+      <div class="image" style="background-image: url('/images/game-diablo-iii-1400x656.jpg')">
       </div>
 
       <div class="youplay-user-navigation">
@@ -59,15 +59,21 @@
           <h3 class="mt-40 mb-20">Personal Information</h3>
           <table class="table table-bordered">
             <tbody>
+              {{#haveGames}}
               <tr>
                 <td>
-                  <p>Favorite games</p>
+                  <p>Purchased games</p>
                 </td>
                 <td>
-                  <p><a href="#">Bloodborne</a>, <a href="#">Dark Souls II</a>, <a href="#">Kingdoms of Amalur</a>, <a href="#">The Witcher</a>
+                  <p>
+                    {{#myGames}}
+                    <a href="/game/{{id}}">{{name}}</a>
+                    {{/myGames}}
                   </p>
                 </td>
               </tr>
+              {{/haveGames}}
+
               <tr>
                 <td>
                   <p>About Me</p>

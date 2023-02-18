@@ -1,72 +1,76 @@
-    <li class="dropdown dropdown-hover">
-      <a href="/profile/{{currentUser.id}}" data-toggle="dropdown" role="button" aria-expanded="false">
-          {{currentUser.name}}<span class="badge bg-default">2</span> <span class="caret"></span> <span class="label">it is
-          you</span>
-      </a>
-      <div class="dropdown-menu">
-        <ul role="menu">
-          <li><a href="/profile/{{currentUser.id}}">Profile <span class="badge pull-right bg-warning">13</span></a>
-          </li>
-          <li><a href="/cart/{{currentUser.id}}">My Cart <span class="badge pull-right bg-default">3</span></a>
-          </li>
-          <li class="divider"></li>
+<li class="dropdown dropdown-hover">
+  <a href="/profile/{{currentUser.id}}" data-toggle="dropdown" role="button" aria-expanded="false">
+      {{currentUser.name}}<span class="badge bg-default">2</span> <span class="caret"></span> <span class="label">it is
+      you</span>
+  </a>
+  <div class="dropdown-menu">
+    <ul role="menu">
+      <li><a href="/profile/{{currentUser.id}}">Profile <span class="badge pull-right bg-warning">13</span></a>
+      </li>
+      <li><a href="/cart/{{currentUser.id}}">My Cart <span class="badge pull-right bg-default">3</span></a>
+      </li>
+      <li class="divider"></li>
 
-          <li>
-            <form action="/logout" method="post">
-							<button class="btn btn-default navbar-btn" type="submit">Log
-								Out</button>
-							<input type="hidden" name="_csrf" value="{{token}}" />
-						</form>
+      <li>
+        <form action="/logout" method="post">
+          <button class="btn btn-default navbar-btn" type="submit">Log
+            Out</button>
+          <input type="hidden" name="_csrf" value="{{token}}" />
         </form>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li>
-      <a href="/search">
-        <i class="fa fa-search"></i>
-      </a>
-    </li>
-    <li class="dropdown dropdown-hover dropdown-cart">
-      <a href="/cart/{{currentUser.id}}" data-toggle="dropdown" role="button" aria-expanded="false">
-        <i class="fa fa-shopping-cart"></i>
-      </a>
-      <div class="dropdown-menu" style="width: 300px;">
-        {{#currentUser.cart}}
-        <div class="row youplay-side-news">
-          <div class="col-xs-3 col-md-4">
-            <a href="/game/{{id}}" class="angled-img">
-              <div class="img">
+    </form>
+      </li>
+    </ul>
+  </div>
+</li>
+<li>
+  <a href="/search">
+    <i class="fa fa-search"></i>
+  </a>
+</li>
+<li class="dropdown dropdown-hover dropdown-cart">
+  <a href="/cart/{{currentUser.id}}" data-toggle="dropdown" role="button" aria-expanded="false">
+    <i class="fa fa-shopping-cart"></i>
+  </a>
+  <div class="dropdown-menu" style="width: 300px;">
+    {{#currentUser.cart}}
+    <div class="row youplay-side-news">
+      <div class="col-xs-3 col-md-4">
+        <a href="/game/{{id}}" class="angled-img">
+          <div class="img">
 
-                <img src="/{{id}}/imageTitle" alt="">
-              </div>
-            </a>
-  
+            <img src="/{{id}}/imageTitle" alt="">
           </div>
-          <div class="col-xs-9 col-md-8">
-            <a href="/{{currentUser.id}}/deleteCart/{{id}}" style="text-decoration: none;" class="pull-right mr-10">
-              <i class="fa fa-times"></i>
-            </a>
+        </a>
 
-            <h4 class="ellipsis"><a href="/game/{{id}}">{{name}}</a></h4>
-            <span class="quantity">1 × <span class="amount">${{price}}</span></span>
-          </div>
-        </div>
-        {{/currentUser.cart}}
-
-        <div class="ml-20 mr-20 pull-right"><strong>Subtotal:</strong> <span class="amount">${{currentUser.totalPrice}}</span>
-        </div>
-
-        <div class="btn-group pull-right m-15">
-          <a href="/cart/{{currentUser.id}}" class="btn btn-default btn-sm">View Cart</a>
-          <a href="/checkout/{{currentUser.id}}" class="btn btn-default btn-sm">Checkout</a>
-        </div>
       </div>
-    </li>
-    {{#admin}}
-    <li class="dropdown dropdown-hover">
-      <a href="/newGame" data-toggle="dropdown" role="button" aria-expanded="false">
-          New Game
-      </a>
-    </li>
-		{{/admin}}
+      <div class="col-xs-9 col-md-8">
+        <a href="/{{currentUser.id}}/deleteCart/{{id}}" style="text-decoration: none;" class="pull-right mr-10">
+          <i class="fa fa-times"></i>
+        </a>
+
+        <h4 class="ellipsis"><a href="/game/{{id}}">{{name}}</a></h4>
+        <span class="quantity">1 × <span class="amount">${{price}}</span></span>
+      </div>
+    </div>
+    {{/currentUser.cart}}
+    
+    {{^emptyCart}}
+    <div class="ml-20 mr-20 pull-left"><strong>Subtotal:</strong> <span class="amount">${{currentUser.totalPrice}}</span>
+    </div>
+    <div class="btn-group pull-right m-15">
+      <a href="/cart/{{currentUser.id}}" class="btn btn-default btn-sm">View Cart</a>
+      <a href="/checkout" class="btn btn-default btn-sm">Checkout</a>
+    </div>
+    {{/emptyCart}}
+    {{#emptyCart}}
+    <div class="ml-20 mr-20 pull-right"><strong>The cart is empty</strong></div>
+    {{/emptyCart}}
+  </div>
+</li>
+{{#admin}}
+<li class="dropdown dropdown-hover">
+  <a href="/newGame" data-toggle="dropdown" role="button" aria-expanded="false">
+      New Game
+  </a>
+</li>
+{{/admin}}

@@ -24,30 +24,52 @@
 
     <div class="container youplay-search">
 
-      <form action="search.html">
+      <form action="/search">
         <div class="youplay-input">
-          <input type="text" name="search" placeholder="Search..." autofocus>
+          <input type="text" name="name" value="{{lastSearch}}" placeholder="Search..." autofocus>
         </div>
+
+        <label class="youplay-select">
+          <select name="category">
+            <option value="">Select Category</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Casual">Casual</option>
+            <option value="Indie">Indie</option>
+            <option value="Racing">Racing</option>
+            <option value="RPG">RPG</option>
+            <option value="Simulation">Simulation</option>
+            <option value="Strategy">Strategy</option>
+          </select>
+        </label>
+        <button class="btn btn-default navbar-btn" type="submit">Find</button>
       </form>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
+
+          {{#found}}
           <h2>Games</h2>
+          {{/found}}
+          {{^found}}
+          <h2>No games found</h2>
+          {{/found}}
 
           <!-- Single Product Block -->
-          <a href="product-info.html" class="angled-bg">
+          {{#games}}
+          <a href="/game/{{id}}" class="angled-bg">
             <div class="row">
               <div class="col-md-3 col-xs-4">
                 <div class="angled-img">
                   <div class="img">
-                    <img src="/images/game-bloodborne-500x375.jpg" alt="">
+                    <img src="{{id}}/imageTitle" alt="">
                   </div>
                 </div>
               </div>
               <div class="col-md-9 col-xs-8">
                 <div class="row">
                   <div class="col-xs-6 col-md-9">
-                    <h4>Bloodborne</h4>
+                    <h4>{{name}}</h4>
                     <div class="rating">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -58,7 +80,7 @@
                   </div>
                   <div class="col-xs-6 col-md-3 align-right">
                     <div class="price">
-                      $50.00
+                      ${{price}}
                     </div>
                   </div>
                 </div>
@@ -66,225 +88,10 @@
             </div>
           </a>
           <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <a href="#!" class="angled-bg">
-            <div class="row">
-              <div class="col-md-3 col-xs-4">
-                <div class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-dark-souls-ii-500x375.jpg" alt="">
-                    <div class="badge show-half bg-default">-20%</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-9 col-xs-8">
-                <div class="row">
-                  <div class="col-xs-6 col-md-9">
-                    <h4>Dark Souls II</h4>
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-half-o"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-md-3 align-right">
-                    <div class="price">
-                      $39.99 <sup><del>$49.99</del></sup>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <a href="#!" class="angled-bg">
-            <div class="row">
-              <div class="col-md-3 col-xs-4">
-                <div class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-kingdoms-of-amalur-reckoning-500x375.jpg" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-9 col-xs-8">
-                <div class="row">
-                  <div class="col-xs-6 col-md-9">
-                    <h4>Kingdoms of Amalur</h4>
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-md-3 align-right">
-                    <div class="price">
-                      $20.00
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <a href="#!" class="angled-bg">
-            <div class="row">
-              <div class="col-md-3 col-xs-4">
-                <div class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-the-witcher-500x375.jpg" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-9 col-xs-8">
-                <div class="row">
-                  <div class="col-xs-6 col-md-9">
-                    <h4>The Witcher</h4>
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-half-o"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-md-3 align-right">
-                    <div class="price">
-                      $14.99
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <!-- /Single Product Block -->
-        </div>
-        <div class="col-md-6">
-          <h2>News</h2>
-
-          <!-- Single News -->
-          <a href="#!" class="angled-bg">
-            <div class="row">
-              <div class="col-md-3 col-xs-4">
-                <div class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-bloodborne-500x375.jpg" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-9 col-xs-8">
-                <div class="row">
-                  <div class="col-xs-6 col-md-9">
-                    <h4>Bloodborne - First Try!</h4>
-                    <div class="tags">
-                      <i class="fa fa-tags"></i> Bloodborne, first try, first boss problem, newbie game
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-md-3 align-right">
-                    <div class="date">
-                      <i class="fa fa-calendar"></i> Today
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <!-- /Single News -->
-
-          <!-- Single News -->
-          <a href="#!" class="angled-bg">
-            <div class="row">
-              <div class="col-md-3 col-xs-4">
-                <div class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-the-witcher-500x375.jpg" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-9 col-xs-8">
-                <div class="row">
-                  <div class="col-xs-6 col-md-9">
-                    <h4>The Witcher, 60% Off</h4>
-                    <div class="tags">
-                      <i class="fa fa-tags"></i> The Witcher, special offer, discount, 60% off
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-md-3 align-right">
-                    <div class="date">
-                      <i class="fa fa-calendar"></i> February 19, 2015
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <!-- /Single News -->
-
-          <!-- Single News -->
-          <a href="#!" class="angled-bg">
-            <div class="row">
-              <div class="col-md-3 col-xs-4">
-                <div class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-middle-eart-shadow-of-mordor-500x375.jpg" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-9 col-xs-8">
-                <div class="row">
-                  <div class="col-xs-6 col-md-9">
-                    <h4>Whats New in Middle-earth</h4>
-                    <div class="tags">
-                      <i class="fa fa-tags"></i> Middle-earth, new features, update
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-md-3 align-right">
-                    <div class="date">
-                      <i class="fa fa-calendar"></i> February 2, 2015
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <!-- /Single News -->
-
-          <!-- Single News -->
-          <a href="#!" class="angled-bg">
-            <div class="row">
-              <div class="col-md-3 col-xs-4">
-                <div class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-soul-sacrifice-500x375.jpg" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-9 col-xs-8">
-                <div class="row">
-                  <div class="col-xs-6 col-md-9">
-                    <h4>Soul Sacrifice Review</h4>
-                    <div class="tags">
-                      <i class="fa fa-tags"></i> Soul Sacrifice, review, game
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-md-3 align-right">
-                    <div class="date">
-                      <i class="fa fa-calendar"></i> January 27, 2015
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <!-- /Single News -->
+          {{/games}}
+          <div id="moreFoundGames"></div>
+          <button class="btn btn-default" id='btnMoreFoundGames'>Load More Games</button>
+          <div id="loaderFoundGame" class="lds-dual-ring hidden"></div>
         </div>
       </div>
 
