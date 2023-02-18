@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -53,6 +54,7 @@ public class GameController {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
 			model.addAttribute("currentUser", currentUser);
+			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		} else {
 			model.addAttribute("logged", false);
@@ -64,6 +66,11 @@ public class GameController {
 		try{
 			Game game = gameService.findById(id).orElseThrow();
             model.addAttribute("game", game);
+			model.addAttribute("averageStars", game.averageStars());
+			model.addAttribute("haveStars", game.getReviews().size() > 0);
+			model.addAttribute("starNumber", game.getReviews().size());
+			model.addAttribute("ratings", game.getStarDistributionInt());
+			model.addAttribute("thisReviews", reviewService.findByGame(game, PageRequest.of(0,6)));
 			if (currentUser != null){
 				model.addAttribute("inCart", currentUser.getCart().contains(game));
 				model.addAttribute("isBought", purchaseService.purchasedGamesByUser(currentUser).contains(game));

@@ -53,14 +53,18 @@
           </div>
         </div>
         {{/currentUser.cart}}
-
-        <div class="ml-20 mr-20 pull-right"><strong>Subtotal:</strong> <span class="amount">${{currentUser.totalPrice}}</span>
+        
+        {{^emptyCart}}
+        <div class="ml-20 mr-20 pull-left"><strong>Subtotal:</strong> <span class="amount">${{currentUser.totalPrice}}</span>
         </div>
-
         <div class="btn-group pull-right m-15">
           <a href="/cart/{{currentUser.id}}" class="btn btn-default btn-sm">View Cart</a>
           <a href="/checkout" class="btn btn-default btn-sm">Checkout</a>
         </div>
+        {{/emptyCart}}
+        {{#emptyCart}}
+        <div class="ml-20 mr-20 pull-right"><strong>The cart is empty</strong></div>
+        {{/emptyCart}}
       </div>
     </li>
     {{#admin}}
