@@ -44,12 +44,6 @@ public class IndexController {
 
 	@GetMapping("/search")
 	public String search(Model model) {
-
 		return "search";
-	}
-
-	@GetMapping("/checkout/{id}")
-	public String checkout(Model model, @PathVariable long id) {
-		return "checkout";
 	}
 }

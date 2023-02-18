@@ -25,12 +25,14 @@
 
       <div class="col-md-9">
         <!-- Billing Information -->
+        <form action="/checkout/{{currentUser.id}}" method="POST">
         <h2 class="mt-0">Billing Details</h2>
 
         <!-- Country -->
+        {{^hasBillingInformation}}
         <p>Country:</p>
         <label class="youplay-select">
-          <select name="billing_country">
+          <select name="billing_country" required>
             <option value="">Select Country</option>
             <option value="AX">Åland Islands</option>
             <option value="AF">Afghanistan</option>
@@ -279,32 +281,16 @@
           </select>
         </label>
 
-        {{#currentUser.lleno}}}
-        <div class="row">
-          <div class="col-md-6">
-            <p>First Name:</p>
-            <div class="youplay-input">
-              <input type="text" name="billing_firstname" placeholder="First Name">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <p>Last Name:</p>
-            <div class="youplay-input">
-              <input type="text" name="billing_lastname" placeholder="Last Name">
-            </div>
-          </div>
-        </div>
-
         <p>Address:</p>
         <div class="row">
           <div class="col-md-6">
             <div class="youplay-input">
-              <input type="text" name="billing_street" placeholder="Street Address">
+              <input type="text" name="billing_street" placeholder="Street Address" required>
             </div>
           </div>
           <div class="col-md-6">
             <div class="youplay-input">
-              <input type="text" name="billing_apartment" placeholder="Apartment, suite, unit etc.">
+              <input type="text" name="billing_apartment" placeholder="Apartment, suite, unit etc." required>
             </div>
           </div>
         </div>
@@ -313,37 +299,32 @@
           <div class="col-md-4">
             <p>City:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_city" placeholder="City">
+              <input type="text" name="billing_city" placeholder="City" required>
             </div>
           </div>
           <div class="col-md-4">
             <p>Postcode:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_postcode" placeholder="Postcode">
+              <input type="text" name="billing_postcode" placeholder="Postcode" required>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6">
-            <p>Email:</p>
-            <div class="youplay-input">
-              <input type="text" name="billing_email" placeholder="Email">
-            </div>
-          </div>
-          <div class="col-md-6">
             <p>Phone:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_phone" placeholder="Phone">
+              <input type="text" name="billing_phone" placeholder="Phone" required>
             </div>
           </div>
         </div>
 
-        <p>Additional Info:</p>
-        <div class="youplay-textarea">
-          <textarea name="billing_textarea" rows="5" placeholder="Additional Info"></textarea>
+        {{/hasBillingInformation}}
+        {{#hasBillingInformation}}
+        <div class="alert" role="alert">
+          <strong>{{currentUser.billingInformation}}</strong>
         </div>
-        {{/currentUser.lleno}}}
+        {{/hasBillingInformation}}
         <!-- /Billing Information -->
 
 
@@ -391,8 +372,10 @@
 
         <!-- Order Button -->
         <div class="align-right">
-          <a href="index.html" class="btn btn-lg">Place Order</a>
+          <button class="btn btn-default db" type="submit">Purchase</button>
+          <input type="hidden" name="_csrf" value="{{token}}"/>
         </div>
+        <form/>
         <!-- /Order Button -->
       </div>
 
