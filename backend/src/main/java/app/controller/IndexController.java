@@ -46,9 +46,4 @@ public class IndexController {
 		model.addAttribute("allGames", gameService.findGames(PageRequest.of(0,6)));
 		return "index";
 	}
-
-	@GetMapping("/checkout/{id}")
-	public String checkout(Model model, @PathVariable long id) {
-		return "checkout";
-	}
 }
