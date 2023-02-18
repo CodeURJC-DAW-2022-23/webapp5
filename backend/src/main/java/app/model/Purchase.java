@@ -1,6 +1,7 @@
 package app.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,7 +20,7 @@ public class Purchase {
 	private Long id;
 
     @ManyToMany
-    private List<Game> games;
+    private List<Game> games = new ArrayList<>();
 
     @ManyToOne
     private User user;
@@ -31,7 +32,10 @@ public class Purchase {
     }
 
     public Purchase(List<Game> games, User user) {
-        this.games = games;
+        super();
+        for (Game game : games) {
+            this.games.add(game);
+        }
         this.user = user;
     }
 

@@ -43,9 +43,6 @@ public class Game {
     private int starDistribution[] = new int[] {0, 0, 0, 0, 0};
 
 	@ElementCollection(fetch=FetchType.LAZY)
-	private List<Integer> starPercentaje = new ArrayList<>();
-
-	@ElementCollection(fetch=FetchType.LAZY)
 	@Column(name = "gameplayImages", columnDefinition = "TEXT")
 	private List<String> gameplayImages = new ArrayList<>();
 
@@ -65,6 +62,22 @@ public class Game {
 	public Game() {
 
 	}
+	public void editGame(Game game){
+		this.setName(game.getName());
+		this.setCategory(game.getCategory());
+		this.setDirectX(game.getDirectX());
+		this.setSoundCard(game.getSoundCard());
+		this.setProcessor(game.getProcessor());
+		this.setMemory(game.getMemory());
+		this.setGraphics(game.getGraphics());
+		this.setHardDrive(game.getHardDrive());
+		this.setOs(game.getOs());
+		this.setPrice(game.getPrice());
+		this.setDescription(game.getDescription());
+		this.setNetwork(game.getNetwork());
+	}
+
+	
 
 	public Game(String category, String name, float price, String os, String processor, String memory, String directX, String network, String hardDrive, String soundCard, String graphics, String description) {
 		this.name = name;
@@ -261,11 +274,6 @@ public class Game {
 		this.totalRating += review.getRating();
 		this.starDistribution[review.getRating()-1]++;
 		this.reviews.add(review);
-		List<Integer> starDistributionInt = new ArrayList<>();
-		for(int i = 0; i < this.starDistribution.length; i++){
-			starDistributionInt.add((int)(((float)this.starDistribution[i]/this.reviews.size())*100));
-		}
-		this.starPercentaje = starDistributionInt;
 	}
 
 	@Override
@@ -282,6 +290,14 @@ public class Game {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, name, description, price, category, os, processor, memory, graphics, directX, network, hardDrive, soundCard, gameplayImages, titleImageFile, titleImage, gameplayImagesFiles, reviews);
+	}
+
+	public List<Integer> getStarDistributionInt() {
+		List<Integer> starDistributionInt = new ArrayList<>();
+		for(int i = 0; i < this.starDistribution.length; i++){
+			starDistributionInt.add((int)(((float)this.starDistribution[i]/this.reviews.size())*100));
+		}
+		return starDistributionInt;
 	}
 
 

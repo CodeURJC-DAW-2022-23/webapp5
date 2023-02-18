@@ -4,10 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import app.model.Game;
 import app.model.User;
 import app.repository.UserRepository;
 
@@ -41,13 +39,5 @@ public class UserService {
 	public boolean existMail(String name) {
 		Optional<User> user = findByMail(name);
 		return user.isPresent();
-	}
-
-	public List<Game> findGamesInCartByUserId(Long userId, Pageable pageable) {
-		return users.findGamesInCartByUserId(userId, pageable);
-	}
-
-	public int countGamesInCartByUserId(Long userId) {
-		return users.countGamesInCartByUserId(userId);
 	}
 }

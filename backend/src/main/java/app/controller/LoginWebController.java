@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.data.domain.PageRequest;
 
 import app.model.User;
 import app.service.UserService;
@@ -44,8 +43,6 @@ public class LoginWebController {
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			model.addAttribute("userCart", userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0,3)));
-			model.addAttribute("moreGamesInCart", currentUser.getCart().size() > 3);
 		} else {
 			model.addAttribute("logged", false);
 		}

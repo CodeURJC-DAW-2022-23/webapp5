@@ -25,12 +25,14 @@
 
       <div class="col-md-9">
         <!-- Billing Information -->
+        <form action="/checkout/{{currentUser.id}}" method="POST">
         <h2 class="mt-0">Billing Details</h2>
 
         <!-- Country -->
+        {{^hasBillingInformation}}
         <p>Country:</p>
         <label class="youplay-select">
-          <select name="billing_country">
+          <select name="billing_country" required>
             <option value="">Select Country</option>
             <option value="AX">Åland Islands</option>
             <option value="AF">Afghanistan</option>
@@ -279,31 +281,16 @@
           </select>
         </label>
 
-        <div class="row">
-          <div class="col-md-6">
-            <p>First Name:</p>
-            <div class="youplay-input">
-              <input type="text" name="billing_firstname" placeholder="First Name">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <p>Last Name:</p>
-            <div class="youplay-input">
-              <input type="text" name="billing_lastname" placeholder="Last Name">
-            </div>
-          </div>
-        </div>
-
         <p>Address:</p>
         <div class="row">
           <div class="col-md-6">
             <div class="youplay-input">
-              <input type="text" name="billing_street" placeholder="Street Address">
+              <input type="text" name="billing_street" placeholder="Street Address" required>
             </div>
           </div>
           <div class="col-md-6">
             <div class="youplay-input">
-              <input type="text" name="billing_apartment" placeholder="Apartment, suite, unit etc.">
+              <input type="text" name="billing_apartment" placeholder="Apartment, suite, unit etc." required>
             </div>
           </div>
         </div>
@@ -312,95 +299,56 @@
           <div class="col-md-4">
             <p>City:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_city" placeholder="City">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <p>Country:</p>
-            <div class="youplay-input">
-              <input type="text" name="billing_country" placeholder="Country">
+              <input type="text" name="billing_city" placeholder="City" required>
             </div>
           </div>
           <div class="col-md-4">
             <p>Postcode:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_postcode" placeholder="Postcode">
+              <input type="text" name="billing_postcode" placeholder="Postcode" required>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6">
-            <p>Email:</p>
-            <div class="youplay-input">
-              <input type="text" name="billing_email" placeholder="Email">
-            </div>
-          </div>
-          <div class="col-md-6">
             <p>Phone:</p>
             <div class="youplay-input">
-              <input type="text" name="billing_phone" placeholder="Phone">
+              <input type="text" name="billing_phone" placeholder="Phone" required>
             </div>
           </div>
         </div>
 
-        <p>Additional Info:</p>
-        <div class="youplay-textarea">
-          <textarea name="billing_textarea" rows="5" placeholder="Additional Info"></textarea>
+        {{/hasBillingInformation}}
+        {{#hasBillingInformation}}
+        <div class="alert" role="alert">
+          <strong>{{currentUser.billingInformation}}</strong>
         </div>
+        {{/hasBillingInformation}}
         <!-- /Billing Information -->
 
 
         <!-- Cart -->
         <h2>Your Games in Cart</h2>
-
+        {{#currentUser.cart}}
         <!-- Single Product Block -->
         <div class="item angled-bg">
           <div class="row">
             <div class="col-xs-6 col-md-9">
-              <h4 class="ml-20">Skyrim</h4>
+              <h4 class="ml-20">{{name}}</h4>
             </div>
             <div class="col-xs-6 col-md-3 align-right">
               <div class="price">
-                $11.99
+                ${{price}}
               </div>
             </div>
           </div>
         </div>
         <!-- /Single Product Block -->
-
-        <!-- Single Product Block -->
-        <div class="item angled-bg">
-          <div class="row">
-            <div class="col-xs-6 col-md-9">
-              <h4 class="ml-20">Dragons Dogma</h4>
-            </div>
-            <div class="col-xs-6 col-md-3 align-right">
-              <div class="price">
-                $34.99
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /Single Product Block -->
-
-        <!-- Single Product Block -->
-        <div class="item angled-bg">
-          <div class="row">
-            <div class="col-xs-6 col-md-9">
-              <h4 class="ml-20">The Witcher</h4>
-            </div>
-            <div class="col-xs-6 col-md-3 align-right">
-              <div class="price">
-                $14.99
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /Single Product Block -->
+        {{/currentUser.cart}}
 
         <div class="align-right h3 mr-20 mb-20">
-          Total: <strong>$46.88</strong>
+          Total: <strong>${{currentUser.totalPrice}}</strong>
         </div>
         <!-- Cart -->
 
@@ -424,15 +372,52 @@
 
         <!-- Order Button -->
         <div class="align-right">
-          <a href="index.html" class="btn btn-lg">Place Order</a>
+          <button class="btn btn-default db" type="submit">Purchase</button>
+          <input type="hidden" name="_csrf" value="{{token}}"/>
         </div>
+        <form/>
         <!-- /Order Button -->
       </div>
 
       <!-- Right Side -->
       <div class="col-md-3">
 
-        {{>SideSearchBlock}}
+        <!-- Side Search -->
+        <div class="side-block">
+          <p>Search by Games:</p>
+          <form action="search.html">
+            <div class="youplay-input">
+              <input type="text" name="search" placeholder="enter search term">
+            </div>
+          </form>
+        </div>
+        <!-- /Side Search -->
+
+        <!-- Side Categories -->
+        <div class="side-block">
+          <h4 class="block-title">Categories</h4>
+          <ul class="block-content">
+            <li><a href="#!">All</a>
+            </li>
+            <li><a href="#!">Action</a>
+            </li>
+            <li><a href="#!">Adventure</a>
+            </li>
+            <li><a href="#!">Casual</a>
+            </li>
+            <li><a href="#!">Indie</a>
+            </li>
+            <li><a href="#!">Racing</a>
+            </li>
+            <li><a href="#!">RPG</a>
+            </li>
+            <li><a href="#!">Simulation</a>
+            </li>
+            <li><a href="#!">Strategy</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /Side Categories -->
 
         <!-- Side Popular News -->
         <div class="side-block">
