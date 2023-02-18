@@ -12,19 +12,18 @@
     <div class="info">
       <div>
         <div class="container">
-          <h1>Edit Game</h1>
+          <h1>Game Form</h1>
         </div>
       </div>
     </div>
   </div>
   <!-- /Banner -->
 
-
-  {{#currentGame}}
-  <form action="/editGame/{{id}}" method="post" id="gameForm" enctype="multipart/form-data">
+  <form action="/newGame" method="post" id="gameForm"
+    enctype="multipart/form-data">
     <div class="container youplay-content">
       <div class="align-right">
-        <a class="btn btn-lg" href="/game/{{id}}">Cancel</a>
+        <a class="btn btn-lg" href="/">Cancel</a>
       </div>
       <div class="col-md-12">
         <!-- Billing Information -->
@@ -33,8 +32,8 @@
         <!-- Country -->
         <p>Categories:</p>
         <label class="youplay-select">
-          <select name="category">
-            <option value="{{category}}">Select Category</option>
+          <select name="category" required>
+            <option value="">Select Category</option>
             <option value="Action">Action</option>
             <option value="Adventure">Adventure</option>
             <option value="Casual">Casual</option>
@@ -49,13 +48,13 @@
           <div class="col-md-6">
             <p>Game Name:</p>
             <div class="youplay-input">
-              <input name="name" placeholder="Game Name" value="{{name}}">
+              <input name="name" placeholder="Game Name" required>
             </div>
           </div>
           <div class="col-md-6">
             <p>Price:</p>
             <div class="youplay-input">
-              <input type="number" step="0.01" name="price" placeholder="Price" value="{{price}}">
+              <input type="number" step="0.01" name="price" placeholder="Price" required>
             </div>
           </div>
         </div>
@@ -63,19 +62,19 @@
           <div class="col-md-4">
             <p>OS:</p>
             <div class="youplay-input">
-              <input type="text" name="os" placeholder="OS" value = "{{os}}">
+              <input type="text" name="os" placeholder="OS" required>
             </div>
           </div>
           <div class="col-md-4">
             <p>Processor:</p>
             <div class="youplay-input">
-              <input type="text" name="processor" placeholder="Processor" value="{{processor}}">
+              <input type="text" name="processor" placeholder="Processor" required>
             </div>
           </div>
           <div class="col-md-4">
             <p>Memory:</p>
             <div class="youplay-input">
-              <input type="text" name="memory" placeholder="Memory" value = "{{memory}}">
+              <input type="text" name="memory" placeholder="Memory" required>
             </div>
           </div>
         </div>
@@ -84,13 +83,13 @@
           <div class="col-md-6">
             <p>DirectX:</p>
             <div class="youplay-input">
-              <input type="text" name="directX" placeholder="DirectX" value="{{directX}}">
+              <input type="text" name="directX" placeholder="DirectX" required>
             </div>
           </div>
           <div class="col-md-6">
             <p>Network:</p>
             <div class="youplay-input">
-              <input type="text" name="network" placeholder="Network" value="{{network}}">
+              <input type="text" name="network" placeholder="Network" required>
             </div>
           </div>
         </div>
@@ -98,13 +97,13 @@
           <div class="col-md-6">
             <p>Hard Drive:</p>
             <div class="youplay-input">
-              <input type="text" name="hardDrive" placeholder="Hard drive" value="{{hardDrive}}">
+              <input type="text" name="hardDrive" placeholder="Hard drive" required>
             </div>
           </div>
           <div class="col-md-6">
             <p>Sound Card:</p>
             <div class="youplay-input">
-              <input type="text" name="soundCard" placeholder="Sound Card" value="{{soundCard}}">
+              <input type="text" name="soundCard" placeholder="Sound Card" required>
             </div>
           </div>
         </div>
@@ -112,7 +111,7 @@
           <div class="col-md-6">
             <p>Graphic:</p>
             <div class="youplay-input">
-              <input type="text" name="graphics" placeholder="Graphic" value="{{graphics}}">
+              <input type="text" name="graphics" placeholder="Graphic" required>
             </div>
           </div>
         </div>
@@ -130,18 +129,18 @@
         </div></label>
         <div class="imageInput">
           <input id="imageUploads" type="file" multiple name="imageFields" accept=".png,
-          .jpg, .jpeg"/>
+          .jpg, .jpeg" required/>
         </div>
         <p>Description:</p>
         <div class="youplay-textarea">
-          <textarea name="description" rows="5" placeholder="Description">{{description}}</textarea>
+          <textarea name="description" rows="5" placeholder="Description" required></textarea>
         </div>
 
         <!-- /Billing Information -->
 
         <!-- Order Button -->
         <div class="align-right">
-          <button class="btn btn-default db" type="submit">Save Changes</button>
+          <button class="btn btn-default db" type="submit">Create Game</button>
           <input type="hidden" name="_csrf" value="{{token}}"/>
         </div>
         <!-- /Order Button -->
@@ -149,7 +148,6 @@
 
     </div>
   </form>
-  {{/currentGame}}
 
   {{>FooterImport}}
 </section>

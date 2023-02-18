@@ -33,7 +33,7 @@ public class User{
     private String aboutMe;
 
     @Column(name = "billingInformation", columnDefinition = "TEXT")
-    private String billingInformation="";
+    private String billingInformation;
 
     @ElementCollection(fetch=FetchType.EAGER)
 	private List<String> roles;
@@ -171,11 +171,6 @@ public class User{
     public void removeGameFromCart(Game game){
         this.cart.remove(game);
         this.totalPrice -= game.getPrice();
-    }
-
-    public void purchase(){
-        this.cart.clear();
-        this.totalPrice = 0;
     }
 
 }

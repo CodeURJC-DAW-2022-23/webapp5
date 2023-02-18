@@ -56,6 +56,8 @@ public class GameController {
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("userCart", userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0,3)));
+			model.addAttribute("moreGamesInCart", currentUser.getCart().size() > 3);
 		} else {
 			model.addAttribute("logged", false);
 		}
@@ -69,7 +71,6 @@ public class GameController {
 			model.addAttribute("averageStars", game.averageStars());
 			model.addAttribute("haveStars", game.getReviews().size() > 0);
 			model.addAttribute("starNumber", game.getReviews().size());
-			model.addAttribute("ratings", game.getStarDistributionInt());
 			model.addAttribute("thisReviews", reviewService.findByGame(game, PageRequest.of(0,6)));
 			if (currentUser != null){
 				model.addAttribute("inCart", currentUser.getCart().contains(game));

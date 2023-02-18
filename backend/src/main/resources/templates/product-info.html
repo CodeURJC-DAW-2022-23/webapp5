@@ -83,12 +83,6 @@
         <div>
           <div class="container">
             <h1>{{name}}</h1>
-            {{#admin}}
-            <div class="align-right">
-              <a class="btn btn-lg" href="/editGame/{{id}}">
-              Edit Game
-              </a></div>
-            {{/admin}}
             <br>
             <h2><span class="label label-default">${{price}}</span></h2>
             {{#logged}}
@@ -348,9 +342,9 @@
           {{#haveStars}}
           <div class="block-content p-0">
             <h4 class="block-title">Average Stars: {{averageStars}}</h4>
-              {{#ratings}}
+              {{#starPercentaje}}
             <label for="point" class="starValue">{{-index}}</label><progress id="file" max="100" value="{{.}}"></progress> {{.}}%<br>
-            {{/ratings}}
+            {{/starPercentaje}}
             
           </div>
           {{/haveStars}}

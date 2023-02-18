@@ -36,6 +36,8 @@ public class IndexController {
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("userCart", userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0,3)));
+			model.addAttribute("moreGamesInCart", currentUser.getCart().size() > 3);
 		} else {
 			model.addAttribute("logged", false);
 		}
@@ -45,5 +47,10 @@ public class IndexController {
 	public String showBooks(Model model) {
 		model.addAttribute("allGames", gameService.findGames(PageRequest.of(0,6)));
 		return "index";
+	}
+
+	@GetMapping("/checkout/{id}")
+	public String checkout(Model model, @PathVariable long id) {
+		return "checkout";
 	}
 }

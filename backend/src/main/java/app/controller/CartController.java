@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.data.domain.PageRequest;
 
 import app.model.Game;
 import app.model.User;
@@ -37,6 +38,8 @@ public class CartController {
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			model.addAttribute("userCart", userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0,3)));
+			model.addAttribute("moreGamesInCart", currentUser.getCart().size() > 3);
 		} else {
 			model.addAttribute("logged", false);
 		}
