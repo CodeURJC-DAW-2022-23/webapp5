@@ -2,7 +2,6 @@ package app.controller;
 
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
@@ -83,7 +82,7 @@ public class AddGameController {
 	}
 
 	private void updateGameplayImages(Game game, List<MultipartFile> imageFields) {
-		if (imageFields != null) {
+		if (imageFields != null && !imageFields.isEmpty()) {
 			game.setGameplayImagesFiles(imageFields.stream().map(file -> {
 				try {
 					return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
