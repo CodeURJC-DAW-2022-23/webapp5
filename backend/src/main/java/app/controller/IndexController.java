@@ -47,4 +47,10 @@ public class IndexController {
 		model.addAttribute("allGames", gameService.findGames(PageRequest.of(0,6)));
 		return "index";
 	}
+
+	@GetMapping("/controlPanel")
+	public String controlPanel(Model model) {
+
+		return "controlPanel";
+	}
 }
