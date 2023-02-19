@@ -54,6 +54,12 @@ public class IndexController {
 		return "admin";
 	}
 
+	@GetMapping("/controlPanel")
+	public String controlPanel(Model model) {
+
+		return "controlPanel";
+	}
+
 	@GetMapping("/cart")
 	public String cart(Model model) {
 
