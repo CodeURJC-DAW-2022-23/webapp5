@@ -32,7 +32,7 @@
     <i class="fa fa-shopping-cart"></i>
   </a>
   <div class="dropdown-menu" style="width: 300px;">
-    {{#currentUser.cart}}
+    {{#userCart}}
     <div class="row youplay-side-news">
       <div class="col-xs-3 col-md-4">
         <a href="/game/{{id}}" class="angled-img">
@@ -52,8 +52,10 @@
         <span class="quantity">1 × <span class="amount">${{price}}</span></span>
       </div>
     </div>
-    {{/currentUser.cart}}
-    
+    {{/userCart}}
+    {{#moreGamesInCart}}
+    <div class="ml-20 mr-20 pull-left"><strong>View cart to see all the games</strong>        </div>
+    {{/moreGamesInCart}}
     {{^emptyCart}}
     <div class="ml-20 mr-20 pull-left"><strong>Subtotal:</strong> <span class="amount">${{currentUser.totalPrice}}</span>
     </div>

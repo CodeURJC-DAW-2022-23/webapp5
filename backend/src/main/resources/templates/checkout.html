@@ -330,7 +330,7 @@
 
         <!-- Cart -->
         <h2>Your Games in Cart</h2>
-        {{#currentUser.cart}}
+        {{#userCart}}
         <!-- Single Product Block -->
         <div class="item angled-bg">
           <div class="row">
@@ -345,7 +345,11 @@
           </div>
         </div>
         <!-- /Single Product Block -->
-        {{/currentUser.cart}}
+        {{/userCart}}
+
+        <div id="moreCheckGames"></div>
+        <button class="btn btn-default" id='btnMoreCheckGames' type="button">Load More Games</button>
+        <div id="loaderCheckGame" class="lds-dual-ring hidden"></div>
 
         <div class="align-right h3 mr-20 mb-20">
           Total: <strong>${{currentUser.totalPrice}}</strong>

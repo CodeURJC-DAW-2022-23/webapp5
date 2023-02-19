@@ -6,11 +6,15 @@ $(window).on("load", function(){
 	$('#btnMoreFoundGames').on("click",()=>functionMoreFoundGames('#moreFoundGames', '#loaderFoundGame', '#btnMoreFoundGames'))
     $('#btnGamesReview').on("click",()=>functionMoreFoundReviews('#moreReviewsGame', '#loaderGameReview', '#btnGamesReview'))
     $('#btnMoreIndexGames').on("click",()=>functionMoreIndexGames('#moreIndexGames', '#loaderIndexGame', '#btnMoreIndexGames'))
+    $('#btnMoreCartGames').on("click",()=>functionMoreCartGames('#moreCartGames', '#loaderCartGame', '#btnMoreCartGames'))
+    $('#btnMoreCheckGames').on("click",()=>functionMoreCheckGames('#moreCheckGames', '#loaderCheckGame', '#btnMoreCheckGames'))
 })
 
 var indexFoundGames;
 var indexGameReviews;
 var indexIndexGames;
+var indexCartGames;
+var indexCheckGames;
 
 function ajaxCall(url, spinner, where, button) {
 	$.ajax({
@@ -33,9 +37,31 @@ function ajaxCall(url, spinner, where, button) {
 }
 
 function functionMoreIndexGames(where, spinner, button){
-    value = indexFoundGames;
-    this.indexFoundGames += 1;
+    value = indexIndexGames;
+    this.indexIndexGames += 1;
     url=("/moreIndexGames/" + value);
+    ajaxCall(url, spinner, where, button);
+}
+
+function functionMoreCartGames(where, spinner, button){
+    value = indexCartGames;
+    this.indexCartGames += 1;
+    
+    // Search parameter in url
+    const arrayPath = window.location.pathname.split('/');
+    const id= arrayPath[2];
+    url=('/moreCartGames/' + id + "/" + value);
+    ajaxCall(url, spinner, where, button);
+}
+
+function functionMoreCheckGames(where, spinner, button){
+    value = indexCheckGames;
+    this.indexCheckGames += 1;
+    
+    // Search parameter in url
+    const arrayPath = window.location.pathname.split('/');
+    const id= arrayPath[2];
+    url=('/moreCheckGames/' + id + "/" + value);
     ajaxCall(url, spinner, where, button);
 }
 
@@ -67,4 +93,7 @@ function functionMoreFoundGames(where, spinner, button){
 function valueIndex(num) {
 	this.indexFoundGames = num;
     this.indexGameReviews = num;
+    this.indexIndexGames = num;
+    this.indexCartGames = num;
+    this.indexCheckGames = num;
 }

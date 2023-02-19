@@ -34,7 +34,7 @@
         <h2 class="mt-0">Your Cart is Empty</h2>
         {{/emptyCart}}
 
-        {{#currentUser.cart}}
+        {{#userCart}}
         <!-- Single Product Block -->
         <div class="item angled-bg">
           <div class="row">
@@ -51,11 +51,8 @@
                 <div class="col-xs-6 col-md-9">
                   <h4><a href="/game/{{id}}">{{name}}</a></h4>
                   <div class="rating hidden-xs">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
+                        <div class="stars rateyo" data-rateyo-rating="{{averageStars}}" data-rateyo-num-stars="5"
+                          data-rateyo-read-only="true"  data-rateyo-star-width= "15px" data-rateyo-rated-fill= "#FFFFFF"></div>
                   </div>
                 </div>
                 <div class="col-xs-6 col-md-3 align-right">
@@ -68,7 +65,11 @@
             </div>
           </div>
         </div>
-        {{/currentUser.cart}}
+        {{/userCart}}
+
+        <div id="moreCartGames"></div>
+        <button class="btn btn-default" id='btnMoreCartGames'>Load More Games</button>
+        <div id="loaderCartGame" class="lds-dual-ring hidden"></div>
         <!-- /Single Product Block -->
 
         {{^emptyCart}}

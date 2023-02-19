@@ -38,6 +38,10 @@
     <script type="text/javascript" src="/assets/youplay/js/youplay.min.js"></script>
 
     <script type="text/javascript" src="../loadButton.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
   
     <!-- init youplay -->
     <script>
@@ -59,6 +63,12 @@
           }
         });
       }
+      $(function () {
+        $(".rateyo").rateYo().on("rateyo.change", function (data) {
+          var rating = data.rating;
+          $(this).parent().find('.result').text('rating :'+ rating);
+         });
+      });
     </script>
   
   
