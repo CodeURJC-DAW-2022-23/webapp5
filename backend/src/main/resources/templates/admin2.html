@@ -1,0 +1,142 @@
+{{>HeaderImport}}
+  {{>Navbar}}
+
+
+  <!-- Main Content -->
+  <section class="content-wrap">
+
+    <!-- Banner -->
+    <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
+      <div class="image" style="background-image: url('/images/banner-blog-bg.jpg')">
+      </div>
+
+      <div class="info">
+        <div>
+          <div class="container">
+            <h1>game form</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Banner -->
+
+
+    <div class="container youplay-content">
+
+      <div class="col-md-12">
+        <!-- Billing Information -->
+        <h2 class="mt-0">Game Details</h2>
+
+        <!-- Country -->
+        <p>Categories:</p>
+        <label class="youplay-select">
+          <select name="billing_country">
+            <option value="">Select Category</option>
+            <option value="ACT">Action</option>
+            <option value="ADV">Adventure</option>
+            <option value="CAS">Casual</option>
+            <option value="IND">Indie</option>
+            <option value="RAC">Racing</option>
+            <option value="RPG">RPG</option>
+            <option value="SIM">Simulation</option>
+            <option value="STR">Strategy</option>
+          </select>
+        </label>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Game Name:</p>
+            <div class="youplay-input">
+              <input type="text" name="billing_gamename" placeholder="Game Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>Price:</p>
+            <div class="youplay-input">
+              <input type="text" name="billing_price" placeholder="Price">
+            </div>
+          </div>
+        </div>
+<div class="row">
+        <div class="col-md-4">
+          <p>OS:</p>
+          <div class="youplay-input">
+            <input type="text" name="billing_os" placeholder="OS">
+          </div>
+        </div>
+        <div class="col-md-4">
+        <p>Processor:</p>
+          <div class="youplay-input">
+          <input type="text" name="billing_processor" placeholder="Processor">
+          </div>
+          </div>
+          <div class="col-md-4">
+            <p>Memory:</p>
+            <div class="youplay-input">
+              <input type="text" name="billing_memory" placeholder="Memory">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <p>DirectX:</p>
+            <div class="youplay-input">
+              <input type="text" name="billing_directX" placeholder="DirectX">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>Network:</p>
+            <div class="youplay-input">
+              <input type="text" name="billing_network" placeholder="Network">
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>Hard Drive:</p>
+              <div class="youplay-input">
+                <input type="text" name="billing_harddrive" placeholder="Hard dreive">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <p>Sound Card:</p>
+              <div class="youplay-input">
+                <input type="text" name="billing_soundcard" placeholder="Sound Card">
+              </div>
+            </div>
+          </div>
+        <p>Images:</p>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Main Image:</p>
+            <div class="youplay-input" >
+            <input type="file" placeholder="Sound Card">
+          </div>
+            </div>
+            <div class="col-md-6">
+              <p>Gameplay Images:</p>
+        <div class="youplay-input">
+          <input type="file" multiple>
+        </div>
+        </div>
+        </div>
+</div>
+        <p>Description:</p>
+        <div class="youplay-textarea">
+          <textarea name="billing_description" rows="5" placeholder="Description"></textarea>
+        </div>
+        <!-- /Billing Information -->
+
+        <!-- Order Button -->
+        <div class="align-right">
+          <a href="index.html" class="btn btn-lg">Create Game</a>
+        </div>
+        <!-- /Order Button -->
+      </div>
+
+
+
+    </div>
+    </div>
+
+{{>FooterImport}}

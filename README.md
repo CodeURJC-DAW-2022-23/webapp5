@@ -29,10 +29,9 @@
 - User
 - Game
 - Game Review
-- Game Company
 - Purchase
 
-User purchase game. Game has reviews. Companies own games.
+![avatar](screenshots/ER.jpg)
 
 #### Users
 
@@ -61,3 +60,129 @@ The web page will send emails to users notifying the purchase they have done.
 ### Algorithm
 
 Search films by title. Furthermore, the application will show games recomendation based on user prefferences.
+
+
+# Phase 1
+
+## Web pages layout using HTML and CSS
+
+### Unregistered users 
+
+**Initial menu:** 
+This is the main page where the user can view his cart, proceed to checkout and view the available games, and can enter their respective pages to view the specifications, screenshots of the game and its features.
+ 
+![avatar](screenshots/main1.png) 
+![avatar](screenshots/main2.png) 
+![avatar](screenshots/main3.png) 
+
+**Register:** 
+Screen that will allow new users to sing up in KeyWhale. 
+ 
+![avatar](screenshots/register.png) 
+
+**Game:** 
+Screen that will display information, images and features about the game. Also, at the bottom of the page reviews of the game will appear. 
+ 
+![avatar](screenshots/game1.png) 
+![avatar](screenshots/game2.png) 
+
+**Search:** 
+Screen that will display the games that contains the words that you searched. 
+ 
+![avatar](screenshots/search.png)  
+
+**Cart:** 
+Page that shows all the games in the cart showing them, their price, and the total price of the cart.
+ 
+![avatar](screenshots/cart.png)  
+
+**Checkout:** 
+Page containing a form for the billing information of the user who is going to buy on the site. Unregistered users should check the checkbox for register a new user.
+ 
+![avatar](screenshots/checkout1.png)  
+![avatar](screenshots/checkout2.png)   
+
+### Registered users 
+
+**Initial menu:** 
+This is the main page where the user can enter his profile, view his cart, proceed to checkout and view the available games, and can enter their respective pages to view the specifications, screenshots of the game and its features.
+ 
+![avatar](screenshots/main1.png) 
+![avatar](screenshots/main2.png) 
+![avatar](screenshots/main3.png) 
+ 
+**Login:** 
+Screen that will allow registered users to log in giving their email and password. All users have access to this screen even though only registered users will be able to end this process. 
+ 
+![avatar](screenshots/login.png) 
+
+**Register:** 
+Screen that will allow new users to sing up in KeyWhale. 
+ 
+![avatar](screenshots/register.png) 
+
+**Profile:** 
+Screen that will display information, profile logo and number of games purchased about the profile.
+ 
+![avatar](screenshots/profile.png)
+
+**Game:** 
+Screen that will display information, images and features about the game. Also, at the bottom of the page reviews of the game will appear. 
+ 
+![avatar](screenshots/game1.png) 
+![avatar](screenshots/game2.png) 
+
+**Search:** 
+Screen that will display the games that contains the words that you searched. 
+ 
+![avatar](screenshots/search.png)  
+
+**Cart:** 
+Page that shows all the games in the cart showing them, their price, and the total price of the cart.
+ 
+![avatar](screenshots/cart.png)  
+
+**Checkout:** 
+Page containing a form for the billing information of the user who is going to buy on the site. 
+ 
+![avatar](screenshots/checkout1.png)  
+![avatar](screenshots/checkout2.png)   
+
+### Admin
+
+**Initial menu:** 
+This is the main page where the admin can enter his profile, view the available games, and add or delete more games, enter their respective pages to view or change the specifications, screenshots of the game and its features.
+ 
+![avatar](screenshots/main1.png) 
+![avatar](screenshots/main2.png) 
+![avatar](screenshots/main3.png) 
+ 
+
+**Profile:** 
+Screen that will display information and profile logo.
+ 
+![avatar](screenshots/profile.png)
+
+**Game:** 
+Screen that will display information, images and features about the game. Also, at the bottom of the page reviews of the game will appear. The admin have control of all the page so he can change any info of the game, delete reviews that are out of context, etc. 
+ 
+![avatar](screenshots/game1.png) 
+![avatar](screenshots/game2.png) 
+
+**Search:** 
+Screen that will display the games that contains the words that you searched. 
+ 
+![avatar](screenshots/search.png)  
+
+**GameForm:** 
+Screen that will allow admins to add a new game with all its features in KeyWhale.
+ 
+![avatar](screenshots/GameForm.png)
+
+## Navigation Diagram
+* Blue = Unregistered users.
+* Yellow = Registered users.
+* Green = Admins.
+
+![diagram](screenshots/NavigationDiagram.png)
+
