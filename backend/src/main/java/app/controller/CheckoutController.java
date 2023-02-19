@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.data.domain.PageRequest;
+
+import app.Email.EmailDetails;
+import app.Email.EmailServiceImpl;
 import app.model.Purchase;
 import app.model.User;
 import app.service.PurchaseService;
@@ -24,8 +27,10 @@ public class CheckoutController {
 
     @Autowired
     private PurchaseService purchaseService;
-	
-	
+
+    @Autowired
+    private EmailServiceImpl emailService;
+
 	User currentUser;
 
 	@ModelAttribute
@@ -80,6 +85,9 @@ public class CheckoutController {
             purchaseService.save(purchase);
             user.purchase();
             userService.save(user);
+            EmailDetails emailDetails = new EmailDetails(user.getMail(), "Thank you for your purchase!");
+            emailDetails.generatePurchaseMessage(purchase, user);
+            emailService.sendSimpleMail(emailDetails);
             return "redirect:/";
         } catch(Exception e){
             return "redirect:/error";
