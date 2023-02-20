@@ -40,6 +40,12 @@ public class IndexController {
 		} else {
 			model.addAttribute("logged", false);
 		}
+
+		if (model.containsAttribute("admin") || model.getAttribute("logged").equals(false)) {
+			model.addAttribute("carrouselGames", gameService.findGames(PageRequest.of(0,3)));
+		}else{
+			model.addAttribute("carrouselGames", gameService.findGames(PageRequest.of(0,3)));
+		}
 	}
 
 	@GetMapping("/")
