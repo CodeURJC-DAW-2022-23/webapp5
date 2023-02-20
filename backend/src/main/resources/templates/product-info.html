@@ -183,7 +183,6 @@
         <!-- Reviews -->
         <div class="reviews-block mb-0">
           <h2>Reviews <small>({{starNumber}})</small></h2>
-
           <!-- Reviews List -->
           <ul class="reviews-list">
             {{#thisReviews}}
@@ -216,6 +215,13 @@
             <div id="moreReviewsGame"></div>
             <button class="btn btn-default" id='btnGamesReview'>Load More Reviews</button>
             <div id="loaderGameReview" class="lds-dual-ring hidden"></div>
+
+            {{#logged}}
+            {{#isReviewed}}
+            <button class="btn btn-default" id='btnGamesReview'>Delete comment</button>
+            <div id="loaderGameReview" class="lds-dual-ring hidden"></div>
+            {{/isReviewed}}
+            {{/logged}}
           </ul>
 
 
