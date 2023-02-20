@@ -27,6 +27,9 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 
     @Query("SELECT g FROM Game g")
     List<Game> findGames(Pageable pageable);
+
+    @Query("SELECT g FROM Game g INNER JOIN review ON g.id = review.game_id GROUP BY g.id ORDER BY total_rating/COUNT(review.id) DESC")
+    List<Game> findRecomendnoreg(Pageable pageable);
 }
 
 
