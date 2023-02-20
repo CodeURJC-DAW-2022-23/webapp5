@@ -67,6 +67,7 @@ public class GameController {
 	public String gameProduct(Model model, @PathVariable long id) {
 		try{
 			Game game = gameService.findById(id).orElseThrow();
+			model.addAttribute("popularGames", gameService.findGames(PageRequest.of(0,5)));
             model.addAttribute("game", game);
 			model.addAttribute("averageStars", game.averageStars());
 			model.addAttribute("haveStars", game.getReviews().size() > 0);

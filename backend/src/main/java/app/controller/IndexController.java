@@ -41,7 +41,7 @@ public class IndexController {
 			model.addAttribute("logged", false);
 		}
 
-		if (model.containsAttribute("admin") || model.getAttribute("logged").equals(false)) {
+		if (model.containsAttribute("admin") || currentUser == null) {
 			model.addAttribute("carrouselGames", gameService.findGames(PageRequest.of(0,3)));
 		}else{
 			model.addAttribute("carrouselGames", gameService.findGames(PageRequest.of(0,3)));
@@ -51,6 +51,7 @@ public class IndexController {
 	@GetMapping("/")
 	public String showBooks(Model model) {
 		model.addAttribute("allGames", gameService.findGames(PageRequest.of(0,6)));
+		model.addAttribute("popularGames", gameService.findGames(PageRequest.of(0,5)));
 		return "index";
 	}
 
