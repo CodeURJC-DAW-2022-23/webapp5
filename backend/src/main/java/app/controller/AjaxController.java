@@ -84,6 +84,16 @@ public class AjaxController {
 		return null;
 	}
 
+	@GetMapping("/moreControlGames/{page}")
+	public String getControlIndexGames(Model model, @PathVariable int page) {
+		// Before returning a page it confirms that there are more left
+		if (page <= (int) Math.ceil(gameService.countGames()/6)) {
+			model.addAttribute("foundGames", gameService.findGames(PageRequest.of(page,6)));
+			return "controlGames";
+		}
+		return null;
+	}
+
 	@GetMapping("/moreCartGames/{id}/{page}")
 	public String getMoreCartGames(Model model, @PathVariable int page, @PathVariable long id) {
 		// Before returning a page it confirms that there are more left

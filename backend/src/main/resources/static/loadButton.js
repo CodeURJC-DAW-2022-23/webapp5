@@ -8,6 +8,7 @@ $(window).on("load", function(){
     $('#btnMoreIndexGames').on("click",()=>functionMoreIndexGames('#moreIndexGames', '#loaderIndexGame', '#btnMoreIndexGames'))
     $('#btnMoreCartGames').on("click",()=>functionMoreCartGames('#moreCartGames', '#loaderCartGame', '#btnMoreCartGames'))
     $('#btnMoreCheckGames').on("click",()=>functionMoreCheckGames('#moreCheckGames', '#loaderCheckGame', '#btnMoreCheckGames'))
+    $('#btnMoreControlGames').on("click",()=>functionMoreControlGames('#moreControlGames', '#loaderControlGame', '#btnMoreControlGames'))
 })
 
 var indexFoundGames;
@@ -15,6 +16,7 @@ var indexGameReviews;
 var indexIndexGames;
 var indexCartGames;
 var indexCheckGames;
+var indexControlGames;
 
 function ajaxCall(url, spinner, where, button) {
 	$.ajax({
@@ -40,6 +42,13 @@ function functionMoreIndexGames(where, spinner, button){
     value = indexIndexGames;
     this.indexIndexGames += 1;
     url=("/moreIndexGames/" + value);
+    ajaxCall(url, spinner, where, button);
+}
+
+function functionMoreControlGames(where, spinner, button){
+    value = indexControlGames;
+    this.indexControlGames += 1;
+    url=("/moreControlGames/" + value);
     ajaxCall(url, spinner, where, button);
 }
 
@@ -96,4 +105,5 @@ function valueIndex(num) {
     this.indexIndexGames = num;
     this.indexCartGames = num;
     this.indexCheckGames = num;
+    this.indexControlGames=num;
 }
