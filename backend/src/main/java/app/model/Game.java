@@ -100,6 +100,10 @@ public class Game {
 		this.deleted = deleted;
 	}
 
+	public boolean getDeleted(){
+		return this.deleted;
+	}
+
 
 	public Long getId() {
 		return this.id;

@@ -53,7 +53,7 @@ public class CartController {
 			if (!user.getId().equals(currentUser.getId())) {
 				throw new Exception();
 			}
-			if(currentUser.getCart().contains(game)) {
+			if(currentUser.getCart().contains(game) || game.getDeleted()) {
 				throw new Exception();
 			}
             currentUser.addGameToCart(game);
