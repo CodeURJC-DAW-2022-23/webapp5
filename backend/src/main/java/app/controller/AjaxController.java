@@ -51,9 +51,16 @@ public class AjaxController {
 	public String getMoreReviews(Model model, @PathVariable int page, @PathVariable long id) {
 		// Before returning a page it confirms that there are more left
         Game game = gameService.findById(id).orElseThrow();
-		if (page <= (int) Math.ceil(reviewService.countByGame(game)/6)) {
-			model.addAttribute("foundReviews", reviewService.findByGame(game, PageRequest.of(page,6)));
-			return "moreReviews";
+		if (currentUser != null) {
+			if (page <= (int) Math.ceil(reviewService.countByGameAndNotUser(game, currentUser)/6)) {
+				model.addAttribute("foundReviews", reviewService.findByGameAndNotUser(game, currentUser, PageRequest.of(page,6)));
+				return "moreReviews";
+			}
+		}else{
+			if (page <= (int) Math.ceil(reviewService.countByGame(game)/6)) {
+				model.addAttribute("foundReviews", reviewService.findByGame(game, PageRequest.of(page,6)));
+				return "moreReviews";
+			}
 		}
 		return null;
 	}

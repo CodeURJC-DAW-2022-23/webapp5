@@ -1,5 +1,6 @@
 package app.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,23 @@ public class ReviewService {
 		return reviews.findByGame(game, pageable);
 	}
 
+	public List<Review> findByGameAndNotUser(Game game, User user, Pageable pageable) {
+		return reviews.findByGameAndNotUser(game, user, pageable);
+	}
+
 	public int countByGame(Game game) {
 		return reviews.countByGame(game);
+	}
+
+	public int countByGameAndNotUser(Game game, User user) {
+		return reviews.countByGameAndNotUser(game, user);
+	}
+
+	public List<Review> findByUserInGame(User user, Game game) {
+		ArrayList<Review> list = new ArrayList<Review>();
+		if (reviews.findByUserAndGame(user, game).isPresent()){
+			list.add(reviews.findByUserAndGame(user, game).get());
+		}
+		return list;
 	}
 }
