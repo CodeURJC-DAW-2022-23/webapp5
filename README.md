@@ -186,3 +186,25 @@ Screen that will allow admins to add a new game with all its features in KeyWhal
 
 ![diagram](screenshots/NavigationDiagram.png)
 
+## Phase 1
+
+## Navigation
+
+
+
+## Execution instructions
+
+
+
+## Diagram with database entities
+
+
+
+## Class diagram and templates
+
+
+
+## Member participation
+
+
+
