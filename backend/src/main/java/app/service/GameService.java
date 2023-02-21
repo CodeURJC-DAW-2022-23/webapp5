@@ -59,4 +59,10 @@ public class GameService {
 			return games.countByName(name);
 		return games.countByCategoryAndName(name, category);
 	}
+	public String findRecomendCategory(Long id) {
+		return games.findRecomendCategory(id);
+	}
+	public List<Game>  findRecomendbyCategory(String category,Long id,Integer num) {
+		return games.findRecomendbyCategory(category,id,num);
+	}
 }

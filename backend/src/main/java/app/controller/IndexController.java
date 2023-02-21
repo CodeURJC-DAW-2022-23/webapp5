@@ -44,11 +44,11 @@ public class IndexController {
 		} else {
 			model.addAttribute("logged", false);
 		}
-
-		if (model.containsAttribute("admin") || currentUser == null || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
+		if (model.containsAttribute("ADMIN") || currentUser == null || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
 			model.addAttribute("carrouselGames", gameService.findRecomendnoreg(3));
 		}else{
-			model.addAttribute("carrouselGames", gameService.findRecomend(currentUser.getId(), 3));
+			String category = gameService.findRecomendCategory(currentUser.getId());
+			model.addAttribute("carrouselGames", gameService.findRecomendbyCategory(category,currentUser.getId(),3));
 		}
 	}
 
