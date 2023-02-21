@@ -188,23 +188,23 @@ Screen that will allow admins to add a new game with all its features in KeyWhal
 
 ## Phase 2
 
-## Navigation
+# Navigation
 
 
 
-## Execution instructions
+# Execution instructions
 
 
 
-## Diagram with database entities
+# Diagram with database entities
 
 
 
-## Class diagram and templates
+# Class diagram and templates
 
 
 
-## Member participation
+# Member participation
 
 
 
