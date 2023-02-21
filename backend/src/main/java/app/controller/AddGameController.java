@@ -68,8 +68,15 @@ public class AddGameController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/deleteGame/{id}")
+	@GetMapping("/editGame/{id}")
 	public String editGame(Model model, @PathVariable long id) {
+		Game currentGame = gameService.findById(id).orElseThrow();
+		model.addAttribute("currentGame", currentGame);
+		return "editGame";
+	}
+
+	@GetMapping("/deleteGame/{id}")
+	public String deleteGame(Model model, @PathVariable long id) {
 		gameService.deleteById(id);
 		return "controlPanel";
 	}
