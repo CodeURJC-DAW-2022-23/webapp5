@@ -39,17 +39,26 @@ public class Game {
 	private String soundCard;
 	private boolean deleted = false;
 
+	@JsonIgnore
 	private int totalRating = 0;
+
+	private float averageRating = 0f;
+
+	public boolean isDeleted() {
+		return this.deleted;
+	}
 
     private int starDistribution[] = new int[] {0, 0, 0, 0, 0};
 
 	@ElementCollection(fetch=FetchType.LAZY)
 	@Column(name = "gameplayImages", columnDefinition = "TEXT")
+	@JsonIgnore
 	private List<String> gameplayImages = new ArrayList<>();
 
 	@Lob
 	@JsonIgnore
 	private Blob titleImageFile;
+	@JsonIgnore
 	private String titleImage;
 
 	@Lob
@@ -58,6 +67,7 @@ public class Game {
 	private List<Blob> gameplayImagesFiles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private List<Review> reviews = new ArrayList<>();
 	
 
@@ -284,6 +294,7 @@ public class Game {
 		this.totalRating += review.getRating();
 		this.starDistribution[review.getRating()-1]++;
 		this.reviews.add(review);
+		this.averageRating = (float)this.totalRating/this.reviews.size();
 	}
 
 	public void deleteReview(Review review) {
@@ -314,6 +325,14 @@ public class Game {
 			starDistributionInt.add((int)(((float)this.starDistribution[i]/this.reviews.size())*100));
 		}
 		return starDistributionInt;
+	}
+
+	public float getAverageRating() {
+		return this.averageRating;
+	}
+
+	public void setAverageRating(float averageRating) {
+		this.averageRating = averageRating;
 	}
 
 
