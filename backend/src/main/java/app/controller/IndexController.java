@@ -13,6 +13,9 @@ import app.service.GameService;
 import app.service.PurchaseService;
 
 import java.security.Principal;
+import java.util.List;
+
+import app.model.Game;
 import app.model.User;
 import app.service.UserService;
 
@@ -44,11 +47,17 @@ public class IndexController {
 		} else {
 			model.addAttribute("logged", false);
 		}
-		if (model.containsAttribute("ADMIN") || currentUser == null || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
+		if (model.containsAttribute("admin") || currentUser == null || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
 			model.addAttribute("carrouselGames", gameService.findRecomendnoreg(3));
 		}else{
 			String category = gameService.findRecomendCategory(currentUser.getId());
-			model.addAttribute("carrouselGames", gameService.findRecomendbyCategory(category,currentUser.getId(),3));
+			List<Game> games = gameService.findRecomendbyCategory(category,currentUser.getId(),3);
+			if(games.isEmpty()){
+				games.addAll(gameService.findRecomendnoreg(3));
+			}else if (games.size() < 3){
+				games.addAll(gameService.findRecomendnoreg(3-games.size()));
+			}
+			model.addAttribute("carrouselGames", games);
 		}
 	}
 
