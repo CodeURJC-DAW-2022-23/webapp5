@@ -37,6 +37,7 @@ public class Game {
 	private String network;
 	private String hardDrive;
 	private String soundCard;
+	private boolean deleted = false;
 
 	private int totalRating = 0;
 
@@ -58,6 +59,7 @@ public class Game {
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Review> reviews = new ArrayList<>();
+	
 
 	public Game() {
 
@@ -92,6 +94,10 @@ public class Game {
 		this.network = network;
 		this.hardDrive = hardDrive;
 		this.soundCard = soundCard;
+	}
+
+	public void setDeleted(boolean deleted){
+		this.deleted = deleted;
 	}
 
 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,8 +78,10 @@ public class AddGameController {
 
 	@GetMapping("/deleteGame/{id}")
 	public String deleteGame(Model model, @PathVariable long id) {
-		gameService.deleteById(id);
-		return "controlPanel";
+		Game game = gameService.findById(id).orElseThrow();
+		game.setDeleted(true);
+		gameService.save(game);
+		return "redirect:/controlPanel";
 	}
 
 	@PostMapping("/editGame/{id}")

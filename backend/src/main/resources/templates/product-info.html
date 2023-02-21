@@ -90,7 +90,14 @@
               </a></div>
             {{/admin}}
             <br>
+            {{^deleted}}
             <h2><span class="label label-default">${{price}}</span></h2>
+            {{/deleted}}
+            {{#deleted}}
+            <div class="alert" role="alert">
+              <strong>This game is no longer available</strong>
+            </div>
+            {{/deleted}}
             {{#logged}}
             {{^inCart}}
             {{^isBought}}
