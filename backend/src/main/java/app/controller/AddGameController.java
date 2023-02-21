@@ -68,11 +68,10 @@ public class AddGameController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/editGame/{id}")
+	@GetMapping("/deleteGame/{id}")
 	public String editGame(Model model, @PathVariable long id) {
-		Game currentGame = gameService.findById(id).orElseThrow();
-		model.addAttribute("currentGame", currentGame);
-		return "editGame";
+		gameService.deleteById(id);
+		return "controlPanel";
 	}
 
 	@PostMapping("/editGame/{id}")
@@ -84,6 +83,8 @@ public class AddGameController {
 		gameService.save(currentGame);
 		return "redirect:/game/" + id;
 	}
+
+	
 
 	private void updateGameplayImages(Game game, List<MultipartFile> imageFields) {
 		if (!imageFields.get(0).getOriginalFilename().equals("") && !imageFields.isEmpty()) {

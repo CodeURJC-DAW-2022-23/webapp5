@@ -183,9 +183,38 @@
         <!-- Reviews -->
         <div class="reviews-block mb-0">
           <h2>Reviews <small>({{starNumber}})</small></h2>
-
           <!-- Reviews List -->
           <ul class="reviews-list">
+            {{#logged}}
+            {{#userReview}}
+            <li>
+              <article>
+                <div class="review-avatar pull-left">
+                  <img src="/{{user.id}}/imageProfile">
+                </div>
+                <div class="review-cont clearfix">
+                  <div class="rating pull-right">
+                    <div class="stars rateyo" data-rateyo-rating="{{rating}}" data-rateyo-num-stars="5"
+                    data-rateyo-read-only="true"  data-rateyo-star-width= "18px" data-rateyo-rated-fill= "#FFFFFF"></div>
+                  </div>
+                  {{#user}}
+                  <a class="review-author h4">{{name}} {{lastName}}</a>
+                  {{/user}}
+                  <a href="/deleteReview/{{id}}" class="remove glyphicon glyphicon-remove"></a>
+                  <div class="date"><i class="fa">
+                      <i class="fa fa-calendar"></i>
+                    </i> {{date}}</div>
+                  <div class="review-text">
+                    <p>
+                      {{comment}}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </li>
+            {{/userReview}}
+            {{/logged}}
+            
             {{#thisReviews}}
             <!-- Kristen Bradley review -->
             <li>
@@ -201,6 +230,9 @@
                   {{#user}}
                   <a class="review-author h4">{{name}} {{lastName}}</a>
                   {{/user}}
+                  {{#admin}}
+                  <a href="/deleteReview/{{id}}" class="remove glyphicon glyphicon-remove"></a>
+                  {{/admin}}
                   <div class="date"><i class="fa">
                       <i class="fa fa-calendar"></i>
                     </i> {{date}}</div>
@@ -216,6 +248,10 @@
             <div id="moreReviewsGame"></div>
             <button class="btn btn-default" id='btnGamesReview'>Load More Reviews</button>
             <div id="loaderGameReview" class="lds-dual-ring hidden"></div>
+            {{#logged}}
+            {{#isReviewed}}
+            {{/isReviewed}}
+            {{/logged}}
           </ul>
 
 

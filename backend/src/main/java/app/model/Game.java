@@ -276,6 +276,12 @@ public class Game {
 		this.reviews.add(review);
 	}
 
+	public void deleteReview(Review review) {
+		this.totalRating -= review.getRating();
+		this.starDistribution[review.getRating()-1]--;
+		this.reviews.remove(review);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == this)

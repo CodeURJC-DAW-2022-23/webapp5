@@ -13,6 +13,9 @@
                   {{#user}}
                   <a class="review-author h4">{{name}} {{lastName}}</a>
                   {{/user}}
+                  {{#admin}}
+                  <a href="/deleteReview/{{id}}" class="remove glyphicon glyphicon-remove"></a>
+                  {{/admin}}
                   <div class="date"><i class="fa">
                       <i class="fa fa-calendar"></i>
                     </i> {{date}}</div>

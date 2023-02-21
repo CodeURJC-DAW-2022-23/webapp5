@@ -50,7 +50,7 @@ public class IndexController {
 
 	@GetMapping("/controlPanel")
 	public String controlPanel(Model model) {
-
+		model.addAttribute("allGames", gameService.findGames(PageRequest.of(0,6)));
 		return "controlPanel";
 	}
 }

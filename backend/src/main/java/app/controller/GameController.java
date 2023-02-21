@@ -72,11 +72,15 @@ public class GameController {
 			model.addAttribute("haveStars", game.getReviews().size() > 0);
 			model.addAttribute("starNumber", game.getReviews().size());
 			model.addAttribute("ratings", game.getStarDistributionInt());
-			model.addAttribute("thisReviews", reviewService.findByGame(game, PageRequest.of(0,6)));
+			
 			if (currentUser != null){
 				model.addAttribute("inCart", currentUser.getCart().contains(game));
 				model.addAttribute("isBought", purchaseService.purchasedGamesByUser(currentUser).contains(game));
 				model.addAttribute("isReviewed", reviewService.reviewedByUser(currentUser, game));
+				model.addAttribute("userReview", reviewService.findByUserInGame(currentUser, game));
+				model.addAttribute("thisReviews", reviewService.findByGameAndNotUser(game, currentUser, PageRequest.of(0,6)));
+			}else{
+				model.addAttribute("thisReviews", reviewService.findByGame(game, PageRequest.of(0,6)));
 			}
             return "product-info";
 		}catch(Exception e){
@@ -121,6 +125,22 @@ public class GameController {
 			game.addReview(review);
 			gameService.save(game);
             return "redirect:/game/{id}";
+		}catch(Exception e){
+			return "redirect:/error";
+		}
+	}
+
+	@GetMapping("/deleteReview/{id}")
+	public String deleteReview(Model model, @PathVariable long id) {
+		try{
+			Review review = reviewService.findById(id).orElseThrow();
+			if (!review.getUser().getId().equals(currentUser.getId()) && !currentUser.getRoles().contains("ADMIN")) {
+				throw new Exception();
+			}
+			Game game = review.getGame();
+			game.deleteReview(review);
+			gameService.save(game);
+			return "redirect:/game/"+game.getId();
 		}catch(Exception e){
 			return "redirect:/error";
 		}
