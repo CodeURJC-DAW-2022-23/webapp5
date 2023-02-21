@@ -28,8 +28,8 @@ public class GameService {
 		return games.findGames(pageable);
 	}
 	
-	public List<Game> findRecomendnoreg(Pageable pageable) {
-		return games.findRecomendnoreg(pageable);
+	public List<Game> findRecomendnoreg(Integer num) {
+		return games.findRecomendnoreg(num);
 	}
 
 	public List<Game> findByName(String category) {

@@ -51,7 +51,7 @@ public class IndexController {
 	@GetMapping("/")
 	public String showBooks(Model model) {
 		model.addAttribute("allGames", gameService.findGames(PageRequest.of(0,6)));
-		model.addAttribute("popularGames", gameService.findRecomendnoreg(PageRequest.of(0,3)));
+		model.addAttribute("popularGames", gameService.findRecomendnoreg(5));
 		return "index";
 	}
 
