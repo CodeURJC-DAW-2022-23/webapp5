@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 
 
 import app.service.GameService;
+import app.service.PurchaseService;
+
 import java.security.Principal;
 import app.model.User;
 import app.service.UserService;
@@ -21,6 +23,8 @@ public class IndexController {
 	private GameService gameService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PurchaseService purchaseService;
 
 	User currentUser;
 
@@ -41,10 +45,10 @@ public class IndexController {
 			model.addAttribute("logged", false);
 		}
 
-		if (model.containsAttribute("admin") || currentUser == null) {
-			model.addAttribute("carrouselGames", gameService.findGames(PageRequest.of(0,3)));
+		if (model.containsAttribute("admin") || currentUser == null || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
+			model.addAttribute("carrouselGames", gameService.findRecomendnoreg(3));
 		}else{
-			model.addAttribute("carrouselGames", gameService.findGames(PageRequest.of(0,3)));
+			model.addAttribute("carrouselGames", gameService.findRecomend(currentUser.getId(), 3));
 		}
 	}
 
