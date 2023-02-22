@@ -65,10 +65,14 @@ public class AjaxRestController {
 		return null;
 	}
 
-    @GetMapping("/moreCartGames/{page}")
-	public List<Game> getMoreCartGames(@PathVariable int page, HttpServletRequest request) {
+    @GetMapping("/moreCartGames/{page}/{userId}")
+	public List<Game> getMoreCartGames(@PathVariable int page, HttpServletRequest request, @PathVariable long userId) {
 		// Before returning a page it confirms that there are more left
 		User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
+		User requestUser = userService.findById(userId).orElseThrow();
+		if (!user.getId().equals(requestUser.getId())){
+			return null;
+		}
 		if (page <= (int) Math.ceil(userService.countGamesInCartByUserId(user.getId())/3)) {
 			return userService.findGamesInCartByUserId(user.getId(), PageRequest.of(page,3));
 		}

@@ -87,25 +87,16 @@ public class UserRestController {
 			}
 	}
 
-	@PostMapping("/editImage")
-	public ResponseEntity<Object> editImage(@RequestParam MultipartFile imageFile, HttpServletRequest request) throws IOException {
-		Optional<User> userPrincipal = userService.findByMail(request.getUserPrincipal().getName());
-		
-		if (userPrincipal.isPresent() | imageFile != null) {
-			User user = userPrincipal.get();
-				user.setProfilePirctureFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-				userService.save(user);
-				return new ResponseEntity<>(HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-
-	@PatchMapping("/edit")
-	public ResponseEntity<Object> editProfile(User newUser, HttpServletRequest request) throws IOException, SQLException {
+	@PatchMapping("/edit/{userId}")
+	public ResponseEntity<Object> editProfile(@PathVariable long userId, User newUser, HttpServletRequest request, MultipartFile imageFile) throws IOException, SQLException {
 		Optional<User> userPrincipal = userService.findByMail(request.getUserPrincipal().getName());
 		if (userPrincipal.isPresent()){
 			User user = userPrincipal.get();
+			User requestUser = userService.findById(userId).orElseThrow();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+			updateImageProfile(user, imageFile);
 			if (newUser.getAboutMe() != null){
 				user.setAboutMe(newUser.getAboutMe());
 			}
@@ -118,6 +109,17 @@ public class UserRestController {
 			return new ResponseEntity<>(user, HttpStatus.OK);
 	}else{
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+}
+
+private void updateImageProfile(User user, MultipartFile imageField) throws IOException, SQLException {
+	if (imageField!=null && !imageField.isEmpty()) {
+		user.setProfilePirctureFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+	} else {
+		User dbUser = userService.findById(user.getId()).orElseThrow();
+		if (dbUser.getProfilePircture() != null) {
+			user.setProfilePirctureFile(BlobProxy.generateProxy(dbUser.getProfilePirctureFile().getBinaryStream(), dbUser.getProfilePirctureFile().length()));
+		}
 	}
 }
 

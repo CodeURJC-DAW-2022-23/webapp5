@@ -41,11 +41,15 @@ public class CartRestController {
     @Autowired
     private EmailServiceImpl emailService;
 
-    @GetMapping("/")
-    public ResponseEntity<List<Game>> cart(HttpServletRequest request) {
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Game>> cart(HttpServletRequest request, @PathVariable long userId) {
         Optional<User> userPrincipal = userService.findByMail(request.getUserPrincipal().getName());
         if (userPrincipal.isPresent()) {
             User user = userPrincipal.get();
+            User requestUser = userService.findById(userId).orElseThrow();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
             return new ResponseEntity<>(userService.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
                     HttpStatus.OK);
         } else {
@@ -53,11 +57,15 @@ public class CartRestController {
         }
     }
 
-    @PostMapping("/addGame/{id}")
-    public ResponseEntity<Object> addCart(HttpServletRequest request, @PathVariable long id) {
+    @PostMapping("/addGame/{id}/{userId}")
+    public ResponseEntity<Object> addCart(HttpServletRequest request, @PathVariable long id, @PathVariable long userId) {
         Optional<User> userPrincipal = userService.findByMail(request.getUserPrincipal().getName());
         if (userPrincipal.isPresent()) {
             User user = userPrincipal.get();
+            User requestUser = userService.findById(userId).orElseThrow();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
             Optional<Game> opGame = gameService.findById(id);
             if (!opGame.isPresent()) {
                 return new ResponseEntity<>(userService.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
@@ -78,11 +86,15 @@ public class CartRestController {
         }
     }
 
-    @DeleteMapping("/deleteGame/{id}")
-    public ResponseEntity<Object> deleteCart(HttpServletRequest request, @PathVariable long id) {
+    @DeleteMapping("/deleteGame/{id}/{userId}")
+    public ResponseEntity<Object> deleteCart(HttpServletRequest request, @PathVariable long id, @PathVariable long userId) {
         Optional<User> userPrincipal = userService.findByMail(request.getUserPrincipal().getName());
         if (userPrincipal.isPresent()) {
             User user = userPrincipal.get();
+            User requestUser = userService.findById(userId).orElseThrow();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
             Optional<Game> opGame = gameService.findById(id);
             if (!opGame.isPresent()) {
                 return new ResponseEntity<>(userService.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
@@ -102,13 +114,17 @@ public class CartRestController {
         }
     }
 
-    @PostMapping("/checkout")
+    @PostMapping("/checkout/{userId}")
     public ResponseEntity<Object> checkoutProcess(HttpServletRequest request, String billing_street,
             String billing_apartment, String billing_city, String billing_country, String billing_postcode,
-            String billing_phone) {
+            String billing_phone, @PathVariable long userId) {
         Optional<User> userPrincipal = userService.findByMail(request.getUserPrincipal().getName());
         if (userPrincipal.isPresent()) {
             User user = userPrincipal.get();
+            User requestUser = userService.findById(userId).orElseThrow();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
             if (user.getCart().isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
