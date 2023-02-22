@@ -1,0 +1,149 @@
+{{>HeaderImport}}
+
+  <!-- Navbar -->
+  {{>Navbar}}
+  <!-- /Navbar -->
+
+
+  <!-- Main Content -->
+  <section class="content-wrap">
+
+    <!-- Banner -->
+    <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
+      <div class="image" style="background-image: url('/images/banner-blog-bg.jpg')">
+      </div>
+
+      <div class="info">
+        <div>
+          <div class="container">
+            <h1>Control panel</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Banner -->
+
+
+    <div class="container youplay-content">
+
+      <div class="col-md-9">
+
+        <h2 class="mt-0">Games uploaded</h2>
+
+        <!-- Single Product Block -->
+        {{#allGames}}
+        <div class="item angled-bg">
+          <div class="row">
+            <div class="col-lg-2 col-md-3 col-xs-4">
+              <a href="/game/{{id}}" class="angled-img">
+                <div class="img">
+  
+                  <img src="/{{id}}/imageTitle" alt="">
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-10 col-md-9 col-xs-8">
+              <div class="row">
+                <div class="col-xs-6 col-md-9">
+                  <h4><a href="/game/{{id}}">{{name}}</a></h4>
+                  <div class="rating hidden-xs">
+                        <div class="stars rateyo" data-rateyo-rating="{{averageStars}}" data-rateyo-num-stars="5"
+                          data-rateyo-read-only="true"  data-rateyo-star-width= "15px" data-rateyo-rated-fill= "#FFFFFF"></div>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-md-3 align-right">
+                  <a href="/deleteGame/{{id}}" class="remove glyphicon glyphicon-remove"></a>
+                  <a href="/editGame/{{id}}" class=" glyphicon glyphicon-pencil"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/allGames}}
+        <div id="moreControlGames"></div>
+        <!-- /Single Product Block -->
+        <button class="btn btn-default" id='btnMoreControlGames'>Load More Games</button>
+        <div id="loaderControlGame" class="lds-dual-ring hidden"></div>
+      </div>
+
+      <!-- Right Side -->
+      <div class="col-md-3">
+        {{>SideSearchBlock}}
+
+        <!-- Side Popular News -->
+        <div class="side-block">
+          <h4 class="block-title">Popular Games</h4>
+          <div class="block-content p-0">
+            <!-- Single News Block -->
+            <div class="row youplay-side-news">
+              <div class="col-xs-3 col-md-4">
+                <a href="product-info.html" class="angled-img">
+                  <div class="img">
+                    <img src="/images/game-bloodborne-500x375.jpg" alt="">
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-9 col-md-8">
+                <h4 class="ellipsis"><a href="product-info.html" title="Bloodborne">Bloodborne</a></h4>
+                <span class="price">$50.00</span>
+              </div>
+            </div>
+            <!-- /Single News Block -->
+
+            <!-- Single News Block -->
+            <div class="row youplay-side-news">
+              <div class="col-xs-3 col-md-4">
+                <a href="#!" class="angled-img">
+                  <div class="img">
+                    <img src="/images/game-dark-souls-ii-500x375.jpg" alt="">
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-9 col-md-8">
+                <h4 class="ellipsis"><a href="#!" title="Dark Souls II">Dark Souls II</a></h4>
+                <span class="price">$39.99 <sup><del>$49.99</del></sup></span>
+              </div>
+            </div>
+            <!-- /Single News Block -->
+
+            <!-- Single News Block -->
+            <div class="row youplay-side-news">
+              <div class="col-xs-3 col-md-4">
+                <a href="#!" class="angled-img">
+                  <div class="img">
+                    <img src="/images/game-kingdoms-of-amalur-reckoning-500x375.jpg" alt="">
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-9 col-md-8">
+                <h4 class="ellipsis"><a href="#!" title="Kingdoms of Amalur">Kingdoms of Amalur</a></h4>
+                <span class="price">$20.00</span>
+              </div>
+            </div>
+            <!-- /Single News Block -->
+
+            <!-- Single News Block -->
+            <div class="row youplay-side-news">
+              <div class="col-xs-3 col-md-4">
+                <a href="#!" class="angled-img">
+                  <div class="img">
+                    <img src="/images/game-diablo-iii-500x375.jpg" alt="">
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-9 col-md-8">
+                <h4 class="ellipsis"><a href="#!" title="Let's Grind Diablo III">Diablo III</a></h4>
+                <span class="price">$10.00</span>
+              </div>
+            </div>
+            <!-- /Single News Block -->
+          </div>
+        </div>
+        <!-- /Side Popular News -->
+
+      </div>
+      <!-- /Right Side -->
+
+    </div>
+
+ {{>FooterImport}}
