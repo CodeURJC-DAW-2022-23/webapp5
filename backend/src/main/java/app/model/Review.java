@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Review {
     @Id
@@ -21,7 +19,6 @@ public class Review {
     private User user;
 
     @ManyToOne
-    @JsonIgnore
     private Game game;
 
     private LocalDate date = LocalDate.now();
@@ -39,7 +36,6 @@ public class Review {
         this.user = user;
         this.game = game;
         this.rating = rating;
-        setRating(rating);
         this.comment = comment;
     }
 
