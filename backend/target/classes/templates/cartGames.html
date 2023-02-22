@@ -1,0 +1,40 @@
+{{#foundGames}}
+<div class="item angled-bg">
+  <div class="row">
+    <div class="col-lg-2 col-md-3 col-xs-4">
+      <a href="/game/{{id}}" class="angled-img">
+        <div class="img">
+
+          <img src="/{{id}}/imageTitle" alt="">
+        </div>
+      </a>
+    </div>
+    <div class="col-lg-10 col-md-9 col-xs-8">
+      <div class="row">
+        <div class="col-xs-6 col-md-9">
+          <h4><a href="/game/{{id}}">{{name}}</a></h4>
+          <div class="rating hidden-xs">
+                <div class="stars rateyo" data-rateyo-rating="{{averageStars}}" data-rateyo-num-stars="5"
+                  data-rateyo-read-only="true"  data-rateyo-star-width= "15px" data-rateyo-rated-fill= "#FFFFFF"></div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-3 align-right">
+          <div class="price">
+            ${{price}}
+          </div>
+          <a href="/{{currentUser.id}}/deleteFromCart/{{id}}" class="remove glyphicon glyphicon-remove"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  {{/foundGames}}
+
+  <script>
+    $(function () {
+      $(".rateyo").rateYo().on("rateyo.change", function (data) {
+        var rating = data.rating;
+        $(this).parent().find('.result').text('rating :'+ rating);
+       });
+    });
+  </script>

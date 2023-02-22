@@ -1,0 +1,96 @@
+{{>HeaderImport}}
+  {{>Navbar}}
+  <!-- /Navbar -->
+
+
+  <!-- Main Content -->
+  <section class="content-wrap">
+
+    <!-- Banner -->
+    <div class="youplay-banner banner-top youplay-banner-parallax small">
+      <div class="image" style="background-image: url('/images/game-diablo-iii-1400x656.jpg')">
+      </div>
+
+      <div class="youplay-user-navigation">
+        <div class="container">
+          <ul>
+            <li class="active"><a href="user-profile.html">Profile</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {{#currentUser}}
+      <div class="info">
+        <div>
+          <div class="align-right">
+            <a class="btn btn-lg" href="/editProfile/{{id}}">Edit Profile</a>
+          </div>
+          <div class="container youplay-user">
+            <a class="angled-img image-popup">
+              <div class="img">
+                <img src="/{{id}}/imageProfile">
+              </div>
+            </a>
+            <!--
+                -->
+            <div class="user-data">
+              <h2>{{name}} {{lastName}}</h2>
+              <div class="activity">
+                <div>
+                  <div class="num">{{gamesNumber}}</div>
+                  <div class="title">Games</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- /Banner -->
+
+    <div class="container youplay-content">
+
+      <div class="row">
+
+        <div class="col-md-9">
+
+          <h3 class="mt-40 mb-20">Personal Information</h3>
+          <table class="table table-bordered">
+            <tbody>
+              {{#haveGames}}
+              <tr>
+                <td>
+                  <p>Purchased games</p>
+                </td>
+                <td>
+                  <p>
+                    {{#myGames}}
+                    <a href="/game/{{id}}">{{name}}</a>
+                    {{/myGames}}
+                  </p>
+                </td>
+              </tr>
+              {{/haveGames}}
+
+              <tr>
+                <td>
+                  <p>About Me</p>
+                </td>
+                <td>
+                  <p>{{aboutMe}}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+
+      </div>
+
+    </div>
+    {{/currentUser}}
+
+{{>FooterImport}}
