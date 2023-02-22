@@ -213,7 +213,7 @@ Screen that will allow admins to add a new game with all its features in KeyWhal
 
 ![avatar](screenshots/DockerDesktop.png)
 
-Now, we can start Docker Desktop, and once started we go to Visual Studio Code, from here we look almost at the bottom of a file called dockerCommand, copy its contents and paste it into a terminal, this will connect us to the port where the web page and the database of the application. Now we click on the Spring Boot Dasboardy icon and then on Run.
+* Now, we can start Docker Desktop, and once started we go to Visual Studio Code, from here we look almost at the bottom of a file called dockerCommand, copy its contents and paste it into a terminal, this will connect us to the port where the web page and the database of the application. Now we click on the Spring Boot Dasboardy icon and then on Run.
 
 ![avatar](screenshots/dockerCommand.png)
 ![avatar](screenshots/ConexionTerminal.png)
