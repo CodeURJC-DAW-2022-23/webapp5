@@ -58,6 +58,7 @@ public class Game {
 	private List<Blob> gameplayImagesFiles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private List<Review> reviews = new ArrayList<>();
 	
 

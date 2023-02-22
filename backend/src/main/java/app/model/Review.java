@@ -36,7 +36,6 @@ public class Review {
         this.user = user;
         this.game = game;
         this.rating = rating;
-        setRating(rating);
         this.comment = comment;
     }
 
