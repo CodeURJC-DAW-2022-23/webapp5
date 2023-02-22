@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import app.model.Game;
 import app.model.User;
 import app.model.modelRest.UserProfile;
+import app.service.GameService;
 import app.service.PurchaseService;
 import app.service.UserService;
 
@@ -45,6 +46,9 @@ public class UserRestController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private GameService gameService;
+
 	@GetMapping("/me")
 	public ResponseEntity<UserProfile> profile(HttpServletRequest request) {
 		Optional<User> userPrincipal = userService.findByMail(request.getUserPrincipal().getName());
@@ -57,6 +61,31 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@GetMapping("/recomended")
+	public ResponseEntity<List<Game>> recomendations(HttpServletRequest request, @RequestParam int numberOfGames) {
+		if (request.getUserPrincipal() == null){
+			return new ResponseEntity<>(gameService.findRecomendnoreg(numberOfGames), HttpStatus.OK);
+		}
+		Optional<User> userPrincipal = userService.findByMail(request.getUserPrincipal().getName());
+		if (userPrincipal.isPresent()) {
+			User user = userPrincipal.get();
+			if ( request.isUserInRole("ADMIN") || purchaseService.purchasedGamesByUser(user).isEmpty()){
+				return new ResponseEntity<>(gameService.findRecomendnoreg(numberOfGames), HttpStatus.OK);
+			}
+			String category = gameService.findRecomendCategory(user.getId());
+			List<Game> games = gameService.findRecomendbyCategory(category,user.getId(), numberOfGames);
+			if(games.isEmpty()){
+				games.addAll(gameService.findRecomendnoreg(numberOfGames));
+			}else if (games.size() < numberOfGames){
+				games.addAll(gameService.findRecomendnoreg(numberOfGames-games.size()));
+			}
+			return new ResponseEntity<>(games, HttpStatus.OK);
+		}else{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
 
     @GetMapping("/{id}/imageProfile")
 	public ResponseEntity<Object> downloadImageProfile(@PathVariable long id) throws SQLException {

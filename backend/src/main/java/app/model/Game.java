@@ -52,6 +52,8 @@ public class Game {
 	private Blob titleImageFile;
 	private String titleImage;
 
+	private float averageRating = 0f;
+
 	@Lob
 	@JsonIgnore
 	@ElementCollection(fetch=FetchType.LAZY)
@@ -285,13 +287,29 @@ public class Game {
 		this.totalRating += review.getRating();
 		this.starDistribution[review.getRating()-1]++;
 		this.reviews.add(review);
+		this.averageRating = (float)this.totalRating/this.reviews.size();
 	}
 
 	public void deleteReview(Review review) {
 		this.totalRating -= review.getRating();
 		this.starDistribution[review.getRating()-1]--;
 		this.reviews.remove(review);
+		this.averageRating = (float)this.totalRating/this.reviews.size();
 	}
+
+
+	public boolean isDeleted() {
+		return this.deleted;
+	}
+
+	public float getAverageRating() {
+		return this.averageRating;
+	}
+
+	public void setAverageRating(float averageRating) {
+		this.averageRating = averageRating;
+	}
+
 
 	@Override
 	public boolean equals(Object o) {
