@@ -200,10 +200,7 @@ Before we can run it we need the version of Maven: 4.0.0, the version of Spring 
 
 Once this is done we can run it but for this we must first download Docker Desktop for this we look for this on the internet and access, on this page click on download and ready. We will also need to have MySQL installed for this we do the following: 
 
-Now yes, we start Docker Desktop, and once started we go to Visual Studio Code, from here we look almost at the bottom of a file called dockerCommand, copy its contents and paste it into docker destop, this will connect us to the port where the web page and the database of the application. Now we click on the Spring Boot Dasboardy icon and then on Run.
-
-Translated with www.DeepL.com/Translator (free version)
-
+Now we can start Docker Desktop, and once started we go to Visual Studio Code, from here we look almost at the bottom of a file called dockerCommand, copy its contents and paste it into docker destop, this will connect us to the port where the web page and the database of the application. Now we click on the Spring Boot Dasboardy icon and then on Run.
 
 ## Diagram with database entities
 
