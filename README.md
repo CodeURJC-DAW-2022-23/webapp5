@@ -220,7 +220,7 @@ Now we can start Docker Desktop, and once started we go to Visual Studio Code, f
 ![avatar](screenshots/dockerCommand.png)
 ![avatar](screenshots/ConexionTerminal.png)
 ![avatar](screenshots/Dashboard.png)
-![avatar](screenshots/Run.png)
+![avatar](screenshots/Run2.png)
 
 ## Diagram with database entities
 
