@@ -16,6 +16,7 @@ import app.Email.EmailDetails;
 import app.Email.EmailServiceImpl;
 import app.model.Purchase;
 import app.model.User;
+import app.service.GameService;
 import app.service.PurchaseService;
 import app.service.UserService;
 
@@ -24,6 +25,9 @@ public class CheckoutController {
 	
 	@Autowired
 	private UserService userService;
+
+    @Autowired
+	private GameService gameService;
 
     @Autowired
     private PurchaseService purchaseService;
@@ -49,6 +53,7 @@ public class CheckoutController {
 		} else {
 			model.addAttribute("logged", false);
 		}
+        model.addAttribute("popularGames", gameService.findRecomendnoreg(5));
 	}
 
     @GetMapping("/checkout/{id}")

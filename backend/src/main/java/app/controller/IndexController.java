@@ -10,7 +10,12 @@ import org.springframework.data.domain.PageRequest;
 
 
 import app.service.GameService;
+import app.service.PurchaseService;
+
 import java.security.Principal;
+import java.util.List;
+
+import app.model.Game;
 import app.model.User;
 import app.service.UserService;
 
@@ -21,6 +26,8 @@ public class IndexController {
 	private GameService gameService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PurchaseService purchaseService;
 
 	User currentUser;
 
@@ -40,11 +47,24 @@ public class IndexController {
 		} else {
 			model.addAttribute("logged", false);
 		}
+		if (currentUser == null || request.isUserInRole("ADMIN") || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
+			model.addAttribute("carrouselGames", gameService.findRecomendnoreg(3));
+		}else{
+			String category = gameService.findRecomendCategory(currentUser.getId());
+			List<Game> games = gameService.findRecomendbyCategory(category,currentUser.getId(),3);
+			if(games.isEmpty()){
+				games.addAll(gameService.findRecomendnoreg(3));
+			}else if (games.size() < 3){
+				games.addAll(gameService.findRecomendnoreg(3-games.size()));
+			}
+			model.addAttribute("carrouselGames", games);
+		}
 	}
 
 	@GetMapping("/")
 	public String showBooks(Model model) {
 		model.addAttribute("allGames", gameService.findGames(PageRequest.of(0,6)));
+		model.addAttribute("popularGames", gameService.findRecomendnoreg(5));
 		return "index";
 	}
 

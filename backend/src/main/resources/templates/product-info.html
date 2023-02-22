@@ -313,69 +313,23 @@
         <div class="side-block">
           <h4 class="block-title">Popular Games</h4>
           <div class="block-content p-0">
+            {{#popularGames}}
             <!-- Single News Block -->
             <div class="row youplay-side-news">
               <div class="col-xs-3 col-md-4">
-                <a href="store-product-1.html" class="angled-img">
+                <a href="/game/{{id}}" class="angled-img">
                   <div class="img">
-                    <img src="/images/game-bloodborne-500x375.jpg" alt="">
+                    <img src="/{{id}}/imageTitle" alt="">
                   </div>
                 </a>
               </div>
               <div class="col-xs-9 col-md-8">
-                <h4 class="ellipsis"><a href="store-product-1.html" title="Bloodborne">Bloodborne</a></h4>
-                <span class="price">$50.00</span>
+                <h4 class="ellipsis"><a href="/game/{{id}}" title="{{name}}">{{name}}</a></h4>
+                <span class="price">${{price}}</span>
               </div>
             </div>
             <!-- /Single News Block -->
-
-            <!-- Single News Block -->
-            <div class="row youplay-side-news">
-              <div class="col-xs-3 col-md-4">
-                <a href="#!" class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-dark-souls-ii-500x375.jpg" alt="">
-                  </div>
-                </a>
-              </div>
-              <div class="col-xs-9 col-md-8">
-                <h4 class="ellipsis"><a href="#!" title="Dark Souls II">Dark Souls II</a></h4>
-                <span class="price">$39.99 <sup><del>$49.99</del></sup></span>
-              </div>
-            </div>
-            <!-- /Single News Block -->
-
-            <!-- Single News Block -->
-            <div class="row youplay-side-news">
-              <div class="col-xs-3 col-md-4">
-                <a href="#!" class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-kingdoms-of-amalur-reckoning-500x375.jpg" alt="">
-                  </div>
-                </a>
-              </div>
-              <div class="col-xs-9 col-md-8">
-                <h4 class="ellipsis"><a href="#!" title="Kingdoms of Amalur">Kingdoms of Amalur</a></h4>
-                <span class="price">$20.00</span>
-              </div>
-            </div>
-            <!-- /Single News Block -->
-
-            <!-- Single News Block -->
-            <div class="row youplay-side-news">
-              <div class="col-xs-3 col-md-4">
-                <a href="#!" class="angled-img">
-                  <div class="img">
-                    <img src="/images/game-diablo-iii-500x375.jpg" alt="">
-                  </div>
-                </a>
-              </div>
-              <div class="col-xs-9 col-md-8">
-                <h4 class="ellipsis"><a href="#!" title="Let's Grind Diablo III">Diablo III</a></h4>
-                <span class="price">$10.00</span>
-              </div>
-            </div>
-            <!-- /Single News Block -->
+            {{/popularGames}}
           </div>
         </div>
         <!-- /Side Popular News -->

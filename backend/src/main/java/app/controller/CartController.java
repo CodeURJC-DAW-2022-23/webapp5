@@ -21,7 +21,7 @@ public class CartController {
 	
 	@Autowired
 	private UserService userService;
-
+	
     @Autowired
     private GameService gameService;
 	
@@ -43,6 +43,7 @@ public class CartController {
 		} else {
 			model.addAttribute("logged", false);
 		}
+		model.addAttribute("popularGames", gameService.findRecomendnoreg(5));
 	}
 
     @GetMapping("/{userId}/addToCart/{id}")
