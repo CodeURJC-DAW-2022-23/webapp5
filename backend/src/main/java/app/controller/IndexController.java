@@ -47,7 +47,7 @@ public class IndexController {
 		} else {
 			model.addAttribute("logged", false);
 		}
-		if (model.containsAttribute("admin") || currentUser == null || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
+		if (currentUser == null || request.isUserInRole("ADMIN") || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
 			model.addAttribute("carrouselGames", gameService.findRecomendnoreg(3));
 		}else{
 			String category = gameService.findRecomendCategory(currentUser.getId());
