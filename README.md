@@ -200,7 +200,7 @@ Screen that will allow admins to add a new game with all its features in KeyWhal
 
 ![avatar](screenshots/Visual.png)
 ![avatar](screenshots/DownloadVisual.png)
-![avatar](screenshots/DownloadVisua2.png)
+![avatar](screenshots/DownloadVisual2.png)
 
 * Before we can run it we need the version of Maven: 4.0.0, the version of Spring Boot 2.6.3, the version of Java 17 and the version of MySQL 8.0.22. Also if we are going to run it in Visual Studio we will need different extensions:
 
@@ -220,7 +220,7 @@ Screen that will allow admins to add a new game with all its features in KeyWhal
 ![avatar](screenshots/Dashboard.png)
 ![avatar](screenshots/Run2.png)
 
-## Diagram with the database entities
+## Diagram with the database entities
 
 ## Class diagram and templates
 
