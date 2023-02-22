@@ -1,0 +1,80 @@
+    <!-- Footer -->
+    <footer class="youplay-footer-parallax">
+        <div class="wrapper" style="background-image: url('/images/footer-bg.jpg')">
+  
+          <!-- Copyright -->
+          <div class="copyright">
+            <div class="container">
+              <strong>Key Whale</strong> &copy; 2023. All rights reserved
+            </div>
+          </div>
+          <!-- /Copyright -->
+  
+        </div>
+      </footer>
+      <!-- /Footer -->
+  
+  
+    </section>
+    <!-- /Main Content -->
+  
+    <!-- jQuery -->
+    <script type="text/javascript" src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
+  
+    <!-- Hexagon Progress -->
+    <script type="text/javascript"
+      src="/assets/bower_components/HexagonProgress/jquery.hexagonprogress.min.js"></script>
+  
+  
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  
+    <!-- Jarallax -->
+    <script type="text/javascript" src="/assets/bower_components/jarallax/dist/jarallax.min.js"></script>
+  
+    <!-- Smooth Scroll -->
+    <script type="text/javascript" src="/assets/bower_components/smoothscroll-for-websites/SmoothScroll.js"></script>
+    <!-- Youplay -->
+    <script type="text/javascript" src="/assets/youplay/js/youplay.min.js"></script>
+
+    <script type="text/javascript" src="../loadButton.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+  
+    <!-- init youplay -->
+    <script>
+      if (typeof youplay !== 'undefined') {
+        youplay.init({
+          // enable parallax
+          parallax: true,
+  
+          // set small navbar on load
+          navbarSmall: false,
+  
+          // enable fade effect between pages
+          fadeBetweenPages: true,
+  
+          // twitter and instagram php paths
+          php: {
+            twitter: './php/twitter/tweet.php',
+            instagram: './php/instagram/instagram.php'
+          }
+        });
+      }
+      $(function () {
+        $(".rateyo").rateYo().on("rateyo.change", function (data) {
+          var rating = data.rating;
+          $(this).parent().find('.result').text('rating :'+ rating);
+         });
+      });
+    </script>
+  
+  
+  </body>
+  
+  
+  <!-- Mirrored from html.nkdev.info/youplay/dark/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 May 2016 12:53:28 GMT -->
+  
+  </html>

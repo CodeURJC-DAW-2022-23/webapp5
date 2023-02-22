@@ -309,30 +309,6 @@
 
         {{>SideSearchBlock}}
 
-        <!-- Side Popular News -->
-        <div class="side-block">
-          <h4 class="block-title">Popular Games</h4>
-          <div class="block-content p-0">
-            {{#popularGames}}
-            <!-- Single News Block -->
-            <div class="row youplay-side-news">
-              <div class="col-xs-3 col-md-4">
-                <a href="/game/{{id}}" class="angled-img">
-                  <div class="img">
-                    <img src="/{{id}}/imageTitle" alt="">
-                  </div>
-                </a>
-              </div>
-              <div class="col-xs-9 col-md-8">
-                <h4 class="ellipsis"><a href="/game/{{id}}" title="{{name}}">{{name}}</a></h4>
-                <span class="price">${{price}}</span>
-              </div>
-            </div>
-            <!-- /Single News Block -->
-            {{/popularGames}}
-          </div>
-        </div>
-        <!-- /Side Popular News -->
 
 
 
