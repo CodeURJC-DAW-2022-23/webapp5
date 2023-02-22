@@ -205,6 +205,11 @@ In order to run it we use Visual Studio, so once the zip is downloaded and unzip
 
 Before we can run it we need the version of Maven: 4.0.0, the version of Spring Boot 2.6.3, the version of Java 17 and the version of MySQL 8.0.22. Also if we are going to run it in Visual Studio we will need different extensions:
 
+![avatar](screenshots/Extensiones.png)
+![avatar](screenshots/ExtensionPackJava.png)
+![avatar](screenshots/ExtensionPackSpringBoot.png)
+![avatar](screenshots/GitLens.png)
+
 Once this is done we can run it but for this we must first download Docker Desktop for this we look for this on the internet and access, on this page click on download and ready:
 We will also need to have MySQL installed for this we do the following: 
 
