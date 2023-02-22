@@ -215,9 +215,12 @@ Once this is done we can run it but for this we must first download Docker Deskt
 
 ![avatar](screenshots/DockerDesktop.png)
 
-We will also need to have MySQL installed for this we do the following: 
-
 Now we can start Docker Desktop, and once started we go to Visual Studio Code, from here we look almost at the bottom of a file called dockerCommand, copy its contents and paste it into a terminal, this will connect us to the port where the web page and the database of the application. Now we click on the Spring Boot Dashboard icon and then on Run.
+
+![avatar](screenshots/dockerCommand.png)
+![avatar](screenshots/ConexionTerminal.png)
+![avatar](screenshots/Dashboard.png)
+![avatar](screenshots/Run.png)
 
 ## Diagram with database entities
 
