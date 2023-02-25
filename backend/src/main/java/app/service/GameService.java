@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class GameService {
 		return games.count();
 	}
 
-	public List<Game> findGames(Pageable pageable) {
+	public Page<Game> findGames(Pageable pageable) {
 		return games.findGames(pageable);
 	}
 	
@@ -44,7 +45,7 @@ public class GameService {
 		games.deleteById(id);
 	}
 
-	public List<Game> findByCategoryAndName(String name, String category, Pageable pageable) {
+	public Page<Game> findByCategoryAndName(String name, String category, Pageable pageable) {
 		if (name == null )
 			name = "";
 		if (category == null || category.isEmpty())

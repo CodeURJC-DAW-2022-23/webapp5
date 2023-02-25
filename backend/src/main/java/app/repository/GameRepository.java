@@ -2,6 +2,7 @@ package app.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,10 +15,10 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     List<Game> findByCategory(String category);
 
     @Query("SELECT g FROM Game g WHERE LOWER(g.name) LIKE %:name% AND g.category = :category AND g.deleted = false")
-    List<Game> findByCategoryAndName(String name, String category, Pageable pageable);
+    Page<Game> findByCategoryAndName(String name, String category, Pageable pageable);
 
     @Query("SELECT g FROM Game g WHERE LOWER(g.name) LIKE %:name% AND g.deleted = false")
-    List<Game> findByName(String name, Pageable pageable);
+    Page<Game> findByName(String name, Pageable pageable);
 
     @Query("SELECT COUNT(g) FROM Game g WHERE LOWER(g.name) LIKE %:name% AND g.category = :category AND g.deleted = false")
     int countByCategoryAndName(String name, String category);
@@ -28,7 +29,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     int countById(long id);
 
     @Query("SELECT g FROM Game g WHERE g.deleted = false")
-    List<Game> findGames(Pageable pageable);
+    Page<Game> findGames(Pageable pageable);
 
     @Query(
         value = "SELECT game.* FROM game INNER JOIN review ON game.id = review.game_id GROUP BY game.id ORDER BY (total_rating/COUNT(review.id)) DESC LIMIT ?1",

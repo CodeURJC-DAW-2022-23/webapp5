@@ -3,9 +3,9 @@ package app.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<String> findRolesByName(String name);
 
     @Query("SELECT u.cart FROM User u WHERE u.id = :userId")
-    List<Game> findGamesInCartByUserId(@Param("userId") Long userId, Pageable pageable);
+    Page<Game> findGamesInCartByUserId(@Param("userId") Long userId, Pageable pageable);
     @Query("SELECT COUNT(*) FROM User u JOIN u.cart c WHERE u.id = :userId")
     int countGamesInCartByUserId(@Param("userId") Long userId);
 }

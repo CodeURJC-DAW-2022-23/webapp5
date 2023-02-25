@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.PageRequest;
 
@@ -106,7 +107,7 @@ public class UserController {
 	}
 
 	@PostMapping("/editProfile")
-	public String editProfileProcess(Model model, User newUser, MultipartFile imageField) throws IOException, SQLException {
+	public String editProfileProcess(Model model, User newUser, @RequestParam MultipartFile imageField) throws IOException, SQLException {
 		updateImageProfile(currentUser, imageField);
 		currentUser.setName(newUser.getName());
 		System.out.println("Contrasena" + newUser.getEncodedPassword());

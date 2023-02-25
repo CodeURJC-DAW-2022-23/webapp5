@@ -1,11 +1,11 @@
 package app.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,9 +51,9 @@ public class SearchController {
     public String search(Model model, String name, String category) {
 		if (name == null )
 			name = "";
-        List<Game> gamesFound = gameService.findByCategoryAndName(name, category, PageRequest.of(0,6));
+        Page<Game> gamesFound = gameService.findByCategoryAndName(name, category, PageRequest.of(0,6));
         model.addAttribute("games", gamesFound);
-        model.addAttribute("found", gamesFound.size() > 0);
+        model.addAttribute("found", gamesFound.getNumber() > 0);
         model.addAttribute("lastSearch", name);
         return "search";
     }

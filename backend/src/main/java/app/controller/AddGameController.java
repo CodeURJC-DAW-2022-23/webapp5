@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.PageRequest;
 
@@ -62,7 +62,7 @@ public class AddGameController {
 	}
 
 	@PostMapping("/newGame")
-	public String newgameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException, SQLException{
+	public String newgameProcess(Model model, Game game, @RequestParam MultipartFile imageField, @RequestParam List<MultipartFile> imageFields) throws IOException, SQLException{
 		updateImageGame(game, imageField);
 		updateGameplayImages(game, imageFields);
 		gameService.save(game);
@@ -85,7 +85,7 @@ public class AddGameController {
 	}
 
 	@PostMapping("/editGame/{id}")
-	public String editGameProcess(Model model, Game game, MultipartFile imageField, List<MultipartFile> imageFields, @PathVariable long id) throws IOException, SQLException {
+	public String editGameProcess(Model model, Game game, @RequestParam MultipartFile imageField, @RequestParam List<MultipartFile> imageFields, @PathVariable long id) throws IOException, SQLException {
 		Game currentGame = gameService.findById(id).orElseThrow();
 		updateImageGame(currentGame, imageField);
 		updateGameplayImages(currentGame, imageFields);

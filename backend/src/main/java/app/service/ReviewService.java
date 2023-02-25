@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -38,11 +39,11 @@ public class ReviewService {
 		return reviews.findByUserAndGame(user, game).isPresent();
 	}
 
-	public List<Review> findByGame(Game game, Pageable pageable) {
+	public Page<Review> findByGame(Game game, Pageable pageable) {
 		return reviews.findByGame(game, pageable);
 	}
 
-	public List<Review> findByGameAndNotUser(Game game, User user, Pageable pageable) {
+	public Page<Review> findByGameAndNotUser(Game game, User user, Pageable pageable) {
 		return reviews.findByGameAndNotUser(game, user, pageable);
 	}
 

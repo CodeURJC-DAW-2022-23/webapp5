@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import app.model.Game;
 import app.model.User;
@@ -112,7 +113,7 @@ public class GameController {
 	}
 
 	@PostMapping("/{userId}/reviewGame/{id}")
-	public String reviewGame(Model model, @PathVariable long id, @PathVariable long userId, String comment, int reviewRate) {
+	public String reviewGame(Model model, @PathVariable long id, @PathVariable long userId, @RequestParam String comment, @RequestParam int reviewRate) {
 		try{
 			Game game = gameService.findById(id).orElseThrow();
 			User user = userService.findById(userId).orElseThrow();

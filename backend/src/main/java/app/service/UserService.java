@@ -2,12 +2,11 @@ package app.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 
 import app.model.Game;
@@ -46,7 +45,7 @@ public class UserService {
 		return user.isPresent();
 	}
 
-	public List<Game> findGamesInCartByUserId(Long userId, Pageable pageable) {
+	public Page<Game> findGamesInCartByUserId(Long userId, Pageable pageable) {
 		return users.findGamesInCartByUserId(userId, pageable);
 	}
 
