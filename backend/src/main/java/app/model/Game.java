@@ -52,7 +52,6 @@ public class Game {
 	private Blob titleImageFile;
 	private String titleImage;
 
-	private float averageRating = 0f;
 
 	@Lob
 	@JsonIgnore
@@ -62,6 +61,8 @@ public class Game {
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<Review> reviews = new ArrayList<>();
+
+	private int reviewCount = 0;
 	
 
 	public Game() {
@@ -287,14 +288,22 @@ public class Game {
 		this.totalRating += review.getRating();
 		this.starDistribution[review.getRating()-1]++;
 		this.reviews.add(review);
-		this.averageRating = (float)this.totalRating/this.reviews.size();
+		this.reviewCount++;
 	}
 
 	public void deleteReview(Review review) {
 		this.totalRating -= review.getRating();
 		this.starDistribution[review.getRating()-1]--;
 		this.reviews.remove(review);
-		this.averageRating = (float)this.totalRating/this.reviews.size();
+		this.reviewCount--;
+	}
+
+	public int getReviewCount() {
+		return this.reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 
 
@@ -302,13 +311,6 @@ public class Game {
 		return this.deleted;
 	}
 
-	public float getAverageRating() {
-		return this.averageRating;
-	}
-
-	public void setAverageRating(float averageRating) {
-		this.averageRating = averageRating;
-	}
 
 
 	@Override

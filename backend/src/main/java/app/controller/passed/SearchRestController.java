@@ -1,4 +1,4 @@
-package app.controller.restController;
+package app.controller.passed;
 
 import java.util.List;
 

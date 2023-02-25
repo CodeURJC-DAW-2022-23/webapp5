@@ -45,21 +45,21 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/api/**");
 
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/admin/newGame").hasRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/admin/deleteGame/**").hasRole("ADMIN");
-		http.authorizeRequests().antMatchers(HttpMethod.PATCH, "/api/admin/editGame/**").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/games").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/games/**").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/games/**").hasRole("ADMIN");
 
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/ajax/moreCartGames/**/**").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/reviews/**/**").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/reviews/**/**").hasRole("USER");
 
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/cart/**").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/cart/addGame/**/**").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/cart/deleteGame/**/**").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/cart/checkout/**").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/me").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/**/moreCartGames/**").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/**/cart").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/**/cart/**").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/users/**/cart/**").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/**/checkout").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/users/**").hasRole("USER");
 
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/games/review/**/**").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/games/review/**/**").hasRole("USER");
-
-		http.authorizeRequests().antMatchers(HttpMethod.PATCH, "/api/user/edit/**").hasRole("USER");
 
 		// Other URLs can be accessed without authentication
 		http.authorizeRequests().anyRequest().permitAll();
