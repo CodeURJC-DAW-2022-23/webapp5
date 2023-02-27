@@ -1,20 +1,20 @@
 package app.model.modelRest;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 import app.model.Game;
 import app.model.Review;
 
 public class GameDetails {
     Game game;
-    List<Review> reviews;
+    Page<Review> reviews;
 
 
     public GameDetails() {
     }
 
 
-    public GameDetails(Game game, List<Review> reviews) {
+    public GameDetails(Game game, Page<Review> reviews) {
         this.game = game;
         this.reviews = reviews;
     }
@@ -27,11 +27,11 @@ public class GameDetails {
         this.game = game;
     }
 
-    public List<Review> getReviews() {
+    public Page<Review> getReviews() {
         return this.reviews;
     }
 
-    public void setReviews(List<Review> reviews) {
+    public void setReviews(Page<Review> reviews) {
         this.reviews = reviews;
     }
     

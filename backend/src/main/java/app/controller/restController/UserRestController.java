@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -126,7 +127,7 @@ public class UserRestController {
 	}
 
 	@GetMapping("/{userId}/moreCartGames/{page}")
-	public List<Game> getMoreCartGames(@PathVariable int page, HttpServletRequest request, @PathVariable long userId) {
+	public Page<Game> getMoreCartGames(@PathVariable int page, HttpServletRequest request, @PathVariable long userId) {
 		// Before returning a page it confirms that there are more left
 		User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
 		User requestUser = userService.findById(userId).orElseThrow();
@@ -140,7 +141,7 @@ public class UserRestController {
 	}
 
 	@GetMapping("/{userId}/cart")
-    public ResponseEntity<List<Game>> cart(HttpServletRequest request, @PathVariable long userId) {
+    public ResponseEntity<Page<Game>> cart(HttpServletRequest request, @PathVariable long userId) {
         Optional<User> userPrincipal = userService.findByMail(request.getUserPrincipal().getName());
         if (userPrincipal.isPresent()) {
             User user = userPrincipal.get();

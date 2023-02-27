@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class GameRestController {
     private ReviewService reviewService;
 
     @GetMapping("/")
-    public ResponseEntity<List<Game>> getGames() {
+    public ResponseEntity<Page<Game>> getGames() {
         // Before returning a page it confirms that there are more left
         if (gameService.countGames() > 0) {
             return new ResponseEntity<>(gameService.findGames(PageRequest.of(0, 6)), HttpStatus.OK);
@@ -50,7 +51,7 @@ public class GameRestController {
     }
 
     @GetMapping("/moreIndexGames/{page}")
-	public List<Game> getMoreIndexGames(@PathVariable int page) {
+	public Page<Game> getMoreIndexGames(@PathVariable int page) {
 		// Before returning a page it confirms that there are more left
 		if (page <= (int) Math.ceil(gameService.countGames()/6)) {
 			return gameService.findGames(PageRequest.of(page,6));
@@ -59,11 +60,11 @@ public class GameRestController {
 	}
 
     @GetMapping("/search")
-    public ResponseEntity<List<Game>> search(String name, String category) {
+    public ResponseEntity<Page<Game>> search(String name, String category) {
 		if (name == null )
 			name = "";
-            List<Game> gamesFound = gameService.findByCategoryAndName(name, category, PageRequest.of(0,6));
-            if (gamesFound.size() > 0){
+            Page<Game> gamesFound = gameService.findByCategoryAndName(name, category, PageRequest.of(0,6));
+            if (gamesFound.getNumber() > 0){
                 return new ResponseEntity<>(gamesFound, HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -71,7 +72,7 @@ public class GameRestController {
     }
 
     @GetMapping("/moreFoundGames/{page}")
-	public List<Game> getMoreFoundGames(@PathVariable int page, String category, String name) {
+	public Page<Game> getMoreFoundGames(@PathVariable int page, String category, String name) {
 		// Before returning a page it confirms that there are more left
 		if (name.equals("null")){
 			name = null;

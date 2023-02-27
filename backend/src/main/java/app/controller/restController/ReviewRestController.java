@@ -1,11 +1,11 @@
 package app.controller.restController;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +41,7 @@ public class ReviewRestController {
     private PurchaseService purchaseService;
     
     @GetMapping("/more/{id}/{page}")
-	public List<Review> getMoreReviews(@PathVariable int page, @PathVariable long id) {
+	public Page<Review> getMoreReviews(@PathVariable int page, @PathVariable long id) {
 		// Before returning a page it confirms that there are more left
         Game game = gameService.findById(id).orElseThrow();
 			if (page <= (int) Math.ceil(reviewService.countByGame(game)/6)) {
