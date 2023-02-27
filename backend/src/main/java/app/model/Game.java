@@ -52,13 +52,17 @@ public class Game {
 	private Blob titleImageFile;
 	private String titleImage;
 
+
 	@Lob
 	@JsonIgnore
 	@ElementCollection(fetch=FetchType.LAZY)
 	private List<Blob> gameplayImagesFiles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private List<Review> reviews = new ArrayList<>();
+
+	private int reviewCount = 0;
 	
 
 	public Game() {
@@ -284,13 +288,30 @@ public class Game {
 		this.totalRating += review.getRating();
 		this.starDistribution[review.getRating()-1]++;
 		this.reviews.add(review);
+		this.reviewCount++;
 	}
 
 	public void deleteReview(Review review) {
 		this.totalRating -= review.getRating();
 		this.starDistribution[review.getRating()-1]--;
 		this.reviews.remove(review);
+		this.reviewCount--;
 	}
+
+	public int getReviewCount() {
+		return this.reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
+
+	public boolean isDeleted() {
+		return this.deleted;
+	}
+
+
 
 	@Override
 	public boolean equals(Object o) {

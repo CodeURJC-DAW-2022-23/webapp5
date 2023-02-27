@@ -35,4 +35,8 @@ public class PurchaseService {
 	public int numberOfGames(User user){
 		return purchasedGamesByUser(user).size();
 	}
+
+	public boolean hasUserBoughtGame(User user, Long gameId) {
+		return purchases.hasUserBoughtGame(user, gameId);
+	}
 }
