@@ -81,6 +81,7 @@ public class AddGameController {
 		Game game = gameService.findById(id).orElseThrow();
 		game.setDeleted(true);
 		gameService.save(game);
+		userService.deleteGameFromAllCarts(id);
 		return "redirect:/controlPanel";
 	}
 

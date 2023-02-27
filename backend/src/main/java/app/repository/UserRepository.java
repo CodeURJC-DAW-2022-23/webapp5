@@ -3,9 +3,12 @@ package app.repository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -21,4 +24,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<Game> findGamesInCartByUserId(@Param("userId") Long userId, Pageable pageable);
     @Query("SELECT COUNT(*) FROM User u JOIN u.cart c WHERE u.id = :userId")
     int countGamesInCartByUserId(@Param("userId") Long userId);
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM user_cart WHERE cart_id = :gameId", nativeQuery = true)
+    void deleteFromUserCartByGameId(@Param("gameId") Long gameId);
 }

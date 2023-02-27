@@ -52,4 +52,8 @@ public class UserService {
 	public int countGamesInCartByUserId(Long userId) {
 		return users.countGamesInCartByUserId(userId);
 	}
+
+	public void deleteGameFromAllCarts(Long gameId) {
+		users.deleteFromUserCartByGameId(gameId);
+	}
 }
