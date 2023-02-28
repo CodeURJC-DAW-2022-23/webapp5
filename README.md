@@ -190,6 +190,12 @@ Screen that will allow admins to add a new game with all its features in KeyWhal
 
 ## Navigation
 
+This is the main page where a user can log in, register if he/she was not already registered, or without doing any of them, see the games but without the possibility to buy them.
+
+![avatar](screenshots/MainPage.png)
+![avatar](screenshots/Juegos.png)
+![avatar](screenshots/MoreGames.png) 
+
 ## Executions instructions
 
 * To start you must download the code from the repository in github, to do this you must go to the link: CodeURJC-DAW-2022-23 /webapp5, once there, you will have to click on <> Code and click on Download ZIP. 
@@ -222,7 +228,11 @@ Screen that will allow admins to add a new game with all its features in KeyWhal
 
 ## Diagram with the database entities
 
+
+
 ## Class diagram and templates
+
+![diagram](screenshots/Diagrama De Clases.png)
 
 ## Member participation
 
