@@ -190,11 +190,27 @@ Screen that will allow admins to add a new game with all its features in KeyWhal
 
 ## Navigation
 
+### Unregistered Users
+
+**Initial menu:** 
 This is the main page where a user can log in, register if he/she was not already registered, or without doing any of them, see the games but without the possibility to buy them.
 
 ![avatar](screenshots/MainPage.png)
 ![avatar](screenshots/Juegos.png)
 ![avatar](screenshots/MoreGames.png) 
+
+###Registered Users
+
+**Checkout:**
+Page containing a form for the billing information of the user who is going to buy on the site.
+
+### Admin
+
+**Game Form:**
+Page containing a form to create games.
+
+**Control Panel:**
+On this page the admin can modify or delete any game he selects.
 
 ## Executions instructions
 
@@ -232,7 +248,7 @@ This is the main page where a user can log in, register if he/she was not alread
 
 ## Class diagram and templates
 
-![diagram](screenshots/Diagrama De Clases.png)
+![diagram](screenshots/Diagrama de Clases.png)
 
 ## Member participation
 
