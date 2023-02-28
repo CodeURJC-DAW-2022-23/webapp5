@@ -204,13 +204,27 @@ This is the main page where a user can log in, register if he/she was not alread
 **Checkout:**
 Page containing a form for the billing information of the user who is going to buy on the site.
 
+![avatar](screenshots/Checkout1png.png)
+![avatar](screenshots/Checkout2.png)
+
 ### Admin
+
+**Admin Menu:**
+This is the main admin page, which an admin will access when logged in.
+
+![avatar](screenshots/AdminMainPage.png) 
 
 **Game Form:**
 Page containing a form to create games.
 
+![avatar](screenshots/GameForm1.png) 
+![avatar](screenshots/GameForm2.png) 
+
 **Control Panel:**
 On this page the admin can modify or delete any game he selects.
+
+![avatar](screenshots/ControlPanel1.png) 
+![avatar](screenshots/ControlPanel2.png) 
 
 ## Executions instructions
 
@@ -248,7 +262,7 @@ On this page the admin can modify or delete any game he selects.
 
 ## Class diagram and templates
 
-
+![diagram](screenshots/DiagramadeClases.png)
 
 ## Member participation
 
