@@ -199,7 +199,7 @@ This is the main page where a user can log in, register if he/she was not alread
 ![avatar](screenshots/Juegos.png)
 ![avatar](screenshots/MoreGames.png) 
 
-###Registered Users
+### Registered Users
 
 **Checkout:**
 Page containing a form for the billing information of the user who is going to buy on the site.
@@ -248,7 +248,7 @@ On this page the admin can modify or delete any game he selects.
 
 ## Class diagram and templates
 
-![diagram](screenshots/Diagrama de Clases.png)
+
 
 ## Member participation
 
