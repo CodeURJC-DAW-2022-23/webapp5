@@ -24,8 +24,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<Game> findGamesInCartByUserId(@Param("userId") Long userId, Pageable pageable);
     @Query("SELECT COUNT(*) FROM User u JOIN u.cart c WHERE u.id = :userId")
     int countGamesInCartByUserId(@Param("userId") Long userId);
+
     @Modifying
-    @Transactional
     @Query(value = "DELETE FROM user_cart WHERE cart_id = :gameId", nativeQuery = true)
     void deleteFromUserCartByGameId(@Param("gameId") Long gameId);
+
+    @Query(value = "SELECT u.* FROM user u INNER JOIN user_cart uc ON u.id = uc.user_id WHERE uc.cart_id = :gameId", nativeQuery = true)
+    List<User> findUsersByGameInCart(@Param("gameId") Long gameId);
 }

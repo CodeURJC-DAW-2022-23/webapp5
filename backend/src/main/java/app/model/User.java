@@ -95,6 +95,14 @@ public class User{
         this.mail = mail;
     }
 
+    public float getTotalPrice() {
+        return this.totalPrice;
+    }
+
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     public String getEncodedPassword() {
         return this.encodedPassword;
     }

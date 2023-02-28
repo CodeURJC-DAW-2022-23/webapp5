@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import app.model.Game;
@@ -18,6 +19,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository users;
+
+	@Autowired
+	private GameService gameService;
 
 	public void save(User user) {
 		users.save(user);
@@ -53,7 +57,18 @@ public class UserService {
 		return users.countGamesInCartByUserId(userId);
 	}
 
+    @Transactional
 	public void deleteGameFromAllCarts(Long gameId) {
-		users.deleteFromUserCartByGameId(gameId);
+		Optional<Game> opGame =gameService.findById(gameId);
+		if (opGame.isPresent()){
+			Game game = opGame.get();
+			for(User u : users.findUsersByGameInCart(gameId)) {
+				u.setTotalPrice(u.getTotalPrice() - game.getPrice());
+				users.save(u);
+			}
+			users.deleteFromUserCartByGameId(gameId);
+		}else{
+			throw new RuntimeException("Game not found");
+		}
 	}
 }
