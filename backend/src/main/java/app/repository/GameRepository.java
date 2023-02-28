@@ -31,7 +31,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     List<Game> findGames(Pageable pageable);
 
     @Query(
-        value = "SELECT game.* FROM game INNER JOIN review ON game.id = review.game_id GROUP BY game.id ORDER BY (total_rating/COUNT(review.id)) DESC LIMIT ?1",
+        value = "SELECT game.* FROM game INNER JOIN review ON game.id = review.game_id WHERE game.deleted = false GROUP BY game.id ORDER BY (total_rating/COUNT(review.id)) DESC LIMIT ?1",
         nativeQuery = true)
         List<Game> findRecomendnoreg(Integer num);
     @Query(
@@ -40,7 +40,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
         String findRecomendCategory(Long id);
         
     @Query(
-        value ="SELECT game.* FROM game WHERE game.category = ?1 AND NOT game.id IN (SELECT game.id FROM game INNER JOIN purchase_games ON game.id = purchase_games.games_id INNER JOIN purchase ON purchase_games.purchase_id = purchase.id WHERE purchase.user_id = ?2) LIMIT ?3",
+        value ="SELECT game.* FROM game WHERE game.category = ?1 AND game.deleted = false AND NOT game.id IN (SELECT game.id FROM game INNER JOIN purchase_games ON game.id = purchase_games.games_id INNER JOIN purchase ON purchase_games.purchase_id = purchase.id WHERE purchase.user_id = ?2) LIMIT ?3",
         nativeQuery = true)
         List<Game>  findRecomendbyCategory(String category,Long id,Integer num);
 }
