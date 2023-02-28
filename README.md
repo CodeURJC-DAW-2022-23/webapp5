@@ -205,7 +205,7 @@ This is the main page where a user can log in, register if he/she was not alread
 Page containing a form for the billing information of the user who is going to buy on the site.
 
 ![avatar](screenshots/Checkout1png.png)
-![avatar](screenshots/Checkout2.png)
+![avatar](screenshots/Checkout3.png)
 
 ### Admin
 
@@ -218,13 +218,13 @@ This is the main admin page, which an admin will access when logged in.
 Page containing a form to create games.
 
 ![avatar](screenshots/GameForm1.png) 
-![avatar](screenshots/GameForm2.png) 
+![avatar](screenshots/GameForm3.png) 
 
 **Control Panel:**
 On this page the admin can modify or delete any game he selects.
 
 ![avatar](screenshots/ControlPanel1.png) 
-![avatar](screenshots/ControlPanel2.png) 
+![avatar](screenshots/ControlPanel3.png) 
 
 ## Executions instructions
 
