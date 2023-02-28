@@ -25,7 +25,6 @@ public class User{
 	private Long id;
 
     private String mail;
-
     private String encodedPassword;
     private String name;
     private String lastName;
