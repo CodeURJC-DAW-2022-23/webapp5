@@ -258,7 +258,7 @@ On this page the admin can modify or delete any game he selects.
 
 ## Diagram with the database entities
 
-
+![diagram](screenshots/BaseDeDatos.png)
 
 ## Class diagram and templates
 
