@@ -2,6 +2,7 @@ package app.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +62,19 @@ public class GameController {
 			model.addAttribute("moreGamesInCart", currentUser.getCart().size() > 3);
 		} else {
 			model.addAttribute("logged", false);
+		}
+
+		if (currentUser == null || request.isUserInRole("ADMIN") || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
+			model.addAttribute("relatedGames", gameService.findRecomendnoreg(4));
+		}else{
+			String category = gameService.findRecomendCategory(currentUser.getId());
+			List<Game> games = gameService.findRecomendbyCategory(category,currentUser.getId(),4);
+			if(games.isEmpty()){
+				games.addAll(gameService.findRecomendnoreg(4));
+			}else if (games.size() < 4){
+				games.addAll(gameService.findRecomendnoreg(4-games.size()));
+			}
+			model.addAttribute("relatedGames", games);
 		}
 	}
 
