@@ -264,5 +264,29 @@ On this page the admin can modify or delete any game he selects.
 
 ![diagram](screenshots/DiagramadeClases.png)
 
-## Member participation
+## Group members participation
+### Brais Cabo Felpete
+#### Textual description:
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Model creation, Data Base conection and sample data		   | https://github.com/CodeURJC-DAW-202223/webapp5/commit/ee0af6f1cd85e2e441085cf31dabd796945e5858 | 
+| #2            | Method moreCommentsProfile in AjaxRestController | https://github.com/CodeURJC-DAW-2021-22/webapp1/commit/a87a1a1669ab0da400fd4331b4c55708ed08f12c | 
+| #3            | Methods of IndexRestController and class FilmsList| https://github.com/CodeURJC-DAW-2021-22/webapp1/commit/843ad983a51d47de649c3e7d8dd06957d1bd13ed | 
+| #4            | Methods in postman for IndexRestController	   | https://github.com/CodeURJC-DAW-2021-22/webapp1/commit/fb700b9f2fe3741d7295a3389e85a52ceb92d7c6 | 
+| #5            | ApiRest Documentation				   | https://github.com/CodeURJC-DAW-2021-22/webapp1/commit/efc35fe510e348cfa63c9af046cdb60af337824b | 
+
+
+#### The five most participated files:
+
+| Commit number | File               |
+| ------------- | ------------------ |
+| #1            | [SecurityRestController](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/backend/src/main/java/app/security/RestSecurityConfig.java)     | 
+| #2            | [IndexRestController](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/backend/src/main/java/app/controller/restController/IndexRestController.java)     | 
+| #3            | [FilmsList](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/backend/src/main/java/app/model/modelRest/FilmsList.java)     | 
+| #4            | [AjaxRestController](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/backend/src/main/java/app/controller/restController/AjaxRestController.java)     | 
+| #5            | [Postman](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/AdviceMe.postman_collection.json)     | 
+
 
