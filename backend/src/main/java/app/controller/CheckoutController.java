@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.data.domain.PageRequest;
 
-import app.Email.EmailDetails;
-import app.Email.EmailServiceImpl;
+import app.email.EmailDetails;
+import app.email.EmailServiceImpl;
 import app.model.Purchase;
 import app.model.User;
 import app.service.GameService;
@@ -54,7 +54,7 @@ public class CheckoutController {
         } else {
             model.addAttribute("logged", false);
         }
-        model.addAttribute("popularGames", gameService.findRecomendnoreg(5));
+        model.addAttribute("popularGames", gameService.findRecomendNoReg(5));
     }
 
     @GetMapping("/checkout/{id}")

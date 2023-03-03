@@ -1,4 +1,4 @@
-package app.Email;
+package app.email;
 
 import java.util.ArrayList;
 import java.util.List;

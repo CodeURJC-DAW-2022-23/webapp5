@@ -61,7 +61,7 @@ public class AddGameController {
 	}
 
 	@PostMapping("/newGame")
-	public String newgameProcess(Model model, Game game, @RequestParam MultipartFile imageField,
+	public String newGameProcess(Model model, Game game, @RequestParam MultipartFile imageField,
 			@RequestParam List<MultipartFile> imageFields) throws IOException, SQLException {
 		updateImageGame(game, imageField);
 		updateGameplayImages(game, imageFields);

@@ -45,7 +45,7 @@ public class CartController {
 		} else {
 			model.addAttribute("logged", false);
 		}
-		model.addAttribute("popularGames", gameService.findRecomendnoreg(5));
+		model.addAttribute("popularGames", gameService.findRecomendNoReg(5));
 	}
 
 	@GetMapping("/{userId}/addToCart/{id}")

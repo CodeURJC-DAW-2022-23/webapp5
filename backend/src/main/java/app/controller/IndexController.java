@@ -49,14 +49,14 @@ public class IndexController {
 		}
 		if (currentUser == null || request.isUserInRole("ADMIN")
 				|| purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
-			model.addAttribute("carrouselGames", gameService.findRecomendnoreg(3));
+			model.addAttribute("carrouselGames", gameService.findRecomendNoReg(3));
 		} else {
 			String category = gameService.findRecomendCategory(currentUser.getId());
-			List<Game> games = gameService.findRecomendbyCategory(category, currentUser.getId(), 3);
+			List<Game> games = gameService.findRecomendByCategory(category, currentUser.getId(), 3);
 			if (games.isEmpty()) {
-				games.addAll(gameService.findRecomendnoreg(3));
+				games.addAll(gameService.findRecomendNoReg(3));
 			} else if (games.size() < 3) {
-				games.addAll(gameService.findRecomendnoreg(3 - games.size()));
+				games.addAll(gameService.findRecomendNoReg(3 - games.size()));
 			}
 			model.addAttribute("carrouselGames", games);
 		}
@@ -65,7 +65,7 @@ public class IndexController {
 	@GetMapping("/")
 	public String showBooks(Model model) {
 		model.addAttribute("allGames", gameService.findGames(PageRequest.of(0, 6)));
-		model.addAttribute("popularGames", gameService.findRecomendnoreg(5));
+		model.addAttribute("popularGames", gameService.findRecomendNoReg(5));
 		return "index";
 	}
 

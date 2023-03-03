@@ -29,7 +29,7 @@ public class GameService {
 		return games.findGames(pageable);
 	}
 
-	public List<Game> findRecomendnoreg(Integer num) {
+	public List<Game> findRecomendNoReg(Integer num) {
 		return games.findRecomendnoreg(num);
 	}
 
@@ -65,7 +65,7 @@ public class GameService {
 		return games.findRecomendCategory(id);
 	}
 
-	public List<Game> findRecomendbyCategory(String category, Long id, Integer num) {
+	public List<Game> findRecomendByCategory(String category, Long id, Integer num) {
 		return games.findRecomendbyCategory(category, id, num);
 	}
 }

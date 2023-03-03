@@ -25,3 +25,4 @@ hs_err_pid*
 .vscode/
 .idea/
 backend/.idea/
+backend/.classpath

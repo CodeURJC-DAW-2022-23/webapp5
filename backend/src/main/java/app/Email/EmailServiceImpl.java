@@ -1,4 +1,4 @@
-package app.Email;
+package app.email;
 
 // Importing required classes
 import org.springframework.beans.factory.annotation.Autowired;
