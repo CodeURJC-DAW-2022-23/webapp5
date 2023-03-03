@@ -266,7 +266,8 @@ On this page the admin can modify or delete any game he selects.
 
 ## Group members participation
 ### Brais Cabo Felpete
-#### Textual description: Brais had done the data base, starter security, connection with the data base, login, register, sample data of the db, models, edit profile, see profile, game page, add games to cart, cart page, add review, review visualization, intial repositories and initial services.
+#### Textual description: 
+Brais had done the data base, starter security, connection with the data base, login, register, sample data of the db, models, edit profile, see profile, game page, add games to cart, cart page, add review, review visualization, intial repositories and initial services.
 
 #### The five most important commits:
 
