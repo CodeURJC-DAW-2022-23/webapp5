@@ -13,7 +13,7 @@ import app.repository.PurchaseRepository;
 
 @Service
 public class PurchaseService {
-    @Autowired
+	@Autowired
 	private PurchaseRepository purchases;
 
 	public void save(Purchase purchase) {
@@ -32,7 +32,7 @@ public class PurchaseService {
 		return purchases.findGamesByUser(user);
 	}
 
-	public int numberOfGames(User user){
+	public int numberOfGames(User user) {
 		return purchasedGamesByUser(user).size();
 	}
 }

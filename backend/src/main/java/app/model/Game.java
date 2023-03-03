@@ -41,9 +41,9 @@ public class Game {
 
 	private int totalRating = 0;
 
-    private int starDistribution[] = new int[] {0, 0, 0, 0, 0};
+	private int starDistribution[] = new int[] { 0, 0, 0, 0, 0 };
 
-	@ElementCollection(fetch=FetchType.LAZY)
+	@ElementCollection(fetch = FetchType.LAZY)
 	@Column(name = "gameplayImages", columnDefinition = "TEXT")
 	private List<String> gameplayImages = new ArrayList<>();
 
@@ -54,17 +54,17 @@ public class Game {
 
 	@Lob
 	@JsonIgnore
-	@ElementCollection(fetch=FetchType.LAZY)
+	@ElementCollection(fetch = FetchType.LAZY)
 	private List<Blob> gameplayImagesFiles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Review> reviews = new ArrayList<>();
-	
 
 	public Game() {
 
 	}
-	public void editGame(Game game){
+
+	public void editGame(Game game) {
 		this.setName(game.getName());
 		this.setCategory(game.getCategory());
 		this.setDirectX(game.getDirectX());
@@ -79,9 +79,8 @@ public class Game {
 		this.setNetwork(game.getNetwork());
 	}
 
-	
-
-	public Game(String category, String name, float price, String os, String processor, String memory, String directX, String network, String hardDrive, String soundCard, String graphics, String description) {
+	public Game(String category, String name, float price, String os, String processor, String memory, String directX,
+			String network, String hardDrive, String soundCard, String graphics, String description) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -96,14 +95,13 @@ public class Game {
 		this.soundCard = soundCard;
 	}
 
-	public void setDeleted(boolean deleted){
+	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
 
-	public boolean getDeleted(){
+	public boolean getDeleted() {
 		return this.deleted;
 	}
-
 
 	public Long getId() {
 		return this.id;
@@ -181,14 +179,13 @@ public class Game {
 		return this.graphics;
 	}
 
-	
-    public int getTotalRating() {
-        return this.totalRating;
-    }
+	public int getTotalRating() {
+		return this.totalRating;
+	}
 
-    public void setTotalRating(int totalRating) {
-        this.totalRating = totalRating;
-    }
+	public void setTotalRating(int totalRating) {
+		this.totalRating = totalRating;
+	}
 
 	public int[] getStarDistribution() {
 		return this.starDistribution;
@@ -234,9 +231,6 @@ public class Game {
 		this.soundCard = soundCard;
 	}
 
-
-
-
 	public Blob getTitleImageFile() {
 		return this.titleImageFile;
 	}
@@ -273,22 +267,22 @@ public class Game {
 		this.gameplayImagesFiles.add(gameplayImage);
 	}
 
-	public String averageStars(){
-		if(this.reviews.size() == 0){
+	public String averageStars() {
+		if (this.reviews.size() == 0) {
 			return "0";
 		}
-		return String.format("%.1f", (float)this.totalRating/this.reviews.size());
+		return String.format("%.1f", (float) this.totalRating / this.reviews.size());
 	}
 
 	public void addReview(Review review) {
 		this.totalRating += review.getRating();
-		this.starDistribution[review.getRating()-1]++;
+		this.starDistribution[review.getRating() - 1]++;
 		this.reviews.add(review);
 	}
 
 	public void deleteReview(Review review) {
 		this.totalRating -= review.getRating();
-		this.starDistribution[review.getRating()-1]--;
+		this.starDistribution[review.getRating() - 1]--;
 		this.reviews.remove(review);
 	}
 
@@ -300,21 +294,30 @@ public class Game {
 			return false;
 		}
 		Game game = (Game) o;
-		return Objects.equals(id, game.id) && Objects.equals(name, game.name) && Objects.equals(description, game.description) && price == game.price && Objects.equals(category, game.category) && Objects.equals(os, game.os) && Objects.equals(processor, game.processor) && Objects.equals(memory, game.memory) && Objects.equals(graphics, game.graphics) && Objects.equals(directX, game.directX) && Objects.equals(network, game.network) && Objects.equals(hardDrive, game.hardDrive) && Objects.equals(soundCard, game.soundCard) && Objects.equals(gameplayImages, game.gameplayImages) && Objects.equals(titleImageFile, game.titleImageFile) && Objects.equals(titleImage, game.titleImage) && Objects.equals(gameplayImagesFiles, game.gameplayImagesFiles) && Objects.equals(reviews, game.reviews);
+		return Objects.equals(id, game.id) && Objects.equals(name, game.name)
+				&& Objects.equals(description, game.description) && price == game.price
+				&& Objects.equals(category, game.category) && Objects.equals(os, game.os)
+				&& Objects.equals(processor, game.processor) && Objects.equals(memory, game.memory)
+				&& Objects.equals(graphics, game.graphics) && Objects.equals(directX, game.directX)
+				&& Objects.equals(network, game.network) && Objects.equals(hardDrive, game.hardDrive)
+				&& Objects.equals(soundCard, game.soundCard) && Objects.equals(gameplayImages, game.gameplayImages)
+				&& Objects.equals(titleImageFile, game.titleImageFile) && Objects.equals(titleImage, game.titleImage)
+				&& Objects.equals(gameplayImagesFiles, game.gameplayImagesFiles)
+				&& Objects.equals(reviews, game.reviews);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, description, price, category, os, processor, memory, graphics, directX, network, hardDrive, soundCard, gameplayImages, titleImageFile, titleImage, gameplayImagesFiles, reviews);
+		return Objects.hash(id, name, description, price, category, os, processor, memory, graphics, directX, network,
+				hardDrive, soundCard, gameplayImages, titleImageFile, titleImage, gameplayImagesFiles, reviews);
 	}
 
 	public List<Integer> getStarDistributionInt() {
 		List<Integer> starDistributionInt = new ArrayList<>();
-		for(int i = 0; i < this.starDistribution.length; i++){
-			starDistributionInt.add((int)(((float)this.starDistribution[i]/this.reviews.size())*100));
+		for (int i = 0; i < this.starDistribution.length; i++) {
+			starDistributionInt.add((int) (((float) this.starDistribution[i] / this.reviews.size()) * 100));
 		}
 		return starDistributionInt;
 	}
-
 
 }

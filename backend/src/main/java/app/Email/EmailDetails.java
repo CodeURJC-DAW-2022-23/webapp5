@@ -12,15 +12,15 @@ import org.apache.commons.lang3.RandomStringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
- 
+
 // Annotations
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
- 
+
 // Class
 public class EmailDetails {
- 
+
     // Class data members
     private String recipient;
     private String msgBody;
@@ -36,7 +36,8 @@ public class EmailDetails {
         List<String> games = new ArrayList<>();
         float total = 0f;
         for (Game game : purchase.getGames()) {
-            String gameInfo = "Game: " + game.getName() + "\nPrice: " + game.getPrice() + "$\nKey: " + RandomStringUtils.randomAlphanumeric(10).toUpperCase();
+            String gameInfo = "Game: " + game.getName() + "\nPrice: " + game.getPrice() + "$\nKey: "
+                    + RandomStringUtils.randomAlphanumeric(10).toUpperCase();
             total += game.getPrice();
             games.add(gameInfo);
         }

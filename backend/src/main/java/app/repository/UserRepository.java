@@ -15,11 +15,14 @@ import app.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByMail(String mail);
+
     Optional<User> findByName(String name);
+
     List<String> findRolesByName(String name);
 
     @Query("SELECT u.cart FROM User u WHERE u.id = :userId")
     Page<Game> findGamesInCartByUserId(@Param("userId") Long userId, Pageable pageable);
+
     @Query("SELECT COUNT(*) FROM User u JOIN u.cart c WHERE u.id = :userId")
     int countGamesInCartByUserId(@Param("userId") Long userId);
 

@@ -11,23 +11,23 @@ import org.springframework.stereotype.Service;
 @Service
 // Class
 // Implementing EmailService interface
-public class EmailServiceImpl{
+public class EmailServiceImpl {
 
-    @Autowired private JavaMailSender javaMailSender;
+    @Autowired
+    private JavaMailSender javaMailSender;
 
-    @Value("${spring.mail.username}") private String sender;
+    @Value("${spring.mail.username}")
+    private String sender;
 
     // Method 1
     // To send a simple email
-    public String sendSimpleMail(EmailDetails details)
-    {
+    public String sendSimpleMail(EmailDetails details) {
 
         // Try block to check for exceptions
         try {
 
             // Creating a simple mail message
-            SimpleMailMessage mailMessage
-                    = new SimpleMailMessage();
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
 
             // Setting up necessary details
             mailMessage.setFrom(sender);

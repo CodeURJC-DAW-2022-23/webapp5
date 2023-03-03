@@ -19,14 +19,13 @@ import app.service.UserService;
 
 @Controller
 public class SearchController {
-	
+
 	@Autowired
 	private UserService userService;
 
-    @Autowired
-    private GameService gameService;
-	
-	
+	@Autowired
+	private GameService gameService;
+
 	User currentUser;
 
 	@ModelAttribute
@@ -34,28 +33,29 @@ public class SearchController {
 
 		Principal principal = request.getUserPrincipal();
 
-		if(principal != null) {
+		if (principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			model.addAttribute("userCart", userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0,3)));
+			model.addAttribute("userCart",
+					userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0, 3)));
 			model.addAttribute("moreGamesInCart", currentUser.getCart().size() > 3);
 		} else {
 			model.addAttribute("logged", false);
 		}
 	}
 
-    @RequestMapping("/search")
-    public String search(Model model, String name, String category) {
-		if (name == null )
+	@RequestMapping("/search")
+	public String search(Model model, String name, String category) {
+		if (name == null)
 			name = "";
-        Page<Game> gamesFound = gameService.findByCategoryAndName(name, category, PageRequest.of(0,6));
-        model.addAttribute("games", gamesFound);
-        model.addAttribute("found", gamesFound.getNumber() > 0);
-        model.addAttribute("lastSearch", name);
-        return "search";
-    }
+		Page<Game> gamesFound = gameService.findByCategoryAndName(name, category, PageRequest.of(0, 6));
+		model.addAttribute("games", gamesFound);
+		model.addAttribute("found", gamesFound.getNumber() > 0);
+		model.addAttribute("lastSearch", name);
+		return "search";
+	}
 
 }

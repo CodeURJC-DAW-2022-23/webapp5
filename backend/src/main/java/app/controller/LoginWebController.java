@@ -30,7 +30,7 @@ public class LoginWebController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	User currentUser;
 
 	@ModelAttribute
@@ -38,13 +38,14 @@ public class LoginWebController {
 
 		Principal principal = request.getUserPrincipal();
 
-		if(principal != null) {
+		if (principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			model.addAttribute("userCart", userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0,3)));
+			model.addAttribute("userCart",
+					userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0, 3)));
 			model.addAttribute("moreGamesInCart", currentUser.getCart().size() > 3);
 		} else {
 			model.addAttribute("logged", false);
@@ -71,9 +72,9 @@ public class LoginWebController {
 			user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
 			userService.save(user);
 			return "redirect:/login";
-		} else{
-				model.addAttribute("error", true);
-				return "register";
-			}
+		} else {
+			model.addAttribute("error", true);
+			return "register";
+		}
 	}
 }

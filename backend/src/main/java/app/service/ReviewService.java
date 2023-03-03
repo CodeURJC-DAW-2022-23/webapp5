@@ -16,7 +16,7 @@ import app.repository.ReviewRepository;
 
 @Service
 public class ReviewService {
-    @Autowired
+	@Autowired
 	private ReviewRepository reviews;
 
 	public void save(Review review) {
@@ -34,8 +34,8 @@ public class ReviewService {
 	public void deleteById(long id) {
 		reviews.deleteById(id);
 	}
-	
-	public boolean reviewedByUser(User user, Game game){
+
+	public boolean reviewedByUser(User user, Game game) {
 		return reviews.findByUserAndGame(user, game).isPresent();
 	}
 
@@ -57,7 +57,7 @@ public class ReviewService {
 
 	public List<Review> findByUserInGame(User user, Game game) {
 		ArrayList<Review> list = new ArrayList<Review>();
-		if (reviews.findByUserAndGame(user, game).isPresent()){
+		if (reviews.findByUserAndGame(user, game).isPresent()) {
 			list.add(reviews.findByUserAndGame(user, game).get());
 		}
 		return list;

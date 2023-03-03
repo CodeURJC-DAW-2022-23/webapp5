@@ -21,11 +21,11 @@ import app.model.User;
 @Controller
 public class AjaxController {
 
-    @Autowired
-    private GameService gameService;
+	@Autowired
+	private GameService gameService;
 
-    @Autowired
-    private ReviewService reviewService;
+	@Autowired
+	private ReviewService reviewService;
 
 	@Autowired
 	private UserService userService;
@@ -37,7 +37,7 @@ public class AjaxController {
 
 		Principal principal = request.getUserPrincipal();
 
-		if(principal != null) {
+		if (principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
 			model.addAttribute("currentUser", currentUser);
@@ -47,18 +47,19 @@ public class AjaxController {
 		}
 	}
 
-    @GetMapping("/moreReviews/{id}/{page}")
+	@GetMapping("/moreReviews/{id}/{page}")
 	public String getMoreReviews(Model model, @PathVariable int page, @PathVariable long id) {
 		// Before returning a page it confirms that there are more left
-        Game game = gameService.findById(id).orElseThrow();
+		Game game = gameService.findById(id).orElseThrow();
 		if (currentUser != null) {
-			if (page <= (int) Math.ceil(reviewService.countByGameAndNotUser(game, currentUser)/6)) {
-				model.addAttribute("foundReviews", reviewService.findByGameAndNotUser(game, currentUser, PageRequest.of(page,6)));
+			if (page <= (int) Math.ceil(reviewService.countByGameAndNotUser(game, currentUser) / 6)) {
+				model.addAttribute("foundReviews",
+						reviewService.findByGameAndNotUser(game, currentUser, PageRequest.of(page, 6)));
 				return "moreReviews";
 			}
-		}else{
-			if (page <= (int) Math.ceil(reviewService.countByGame(game)/6)) {
-				model.addAttribute("foundReviews", reviewService.findByGame(game, PageRequest.of(page,6)));
+		} else {
+			if (page <= (int) Math.ceil(reviewService.countByGame(game) / 6)) {
+				model.addAttribute("foundReviews", reviewService.findByGame(game, PageRequest.of(page, 6)));
 				return "moreReviews";
 			}
 		}
@@ -68,24 +69,25 @@ public class AjaxController {
 	@GetMapping("/moreFoundGames/{page}")
 	public String getMoreFoundGames(Model model, @PathVariable int page, String category, String name) {
 		// Before returning a page it confirms that there are more left
-		if (name.equals("null")){
+		if (name.equals("null")) {
 			name = null;
 		}
-		if (category.equals("null")){
+		if (category.equals("null")) {
 			category = null;
 		}
-		if (page <= (int) Math.ceil(gameService.countByCategoryAndName(name, category)/6)) {
-			model.addAttribute("foundGames", gameService.findByCategoryAndName(name, category, PageRequest.of(page,6)));
+		if (page <= (int) Math.ceil(gameService.countByCategoryAndName(name, category) / 6)) {
+			model.addAttribute("foundGames",
+					gameService.findByCategoryAndName(name, category, PageRequest.of(page, 6)));
 			return "moreGames";
 		}
 		return null;
 	}
-	
+
 	@GetMapping("/moreIndexGames/{page}")
 	public String getMoreIndexGames(Model model, @PathVariable int page) {
 		// Before returning a page it confirms that there are more left
-		if (page <= (int) Math.ceil(gameService.countGames()/6)) {
-			model.addAttribute("foundGames", gameService.findGames(PageRequest.of(page,6)));
+		if (page <= (int) Math.ceil(gameService.countGames() / 6)) {
+			model.addAttribute("foundGames", gameService.findGames(PageRequest.of(page, 6)));
 			return "indexGames";
 		}
 		return null;
@@ -94,8 +96,8 @@ public class AjaxController {
 	@GetMapping("/moreControlGames/{page}")
 	public String getControlIndexGames(Model model, @PathVariable int page) {
 		// Before returning a page it confirms that there are more left
-		if (page <= (int) Math.ceil(gameService.countGames()/6)) {
-			model.addAttribute("foundGames", gameService.findGames(PageRequest.of(page,6)));
+		if (page <= (int) Math.ceil(gameService.countGames() / 6)) {
+			model.addAttribute("foundGames", gameService.findGames(PageRequest.of(page, 6)));
 			return "controlGames";
 		}
 		return null;
@@ -105,11 +107,11 @@ public class AjaxController {
 	public String getMoreCartGames(Model model, @PathVariable int page, @PathVariable long id) {
 		// Before returning a page it confirms that there are more left
 		User user = userService.findById(id).orElseThrow();
-		if (!user.getId().equals(currentUser.getId())){
+		if (!user.getId().equals(currentUser.getId())) {
 			return null;
 		}
-		if (page <= (int) Math.ceil(userService.countGamesInCartByUserId(id)/3)) {
-			model.addAttribute("foundGames", userService.findGamesInCartByUserId(id, PageRequest.of(page,3)));
+		if (page <= (int) Math.ceil(userService.countGamesInCartByUserId(id) / 3)) {
+			model.addAttribute("foundGames", userService.findGamesInCartByUserId(id, PageRequest.of(page, 3)));
 			return "cartGames";
 		}
 		return null;
@@ -119,11 +121,11 @@ public class AjaxController {
 	public String getMoreCheckGames(Model model, @PathVariable int page, @PathVariable long id) {
 		// Before returning a page it confirms that there are more left
 		User user = userService.findById(id).orElseThrow();
-		if (!user.getId().equals(currentUser.getId())){
+		if (!user.getId().equals(currentUser.getId())) {
 			return null;
 		}
-		if (page <= (int) Math.ceil(userService.countGamesInCartByUserId(id)/3)) {
-			model.addAttribute("foundGames", userService.findGamesInCartByUserId(id, PageRequest.of(page,3)));
+		if (page <= (int) Math.ceil(userService.countGamesInCartByUserId(id) / 3)) {
+			model.addAttribute("foundGames", userService.findGamesInCartByUserId(id, PageRequest.of(page, 3)));
 			return "checkGames";
 		}
 		return null;

@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import app.model.Game;
 import app.model.User;
 import app.repository.UserRepository;
@@ -57,17 +56,17 @@ public class UserService {
 		return users.countGamesInCartByUserId(userId);
 	}
 
-    @Transactional
+	@Transactional
 	public void deleteGameFromAllCarts(Long gameId) {
-		Optional<Game> opGame =gameService.findById(gameId);
-		if (opGame.isPresent()){
+		Optional<Game> opGame = gameService.findById(gameId);
+		if (opGame.isPresent()) {
 			Game game = opGame.get();
-			for(User u : users.findUsersByGameInCart(gameId)) {
+			for (User u : users.findUsersByGameInCart(gameId)) {
 				u.setTotalPrice(u.getTotalPrice() - game.getPrice());
 				users.save(u);
 			}
 			users.deleteFromUserCartByGameId(gameId);
-		}else{
+		} else {
 			throw new RuntimeException("Game not found");
 		}
 	}

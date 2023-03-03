@@ -16,4 +16,3 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
     @Query("SELECT DISTINCT g FROM Purchase p JOIN p.games g WHERE p.user = :user")
     List<Game> findGamesByUser(@Param("user") User user);
 }
-

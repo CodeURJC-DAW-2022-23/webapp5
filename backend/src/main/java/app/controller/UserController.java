@@ -1,7 +1,5 @@
 package app.controller;
 
-
-
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
@@ -34,17 +32,16 @@ import app.service.UserService;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
 
-    @Autowired
-    private PurchaseService purchaseService;
+	@Autowired
+	private PurchaseService purchaseService;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
-	
+
 	User currentUser;
 
 	@ModelAttribute
@@ -52,13 +49,14 @@ public class UserController {
 
 		Principal principal = request.getUserPrincipal();
 
-		if(principal != null) {
+		if (principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			model.addAttribute("userCart", userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0,3)));
+			model.addAttribute("userCart",
+					userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0, 3)));
 			model.addAttribute("moreGamesInCart", currentUser.getCart().size() > 3);
 		} else {
 			model.addAttribute("logged", false);
@@ -68,29 +66,30 @@ public class UserController {
 	@GetMapping("/profile/{id}")
 	public String profile(Model model, @PathVariable long id) {
 		User user;
-		try{
+		try {
 			user = userService.findById(id).orElseThrow();
-		}catch(Exception e){
+		} catch (Exception e) {
 			return "redirect:/error";
 		}
 		if (user.getId().equals(currentUser.getId())) {
-            model.addAttribute("user", user);
+			model.addAttribute("user", user);
 			List<Game> purchasedGames = purchaseService.purchasedGamesByUser(user);
 			model.addAttribute("myGames", purchasedGames);
 			model.addAttribute("haveGames", !purchasedGames.isEmpty());
-            model.addAttribute("gamesNumber", purchasedGames.size());
+			model.addAttribute("gamesNumber", purchasedGames.size());
 			return "user-profile";
 		}
 
 		return "redirect:/error";
 	}
 
-    @GetMapping("/{id}/imageProfile")
+	@GetMapping("/{id}/imageProfile")
 	public ResponseEntity<Resource> downloadImageProfile(@PathVariable long id) throws SQLException {
 		Optional<User> user = userService.findById(id);
 		if (user.isPresent() && user.get().getProfilePirctureFile() != null) {
 			Resource file = new InputStreamResource(user.get().getProfilePirctureFile().getBinaryStream());
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").contentLength(user.get().getProfilePirctureFile().length()).body(file);
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					.contentLength(user.get().getProfilePirctureFile().length()).body(file);
 		} else {
 			return ResponseEntity.notFound().build();
 		}
@@ -107,11 +106,12 @@ public class UserController {
 	}
 
 	@PostMapping("/editProfile")
-	public String editProfileProcess(Model model, User newUser, @RequestParam MultipartFile imageField) throws IOException, SQLException {
+	public String editProfileProcess(Model model, User newUser, @RequestParam MultipartFile imageField)
+			throws IOException, SQLException {
 		updateImageProfile(currentUser, imageField);
 		currentUser.setName(newUser.getName());
 		System.out.println("Contrasena" + newUser.getEncodedPassword());
-		if (!newUser.getEncodedPassword().equals("")){
+		if (!newUser.getEncodedPassword().equals("")) {
 			currentUser.setEncodedPassword(passwordEncoder.encode(newUser.getEncodedPassword()));
 		}
 		currentUser.setAboutMe(newUser.getAboutMe());
@@ -125,7 +125,8 @@ public class UserController {
 		} else {
 			User dbUser = userService.findById(user.getId()).orElseThrow();
 			if (dbUser.getProfilePircture() != null) {
-				user.setProfilePirctureFile(BlobProxy.generateProxy(dbUser.getProfilePirctureFile().getBinaryStream(), dbUser.getProfilePirctureFile().length()));
+				user.setProfilePirctureFile(BlobProxy.generateProxy(dbUser.getProfilePirctureFile().getBinaryStream(),
+						dbUser.getProfilePirctureFile().length()));
 			}
 		}
 	}

@@ -1,6 +1,5 @@
 package app.controller;
 
-
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
@@ -32,7 +31,6 @@ public class AddGameController {
 	@Autowired
 	private GameService gameService;
 
-
 	@Autowired
 	private UserService userService;
 
@@ -43,13 +41,14 @@ public class AddGameController {
 
 		Principal principal = request.getUserPrincipal();
 
-		if(principal != null) {
+		if (principal != null) {
 			userService.findByMail(principal.getName()).ifPresent(u -> currentUser = u);
 			model.addAttribute("logged", true);
 			model.addAttribute("currentUser", currentUser);
 			model.addAttribute("emptyCart", currentUser.getCart().isEmpty());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			model.addAttribute("userCart", userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0,3)));
+			model.addAttribute("userCart",
+					userService.findGamesInCartByUserId(currentUser.getId(), PageRequest.of(0, 3)));
 			model.addAttribute("moreGamesInCart", currentUser.getCart().size() > 3);
 		} else {
 			model.addAttribute("logged", false);
@@ -62,7 +61,8 @@ public class AddGameController {
 	}
 
 	@PostMapping("/newGame")
-	public String newgameProcess(Model model, Game game, @RequestParam MultipartFile imageField, @RequestParam List<MultipartFile> imageFields) throws IOException, SQLException{
+	public String newgameProcess(Model model, Game game, @RequestParam MultipartFile imageField,
+			@RequestParam List<MultipartFile> imageFields) throws IOException, SQLException {
 		updateImageGame(game, imageField);
 		updateGameplayImages(game, imageFields);
 		gameService.save(game);
@@ -86,7 +86,8 @@ public class AddGameController {
 	}
 
 	@PostMapping("/editGame/{id}")
-	public String editGameProcess(Model model, Game game, @RequestParam MultipartFile imageField, @RequestParam List<MultipartFile> imageFields, @PathVariable long id) throws IOException, SQLException {
+	public String editGameProcess(Model model, Game game, @RequestParam MultipartFile imageField,
+			@RequestParam List<MultipartFile> imageFields, @PathVariable long id) throws IOException, SQLException {
 		Game currentGame = gameService.findById(id).orElseThrow();
 		updateImageGame(currentGame, imageField);
 		updateGameplayImages(currentGame, imageFields);
@@ -94,8 +95,6 @@ public class AddGameController {
 		gameService.save(currentGame);
 		return "redirect:/game/" + id;
 	}
-
-	
 
 	private void updateGameplayImages(Game game, List<MultipartFile> imageFields) {
 		if (!imageFields.get(0).getOriginalFilename().equals("") && !imageFields.isEmpty()) {
@@ -108,9 +107,9 @@ public class AddGameController {
 				return null;
 			}).collect(Collectors.toList()));
 			game.setGameplayImages(imageFields.stream().map(file -> "").collect(Collectors.toList()));
-		}else{
+		} else {
 			Game dbGame = gameService.findById(game.getId()).orElseThrow();
-			game.setGameplayImagesFiles( dbGame.getGameplayImagesFiles());			
+			game.setGameplayImagesFiles(dbGame.getGameplayImagesFiles());
 		}
 	}
 

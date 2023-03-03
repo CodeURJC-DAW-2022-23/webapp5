@@ -37,7 +37,6 @@ public class SampleDataService {
 	@PostConstruct
 	public void init() throws IOException {
 
-
 		List<User> generatedUsers = generateUsers();
 		for (User user : generatedUsers) {
 			users.save(user);
@@ -48,8 +47,6 @@ public class SampleDataService {
 		for (Game game : generatedGames) {
 			games.save(game);
 		}
-
-
 
 		List<Purchase> generatedPurchases = generatePurchases(generatedGames, generatedUsers);
 		for (Purchase purchase : generatedPurchases) {
@@ -62,14 +59,15 @@ public class SampleDataService {
 		boolean control = true;
 		for (Game game : generatedGames) {
 			for (User user : generatedUsers) {
-				if (control){
-				Review review = new Review();
-				review.setGame(game);
-				review.setUser(user);
-				review.setRating((int) (Math.random() * 5) + 1);
-				review.setComment("This is a comment for the game " + game.getName());
-				reviews.add(review);
-				game.addReview(review);}
+				if (control) {
+					Review review = new Review();
+					review.setGame(game);
+					review.setUser(user);
+					review.setRating((int) (Math.random() * 5) + 1);
+					review.setComment("This is a comment for the game " + game.getName());
+					reviews.add(review);
+					game.addReview(review);
+				}
 				control = !control;
 			}
 		}
@@ -78,12 +76,12 @@ public class SampleDataService {
 
 	private List<Purchase> generatePurchases(List<Game> generatedGames, List<User> generatedUsers) {
 		List<Purchase> purchases = new ArrayList<>();
-			for (User user : generatedUsers) {
-				Purchase purchase = new Purchase();
-				purchase.setGames(generatedGames);
-				purchase.setUser(user);
-				purchases.add(purchase);
-			}
+		for (User user : generatedUsers) {
+			Purchase purchase = new Purchase();
+			purchase.setGames(generatedGames);
+			purchase.setUser(user);
+			purchases.add(purchase);
+		}
 		return purchases;
 	}
 
@@ -95,9 +93,9 @@ public class SampleDataService {
 			String lastName = "lastname" + index;
 			user.setName(name);
 			user.setLastName(lastName);
-			user.setMail(name + lastName +"@gmail.com");
+			user.setMail(name + lastName + "@gmail.com");
 			user.setEncodedPassword(passwordEncoder.encode("12345678"));
-			user.setAboutMe("I am the user "+ name + " " + lastName);
+			user.setAboutMe("I am the user " + name + " " + lastName);
 			user.setProfilePircture("/static/images/avatar.png");
 			user.setRoles("USER");
 			setProfilePicture(user, user.getProfilePircture());
@@ -109,9 +107,9 @@ public class SampleDataService {
 			String lastName = "adminLastName" + index;
 			user.setName(name);
 			user.setLastName(lastName);
-			user.setMail(name + lastName +"@gmail.com");
+			user.setMail(name + lastName + "@gmail.com");
 			user.setEncodedPassword(passwordEncoder.encode("12345678"));
-			user.setAboutMe("I am the admin "+ name + " " + lastName);
+			user.setAboutMe("I am the admin " + name + " " + lastName);
 			user.setProfilePircture("/static/images/avatar.png");
 			user.setRoles("USER", "ADMIN");
 			setProfilePicture(user, user.getProfilePircture());
@@ -155,19 +153,20 @@ public class SampleDataService {
 			g1.setPrice(29.99f);
 			g1.setCategory("Action");
 			String fileName = string.toLowerCase().replace(' ', '-');
-			g1.setTitleImage("/static/images/game-"+ fileName+".jpg");
+			g1.setTitleImage("/static/images/game-" + fileName + ".jpg");
 			setGameImage(g1, g1.getTitleImage());
 			g1.setOs("Windows 7");
 			g1.setProcessor("Dual core from Intel or AMD at 2.8 GHz");
 			g1.setMemory("4 GB RAM");
-			g1.setGraphics("NVIDIA GeForce GTX 260 or AMD Radeon HD 4870 (512 MB VRAM with Shader Model 4.0 or higher)");
+			g1.setGraphics(
+					"NVIDIA GeForce GTX 260 or AMD Radeon HD 4870 (512 MB VRAM with Shader Model 4.0 or higher)");
 			g1.setDirectX("Version 11");
 			g1.setNetwork("Broadband Internet connection");
 			g1.setHardDrive("50 GB available space");
 			g1.setSoundCard("DirectX 9.0c compatible sound card");
 			for (int index = 2; index <= 7; index++) {
 				g1.getGameplayImages()
-						.add("/static/images/game-"+fileName+"-"+index+"-500x375.jpg");
+						.add("/static/images/game-" + fileName + "-" + index + "-500x375.jpg");
 			}
 			setGameplayImage(g1, g1.getGameplayImages());
 			games.add(g1);
@@ -191,7 +190,7 @@ public class SampleDataService {
 	public void setGameImage(Game game, String classpathResource) throws IOException {
 		try {
 			Resource image = new ClassPathResource(classpathResource);
-			game.setTitleImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));	
+			game.setTitleImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

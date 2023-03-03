@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +15,8 @@ import javax.persistence.ManyToOne;
 public class Purchase {
 
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @ManyToMany
     private List<Game> games = new ArrayList<>();
@@ -27,7 +26,7 @@ public class Purchase {
 
     private LocalDate date = LocalDate.now();
 
-    public Purchase(){
+    public Purchase() {
 
     }
 
@@ -38,7 +37,6 @@ public class Purchase {
         }
         this.user = user;
     }
-
 
     public Long getId() {
         return this.id;

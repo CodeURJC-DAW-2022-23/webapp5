@@ -21,14 +21,14 @@ public class GameService {
 		games.save(game);
 	}
 
-	public long countGames(){
+	public long countGames() {
 		return games.count();
 	}
 
 	public Page<Game> findGames(Pageable pageable) {
 		return games.findGames(pageable);
 	}
-	
+
 	public List<Game> findRecomendnoreg(Integer num) {
 		return games.findRecomendnoreg(num);
 	}
@@ -46,7 +46,7 @@ public class GameService {
 	}
 
 	public Page<Game> findByCategoryAndName(String name, String category, Pageable pageable) {
-		if (name == null )
+		if (name == null)
 			name = "";
 		if (category == null || category.isEmpty())
 			return games.findByName(name, pageable);
@@ -54,16 +54,18 @@ public class GameService {
 	}
 
 	public int countByCategoryAndName(String name, String category) {
-		if (name == null )
+		if (name == null)
 			name = "";
 		if (category == null || category.isEmpty())
 			return games.countByName(name);
 		return games.countByCategoryAndName(name, category);
 	}
+
 	public String findRecomendCategory(Long id) {
 		return games.findRecomendCategory(id);
 	}
-	public List<Game>  findRecomendbyCategory(String category,Long id,Integer num) {
-		return games.findRecomendbyCategory(category,id,num);
+
+	public List<Game> findRecomendbyCategory(String category, Long id, Integer num) {
+		return games.findRecomendbyCategory(category, id, num);
 	}
 }
