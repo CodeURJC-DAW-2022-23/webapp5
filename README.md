@@ -281,37 +281,12 @@ On this page the admin can modify or delete any game he selects.
 
 #### The five most participated files:
 
-| Commit number | File               |
+| File number | File               |
 | ------------- | ------------------ |
-| #1            | [SecurityRestController](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/backend/src/main/java/app/security/RestSecurityConfig.java)     | 
-| #2            | [IndexRestController](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/backend/src/main/java/app/controller/restController/IndexRestController.java)     | 
-| #3            | [FilmsList](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/backend/src/main/java/app/model/modelRest/FilmsList.java)     | 
-| #4            | [AjaxRestController](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/backend/src/main/java/app/controller/restController/AjaxRestController.java)     | 
-| #5            | [Postman](https://github.com/CodeURJC-DAW-2021-22/webapp1/blob/main/AdviceMe.postman_collection.json)     | 
+| #1            | [AjaxController.java](https://github.com/CodeURJC-DAW-2022-23/webapp5/blame/main/backend/src/main/java/app/controller/AjaxController.java)     | 
+| #2            | [LoadButton.js](https://github.com/CodeURJC-DAW-2022-23/webapp5/blame/main/backend/src/main/resources/static/loadButton.js)     | 
+| #3            | [UserController.java](https://github.com/CodeURJC-DAW-2022-23/webapp5/blame/main/backend/src/main/java/app/controller/UserController.java)     | 
+| #4            | [GameRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp5/blame/main/backend/src/main/java/app/repository/GameRepository.java)     | 
+| #5            | [Navbar.html](https://github.com/CodeURJC-DAW-2022-23/webapp5/blob/main/backend/src/main/resources/templates/Navbar.html)     | 
 
-
-### Sergio Octavio Mancebo
-#### Textual description:
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-#### The five most important commits:
-
-| Commit number | Description                                      | Link                                                                                            |
-| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            | Delete game on the website	   | (https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/f6358ea84cc6ea5addcb63ebcba96f8dbb9a51f4) | 
-| #2            | Delete game comment	   | (https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/f04114f662d5d49f639eb869b34b77cc98a6aaf3) | 
-| #3            | control panel settings, edit game and button to delete game 	   | (https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/3cb2636ed03261040175b1ceabfa68ed207bc73a) | 
-| #4            | searching games + side search 	   | (https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/b7789e6ef9db29554fee0b513c85de820f6866f9) | 
-| #5            |  add movie ratings, Created delete comment button  	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ae373389c7a6d4da37453fedfe46132cdacfed08 | 
-
-
-#### The five most participated files:
-
-| Commit number | File               |
-| ------------- | ------------------ |
-| #1            | [AddGameController.java](backend/src/main/java/app/controller/AddGameController.java)     | 
-| #2            | [GameController.java](backend/src/main/java/app/controller/GameController.java)     | 
-| #3            | [product-info.html](backend/src/main/resources/templates/product-info.html)     | 
-| #4            | [ReviewService.java](backend/src/main/java/app/service/ReviewService.java)     | 
-| #5            | [controlPanel.html](backend/src/main/resources/templates/controlPanel.html)     |
 
