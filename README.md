@@ -320,7 +320,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ### Sergio Octavio Mancebo
 #### Textual description:
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Sergio has created some features of the Administrator Control Panel, such as deleting the game from the website. The functionality of being able to remove your own comment from a game.
 
 #### The five most important commits:
 
