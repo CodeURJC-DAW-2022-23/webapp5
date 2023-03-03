@@ -12,7 +12,7 @@
   Copyright 2016.
 -->
 <html>
-	<!-- Mirrored from html.nkdev.info/youplay/dark/store-product-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 May 2016 12:44:33 GMT -->
+<!-- Mirrored from html.nkdev.info/youplay/dark/store-product-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 May 2016 12:44:33 GMT -->
 	<!-- Added by HTTrack -->
 	<meta
 		http-equiv="content-type"
@@ -403,98 +403,28 @@
 			<h2 class="container">Related</h2>
 			<br />
 			<div class="youplay-carousel">
+				{{#relatedGames}}
 				<a
 					class="angled-img"
-					href="#!">
+					href="/game/{{id}}">
 					<div class="img">
 						<img
-							src="/images/game-kingdoms-of-amalur-reckoning.jpg"
+							src="/{{id}}/imageTitle"
 							alt="" />
 					</div>
 					<div class="over-info">
 						<div>
 							<div>
-								<h4>Kingdoms of Amalur: Reckoning</h4>
+								<h4>{{name}}</h4>
 								<div class="rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
+									<div class="stars rateyo" data-rateyo-rating="{{averageStars}}" data-rateyo-num-stars="5"
+													  data-rateyo-read-only="true"  data-rateyo-star-width= "15px" data-rateyo-rated-fill= "#FFFFFF"></div>
+								  </div>
 							</div>
 						</div>
 					</div>
 				</a>
-				<a
-					class="angled-img"
-					href="#!">
-					<div class="img">
-						<img
-							src="/images/game-the-witcher.jpg"
-							alt="" />
-					</div>
-					<div class="over-info">
-						<div>
-							<div>
-								<h4>The Witcher: Rise of the White Wolf</h4>
-								<div class="rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a
-					class="angled-img"
-					href="#!">
-					<div class="img">
-						<img
-							src="/images/game-diablo-iii.jpg"
-							alt="" />
-					</div>
-					<div class="over-info">
-						<div>
-							<div>
-								<h4>Diablo III: Reaper of Souls</h4>
-								<div class="rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
-				<a
-					class="angled-img"
-					href="#!">
-					<div class="img">
-						<img
-							src="/images/game-dragons-dogma.jpg"
-							alt="" />
-					</div>
-					<div class="over-info">
-						<div>
-							<div>
-								<h4>Dragons Dogma</h4>
-								<div class="rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</a>
+				{{/relatedGames}}
 			</div>
 			<!-- /Related -->
 
