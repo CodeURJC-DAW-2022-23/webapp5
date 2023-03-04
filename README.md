@@ -320,5 +320,30 @@ Sergio has created some features of the Administrator Control Panel, such as del
 | #4            | [ReviewService.java](backend/src/main/java/app/service/ReviewService.java)     | 
 | #5            | [controlPanel.html](backend/src/main/resources/templates/controlPanel.html)     |
 
+### Iker Pizarro Fernández
+#### Textual description:
+Iker has created some funcionalities for the administrator, such as create a new game and edit a game from the website. He also participates in the recommendation algorythm doing the controller and the frontend part.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Create game 	   |  | 
+| #2            | 	   |  | 
+| #3            | 	   |  | 
+| #4            | 	   |  | 
+| #5            |  |  | 
+
+
+#### The five most participated files:
+
+| Commit number | File               |
+| ------------- | ------------------ |
+| #1            | [AddGameController.java](backend/src/main/java/app/controller/AddGameController.java)     | 
+| #2            |   | 
+| #3            |     | 
+| #4            |    | 
+| #5            |  |
+
 
 
