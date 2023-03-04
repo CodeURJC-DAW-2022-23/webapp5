@@ -312,7 +312,7 @@ Sergio has created some features of the Administrator Control Panel, such as del
 
 #### The five most participated files:
 
-| Commit number | File               |
+| File number | File               |
 | ------------- | ------------------ |
 | #1            | [AddGameController.java](backend/src/main/java/app/controller/AddGameController.java)     | 
 | #2            | [GameController.java](backend/src/main/java/app/controller/GameController.java)     | 
@@ -337,7 +337,7 @@ Iker has created some funcionalities for the administrator, such as create a new
 
 #### The five most participated files:
 
-| Commit number | File               |
+| File number | File               |
 | ------------- | ------------------ |
 | #1            |  [AddGameController.java](backend/src/main/java/app/controller/AddGameController.java)     | 
 | #2            |  [newGame.html](backend/src/main/resources/templates/newGame.html)  | 
@@ -348,7 +348,30 @@ Iker has created some funcionalities for the administrator, such as create a new
 
 
 
+### Sergio Pérez Sampedro
+#### Textual description:
+Sergio has conect the back wich the front. This includes the grafics, games of database and algorithm.
+ 
+#### The five most important commits:
 
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Add the graphic  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/c5870e3477cd2ec81c469b09ce8e5b6d607a8f30 | 
+| #2            | Conect the back to the main without bugs  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4f5765431d7e8721ed0d8db98fcb60b681ac34d4 | 
+| #3            | Load more games  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/8f3fff474fcd426ebf4e9ee7613c91a01f464727 | 
+| #4            | Recommended algorithm	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4e6684922fb3b6fc8a4c9bde6ed29222d2635c5e | 
+| #5            | All star done	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/d86dc821d7b320504c543d0d791e632482eccc3e | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [product-info.html](backend/src/main/resources/templates/product-info.html)     | 
+| #2            | [index.html](backend/src/main/resources/templates/index.html)     | 
+| #3            | [IndexController.java](backend/src/main/java/app/controller/IndexController.java)     | 
+| #4            | [GameRepository.java](/backend/src/main/java/app/repository/GameRepository.java)     | 
+| #5            | [GameService.java](/backend/src/main/java/app/service/GameService.java)     |
 
 ### Javier Gaspariño Muñoz
 #### Textual description:
@@ -367,7 +390,7 @@ Javier has mainly created the checkout functionalities and also the loading plus
 
 #### The five most participated files:
 
-| Commit number | File               |
+| File number | File               |
 | ------------- | ------------------ |
 | #1            | [CheckoutController.java](backend/src/main/java/app/controller/CheckoutController.java)     | 
 | #2            | [checkout.html](backend/src/main/resources/templates/checkout.html)     | 
