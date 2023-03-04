@@ -347,3 +347,30 @@ Iker has created some funcionalities for the administrator, such as create a new
 
 
 
+
+
+
+### Javier Gaspariño Muñoz
+#### Textual description:
+Javier has mainly created the checkout functionalities and also the loading plus games and reviews.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Checkout Backend and Frontend, first update   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/67cf44dcb955aade41d7bc003198b77d0e9996a8 | 
+| #2            | Fix in the checkout links	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/726084764f1b83f61d5fd290577df2e14a3448e3 | 
+| #3            | Save data entered at checkout at a later time	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/770201f4aac34a5eecdd5a708e2c6e87df5a1812#diff-ebbfe20c1e31991e367ec7ea57103db132958dc5591a554261426f43209736d8 | 
+| #4            | Sending mail with information after checkout	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/f9dc524b2f87c5a11a96ba59bc463e27460b18c5 | 
+| #5            | Option to upload more games and more reviews	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/2c82ab98886febb3a83ed25b291b340ed898c578#diff-753f0f62b5bf636c1770d655e62d292c8eb00e56e85939e0b8d3079209869f28 | 
+
+
+#### The five most participated files:
+
+| Commit number | File               |
+| ------------- | ------------------ |
+| #1            | [CheckoutController.java](backend/src/main/java/app/controller/CheckoutController.java)     | 
+| #2            | [checkout.html](backend/src/main/resources/templates/checkout.html)     | 
+| #3            | [EmailDetails.java](backend/src/main/java/app/Email/EmailDetails.java)     | 
+| #4            | [EmailServiceImpl.java](backend/src/main/java/app/Email/EmailServiceImpl.java)     | 
+| #5            | [moreGames.html](backend/src/main/resources/templates/moreGames.html)     |
