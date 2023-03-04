@@ -328,22 +328,22 @@ Iker has created some funcionalities for the administrator, such as create a new
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            | Create game 	   |  | 
-| #2            | 	   |  | 
-| #3            | 	   |  | 
-| #4            | 	   |  | 
-| #5            |  |  | 
+| #1            | Create Game  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/df0f6d4ae4ffe805f5cad6031df9a4ec81e452fa | 
+| #2            | Create Game with Images | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/001bb156675f9a26bd2923d81363647aaabef9a3  | 
+| #3            | Edit Game Backend | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/6743ce40950435145b253a1ab13f405d0179ace7 |
+| #4            | Edit Game Frontend   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/c529ef3d2a69ad90790dcdec236c707411d8b317 | 
+| #5            | Algorythm Controller | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/750e2d81a02e84ebb36d3edce42d37436c2658af | 
 
 
 #### The five most participated files:
 
 | Commit number | File               |
 | ------------- | ------------------ |
-| #1            | [AddGameController.java](backend/src/main/java/app/controller/AddGameController.java)     | 
-| #2            |   | 
-| #3            |     | 
-| #4            |    | 
-| #5            |  |
+| #1            |  [AddGameController.java](backend/src/main/java/app/controller/AddGameController.java)     | 
+| #2            |  [newGame.html](backend/src/main/resources/templates/newGame.html)  | 
+| #3            |  [editGame.html](backend/src/main/java/app/controller/editGame.html)    | 
+| #4            |  [product-info.html](backend/src/main/resources/templates/product-info.html)    | 
+| #5            |  [IndexController.java](backend/src/main/java/app/controller/IndexController.java)  |
 
 
 
