@@ -53,7 +53,7 @@ public class SearchController {
 			name = "";
 		Page<Game> gamesFound = gameService.findByCategoryAndName(name, category, PageRequest.of(0, 6));
 		model.addAttribute("games", gamesFound);
-		model.addAttribute("found", gamesFound.getNumber() > 0);
+		model.addAttribute("found", gamesFound.getNumberOfElements() > 0);
 		model.addAttribute("lastSearch", name);
 		return "search";
 	}
