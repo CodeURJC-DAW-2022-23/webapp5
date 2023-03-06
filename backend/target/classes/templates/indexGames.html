@@ -1,32 +1,31 @@
 <!-- @format -->
-
+<div  class="isotope-list row vertical-gutter" >
 {{#foundGames}}
-<div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
+<div class="item col-lg-4 col-md-6 col-xs-12">
   <a href="/game/{{id}}" class="angled-img">
     <div class="img img-offset">
-      <img src="/{{id}}/imageTitle" alt="" />
+      <img src="/{{id}}/imageTitle" alt="">
     </div>
     <div class="bottom-info">
       <h4>{{name}}</h4>
       <div class="row">
         <div class="col-xs-6">
-          <div
-            class="stars rateyo"
-            data-rateyo-rating="{{averageStars}}"
-            data-rateyo-num-stars="5"
-            data-rateyo-read-only="true"
-            data-rateyo-star-width="15px"
-            data-rateyo-rated-fill="#FFFFFF"
-          ></div>
+          <div class="rating">
+            <div class="stars rateyo" data-rateyo-rating="{{averageStars}}" data-rateyo-num-stars="5"
+              data-rateyo-read-only="true"  data-rateyo-star-width= "15px" data-rateyo-rated-fill= "#FFFFFF"></div>
+          </div>
         </div>
         <div class="col-xs-6">
-          <div class="price">${{price}}</div>
+          <div class="price">
+            ${{price}}
+          </div>
         </div>
       </div>
     </div>
   </a>
 </div>
 {{/foundGames}}
+</div>
 <script>
   $(function () {
     $(".rateyo")
