@@ -6,11 +6,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.PageRequest;
+
+import org.springframework.http.ResponseEntity;
 
 import app.model.User;
 import app.service.UserService;
@@ -27,9 +25,6 @@ public class LoginWebController {
 
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	User currentUser;
 
@@ -65,12 +60,8 @@ public class LoginWebController {
 
 	@PostMapping("/register")
 	public String registerProcess(Model model, User user) throws IOException {
-		if (!userService.existMail(user.getMail())) {
-			Resource image = new ClassPathResource("/static/images/avatar.png");
-			user.setProfilePirctureFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
-			user.setProfilePircture("/static/images/avatar.png");
-			user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
-			userService.save(user);
+		ResponseEntity<User> newUser = userService.register(user);
+		if (newUser.getStatusCode().is2xxSuccessful()) {
 			return "redirect:/login";
 		} else {
 			model.addAttribute("error", true);

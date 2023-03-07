@@ -4,17 +4,12 @@ import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,9 +33,6 @@ public class UserController {
 
 	@Autowired
 	private PurchaseService purchaseService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	User currentUser;
 
@@ -85,14 +77,7 @@ public class UserController {
 
 	@GetMapping("/{id}/imageProfile")
 	public ResponseEntity<Resource> downloadImageProfile(@PathVariable long id) throws SQLException {
-		Optional<User> user = userService.findById(id);
-		if (user.isPresent() && user.get().getProfilePirctureFile() != null) {
-			Resource file = new InputStreamResource(user.get().getProfilePirctureFile().getBinaryStream());
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(user.get().getProfilePirctureFile().length()).body(file);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+		return userService.downloadImageProfile(id);
 	}
 
 	@GetMapping("/editProfile/{id}")
@@ -108,26 +93,12 @@ public class UserController {
 	@PostMapping("/editProfile")
 	public String editProfileProcess(Model model, User newUser, @RequestParam MultipartFile imageField)
 			throws IOException, SQLException {
-		updateImageProfile(currentUser, imageField);
-		currentUser.setName(newUser.getName());
-		System.out.println("Contrasena" + newUser.getEncodedPassword());
-		if (!newUser.getEncodedPassword().equals("")) {
-			currentUser.setEncodedPassword(passwordEncoder.encode(newUser.getEncodedPassword()));
-		}
-		currentUser.setAboutMe(newUser.getAboutMe());
-		userService.save(currentUser);
-		return "redirect:/profile/" + currentUser.getId();
-	}
-
-	private void updateImageProfile(User user, MultipartFile imageField) throws IOException, SQLException {
-		if (!imageField.isEmpty()) {
-			user.setProfilePirctureFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+		ResponseEntity<Object> editUser = userService.editProfile(currentUser.getId(), newUser, currentUser,
+				imageField);
+		if (editUser.getStatusCode().is2xxSuccessful()) {
+			return "redirect:/profile/" + currentUser.getId();
 		} else {
-			User dbUser = userService.findById(user.getId()).orElseThrow();
-			if (dbUser.getProfilePircture() != null) {
-				user.setProfilePirctureFile(BlobProxy.generateProxy(dbUser.getProfilePirctureFile().getBinaryStream(),
-						dbUser.getProfilePirctureFile().length()));
-			}
+			return "redirect:/error";
 		}
 	}
 }

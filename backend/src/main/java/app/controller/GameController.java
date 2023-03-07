@@ -2,16 +2,12 @@ package app.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +24,7 @@ import app.service.UserService;
 import app.service.PurchaseService;
 import app.service.ReviewService;
 import app.model.Review;
+import java.util.Optional;
 
 @Controller
 public class GameController {
@@ -63,20 +60,7 @@ public class GameController {
 		} else {
 			model.addAttribute("logged", false);
 		}
-
-		if (currentUser == null || request.isUserInRole("ADMIN")
-				|| purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
-			model.addAttribute("relatedGames", gameService.findRecomendNoReg(4));
-		} else {
-			String category = gameService.findRecomendCategory(currentUser.getId());
-			List<Game> games = gameService.findRecomendByCategory(category, currentUser.getId(), 4);
-			if (games.isEmpty()) {
-				games.addAll(gameService.findRecomendNoReg(4));
-			} else if (games.size() < 4) {
-				games.addAll(gameService.findRecomendNoReg(4 - games.size()));
-			}
-			model.addAttribute("relatedGames", games);
-		}
+		gameService.recomendationGames(currentUser);
 	}
 
 	@GetMapping("/game/{id}")
@@ -108,63 +92,40 @@ public class GameController {
 
 	@GetMapping("/{id}/imageTitle")
 	public ResponseEntity<Resource> downloadImageProfile(@PathVariable long id) throws SQLException {
-		Optional<Game> game = gameService.findById(id);
-		if (game.isPresent() && game.get().getTitleImage() != null) {
-			Resource file = new InputStreamResource(game.get().getTitleImageFile().getBinaryStream());
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(game.get().getTitleImageFile().length()).body(file);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+		return gameService.downloadImageProfile(id);
 	}
 
 	@GetMapping("/{id}/gameplayImage/{index}")
 	public ResponseEntity<Resource> downloadGameplayImages(@PathVariable long id, @PathVariable int index)
 			throws SQLException {
-		Optional<Game> game = gameService.findById(id);
-		if (game.isPresent() && game.get().getGameplayImages() != null) {
-			Resource file = new InputStreamResource(
-					game.get().getGameplayImagesFiles().get(index - 1).getBinaryStream());
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(game.get().getGameplayImagesFiles().get(index - 1).length()).body(file);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+		return gameService.downloadGameplayImages(id, index);
 	}
 
 	@PostMapping("/{userId}/reviewGame/{id}")
 	public String reviewGame(Model model, @PathVariable long id, @PathVariable long userId,
 			@RequestParam String comment, @RequestParam int reviewRate) {
-		try {
-			Game game = gameService.findById(id).orElseThrow();
-			User user = userService.findById(userId).orElseThrow();
-			if (!user.getId().equals(currentUser.getId())) {
-				throw new Exception();
-			}
-			if (reviewService.reviewedByUser(user, game)) {
-				throw new Exception();
-			}
-			Review review = new Review(user, game, reviewRate, comment);
-			game.addReview(review);
-			gameService.save(game);
-			return "redirect:/game/{id}";
-		} catch (Exception e) {
+				ResponseEntity<Review> addReview = reviewService.addReview(id, currentUser, userId, comment, reviewRate);
+		if (addReview.getStatusCode().is2xxSuccessful()){
+			long gameId = gameService.findById(id).get().getId();
+			return "redirect:/game/" + gameId;
+		}else{
 			return "redirect:/error";
 		}
 	}
-
+	
 	@GetMapping("/deleteReview/{id}")
 	public String deleteReview(Model model, @PathVariable long id) {
-		try {
-			Review review = reviewService.findById(id).orElseThrow();
-			if (!review.getUser().getId().equals(currentUser.getId()) && !currentUser.getRoles().contains("ADMIN")) {
-				throw new Exception();
-			}
-			Game game = review.getGame();
-			game.deleteReview(review);
-			gameService.save(game);
-			return "redirect:/game/" + game.getId();
-		} catch (Exception e) {
+		long gameId;
+		Optional<Review> opRev =  reviewService.findById(id);
+		if (opRev.isPresent()){
+			gameId = opRev.get().getGame().getId();
+		}else{
+			return "redirect:/error";
+		}
+		ResponseEntity<Review> deleteReview = reviewService.deleteReview(id, currentUser);
+		if (deleteReview.getStatusCode().is2xxSuccessful()){
+			return "redirect:/game/" + gameId;
+		}else{
 			return "redirect:/error";
 		}
 	}

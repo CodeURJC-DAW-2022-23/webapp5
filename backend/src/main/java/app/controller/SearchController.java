@@ -51,7 +51,7 @@ public class SearchController {
 	public String search(Model model, String name, String category) {
 		if (name == null)
 			name = "";
-		Page<Game> gamesFound = gameService.findByCategoryAndName(name, category, PageRequest.of(0, 6));
+		Page<Game> gamesFound = gameService.getSearchGames(0, name, category);
 		model.addAttribute("games", gamesFound);
 		model.addAttribute("found", gamesFound.getNumberOfElements() > 0);
 		model.addAttribute("lastSearch", name);

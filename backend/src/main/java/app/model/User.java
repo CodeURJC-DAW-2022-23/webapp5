@@ -140,10 +140,11 @@ public class User {
     }
 
     public List<String> getRoles() {
-        for (String string : roles) {
-            System.out.println(string);
-        }
         return this.roles;
+    }
+
+    public boolean hasRole(String role) {
+        return this.roles.contains(role);
     }
 
     public void setRoles(String... roles) {

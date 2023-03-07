@@ -1,16 +1,38 @@
 package app.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.sql.SQLException;
+import java.net.URI;
+import org.springframework.http.HttpHeaders;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.web.multipart.MultipartFile;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+
 import app.model.Game;
+import app.model.Purchase;
 import app.model.User;
+import app.service.UserService;
+
+import app.email.EmailDetails;
+import app.email.EmailServiceImpl;
+import app.repository.GameRepository;
 import app.repository.UserRepository;
 
 @Service
@@ -20,7 +42,16 @@ public class UserService {
 	private UserRepository users;
 
 	@Autowired
-	private GameService gameService;
+	private PurchaseService purchaseService;
+
+	@Autowired
+	private EmailServiceImpl emailService;
+
+    @Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private GameRepository games;
 
 	public void save(User user) {
 		users.save(user);
@@ -48,6 +79,129 @@ public class UserService {
 		return user.isPresent();
 	}
 
+	public ResponseEntity<Resource> downloadImageProfile( long id) throws SQLException {
+		Optional<User> user = users.findById(id);
+		if (user.isPresent() && user.get().getProfilePirctureFile() != null) {
+			Resource file = new InputStreamResource(user.get().getProfilePirctureFile().getBinaryStream());
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					.contentLength(user.get().getProfilePirctureFile().length()).body(file);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+    public ResponseEntity<Object> editProfile(long userId, User newUser, User requestUser, MultipartFile imageFile) throws IOException, SQLException {
+		Optional<User> userPrincipal = users.findById(userId);
+		if (userPrincipal.isPresent()){
+			User user = userPrincipal.get();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+			updateImageProfile(user, imageFile);
+			if (newUser.getAboutMe() != null){
+				user.setAboutMe(newUser.getAboutMe());
+			}
+			user.setName(newUser.getName());
+			user.setLastName(newUser.getLastName());
+			if (newUser.getEncodedPassword() != null){
+				user.setEncodedPassword(passwordEncoder.encode(newUser.getEncodedPassword()));
+			}
+			users.save(user);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+	}else{
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+}
+
+    private void updateImageProfile(User user, MultipartFile imageField) throws IOException, SQLException {
+		if (imageField!=null && !imageField.isEmpty()) {
+            user.setProfilePirctureFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+        } else {
+            User dbUser = users.findById(user.getId()).orElseThrow();
+            if (dbUser.getProfilePircture() != null) {
+                user.setProfilePirctureFile(BlobProxy.generateProxy(dbUser.getProfilePirctureFile().getBinaryStream(), dbUser.getProfilePirctureFile().length()));
+            }
+        }
+	}
+
+	public Page<Game> getMoreCartGames(long userId, int page, User currentUser) {
+		User user = users.findById(userId).orElseThrow();
+		if (!user.getId().equals(currentUser.getId())) {
+			return null;
+		}
+		if (page <= (int) Math.ceil(users.countGamesInCartByUserId(userId) / 3)) {
+			return users.findGamesInCartByUserId(userId, PageRequest.of(page, 3));
+		}
+		return null;
+	}
+
+    public ResponseEntity<Object> addCart(User requestUser, long id, long userId) {
+        Optional<User> userPrincipal = users.findById(userId);
+        if (userPrincipal.isPresent()) {
+            User user = userPrincipal.get();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+            Optional<Game> opGame = games.findById(id);
+            if (!opGame.isPresent()) {
+                return new ResponseEntity<>(users.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
+                        HttpStatus.NOT_FOUND);
+            }
+            Game game = opGame.get();
+            if (user.getCart().contains(game) || game.getDeleted()
+                    || purchaseService.hasUserBoughtGame(user, game.getId())) {
+                return new ResponseEntity<>(users.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
+                        HttpStatus.FORBIDDEN);
+            }
+            user.addGameToCart(game);
+            users.save(user);
+            return new ResponseEntity<>(users.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
+                    HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+	public ResponseEntity<Object> deleteCart(User requestUser, long id,  long userId) {
+        Optional<User> userPrincipal = users.findById(userId);
+        if (userPrincipal.isPresent()) {
+            User user = userPrincipal.get();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+            Optional<Game> opGame = games.findById(id);
+            if (!opGame.isPresent()) {
+                return new ResponseEntity<>(users.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
+                        HttpStatus.NOT_FOUND);
+            }
+            Game game = opGame.get();
+            if (!user.getCart().contains(game)) {
+                return new ResponseEntity<>(users.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
+                        HttpStatus.NOT_FOUND);
+            }
+            user.removeGameFromCart(game);
+            users.save(user);
+            return new ResponseEntity<>(users.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
+                    HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<Page<Game>> cart(User requestUser, long userId) {
+        Optional<User> userPrincipal = users.findById(userId);
+        if (userPrincipal.isPresent()) {
+            User user = userPrincipal.get();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+            return new ResponseEntity<>(users.findGamesInCartByUserId(user.getId(), PageRequest.of(0, 3)),
+                    HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 	public Page<Game> findGamesInCartByUserId(Long userId, Pageable pageable) {
 		return users.findGamesInCartByUserId(userId, pageable);
 	}
@@ -56,9 +210,58 @@ public class UserService {
 		return users.countGamesInCartByUserId(userId);
 	}
 
+    public ResponseEntity<User> register(User user) throws IOException {
+		if (!this.existMail(user.getMail())) {
+			Resource image = new ClassPathResource("/static/images/avatar.png");
+			user.setProfilePirctureFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+			user.setProfilePircture("/static/images/avatar.png");
+			user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
+			user.setRoles("USER");
+			if (user.getAboutMe() == null){
+				user.setAboutMe("");
+			}
+			this.save(user);
+            
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else{
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+	}
+
+    public ResponseEntity<Object> checkoutProcess(User requestUser, String billing_street,
+            String billing_apartment, String billing_city, String billing_country, String billing_postcode,
+            String billing_phone, long userId) {
+        Optional<User> userPrincipal = users.findById(userId);
+        if (userPrincipal.isPresent()) {
+            User user = userPrincipal.get();
+			if (!user.equals(requestUser)){
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+            if (user.getCart().isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+            if (user.getBillingInformation().equals("")) {
+                String billingInfo = billing_street + " " +
+                        billing_apartment + ", " + billing_city + billing_country + ", " + billing_postcode + ", "
+                        + billing_phone;
+                user.setBillingInformation(billingInfo);
+            }
+            Purchase purchase = new Purchase(user.getCart(), user);
+            purchaseService.save(purchase);
+            user.purchase();
+            users.save(user);
+            EmailDetails emailDetails = new EmailDetails(user.getMail(), "Thank you for your purchase!");
+            emailDetails.generatePurchaseMessage(purchase, user);
+            emailService.sendSimpleMail(emailDetails);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 	@Transactional
 	public void deleteGameFromAllCarts(Long gameId) {
-		Optional<Game> opGame = gameService.findById(gameId);
+		Optional<Game> opGame = games.findById(gameId);
 		if (opGame.isPresent()) {
 			Game game = opGame.get();
 			for (User u : users.findUsersByGameInCart(gameId)) {

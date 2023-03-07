@@ -20,6 +20,10 @@ public class PurchaseService {
 		purchases.save(purchase);
 	}
 
+	public boolean hasUserBoughtGame(User user, Long gameId) {
+		return purchases.hasUserBoughtGame(user, gameId);
+	}
+
 	public Optional<Purchase> findById(long id) {
 		return purchases.findById(id);
 	}

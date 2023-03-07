@@ -11,13 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 
-import app.email.EmailDetails;
-import app.email.EmailServiceImpl;
-import app.model.Purchase;
 import app.model.User;
 import app.service.GameService;
-import app.service.PurchaseService;
 import app.service.UserService;
 
 @Controller
@@ -28,12 +25,6 @@ public class CheckoutController {
 
     @Autowired
     private GameService gameService;
-
-    @Autowired
-    private PurchaseService purchaseService;
-
-    @Autowired
-    private EmailServiceImpl emailService;
 
     User currentUser;
 
@@ -77,26 +68,10 @@ public class CheckoutController {
     @PostMapping("/checkout/{id}")
     public String checkoutProcess(Model model, @PathVariable long id, String billing_street, String billing_apartment,
             String billing_city, String billing_country, String billing_postcode, String billing_phone) {
-        try {
-            User user = userService.findById(id).orElseThrow();
-            if (!user.getId().equals(currentUser.getId())) {
-                throw new Exception();
-            }
-            if (user.getBillingInformation().equals("")) {
-                String billingInfo = billing_street + " " +
-                        billing_apartment + ", " + billing_city + billing_country + ", " + billing_postcode + ", "
-                        + billing_phone;
-                user.setBillingInformation(billingInfo);
-            }
-            Purchase purchase = new Purchase(user.getCart(), user);
-            purchaseService.save(purchase);
-            user.purchase();
-            userService.save(user);
-            EmailDetails emailDetails = new EmailDetails(user.getMail(), "Thank you for your purchase!");
-            emailDetails.generatePurchaseMessage(purchase, user);
-            emailService.sendSimpleMail(emailDetails);
+        ResponseEntity<Object> checkout = userService.checkoutProcess(currentUser, billing_street, billing_apartment, billing_city, billing_country, billing_postcode, billing_phone, id);
+        if (checkout.getStatusCode().is2xxSuccessful()) {
             return "redirect:/";
-        } catch (Exception e) {
+        }else{
             return "redirect:/error";
         }
     }

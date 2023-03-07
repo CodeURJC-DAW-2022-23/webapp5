@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.data.domain.PageRequest;
 
 import app.service.GameService;
-import app.service.PurchaseService;
 
 import java.security.Principal;
-import java.util.List;
 
-import app.model.Game;
 import app.model.User;
 import app.service.UserService;
 
@@ -25,8 +22,6 @@ public class IndexController {
 	private GameService gameService;
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private PurchaseService purchaseService;
 
 	User currentUser;
 
@@ -47,19 +42,7 @@ public class IndexController {
 		} else {
 			model.addAttribute("logged", false);
 		}
-		if (currentUser == null || request.isUserInRole("ADMIN")
-				|| purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
-			model.addAttribute("carrouselGames", gameService.findRecomendNoReg(3));
-		} else {
-			String category = gameService.findRecomendCategory(currentUser.getId());
-			List<Game> games = gameService.findRecomendByCategory(category, currentUser.getId(), 3);
-			if (games.isEmpty()) {
-				games.addAll(gameService.findRecomendNoReg(3));
-			} else if (games.size() < 3) {
-				games.addAll(gameService.findRecomendNoReg(3 - games.size()));
-			}
-			model.addAttribute("carrouselGames", games);
-		}
+		model.addAttribute("carrouselGames", gameService.recomendationGames(currentUser));
 	}
 
 	@GetMapping("/")
