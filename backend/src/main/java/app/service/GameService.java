@@ -74,10 +74,10 @@ public class GameService {
 	}
 
 	public Page<Game> getSearchGames(int page, String name, String category) {
-		if (name.equals("null")) {
+		if (name == null || name.equals("null")) {
 			name = "";
 		}
-		if (category.equals("null")) {
+		if (category == null || category.equals("null")) {
 			category = "";
 		}
 		if (page <= (int) Math.ceil(this.countByCategoryAndName(name, category) / 6)) {

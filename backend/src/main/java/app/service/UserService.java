@@ -71,9 +71,9 @@ public class UserService {
 
 	public ResponseEntity<Object> editProfile(long userId, User newUser, User requestUser, MultipartFile imageFile)
 			throws IOException, SQLException {
-		Optional<User> userPrincipal = users.findById(userId);
-		if (userPrincipal.isPresent()) {
-			User user = userPrincipal.get();
+		Optional<User> currentUser = users.findById(userId);
+		if (currentUser.isPresent()) {
+			User user = currentUser.get();
 			if (!user.equals(requestUser)) {
 				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			}
@@ -117,9 +117,9 @@ public class UserService {
 	}
 
 	public ResponseEntity<Object> addCart(User requestUser, long id, long userId) {
-		Optional<User> userPrincipal = users.findById(userId);
-		if (userPrincipal.isPresent()) {
-			User user = userPrincipal.get();
+		Optional<User> currentUser = users.findById(userId);
+		if (currentUser.isPresent()) {
+			User user = currentUser.get();
 			if (!user.equals(requestUser)) {
 				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			}
@@ -144,9 +144,9 @@ public class UserService {
 	}
 
 	public ResponseEntity<Object> deleteCart(User requestUser, long id, long userId) {
-		Optional<User> userPrincipal = users.findById(userId);
-		if (userPrincipal.isPresent()) {
-			User user = userPrincipal.get();
+		Optional<User> currentUser = users.findById(userId);
+		if (currentUser.isPresent()) {
+			User user = currentUser.get();
 			if (!user.equals(requestUser)) {
 				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			}
@@ -170,9 +170,9 @@ public class UserService {
 	}
 
 	public ResponseEntity<Page<Game>> cart(User requestUser, long userId) {
-		Optional<User> userPrincipal = users.findById(userId);
-		if (userPrincipal.isPresent()) {
-			User user = userPrincipal.get();
+		Optional<User> currentUser = users.findById(userId);
+		if (currentUser.isPresent()) {
+			User user = currentUser.get();
 			if (!user.equals(requestUser)) {
 				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			}

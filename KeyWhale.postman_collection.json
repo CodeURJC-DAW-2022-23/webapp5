@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "cb8cf181-7415-4fb9-a3d1-6c6d51257d18",
-		"name": "New Collection",
+		"_postman_id": "ae3fcb95-5fab-4dfc-93aa-8943d17dadc7",
+		"name": "KeyWhale",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25971845"
 	},
@@ -371,117 +371,6 @@
 			]
 		},
 		{
-			"name": "SearchController",
-			"item": [
-				{
-					"name": "SearchNoParameters",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:8443/api/search/",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"search",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "SearchName",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:8443/api/search/?name=blood",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"search",
-								""
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "blood"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "SearchCategory",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:8443/api/search/?category=CASUAL",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"search",
-								""
-							],
-							"query": [
-								{
-									"key": "category",
-									"value": "CASUAL"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "SearchNameCategory",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:8443/api/search/?name=dar&category=ACTION",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"search",
-								""
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "dar"
-								},
-								{
-									"key": "category",
-									"value": "ACTION"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "GameController",
 			"item": [
 				{
@@ -642,12 +531,12 @@
 								{
 									"key": "imageField",
 									"type": "file",
-									"src": "/C:/Users/brais/Downloads/return_label.png"
+									"src": "/C:/Users/brais/Downloads/return_label (1).png"
 								},
 								{
 									"key": "imageFields",
 									"type": "file",
-									"src": "/C:/Users/brais/Downloads/return_label.png"
+									"src": "/C:/Users/brais/Downloads/return_label (1).png"
 								}
 							]
 						},
@@ -666,6 +555,233 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "SearchNameCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/games/search/?name=dar&category=ACTION",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"games",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "dar"
+								},
+								{
+									"key": "category",
+									"value": "ACTION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/games/search/?category=ACTION",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"games",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "ACTION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/games/search/?name=blood",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"games",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "blood"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchNoParameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/games/search/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"games",
+								"search",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditGame",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Hollow Knight",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "A good game",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "32.33",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "CASUAL",
+									"type": "text"
+								},
+								{
+									"key": "os",
+									"value": "Windows",
+									"type": "text"
+								},
+								{
+									"key": "graphics",
+									"value": "Nvidia",
+									"type": "text"
+								},
+								{
+									"key": "processor",
+									"value": "Intel",
+									"type": "text"
+								},
+								{
+									"key": "memory",
+									"value": "4 gb",
+									"type": "text"
+								},
+								{
+									"key": "directX",
+									"value": "Have",
+									"type": "text"
+								},
+								{
+									"key": "network",
+									"value": "Dual band",
+									"type": "text"
+								},
+								{
+									"key": "hardDrive",
+									"value": "500 gb",
+									"type": "text"
+								},
+								{
+									"key": "soundCard",
+									"value": "Realtek",
+									"type": "text"
+								},
+								{
+									"key": "imageField",
+									"type": "file",
+									"src": "/C:/Users/brais/Desktop/Ingenieria/DAW/webapp5/juegosnuevos/crash/crashw.jpg"
+								},
+								{
+									"key": "imageFields",
+									"type": "file",
+									"src": "/C:/Users/brais/Downloads/return_label (1).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/games/21",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"games",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/games/21",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"games",
+								"21"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -678,7 +794,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/reviews/22/1",
+							"raw": "https://localhost:8443/api/reviews/",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -687,8 +803,7 @@
 							"path": [
 								"api",
 								"reviews",
-								"22",
-								"1"
+								""
 							]
 						}
 					},
@@ -738,7 +853,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/reviews/32/206",
+							"raw": "https://localhost:8443/api/reviews/21/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -747,8 +862,8 @@
 							"path": [
 								"api",
 								"reviews",
-								"32",
-								"206"
+								"21",
+								"1"
 							]
 						}
 					},

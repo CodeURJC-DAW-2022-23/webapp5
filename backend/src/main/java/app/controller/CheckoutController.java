@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 
+import app.model.Purchase;
 import app.model.User;
 import app.service.GameService;
 import app.service.PurchaseService;
@@ -72,7 +73,7 @@ public class CheckoutController {
     @PostMapping("/checkout/{id}")
     public String checkoutProcess(Model model, @PathVariable long id, String billing_street, String billing_apartment,
             String billing_city, String billing_country, String billing_postcode, String billing_phone) {
-        ResponseEntity<Object> checkout = purchaseService.checkoutProcess(currentUser, billing_street,
+        ResponseEntity<Purchase> checkout = purchaseService.checkoutProcess(currentUser, billing_street,
                 billing_apartment, billing_city, billing_country, billing_postcode, billing_phone, id);
         if (checkout.getStatusCode().is2xxSuccessful()) {
             return "redirect:/";

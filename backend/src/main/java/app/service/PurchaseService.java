@@ -51,12 +51,28 @@ public class PurchaseService {
 		return purchasedGamesByUser(user).size();
 	}
 
-	public ResponseEntity<Object> checkoutProcess(User requestUser, String billing_street,
+	public ResponseEntity<Purchase> getPurchase(User user, long userId, long reviewId){
+		Optional<User> opUser = users.findById(userId);
+		Optional<Purchase> opPurchase = purchases.findById(reviewId);
+		if (opUser.isPresent() && opPurchase.isPresent()) {
+			User currentUser = opUser.get();
+			Purchase purchase = opPurchase.get();
+			if (currentUser.equals(user) && purchase.getUser().equals(user)) {
+				return new ResponseEntity<>(purchase, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	public ResponseEntity<Purchase> checkoutProcess(User requestUser, String billing_street,
 			String billing_apartment, String billing_city, String billing_country, String billing_postcode,
 			String billing_phone, long userId) {
-		Optional<User> userPrincipal = users.findById(userId);
-		if (userPrincipal.isPresent()) {
-			User user = userPrincipal.get();
+		Optional<User> currentUser = users.findById(userId);
+		if (currentUser.isPresent()) {
+			User user = currentUser.get();
 			if (!user.equals(requestUser)) {
 				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			}
@@ -76,7 +92,7 @@ public class PurchaseService {
 			EmailDetails emailDetails = new EmailDetails(user.getMail(), "Thank you for your purchase!");
 			emailDetails.generatePurchaseMessage(purchase, user);
 			emailService.sendSimpleMail(emailDetails);
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(purchase, HttpStatus.CREATED);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
