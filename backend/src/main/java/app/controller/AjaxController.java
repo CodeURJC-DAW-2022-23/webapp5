@@ -51,10 +51,10 @@ public class AjaxController {
 	@GetMapping("/moreReviews/{id}/{page}")
 	public String getMoreReviews(Model model, @PathVariable int page, @PathVariable long id) {
 		// Before returning a page it confirms that there are more left
-		Page<Review> moreReviews = reviewService.getMoreReviews(page, id, currentUser);
-		if (moreReviews == null){
+		Page<Review> moreReviews = reviewService.getReviews(page, id, currentUser);
+		if (moreReviews == null) {
 			return null;
-		}else{
+		} else {
 			model.addAttribute("foundReviews", moreReviews);
 			return "moreReviews";
 		}
@@ -63,9 +63,9 @@ public class AjaxController {
 	@GetMapping("/moreFoundGames/{page}")
 	public String getMoreFoundGames(Model model, @PathVariable int page, String category, String name) {
 		Page<Game> moreGames = gameService.getSearchGames(page, name, category);
-		if (moreGames == null){
+		if (moreGames == null) {
 			return null;
-		}else{
+		} else {
 			model.addAttribute("foundGames", moreGames);
 			return "moreGames";
 		}
@@ -75,9 +75,9 @@ public class AjaxController {
 	public String getMoreIndexGames(Model model, @PathVariable int page) {
 		// Before returning a page it confirms that there are more left
 		Page<Game> moreGames = gameService.getMoreIndexGames(page);
-		if (moreGames == null){
+		if (moreGames == null) {
 			return null;
-		}else{
+		} else {
 			model.addAttribute("foundGames", moreGames);
 			return "indexGames";
 		}
@@ -87,9 +87,9 @@ public class AjaxController {
 	public String getControlIndexGames(Model model, @PathVariable int page) {
 		// Before returning a page it confirms that there are more left
 		Page<Game> moreGames = gameService.getMoreIndexGames(page);
-		if (moreGames == null){
+		if (moreGames == null) {
 			return null;
-		}else{
+		} else {
 			model.addAttribute("foundGames", moreGames);
 			return "controlGames";
 		}
@@ -99,9 +99,9 @@ public class AjaxController {
 	public String getMoreCartGames(Model model, @PathVariable int page, @PathVariable long id) {
 		// Before returning a page it confirms that there are more left
 		Page<Game> moreGames = userService.getMoreCartGames(id, page, currentUser);
-		if (moreGames == null){
+		if (moreGames == null) {
 			return null;
-		}else{
+		} else {
 			model.addAttribute("foundGames", moreGames);
 			return "cartGames";
 		}
@@ -111,9 +111,9 @@ public class AjaxController {
 	public String getMoreCheckGames(Model model, @PathVariable int page, @PathVariable long id) {
 		// Before returning a page it confirms that there are more left
 		Page<Game> moreGames = userService.getMoreCartGames(id, page, currentUser);
-		if (moreGames == null){
+		if (moreGames == null) {
 			return null;
-		}else{
+		} else {
 			model.addAttribute("foundGames", moreGames);
 			return "checkGames";
 		}

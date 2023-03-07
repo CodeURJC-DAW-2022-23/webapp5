@@ -8,19 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import app.model.Game;
 import app.model.Review;
 import app.model.User;
-import app.repository.ReviewRepository;
 import app.repository.GameRepository;
+import app.repository.ReviewRepository;
 import app.repository.UserRepository;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import java.net.URI;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Service
 public class ReviewService {
@@ -38,10 +35,6 @@ public class ReviewService {
 
 	public void save(Review review) {
 		reviews.save(review);
-	}
-
-	public List<Review> findAll() {
-		return reviews.findAll();
 	}
 
 	public Optional<Review> findById(long id) {
@@ -80,7 +73,7 @@ public class ReviewService {
 		return list;
 	}
 
-	public Page<Review> getMoreReviews(int page, long id, User currentUser) {
+	public Page<Review> getReviews(int page, long id, User currentUser) {
 		Game game = games.findById(id).get();
 		if (page <= (int) Math.ceil(reviews.countByGameAndNotUser(game, currentUser) / 6)) {
 			return reviews.findByGameAndNotUser(game, currentUser, PageRequest.of(page, 6));

@@ -19,7 +19,6 @@ import app.service.GameService;
 import app.service.UserService;
 import app.model.Game;
 
-
 @Controller
 public class CartController {
 

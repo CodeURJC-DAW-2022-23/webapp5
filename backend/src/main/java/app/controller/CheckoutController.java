@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import app.model.User;
 import app.service.GameService;
+import app.service.PurchaseService;
 import app.service.UserService;
 
 @Controller
@@ -25,6 +26,9 @@ public class CheckoutController {
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    private PurchaseService purchaseService;
 
     User currentUser;
 
@@ -68,10 +72,11 @@ public class CheckoutController {
     @PostMapping("/checkout/{id}")
     public String checkoutProcess(Model model, @PathVariable long id, String billing_street, String billing_apartment,
             String billing_city, String billing_country, String billing_postcode, String billing_phone) {
-        ResponseEntity<Object> checkout = userService.checkoutProcess(currentUser, billing_street, billing_apartment, billing_city, billing_country, billing_postcode, billing_phone, id);
+        ResponseEntity<Object> checkout = purchaseService.checkoutProcess(currentUser, billing_street,
+                billing_apartment, billing_city, billing_country, billing_postcode, billing_phone, id);
         if (checkout.getStatusCode().is2xxSuccessful()) {
             return "redirect:/";
-        }else{
+        } else {
             return "redirect:/error";
         }
     }

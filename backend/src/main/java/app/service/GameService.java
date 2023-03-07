@@ -1,31 +1,25 @@
 package app.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.hibernate.engine.jdbc.BlobProxy;
-import org.springframework.data.domain.PageRequest;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-
-import org.springframework.core.io.InputStreamResource;
 
 import app.model.Game;
 import app.model.User;
-import app.service.GameService;
-
 import app.repository.GameRepository;
 
 @Service
@@ -40,41 +34,40 @@ public class GameService {
 	@Autowired
 	private PurchaseService purchaseService;
 
-	public Game saveNewGame(Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException, SQLException {
+	public Game saveNewGame(Game game, MultipartFile imageField, List<MultipartFile> imageFields)
+			throws IOException, SQLException {
 		updateImageGame(game, imageField);
 		updateGameplayImages(game, imageFields);
 		games.save(game);
 		return game;
 	}
 
-	public void editGame(long id, Game game, MultipartFile imageField, List<MultipartFile> imageFields) throws IOException, SQLException {
+	public void editGame(long id, Game game, MultipartFile imageField, List<MultipartFile> imageFields)
+			throws IOException, SQLException {
 		Game currentGame = games.findById(id).orElseThrow();
 		updateImageGame(currentGame, imageField);
 		updateGameplayImages(currentGame, imageFields);
 		currentGame.editGame(game);
 		games.save(currentGame);
 	}
-	public void deleteById(long id){
+
+	public void deleteById(long id) {
 		Game game = games.findById(id).orElseThrow();
 		game.setDeleted(true);
 		games.save(game);
 		userService.deleteGameFromAllCarts(id);
 	}
 
-	public long countGames() {
-		return games.count();
-	}
-
 	public void save(Game game) {
 		games.save(game);
 	}
 
-	public Page<Game> getSearchGames(int page, String name, String category){
+	public Page<Game> getSearchGames(int page, String name, String category) {
 		if (name.equals("null")) {
-			name = null;
+			name = "";
 		}
 		if (category.equals("null")) {
-			category = null;
+			category = "";
 		}
 		if (page <= (int) Math.ceil(this.countByCategoryAndName(name, category) / 6)) {
 			return this.findByCategoryAndName(name, category, PageRequest.of(page, 6));
@@ -82,9 +75,7 @@ public class GameService {
 		return null;
 	}
 
-	
-
-	public Page<Game> getMoreIndexGames(int page){
+	public Page<Game> getMoreIndexGames(int page) {
 		if (page <= (int) Math.ceil(games.count() / 6)) {
 			return games.findGames(PageRequest.of(page, 6));
 		}
@@ -124,22 +115,19 @@ public class GameService {
 	}
 
 	public List<Game> recomendationGames(User currentUser) {
-		if (currentUser == null || currentUser.hasRole("ADMIN")  || purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
-			return  this.findRecomendNoReg(3);
+		if (currentUser == null || currentUser.hasRole("ADMIN")
+				|| purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
+			return this.findRecomendNoReg(3);
 		} else {
-			String category = this.findRecomendCategory(currentUser.getId());
-			List<Game> games = this.findRecomendByCategory(category, currentUser.getId(), 3);
-			if (games.isEmpty()) {
-				games.addAll(this.findRecomendNoReg(3));
-			} else if (games.size() < 3) {
-				games.addAll(this.findRecomendNoReg(3 - games.size()));
+			String category = games.findRecomendCategory(currentUser.getId());
+			List<Game> recomended = games.findRecomendbyCategory(category, currentUser.getId(), 3);
+			if (recomended.isEmpty()) {
+				recomended.addAll(this.findRecomendNoReg(3));
+			} else if (recomended.size() < 3) {
+				recomended.addAll(this.findRecomendNoReg(3 - recomended.size()));
 			}
-			return games;
+			return recomended;
 		}
-	}
-
-	public List<Game> findByName(String category) {
-		return games.findByCategory(category);
 	}
 
 	public Optional<Game> findById(long id) {
@@ -162,38 +150,30 @@ public class GameService {
 		return games.countByCategoryAndName(name, category);
 	}
 
-	public String findRecomendCategory(Long id) {
-		return games.findRecomendCategory(id);
-	}
-
-	public List<Game> findRecomendByCategory(String category, Long id, Integer num) {
-		return games.findRecomendbyCategory(category, id, num);
-	}
-
 	private void updateGameplayImages(Game game, List<MultipartFile> imageFields) {
 		if (imageFields != null && !imageFields.get(0).getOriginalFilename().equals("") && !imageFields.isEmpty()) {
-            game.setGameplayImagesFiles(imageFields.stream().map(file -> {
-                try {
-                    return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }).collect(Collectors.toList()));
-            game.setGameplayImages(imageFields.stream().map(file -> "").collect(Collectors.toList()));
-        } else {
-            Game dbGame = games.findById(game.getId()).orElseThrow();
-            game.setGameplayImagesFiles(dbGame.getGameplayImagesFiles());
-        }
+			game.setGameplayImagesFiles(imageFields.stream().map(file -> {
+				try {
+					return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return null;
+			}).collect(Collectors.toList()));
+			game.setGameplayImages(imageFields.stream().map(file -> "").collect(Collectors.toList()));
+		} else {
+			Game dbGame = games.findById(game.getId()).orElseThrow();
+			game.setGameplayImagesFiles(dbGame.getGameplayImagesFiles());
+		}
 	}
 
 	private void updateImageGame(Game game, MultipartFile imageField) throws IOException, SQLException {
 		if (imageField != null && !imageField.isEmpty()) {
-            game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-            game.setTitleImage("");
-        } else {
-            Game dbGame = games.findById(game.getId()).orElseThrow();
-            game.setTitleImageFile(dbGame.getTitleImageFile());
-        }
+			game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+			game.setTitleImage("");
+		} else {
+			Game dbGame = games.findById(game.getId()).orElseThrow();
+			game.setTitleImageFile(dbGame.getTitleImageFile());
+		}
 	}
 }

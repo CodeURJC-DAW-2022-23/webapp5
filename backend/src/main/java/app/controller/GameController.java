@@ -104,28 +104,28 @@ public class GameController {
 	@PostMapping("/{userId}/reviewGame/{id}")
 	public String reviewGame(Model model, @PathVariable long id, @PathVariable long userId,
 			@RequestParam String comment, @RequestParam int reviewRate) {
-				ResponseEntity<Review> addReview = reviewService.addReview(id, currentUser, userId, comment, reviewRate);
-		if (addReview.getStatusCode().is2xxSuccessful()){
+		ResponseEntity<Review> addReview = reviewService.addReview(id, currentUser, userId, comment, reviewRate);
+		if (addReview.getStatusCode().is2xxSuccessful()) {
 			long gameId = gameService.findById(id).get().getId();
 			return "redirect:/game/" + gameId;
-		}else{
+		} else {
 			return "redirect:/error";
 		}
 	}
-	
+
 	@GetMapping("/deleteReview/{id}")
 	public String deleteReview(Model model, @PathVariable long id) {
 		long gameId;
-		Optional<Review> opRev =  reviewService.findById(id);
-		if (opRev.isPresent()){
+		Optional<Review> opRev = reviewService.findById(id);
+		if (opRev.isPresent()) {
 			gameId = opRev.get().getGame().getId();
-		}else{
+		} else {
 			return "redirect:/error";
 		}
 		ResponseEntity<Review> deleteReview = reviewService.deleteReview(id, currentUser);
-		if (deleteReview.getStatusCode().is2xxSuccessful()){
+		if (deleteReview.getStatusCode().is2xxSuccessful()) {
 			return "redirect:/game/" + gameId;
-		}else{
+		} else {
 			return "redirect:/error";
 		}
 	}

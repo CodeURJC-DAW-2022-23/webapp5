@@ -1,37 +1,27 @@
 package app.service;
 
 import java.io.IOException;
-import java.util.List;
+import java.sql.SQLException;
 import java.util.Optional;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import org.hibernate.engine.jdbc.BlobProxy;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.sql.SQLException;
-import java.net.URI;
-import org.springframework.http.HttpHeaders;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.web.multipart.MultipartFile;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 import app.model.Game;
-import app.model.Purchase;
 import app.model.User;
-import app.service.UserService;
-
-import app.email.EmailDetails;
-import app.email.EmailServiceImpl;
 import app.repository.GameRepository;
 import app.repository.UserRepository;
 
@@ -43,9 +33,6 @@ public class UserService {
 
 	@Autowired
 	private PurchaseService purchaseService;
-
-	@Autowired
-	private EmailServiceImpl emailService;
 
     @Autowired
 	private PasswordEncoder passwordEncoder;
@@ -59,14 +46,6 @@ public class UserService {
 
 	public Optional<User> findByMail(String mail) {
 		return users.findByMail(mail);
-	}
-
-	public Optional<User> findByName(String mail) {
-		return users.findByMail(mail);
-	}
-
-	public List<User> findAll() {
-		return users.findAll();
 	}
 
 	public Optional<User> findById(long id) {
@@ -227,37 +206,6 @@ public class UserService {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 			}
 	}
-
-    public ResponseEntity<Object> checkoutProcess(User requestUser, String billing_street,
-            String billing_apartment, String billing_city, String billing_country, String billing_postcode,
-            String billing_phone, long userId) {
-        Optional<User> userPrincipal = users.findById(userId);
-        if (userPrincipal.isPresent()) {
-            User user = userPrincipal.get();
-			if (!user.equals(requestUser)){
-				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-			}
-            if (user.getCart().isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-            }
-            if (user.getBillingInformation().equals("")) {
-                String billingInfo = billing_street + " " +
-                        billing_apartment + ", " + billing_city + billing_country + ", " + billing_postcode + ", "
-                        + billing_phone;
-                user.setBillingInformation(billingInfo);
-            }
-            Purchase purchase = new Purchase(user.getCart(), user);
-            purchaseService.save(purchase);
-            user.purchase();
-            users.save(user);
-            EmailDetails emailDetails = new EmailDetails(user.getMail(), "Thank you for your purchase!");
-            emailDetails.generatePurchaseMessage(purchase, user);
-            emailService.sendSimpleMail(emailDetails);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
 	@Transactional
 	public void deleteGameFromAllCarts(Long gameId) {
