@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
     @ManyToOne
     private User user;
@@ -36,7 +36,6 @@ public class Review {
         this.user = user;
         this.game = game;
         this.rating = rating;
-        setRating(rating);
         this.comment = comment;
     }
 
@@ -79,6 +78,7 @@ public class Review {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
 
     public LocalDate getDate() {
         return this.date;

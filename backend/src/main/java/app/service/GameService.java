@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,20 +43,30 @@ public class GameService {
 		return game;
 	}
 
-	public void editGame(long id, Game game, MultipartFile imageField, List<MultipartFile> imageFields)
+	public ResponseEntity<Game> editGame(long id, Game game, MultipartFile imageField, List<MultipartFile> imageFields)
 			throws IOException, SQLException {
-		Game currentGame = games.findById(id).orElseThrow();
+		try{
+			Game currentGame = games.findById(id).orElseThrow();
 		updateImageGame(currentGame, imageField);
 		updateGameplayImages(currentGame, imageFields);
 		currentGame.editGame(game);
 		games.save(currentGame);
+		return new ResponseEntity<>(currentGame, HttpStatus.OK);
+		}catch(Exception e){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
-	public void deleteById(long id) {
-		Game game = games.findById(id).orElseThrow();
-		game.setDeleted(true);
-		games.save(game);
-		userService.deleteGameFromAllCarts(id);
+	public ResponseEntity<Game> deleteById(long id) {
+		try{
+			Game game = games.findById(id).orElseThrow();
+			game.setDeleted(true);
+			games.save(game);
+			userService.deleteGameFromAllCarts(id);
+			return new ResponseEntity<>(game, HttpStatus.OK);
+		}catch(Exception e){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	public void save(Game game) {
@@ -115,7 +126,7 @@ public class GameService {
 	}
 
 	public List<Game> recomendationGames(User currentUser) {
-		if (currentUser == null || currentUser.hasRole("ADMIN")
+		if (currentUser == null || currentUser.getRoles().contains("ADMIN")
 				|| purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
 			return this.findRecomendNoReg(3);
 		} else {

@@ -4,6 +4,7 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
@@ -17,13 +18,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class User {
+public class User{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
     private String mail;
+
     private String encodedPassword;
     private String name;
     private String lastName;
@@ -32,40 +34,41 @@ public class User {
     private String aboutMe;
 
     @Column(name = "billingInformation", columnDefinition = "TEXT")
-    private String billingInformation = "";
+    private String billingInformation="";
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles;
-
+    @ElementCollection(fetch=FetchType.EAGER)
+	private List<String> roles;
+    
     @ManyToMany
-    private List<Game> cart = new ArrayList<>();
+	private List<Game> cart = new ArrayList<>();
 
     @Lob
-    @JsonIgnore
-    private Blob profilePirctureFile;
+	@JsonIgnore
+	private Blob profilePirctureFile;
     private String profilePircture;
 
     private float totalPrice = 0;
 
-    public User() {
-
+    public User(){
+        
     }
 
-    public User(String name, String lastName, String encodedPassword, String aboutMe) {
-        this.name = name;
-        this.encodedPassword = encodedPassword;
+    public User(String name, String lastName, String encodedPassword,  String aboutMe) {
+		this.name = name;
+		this.encodedPassword = encodedPassword;
         this.aboutMe = aboutMe;
         this.lastName = lastName;
-    }
+	}
 
-    public User(String name, String lastName, String mail, String encodedPassword, String aboutMe, String... roles) {
-        this.name = name;
-        this.mail = mail;
-        this.encodedPassword = encodedPassword;
-        this.roles = List.of(roles);
+    public User(String name, String lastName, String mail, String encodedPassword,  String aboutMe, String... roles) {
+		this.name = name;
+		this.mail = mail;
+		this.encodedPassword = encodedPassword;
+		this.roles = List.of(roles);
         this.aboutMe = aboutMe;
         this.lastName = lastName;
-    }
+	}
+
 
     public List<Game> getCart() {
         return this.cart;
@@ -74,6 +77,8 @@ public class User {
     public void setCart(List<Game> cart) {
         this.cart = cart;
     }
+
+
 
     public Long getId() {
         return this.id;
@@ -140,14 +145,13 @@ public class User {
     }
 
     public List<String> getRoles() {
+        for (String string : roles) {
+            System.out.println(string);
+        }
         return this.roles;
     }
 
-    public boolean hasRole(String role) {
-        return this.roles.contains(role);
-    }
-
-    public void setRoles(String... roles) {
+    public void setRoles(String ... roles) {
         this.roles = List.of(roles);
     }
 
@@ -159,6 +163,7 @@ public class User {
         this.profilePirctureFile = profilePirctureFile;
     }
 
+
     public String getProfilePircture() {
         return this.profilePircture;
     }
@@ -167,17 +172,17 @@ public class User {
         this.profilePircture = profilePircture;
     }
 
-    public void addGameToCart(Game game) {
+    public void addGameToCart(Game game){
         this.cart.add(game);
         this.totalPrice += game.getPrice();
     }
 
-    public void removeGameFromCart(Game game) {
+    public void removeGameFromCart(Game game){
         this.cart.remove(game);
         this.totalPrice -= game.getPrice();
     }
 
-    public void purchase() {
+    public void purchase(){
         this.cart.clear();
         this.totalPrice = 0;
     }

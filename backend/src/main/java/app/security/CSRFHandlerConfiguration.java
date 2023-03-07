@@ -34,3 +34,4 @@ class CSRFHandlerInterceptor implements HandlerInterceptor {
 		}
 	}
 }
+
