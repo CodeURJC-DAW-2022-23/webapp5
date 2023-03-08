@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web:
-    build:
+    build: 
       context: ../backend
       dockerfile: Dockerfile
     restart: on-failure
@@ -19,4 +19,4 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=keywhale
     volumes:
-      - .mysql:/var/lib/mysql
+      - ../backend/.mysql:/var/lib/mysql
