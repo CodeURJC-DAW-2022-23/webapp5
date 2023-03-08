@@ -26,3 +26,5 @@ hs_err_pid*
 .idea/
 backend/.idea/
 backend/.classpath
+backend/.mysql
+docker/.mysql
