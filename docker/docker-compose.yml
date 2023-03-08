@@ -3,8 +3,8 @@ version: "3.9"
 services:
   web:
     build: 
-      context: ../backend
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: docker/Dockerfile
     restart: on-failure
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/keywhale

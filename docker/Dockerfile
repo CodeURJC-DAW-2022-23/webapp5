@@ -2,9 +2,9 @@ FROM maven:3-openjdk-17 as builder
 
 WORKDIR /project
 
-COPY pom.xml /project/
+COPY backend/pom.xml /project/
 
-COPY /src /project/src
+COPY backend/src /project/src
 
 RUN mvn package -DskipTests=true
 
