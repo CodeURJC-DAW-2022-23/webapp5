@@ -37,6 +37,10 @@ public class SampleDataService {
 	@PostConstruct
 	public void init() throws IOException {
 
+		if(games.countByCategoryAndName("", "") > 0) {
+			return;
+		}
+
 		List<User> generatedUsers = generateUsers();
 		for (User user : generatedUsers) {
 			users.save(user);
