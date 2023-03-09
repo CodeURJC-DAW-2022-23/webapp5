@@ -1,0 +1,230 @@
+{{>headerImport}}
+  {{>navbar}}
+  <!-- /Navbar -->
+
+  <!-- Main Content -->
+  <section class="content-wrap">
+
+    <!-- Banner -->
+    <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
+      <div class="image" style="background-image: url('/images/banner-blog-bg.jpg')">
+      </div>
+
+      <div class="info">
+        <div>
+          <div class="container">
+            <h1>Register</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Banner -->
+
+    <form action="/register" method="post" id="registerForm" >
+    <div class="container youplay-content">
+
+      <div class="col-md-12">
+        <!-- Billing Information -->
+        <h2 class="mt-0">Personal Information</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Name:</p>
+            <div class="youplay-input">
+              <input type="text" name="name" placeholder="Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>Last Name:</p>
+            <div class="youplay-input">
+              <input type="text" name="lastName" placeholder="Surname">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Email:</p>
+            <div class="youplay-input">
+              <input type="text" name="mail" placeholder="email">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>Repeat Email:</p>
+            <div class="youplay-input">
+              <input type="text" name="rmail" placeholder="email">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Password:</p>
+            <div class="youplay-input">
+              <input type="password" name="encodedPassword" placeholder="Password">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>Repeat Password:</p>
+            <div class="youplay-input">
+              <input type="password" name="rpassword" placeholder="Password">
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>About me:</p>
+      <div class="youplay-textarea">
+        <textarea name="aboutMe" rows="5" placeholder="Description"></textarea>
+      </div>
+
+      {{#error}}
+      <div class="alert alert-danger" role="alert">
+        <strong>Email is linked to an existing account!</strong> Please login or use other email.
+      </div>
+      {{/error}}
+      <input type="hidden" name="roles" value="USER" />
+			<input type="hidden" name="_csrf" value="{{token}}" />
+
+      <div class="align-right">
+        <a class="btn btn-lg" onclick="checkForm()">Create Account</a>
+      </div>
+      <!-- /Billing Information -->
+      <label id="wrongpass"></label>
+      <label id="wrongemail"></label>
+    </div>
+    </form>
+
+    <!-- Order Button -->
+
+    <!-- /Order Button -->
+    </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="youplay-footer-parallax">
+      <div class="wrapper" style="background-image: url('/images/footer-bg.jpg')">
+
+        <!-- Copyright -->
+        <div class="copyright">
+          <div class="container">
+            <strong>Key Whale</strong> &copy; 2023. All rights reserved
+          </div>
+        </div>
+        <!-- /Copyright -->
+
+      </div>
+    </footer>
+    <!-- /Footer -->
+
+
+  </section>
+  <!-- /Main Content -->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Hexagon Progress -->
+  <script type="text/javascript"
+    src="/assets/bower_components/HexagonProgress/jquery.hexagonprogress.min.js"></script>
+
+
+  <!-- Bootstrap -->
+  <script type="text/javascript" src="/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- Jarallax -->
+  <script type="text/javascript" src="/assets/bower_components/jarallax/dist/jarallax.min.js"></script>
+
+  <!-- Smooth Scroll -->
+  <script type="text/javascript" src="/assets/bower_components/smoothscroll-for-websites/SmoothScroll.js"></script>
+  <!-- Youplay -->
+  <script type="text/javascript" src="/assets/youplay/js/youplay.min.js"></script>
+
+  <!-- init youplay -->
+  <script>
+    if (typeof youplay !== 'undefined') {
+      youplay.init({
+        // enable parallax
+        parallax: true,
+
+        // set small navbar on load
+        navbarSmall: false,
+
+        // enable fade effect between pages
+        fadeBetweenPages: true,
+
+        // twitter and instagram php paths
+        php: {
+          twitter: './php/twitter/tweet.php',
+          instagram: './php/instagram/instagram.php'
+        }
+      });
+    }
+    function checkName() {
+      var name = document.getElementsByName("name")[0].value;
+      var lastName = document.getElementsByName("lastName")[0].value;
+      if (name === "") {
+        document.getElementById("wrongemail").style.color = "red";
+        document.getElementById("wrongemail").textContent = "Name cant be empty";
+        return false;
+      }else if (lastName ===""){
+        document.getElementById("wrongemail").style.color = "red";
+        document.getElementById("wrongemail").textContent = "Last name cant be empty";
+        return false;
+      }
+      else {
+        document.getElementById("wrongemail").textContent = "";
+      }
+      return true;
+    }
+    function checkPassword() {
+      var password = document.getElementsByName("encodedPassword")[0].value;
+      var rppassword = document.getElementsByName("rpassword")[0].value;
+      if (password.length < 8) {
+        document.getElementById("wrongemail").style.color = "red";
+        document.getElementById("wrongemail").textContent = "The password should be at least 8 characters long";
+        return false;
+      }else if (password !== rppassword) {
+        document.getElementById("wrongemail").style.color = "red";
+        document.getElementById("wrongemail").textContent = "Passwords do not match";
+        return false;
+      }
+      else {
+        document.getElementById("wrongemail").textContent = "";
+      }
+      return true;
+    }
+    function checkEmail() {
+      var email = document.getElementsByName("mail")[0].value;
+      var rpemail = document.getElementsByName("rmail")[0].value;
+      if (! String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )){
+        document.getElementById("wrongemail").style.color = "red";
+        document.getElementById("wrongemail").textContent = "The mail is not valid";
+        return false;
+      }
+
+      if (email !== rpemail) {
+        document.getElementById("wrongemail").style.color = "red";
+        document.getElementById("wrongemail").textContent = "Email are not the same";
+        return false;
+      }
+      else {
+        document.getElementById("wrongemail").textContent = "";
+      }
+      return true;
+    }
+    function checkForm() {
+      if (checkName() && checkEmail() && checkPassword()) {
+        document.getElementById("registerForm").submit();
+      }
+    }
+  </script>
+
+
+</body>
+
+
+<!-- Mirrored from html.nkdev.info/youplay/dark/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 26 May 2016 12:53:28 GMT -->
+
+</html>
