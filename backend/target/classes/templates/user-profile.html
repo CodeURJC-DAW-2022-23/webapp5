@@ -85,6 +85,11 @@
 						</tr>
 					</tbody>
 				</table>
+				<form action="/logout" method="post">
+					<button class="btn btn-default navbar-btn" type="submit">Log
+					  Out</button>
+					<input type="hidden" name="_csrf" value="{{token}}" />
+				  </form>
 			</div>
 		</div>
 	</div>
