@@ -28,3 +28,4 @@ code/backend/.idea/
 code/backend/.classpath
 code/backend/.mysql
 code/docker/.mysql
+code/backend/target/

@@ -76,8 +76,14 @@ public class ReviewService {
 
 	public Page<Review> getReviews(int page, long id, User currentUser) {
 		Game game = games.findById(id).get();
-		if (page <= (int) Math.ceil(reviews.countByGameAndNotUser(game, currentUser) / 6)) {
-			return reviews.findByGameAndNotUser(game, currentUser, PageRequest.of(page, 6));
+		if (currentUser == null){
+			if (page <= (int) Math.ceil(reviews.countByGame(game) / 6)) {
+				return reviews.findByGame(game, PageRequest.of(page, 6));
+			}
+		}else{
+			if (page <= (int) Math.ceil(reviews.countByGameAndNotUser(game, currentUser) / 6)) {
+				return reviews.findByGameAndNotUser(game, currentUser, PageRequest.of(page, 6));
+			}
 		}
 		return null;
 	}
