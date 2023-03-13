@@ -1,0 +1,29 @@
+<div *ngIf="book">
+    
+    <h2 *ngIf="!book.id">New Book</h2>
+    <h2 *ngIf="book.id">Book "{{book.title}}"</h2>
+
+    <div>
+        <label>Title: </label>
+        <input [(ngModel)]="book.title" placeholder="title" />
+    </div>
+    <div>
+        <label>Abstract: </label>
+        <textarea [(ngModel)]="book.description" placeholder="description"></textarea>
+    </div>
+    <p>Image: </p>
+    <img [src]="bookImage()"><br>
+
+    <ng-template [ngIf]="book.id">
+        <br><input type='checkbox' name='removeImage' [(ngModel)]="removeImage"> <label>Remove image</label><br>
+
+        <label>Upload image: </label><br>  
+    </ng-template>
+
+    <input #file type='file' name='imageFile' accept=".jpg, .jpeg" />
+
+    <p>
+        <button (click)="cancel()">Cancel</button>
+        <button (click)="save()">Save</button>
+    </p>
+</div>
