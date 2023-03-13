@@ -27,7 +27,12 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/fonts-awesome/font-awesome.min.css",
+              "src/assets/css/youplay.min.css",
+              "src/assets/css/custom.css",
+              "src/assets/css/magnific-popup.css",
+              "src/assets/css/social-likes_flat.css"
             ],
             "scripts": []
           },
