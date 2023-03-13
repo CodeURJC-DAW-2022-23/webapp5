@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ae3fcb95-5fab-4dfc-93aa-8943d17dadc7",
+		"_postman_id": "aaafb8ce-8708-4356-b3f3-fe58133ace33",
 		"name": "KeyWhale",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25971845"
@@ -24,12 +24,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/auth/login",
-							"protocol": "https",
+							"raw": "{{url}}/api/auth/login",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"auth",
@@ -54,12 +52,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/auth/login",
-							"protocol": "https",
+							"raw": "{{url}}/api/auth/login",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"auth",
@@ -84,12 +80,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/users/",
-							"protocol": "https",
+							"raw": "{{url}}/api/users/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -114,12 +108,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/auth/login",
-							"protocol": "https",
+							"raw": "{{url}}/api/auth/login",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"auth",
@@ -135,12 +127,10 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/auth/logout",
-							"protocol": "https",
+							"raw": "{{url}}/api/auth/logout",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"auth",
@@ -156,12 +146,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/me",
-							"protocol": "https",
+							"raw": "{{url}}/api/users/me",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -177,12 +165,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/1/imageProfile",
-							"protocol": "https",
+							"raw": "{{url}}/api/users/1/imageProfile",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -229,12 +215,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/users/1",
-							"protocol": "https",
+							"raw": "{{url}}/api/users/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -257,12 +241,10 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/users/recomended?numberOfGames=3",
-							"protocol": "https",
+							"raw": "{{url}}/api/users/recomended?numberOfGames=3",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -284,12 +266,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/206/cart",
-							"protocol": "https",
+							"raw": "{{url}}/api/users/206/cart",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -306,12 +286,10 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/206/cart/21",
-							"protocol": "https",
+							"raw": "{{url}}/api/users/206/cart/21",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -329,12 +307,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/206/cart/21",
-							"protocol": "https",
+							"raw": "{{url}}/api/users/206/cart/21",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -352,12 +328,10 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/206/checkout",
-							"protocol": "https",
+							"raw": "{{url}}/api/users/206/checkout",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -379,12 +353,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/games/",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -400,12 +372,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/games/21",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/21",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -421,12 +391,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/games/21/coverImage",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/21/coverImage",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -443,12 +411,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/games/21/gameplayImage/1",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/21/gameplayImage/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -541,12 +507,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/games/",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -562,12 +526,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/games/search/?name=dar&category=ACTION",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/search/?name=dar&category=ACTION",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -594,12 +556,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/games/search/?category=ACTION",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/search/?category=ACTION",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -622,12 +582,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/games/search/?name=blood",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/search/?name=blood",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -650,12 +608,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/games/search/",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/search/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -747,12 +703,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/games/21",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/21",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -763,17 +717,15 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "deleteGame",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/games/21",
-							"protocol": "https",
+							"raw": "{{url}}/api/games/21",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"games",
@@ -794,12 +746,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/reviews/",
-							"protocol": "https",
+							"raw": "{{url}}/api/reviews/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"reviews",
@@ -815,12 +765,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/reviews/more/21/1",
-							"protocol": "https",
+							"raw": "{{url}}/api/reviews/more/21/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"reviews",
@@ -853,12 +801,10 @@
 							]
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/reviews/21/1",
-							"protocol": "https",
+							"raw": "{{url}}/api/reviews/21/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"reviews",

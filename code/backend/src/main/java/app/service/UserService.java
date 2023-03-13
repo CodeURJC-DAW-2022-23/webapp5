@@ -202,8 +202,7 @@ public class UserService {
 				user.setAboutMe("");
 			}
 			this.save(user);
-
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.CREATED);
 		} else {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
