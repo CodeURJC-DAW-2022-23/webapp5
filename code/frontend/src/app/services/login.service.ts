@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
+import { UserProfile } from '../models/user.rest.model';
 
-const BASE_URL = '/api/auth';
+const BASE_URL = '/api/auth/';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
 
     logged: boolean;
-    user: User;
+    userProfile : UserProfile;
 
     constructor(private http: HttpClient) {
         this.reqIsLogged();
@@ -18,7 +19,7 @@ export class LoginService {
 
         this.http.get('/api/users/me', { withCredentials: true }).subscribe(
             response => {
-                this.user = response as User;
+                this.userProfile = response as UserProfile;
                 this.logged = true;
             },
             error => {
@@ -46,7 +47,7 @@ export class LoginService {
             .subscribe((resp: any) => {
                 console.log("LOGOUT: Successfully");
                 this.logged = false;
-                this.user = undefined;
+                this.userProfile = undefined;
             });
 
     }
@@ -56,10 +57,14 @@ export class LoginService {
     }
 
     isAdmin() {
-        return this.user && this.user.roles.indexOf('ADMIN') !== -1;
+        return this.userProfile.user && this.userProfile.user.roles.indexOf('ADMIN') !== -1;
     }
 
     currentUser() {
-        return this.user;
+        return this.userProfile.user;
+    }
+
+    currentUserProfile(){
+      return this.userProfile;
     }
 }

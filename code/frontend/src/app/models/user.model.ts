@@ -1,5 +1,15 @@
+import { Game } from "./game.model";
+
 export interface User {
-    id?: number;
-    name: string;
-    roles: string[];
+  id?: number;
+  mail: string;
+  encodedPassword: string;
+  name: string;
+  lastName: string;
+  aboutMe: string;
+  billingInformation: string;
+  roles: string[];
+  cart: Game[];
+  profilePicture: string;
+  totalPrice: number;
 }

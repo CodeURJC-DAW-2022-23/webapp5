@@ -1,0 +1,16 @@
+.custom-nav {
+  background-color: #100424 !important;
+}
+
+.custom-nav .navbar-toggler {
+  color: #fff;
+  border-color: #fff;
+}
+
+.custom-nav .nav-item .nav-link {
+  color: #fff;
+}
+
+.custom-nav .navbar-brand{
+  color: #fff;
+}
