@@ -9,11 +9,13 @@ import { BookDetailComponent } from './components/books/book-detail.component';
 import { BookListComponent } from './components/books/book-list.component';
 import { BookFormComponent } from './components/books/book-form.component';
 import { routing } from './app.routing';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegisterComponent } from './components/auth/register.component';
+import { AppFooterComponent } from './components/app-footer/app-footer.component';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent],
+  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule],
   bootstrap: [AppComponent]
 })

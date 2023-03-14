@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model';
 import { UserProfile } from '../models/user.rest.model';
+import { catchError, map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 
 const BASE_URL = '/api/auth/';
 
@@ -23,22 +24,24 @@ export class LoginService {
                 this.logged = true;
             },
             error => {
-                if (error.status != 404) {
-                    console.error('Error when asking if logged: ' + JSON.stringify(error));
-                }
+                  throw new Error('Something bad happened');
             }
         );
 
     }
 
-    logIn(user: string, pass: string) {
-
-        this.http.post(BASE_URL + "/login", { username: user, password: pass }, { withCredentials: true })
-            .subscribe(
-                (response) => this.reqIsLogged(),
-                (error) => alert("Wrong credentials")
-            );
-
+    logIn(user: string, pass: string): Observable<any> {
+      return this.http.post(BASE_URL + "/login", { username: user, password: pass }, { withCredentials: true })
+        .pipe(
+          map((response: any) => {
+            this.reqIsLogged();
+            return response;
+          }),
+          catchError((error: any) => {
+            console.error('Error during login:', error);
+            return throwError('Something went wrong');
+          })
+        );
     }
 
     logOut() {

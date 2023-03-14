@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -10,17 +11,14 @@ export class NavbarComponent{
   public isMenuCollapsed = true;
 
 
-  constructor(public loginService: LoginService) { }
+  constructor(public loginService: LoginService, private router: Router) { }
 
-  logIn(event: any, user: string, pass: string) {
-
-    event.preventDefault();
-
-    this.loginService.logIn(user, pass);
+  login(){
+    this.router.navigate(['/login']);
   }
 
-  logOut() {
-    this.loginService.logOut();
+  register(){
+    this.router.navigate(['/register']);
   }
 
 }

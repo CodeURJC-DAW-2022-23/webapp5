@@ -1,0 +1,90 @@
+<section class="content-wrap">
+
+  <!-- Banner -->
+  <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    <div class="image" style="background-image: url('assets/images/banner-blog-bg.jpg')">
+    </div>
+
+    <div class="info">
+      <div>
+        <div class="container">
+          <h1>Register</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+
+  <form action="/register" method="post" id="registerForm" >
+  <div class="container youplay-content">
+
+    <div class="col-md-12">
+      <!-- Billing Information -->
+      <h2 class="mt-0">Personal Information</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Name:</p>
+          <div class="youplay-input">
+            <input type="text" name="name" placeholder="Name">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>Last Name:</p>
+          <div class="youplay-input">
+            <input type="text" name="lastName" placeholder="Surname">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Email:</p>
+          <div class="youplay-input">
+            <input type="text" name="mail" placeholder="email">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>Repeat Email:</p>
+          <div class="youplay-input">
+            <input type="text" name="rmail" placeholder="email">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p>Password:</p>
+          <div class="youplay-input">
+            <input type="password" name="encodedPassword" placeholder="Password">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>Repeat Password:</p>
+          <div class="youplay-input">
+            <input type="password" name="rpassword" placeholder="Password">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>About me:</p>
+    <div class="youplay-textarea">
+      <textarea name="aboutMe" rows="5" placeholder="Description"></textarea>
+    </div>
+    <input type="hidden" name="roles" value="USER" />
+
+    <div class="align-right">
+      <a class="btn btn-lg" onclick="checkForm()">Create Account</a>
+    </div>
+    <!-- /Billing Information -->
+    <label id="wrongpass"></label>
+    <label id="wrongemail"></label>
+  </div>
+  </form>
+
+  <!-- Order Button -->
+
+  <!-- /Order Button -->
+
+  <!-- Footer -->
+  <!-- /Footer -->
+
+
+</section>
