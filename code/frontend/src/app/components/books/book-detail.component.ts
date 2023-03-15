@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { BooksService } from '../../services/books.service';
 import { Book } from '../../models/book.model';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from 'src/app/services/auth.service';
 
 @Component({
     templateUrl: './book-detail.component.html'

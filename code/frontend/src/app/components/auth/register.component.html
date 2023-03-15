@@ -1,3 +1,6 @@
+
+
+
 <section class="content-wrap">
 
   <!-- Banner -->
@@ -14,8 +17,6 @@
     </div>
   </div>
   <!-- /Banner -->
-
-  <form action="/register" method="post" id="registerForm" >
   <div class="container youplay-content">
 
     <div class="col-md-12">
@@ -25,13 +26,19 @@
         <div class="col-md-6">
           <p>Name:</p>
           <div class="youplay-input">
-            <input type="text" name="name" placeholder="Name">
+            <input type="text" #name (ngModel)="name" placeholder="Name">
+          </div>
+          <div class="wrong" [class.display-div]="checkEmpty(name.value)">
+            <p> The name cant be empty!</p>
           </div>
         </div>
         <div class="col-md-6">
           <p>Last Name:</p>
           <div class="youplay-input">
-            <input type="text" name="lastName" placeholder="Surname">
+            <input type="text" #lastName (ngModel)="lastName" placeholder="Surname">
+          </div>
+          <div class="wrong" [class.display-div]="checkEmpty(lastName.value)">
+            <p> The last name cant be empty!</p>
           </div>
         </div>
       </div>
@@ -39,13 +46,16 @@
         <div class="col-md-6">
           <p>Email:</p>
           <div class="youplay-input">
-            <input type="text" name="mail" placeholder="email">
+            <input type="text" [(ngModel)]="email" placeholder="email">
+          </div>
+          <div class="wrong">
+            <p>{{checkEmail()}}</p>
           </div>
         </div>
         <div class="col-md-6">
           <p>Repeat Email:</p>
           <div class="youplay-input">
-            <input type="text" name="rmail" placeholder="email">
+            <input type="text" [(ngModel)]="rEmail" placeholder="email">
           </div>
         </div>
       </div>
@@ -53,31 +63,40 @@
         <div class="col-md-6">
           <p>Password:</p>
           <div class="youplay-input">
-            <input type="password" name="encodedPassword" placeholder="Password">
+            <input type="password"  [(ngModel)]="encodedPassword"  placeholder="Password">
+          </div>
+          <div class="wrong">
+            <p>{{checkPassword()}}</p>
           </div>
         </div>
         <div class="col-md-6">
           <p>Repeat Password:</p>
           <div class="youplay-input">
-            <input type="password" name="rpassword" placeholder="Password">
+            <input type="password" [(ngModel)]="rPassword" placeholder="Password">
           </div>
         </div>
       </div>
     </div>
     <p>About me:</p>
     <div class="youplay-textarea">
-      <textarea name="aboutMe" rows="5" placeholder="Description"></textarea>
+      <textarea name="aboutMe" rows="5" [(ngModel)]="aboutMe" placeholder="Description"></textarea>
     </div>
-    <input type="hidden" name="roles" value="USER" />
+
+    <div class="alert alert-danger" [class.display-div]="displayed"  role="alert">
+      <strong>Register form data is not correct!</strong>
+    </div>
+
+    <div class="alert alert-danger" [class.display-div]="displayedRegister"  role="alert">
+      <strong>This email is actually in use!</strong>
+    </div>
 
     <div class="align-right">
-      <a class="btn btn-lg" onclick="checkForm()">Create Account</a>
+      <a class="btn btn-lg" (click)="register($event, name.value, lastName.value)">Create Account</a>
     </div>
     <!-- /Billing Information -->
     <label id="wrongpass"></label>
     <label id="wrongemail"></label>
   </div>
-  </form>
 
   <!-- Order Button -->
 

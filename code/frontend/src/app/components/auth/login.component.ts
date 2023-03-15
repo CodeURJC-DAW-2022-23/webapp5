@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,6 +22,7 @@ export class LoginComponent {
       this.router.navigate(['/']);
     },
     (error) => {
+      console.error('Error:', error);
       this.displayed = false;
     }
   );

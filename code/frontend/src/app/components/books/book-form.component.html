@@ -1,5 +1,5 @@
 <div *ngIf="book">
-    
+
     <h2 *ngIf="!book.id">New Book</h2>
     <h2 *ngIf="book.id">Book "{{book.title}}"</h2>
 
@@ -17,7 +17,7 @@
     <ng-template [ngIf]="book.id">
         <br><input type='checkbox' name='removeImage' [(ngModel)]="removeImage"> <label>Remove image</label><br>
 
-        <label>Upload image: </label><br>  
+        <label>Upload image: </label><br>
     </ng-template>
 
     <input #file type='file' name='imageFile' accept=".jpg, .jpeg" />

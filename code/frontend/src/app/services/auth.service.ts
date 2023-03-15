@@ -55,6 +55,20 @@ export class LoginService {
 
     }
 
+    register(formName: string, formLastName: string, formMail: string, formPassword: string, formAboutMe: string): Observable<any> {
+      return this.http.post("/api/users/", {name: formName, lastName: formLastName, mail: formMail, encodedPassword: formPassword, aboutMe: formAboutMe})
+        .pipe(
+          map((response: any) => {
+            console.log(response);
+            return response;
+          }),
+          catchError((error: any) => {
+            console.error('Error during login:', error);
+            return throwError('Something went wrong');
+          })
+        );
+    }
+
     isLogged() {
         return this.logged;
     }
@@ -64,6 +78,7 @@ export class LoginService {
     }
 
     currentUser() {
+        console.log("hola" + this.userProfile.user.name)
         return this.userProfile.user;
     }
 

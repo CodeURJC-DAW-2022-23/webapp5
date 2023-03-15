@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../services/auth.service';
 
 @Component({
   selector: 'navbar',
@@ -19,6 +19,10 @@ export class NavbarComponent{
 
   register(){
     this.router.navigate(['/register']);
+  }
+
+  currentUser(){
+    return this.loginService.currentUser().name;
   }
 
 }
