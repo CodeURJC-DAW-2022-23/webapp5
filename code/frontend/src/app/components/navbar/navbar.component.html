@@ -37,11 +37,8 @@
                 <li class="divider"></li>
 
                 <li>
-                  <form action="/logout" method="post">
-                    <button class="btn btn-default navbar-btn" type="submit">Log
+                    <button class="btn btn-default navbar-btn" (click)="logout()">Log
                       Out</button>
-                    <input type="hidden" name="_csrf" value="{{token}}" />
-                  </form>
                 </li>
               </ul>
             </div>

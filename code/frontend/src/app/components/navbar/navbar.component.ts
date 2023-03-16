@@ -25,4 +25,9 @@ export class NavbarComponent{
     return this.loginService.currentUser().name;
   }
 
+  logout(){
+    this.loginService.logOut();
+    this.router.navigate(['/']);
+  }
+
 }

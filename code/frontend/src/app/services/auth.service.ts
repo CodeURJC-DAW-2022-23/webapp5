@@ -23,7 +23,7 @@ export class LoginService {
                 this.userProfile = response as UserProfile;
                 this.logged = true;
             },
-            error => {
+            _ => {
                   throw new Error('Something bad happened');
             }
         );
@@ -78,7 +78,6 @@ export class LoginService {
     }
 
     currentUser() {
-        console.log("hola" + this.userProfile.user.name)
         return this.userProfile.user;
     }
 
