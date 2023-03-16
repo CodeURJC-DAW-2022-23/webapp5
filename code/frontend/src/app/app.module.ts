@@ -13,9 +13,10 @@ import { LoginComponent } from './components/auth/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/auth/register.component';
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
+import { GamesComponent } from './components/games/games.component';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent],
+  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule],
   bootstrap: [AppComponent]
 })

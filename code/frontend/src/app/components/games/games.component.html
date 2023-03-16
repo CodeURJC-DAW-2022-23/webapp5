@@ -1,0 +1,53 @@
+
+<section class="content-wrap">
+
+  <div class="container youplay-store store-grid">
+
+    <!-- Games List -->
+    <div class="col-md-9 isotope">
+      <!-- Sort Categories -->
+      <!-- /Sort Categories -->
+
+      <div class="isotope-list row vertical-gutter">
+        <div class="item col-lg-4 col-md-6 col-xs-12" *ngFor="let game of games">
+          <a href="/game/{{id}}" class="angled-img">
+            <div class="img img-offset">
+              <img [src]="gameImage(game)" alt="">
+            </div>
+            <div class="bottom-info">
+              <h4>{{game.name}}</h4>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div class="rating">
+                    <div class="stars rateyo" data-rateyo-rating="{{averageStars}}" data-rateyo-num-stars="5"
+                      data-rateyo-read-only="true"  data-rateyo-star-width= "15px" data-rateyo-rated-fill= "#FFFFFF"></div>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="price">
+                    ${{game.price}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- /Single Product Block -->
+      </div>
+
+      <div [class.display-div]="!moreGames">
+        <button class="btn btn-default" (click)="getMoreGames()">Load More Games</button>
+      </div>
+      <div id="loaderIndexGame" class="lds-dual-ring hidden"></div>
+    </div>
+    <!-- /Games List -->
+
+    <!-- Right Side -->
+    <div class="col-md-3">
+
+
+    </div>
+    <!-- /Right Side -->
+  </div>
+
+</section>
