@@ -34,7 +34,7 @@ export class RegisterComponent{
       return;
     }
 
-    this.LoginService.register(this.name, this.lastName, this.email, this.encodedPassword, this.aboutMe).subscribe(
+    this.LoginService.register(name, lastName, this.email, this.encodedPassword, this.aboutMe).subscribe(
       response => {
         this.router.navigate(['/login']);
       },

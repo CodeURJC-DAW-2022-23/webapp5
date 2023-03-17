@@ -42,10 +42,10 @@
         <!-- /Single Product Block -->
       </div>
 
-      <div [class.display-div]="!moreGames">
+      <div [class.display-div]="!moreGames" *ngIf="!loading">
         <button class="btn btn-default" (click)="getMoreGames()">Load More Games</button>
       </div>
-      <div id="loaderIndexGame" class="lds-dual-ring hidden"></div>
+      <div *ngIf="loading" class="spinner"></div>
     </div>
     <!-- /Games List -->
 

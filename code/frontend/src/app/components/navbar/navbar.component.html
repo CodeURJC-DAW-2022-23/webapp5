@@ -23,7 +23,7 @@
         </ng-template>
         <ng-template [ngIf]="loginService.isLogged()">
           <li class="nav-link dropdown dropdown-hover">
-            <a class="" href="/profile/{{currentUser.id}}" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a class="" (click)="myProfile()" data-toggle="dropdown" role="button" aria-expanded="false">
               {{this.loginService.currentUser().name}}<span class="badge bg-default">2</span> <span
                 class="caret"></span>
               <span class="label">it is
@@ -31,7 +31,7 @@
             </a>
             <div class="dropdown-menu">
               <ul role="menu">
-                <li><a href="/profile/{{currentUser.id}}">Profile <span
+                <li><a role="button" (click)="myProfile()">Profile <span
                       class="badge pull-right bg-warning">13</span></a>
                 </li>
                 <li><a href="/cart/{{currentUser.id}}">My Cart <span class="badge pull-right bg-default">3</span></a>

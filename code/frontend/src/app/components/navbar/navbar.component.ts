@@ -57,6 +57,10 @@ export class NavbarComponent {
     this.router.navigate(['/register']);
   }
 
+  myProfile(){
+    this.router.navigate(['/profile/' + this.loginService.currentUser().id]);
+  }
+
   currentUser() {
     return this.loginService.currentUser().name;
   }

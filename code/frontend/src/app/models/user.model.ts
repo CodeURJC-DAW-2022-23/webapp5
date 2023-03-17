@@ -10,6 +10,6 @@ export interface User {
   billingInformation: string;
   roles: string[];
   cart: Game[];
-  profilePicture: string;
+  profilePircture: string;
   totalPrice: number;
 }

@@ -9,6 +9,7 @@ import { BookFormComponent } from './components/books/book-form.component';
 import { LoginComponent } from './components/auth/login.component';
 import { RegisterComponent } from './components/auth/register.component';
 import { GamesComponent } from './components/games/games.component';
+import { ProfileComponent } from './components/users/profile.component';
 
 const appRoutes = [
     { path: 'books', component: BookListComponent },
@@ -18,6 +19,8 @@ const appRoutes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent},
     { path: '', component: GamesComponent },
+    { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard]},
+    { path: '**', redirectTo: '' }
 ]
 
 export const routing = RouterModule.forRoot(appRoutes);
