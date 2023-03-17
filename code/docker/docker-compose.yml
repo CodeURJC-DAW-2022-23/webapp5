@@ -13,6 +13,8 @@ services:
       - SPRING_JPA_HIBERNATE_DDL-AUTO=create-drop
     ports:
       - 8443:8443
+    depends_on:
+      - db
   db:
     image: mysql:8.0.22
     environment:

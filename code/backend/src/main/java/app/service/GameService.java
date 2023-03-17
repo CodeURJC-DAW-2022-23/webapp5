@@ -125,17 +125,17 @@ public class GameService {
 		}
 	}
 
-	public List<Game> recomendationGames(User currentUser) {
+	public List<Game> recomendationGames(User currentUser, int num) {
 		if (currentUser == null || currentUser.getRoles().contains("ADMIN")
 				|| purchaseService.purchasedGamesByUser(currentUser).isEmpty()) {
-			return this.findRecomendNoReg(3);
+			return this.findRecomendNoReg(num);
 		} else {
 			String category = games.findRecomendCategory(currentUser.getId());
-			List<Game> recomended = games.findRecomendbyCategory(category, currentUser.getId(), 3);
+			List<Game> recomended = games.findRecomendbyCategory(category, currentUser.getId(), num);
 			if (recomended.isEmpty()) {
-				recomended.addAll(this.findRecomendNoReg(3));
-			} else if (recomended.size() < 3) {
-				recomended.addAll(this.findRecomendNoReg(3 - recomended.size()));
+				recomended.addAll(this.findRecomendNoReg(num));
+			} else if (recomended.size() < num) {
+				recomended.addAll(this.findRecomendNoReg(num - recomended.size()));
 			}
 			return recomended;
 		}

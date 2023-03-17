@@ -1,5 +1,9 @@
-.custom-nav {
-  background-color: #100424 !important;
+.custom-nav-semi {
+  background-color: rgba(16, 4, 36, 0.95) !important;
+}
+
+.custom-nav-very {
+  background-color: rgba(16, 4, 36, 0.3) !important;
 }
 
 .custom-nav .navbar-toggler {

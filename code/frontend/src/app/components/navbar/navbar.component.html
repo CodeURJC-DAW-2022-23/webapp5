@@ -1,4 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-youplay fixed-top navbar-default bg-light mb-3 custom-nav">
+
+<section class="content-wrap">
+<nav [ngClass]="{'custom-nav-semi': scrolled, 'custom-nav-very': !scrolled}" #navbar class="navbar navbar-expand-lg navbar-youplay fixed-top navbar-default bg-light mb-3 custom-nav">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
       <img src="assets/images/logo.png" alt="">
@@ -65,3 +67,4 @@
     </div>
   </div>
 </nav>
+</section>

@@ -1,0 +1,34 @@
+.center-carousel {
+  text-align: center;
+}
+
+.my-custom-rating{
+  font-size: 20px;
+  margin-top: -5.9%;
+}
+
+.my-price{
+  margin-left: 70%;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: top;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.bottom-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

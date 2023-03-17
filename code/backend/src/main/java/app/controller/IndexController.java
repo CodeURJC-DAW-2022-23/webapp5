@@ -42,7 +42,7 @@ public class IndexController {
 		} else {
 			model.addAttribute("logged", false);
 		}
-		model.addAttribute("carrouselGames", gameService.recomendationGames(currentUser));
+		model.addAttribute("carrouselGames", gameService.recomendationGames(currentUser, 3));
 	}
 
 	@GetMapping("/")

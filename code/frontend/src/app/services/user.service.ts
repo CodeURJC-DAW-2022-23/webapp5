@@ -14,4 +14,8 @@ export class UserService {
     return this.http.get(BASE_URL + '/me', { withCredentials: true }
     ) as Observable<UserProfile>;}
 
+  getRecomendations(n: number): Observable<any> {
+    return this.http.get(BASE_URL + '/recomended?numberOfGames=' + n)
+  }
+
 };

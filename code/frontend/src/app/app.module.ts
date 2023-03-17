@@ -14,9 +14,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/auth/register.component';
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
 import { GamesComponent } from './components/games/games.component';
+import { SideBlockComponent } from './components/games/side-block.component';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent],
+  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule],
   bootstrap: [AppComponent]
 })

@@ -64,9 +64,9 @@ public class UserRestController {
 	public ResponseEntity<List<Game>> recomendations(HttpServletRequest request, @RequestParam int numberOfGames) {
 		try {
 			User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
-			return new ResponseEntity<>(gameService.recomendationGames(user), HttpStatus.OK);
+			return new ResponseEntity<>(gameService.recomendationGames(user, numberOfGames), HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(gameService.recomendationGames(null), HttpStatus.OK);
+			return new ResponseEntity<>(gameService.recomendationGames(null, numberOfGames), HttpStatus.OK);
 		}
 	}
 

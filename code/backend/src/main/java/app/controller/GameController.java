@@ -60,7 +60,7 @@ public class GameController {
 		} else {
 			model.addAttribute("logged", false);
 		}
-		gameService.recomendationGames(currentUser);
+		gameService.recomendationGames(currentUser, 3);
 	}
 
 	@GetMapping("/game/{id}")
