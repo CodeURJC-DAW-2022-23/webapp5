@@ -25,7 +25,7 @@ export class RoleGuard implements CanActivate {
           return false;
         }
         if (response.user.roles.indexOf('ADMIN') === -1){
-          this.router.navigate(['/login']);
+          this.router.navigate(['error/403']);
           return false;
         }
         return true;

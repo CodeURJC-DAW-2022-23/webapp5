@@ -1,5 +1,5 @@
 import { LoginService } from './../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { UserProfile } from './../../models/user.rest.model';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
@@ -10,13 +10,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private loginService: LoginService) { }
+  constructor(private userService: UserService, private router: Router, private loginService: LoginService,
+   public activatedRoute: ActivatedRoute) { }
 
   userProfile: UserProfile;
 
   ngOnInit(): void {
     this.userService.getMe().subscribe((response) => {
       this.userProfile = response;
+      if (this.userProfile.user.id.toString() != this.activatedRoute.snapshot.params['id']) {
+        this.router.navigate(['error/403']);
+      }
     });
   }
 
