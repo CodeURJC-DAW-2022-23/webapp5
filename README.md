@@ -565,8 +565,8 @@ In order to deploy the app on Railway you should follow the next steps:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            | [UserRestController]code/backend/src/main/java/app/controller/restController/UserRestController.java | 
-| #2            | [UserProfile]code/backend/src/main/java/app/model/modelRest/UserProfile.java |
-| #3            | [ClassDiagram]screenshots/DiagramaDeClases3.png| 
-| #4            | [Readme]README.md | 
+| #1            | [UserRestController](code/backend/src/main/java/app/controller/restController/UserRestController.java) | 
+| #2            | [UserProfile](code/backend/src/main/java/app/model/modelRest/UserProfile.java) |
+| #3            | [ClassDiagram](screenshots/DiagramaDeClases3.png)| 
+| #4            | [Readme](README.md) | 
 | #5            | | 
