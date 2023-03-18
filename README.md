@@ -458,7 +458,7 @@ In order to deploy the app on Railway you should follow the next steps:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            | 		   |  | 
+| #1            | Postman Collection | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4d95a15a725d74cd0e0506cce1de7a8bdd8170f5 |
 | #2            |  |  | 
 | #3            | |  | 
 | #4            |  | | 
@@ -566,7 +566,7 @@ In order to deploy the app on Railway you should follow the next steps:
 | File number | File               |
 | ------------- | ------------------ |
 | #1            | | 
-| #2            |     | 
+| #2            | |
 | #3            | | 
 | #4            | | 
 | #5            | | 
