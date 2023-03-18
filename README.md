@@ -469,11 +469,11 @@ In order to deploy the app on Railway you should follow the next steps:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            | | 
-| #2            |     | 
-| #3            | | 
-| #4            | | 
-| #5            | | 
+| #1            | [Dockerfile](code/docker/Dockerfile) | 
+| #2            | [docker-compose.yml](code/docker/docker-compose.yml)     | 
+| #3            | [railway.toml](code/railway.toml) | 
+| #4            | [KeyWhale.postman_collection.json](KeyWhale.postman_collection.json) | 
+| #5            | [RestSecurityConfig.java](code/backend/src/main/java/app/security/RestSecurityConfig.java) |
 
 ### Sergio Octavio Mancebo
 #### Textual description: 
