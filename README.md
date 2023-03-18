@@ -445,3 +445,141 @@ In order to deploy the app on Railway you should follow the next steps:
 8.  Execute the command "cd code".
 9.  Execute the command "railway up".
 10. In the project dashboard open the project and stablish a domain.
+
+## Class diagram and templates
+
+![diagram](screenshots/DiagramadeClases.png)
+
+## Group members participation
+### Brais Cabo Felpete
+#### Textual description: 
+Brais had done the data base, starter security, connection with the data base, login, register, sample data of the db, models, edit profile, see profile, game page, add games to cart, cart page, add review, review visualization, intial repositories and initial services.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Model creation, Data Base conection and sample data		   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ee0af6f1cd85e2e441085cf31dabd796945e5858 | 
+| #2            | Intial App Security | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/aa2d8b6ce5840f01bf212a732e094ffdc45d4cd5 | 
+| #3            | Login and Navbar done (registered + unregistered) | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/7a20c8bd4f81d111a7ec17f71b7b8d9bbfb5bf4e | 
+| #4            | Register, edit profile and see profile	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4b73d7932c6a5f1e10144a3d425212a16b1a1709 | 
+| #5            | Game Page				   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ef0773341c2037ccdd6db699c46d8cf260728093 | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [AjaxController.java](https://github.com/CodeURJC-DAW-2022-23/webapp5/blame/main/backend/src/main/java/app/controller/AjaxController.java)     | 
+| #2            | [LoadButton.js](https://github.com/CodeURJC-DAW-2022-23/webapp5/blame/main/backend/src/main/resources/static/loadButton.js)     | 
+| #3            | [UserController.java](https://github.com/CodeURJC-DAW-2022-23/webapp5/blame/main/backend/src/main/java/app/controller/UserController.java)     | 
+| #4            | [GameRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp5/blame/main/backend/src/main/java/app/repository/GameRepository.java)     | 
+| #5            | [Navbar.html](https://github.com/CodeURJC-DAW-2022-23/webapp5/blob/main/backend/src/main/resources/templates/Navbar.html)     | 
+
+
+
+
+
+
+### Sergio Octavio Mancebo
+#### Textual description:
+Sergio has created some features of the Administrator Control Panel, such as deleting the game from the website. The functionality of being able to remove your own comment from a game.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Delete game on the website	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/f6358ea84cc6ea5addcb63ebcba96f8dbb9a51f4 | 
+| #2            | Delete game comment	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/f04114f662d5d49f639eb869b34b77cc98a6aaf3 | 
+| #3            | control panel settings, edit game and button to delete game 	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/3cb2636ed03261040175b1ceabfa68ed207bc73a | 
+| #4            | searching games + side search 	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/b7789e6ef9db29554fee0b513c85de820f6866f9 | 
+| #5            |  add movie ratings, Created delete comment button  	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ae373389c7a6d4da37453fedfe46132cdacfed08 | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [AddGameController.java](backend/src/main/java/app/controller/AddGameController.java)     | 
+| #2            | [GameController.java](backend/src/main/java/app/controller/GameController.java)     | 
+| #3            | [product-info.html](backend/src/main/resources/templates/product-info.html)     | 
+| #4            | [ReviewService.java](backend/src/main/java/app/service/ReviewService.java)     | 
+| #5            | [controlPanel.html](backend/src/main/resources/templates/controlPanel.html)     |
+
+### Iker Pizarro Fernández
+#### Textual description:
+Iker has created some funcionalities for the administrator, such as create a new game and edit a game from the website. He also participates in the recommendation algorythm doing the controller and the frontend part.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Create Game  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/df0f6d4ae4ffe805f5cad6031df9a4ec81e452fa | 
+| #2            | Create Game with Images | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/001bb156675f9a26bd2923d81363647aaabef9a3  | 
+| #3            | Edit Game Backend | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/6743ce40950435145b253a1ab13f405d0179ace7 |
+| #4            | Edit Game Frontend   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/c529ef3d2a69ad90790dcdec236c707411d8b317 | 
+| #5            | Algorythm Controller | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/750e2d81a02e84ebb36d3edce42d37436c2658af | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |  [AddGameController.java](backend/src/main/java/app/controller/AddGameController.java)     | 
+| #2            |  [newGame.html](backend/src/main/resources/templates/newGame.html)  | 
+| #3            |  [editGame.html](backend/src/main/java/app/controller/editGame.html)    | 
+| #4            |  [product-info.html](backend/src/main/resources/templates/product-info.html)    | 
+| #5            |  [IndexController.java](backend/src/main/java/app/controller/IndexController.java)  |
+
+
+
+
+### Sergio Pérez Sampedro
+#### Textual description:
+Sergio has conect the back wich the front. This includes the grafics, games of database and algorithm.
+ 
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Add the graphic  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/c5870e3477cd2ec81c469b09ce8e5b6d607a8f30 | 
+| #2            | Conect the back to the main without bugs  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4f5765431d7e8721ed0d8db98fcb60b681ac34d4 | 
+| #3            | Load more games  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/8f3fff474fcd426ebf4e9ee7613c91a01f464727 | 
+| #4            | Recommended algorithm	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4e6684922fb3b6fc8a4c9bde6ed29222d2635c5e | 
+| #5            | All star done	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/d86dc821d7b320504c543d0d791e632482eccc3e | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [product-info.html](backend/src/main/resources/templates/product-info.html)     | 
+| #2            | [index.html](backend/src/main/resources/templates/index.html)     | 
+| #3            | [IndexController.java](backend/src/main/java/app/controller/IndexController.java)     | 
+| #4            | [GameRepository.java](/backend/src/main/java/app/repository/GameRepository.java)     | 
+| #5            | [GameService.java](/backend/src/main/java/app/service/GameService.java)     |
+
+### Javier Gaspariño Muñoz
+#### Textual description:
+Javier has mainly created the checkout functionalities and also the loading plus games and reviews.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Checkout Backend and Frontend, first update   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/67cf44dcb955aade41d7bc003198b77d0e9996a8 | 
+| #2            | Fix in the checkout links	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/726084764f1b83f61d5fd290577df2e14a3448e3 | 
+| #3            | Save data entered at checkout at a later time	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/770201f4aac34a5eecdd5a708e2c6e87df5a1812#diff-ebbfe20c1e31991e367ec7ea57103db132958dc5591a554261426f43209736d8 | 
+| #4            | Sending mail with information after checkout	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/f9dc524b2f87c5a11a96ba59bc463e27460b18c5 | 
+| #5            | Option to upload more games and more reviews	   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/2c82ab98886febb3a83ed25b291b340ed898c578#diff-753f0f62b5bf636c1770d655e62d292c8eb00e56e85939e0b8d3079209869f28 | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [CheckoutController.java](backend/src/main/java/app/controller/CheckoutController.java)     | 
+| #2            | [checkout.html](backend/src/main/resources/templates/checkout.html)     | 
+| #3            | [EmailDetails.java](backend/src/main/java/app/Email/EmailDetails.java)     | 
+| #4            | [EmailServiceImpl.java](backend/src/main/java/app/Email/EmailServiceImpl.java)     | 
+| #5            | [moreGames.html](backend/src/main/resources/templates/moreGames.html)     |
