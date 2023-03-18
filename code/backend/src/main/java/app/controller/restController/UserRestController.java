@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -79,6 +81,60 @@ public class UserRestController {
 			return ResponseEntity.created(location).body(user);
 		} else {
 			return response;
+		}
+	}
+
+    @GetMapping("/{userId}/moreCartGames/{page}")
+	public Page<Game> getMoreCartGames(@PathVariable int page, HttpServletRequest request, @PathVariable long userId) {
+		try {
+			User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
+			return userService.getMoreCartGames(userId, page, user);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getUser(@PathVariable long id) {
+		// Before returning a page it confirms that there are more left
+		Optional<User> opUser = userService.findById(id);
+		if (opUser.isPresent()) {
+			return new ResponseEntity<>(opUser.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping("/{userId}/cart")
+	public ResponseEntity<Page<Game>> cart(HttpServletRequest request, @PathVariable long userId) {
+		try {
+			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).get();
+			return userService.cart(currentUser, userId);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+	}
+
+	@PostMapping("{userId}/cart/{id}")
+	public ResponseEntity<Object> addCart(HttpServletRequest request, @PathVariable long id,
+			@PathVariable long userId) {
+		try {
+			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
+			return userService.addCart(currentUser, id, userId);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+
+	}
+
+	@DeleteMapping("/{userId}/cart/{id}")
+	public ResponseEntity<Object> deleteCart(HttpServletRequest request, @PathVariable long id,
+			@PathVariable long userId) {
+		try {
+			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
+			return userService.deleteCart(currentUser, id, userId);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 	}
 }
