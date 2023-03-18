@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "aaafb8ce-8708-4356-b3f3-fe58133ace33",
+		"_postman_id": "fdc62b19-5629-4a6b-bc0e-4703f1133275",
 		"name": "KeyWhale",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25971845"
@@ -337,6 +337,27 @@
 								"users",
 								"206",
 								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MoreCartGames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/206/moreCartGames/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"206",
+								"moreCartGames",
+								"1"
 							]
 						}
 					},
@@ -734,6 +755,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "MoreFoundGames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/moreFoundGames/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"moreFoundGames",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -746,14 +787,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/api/reviews/",
+							"raw": "{{url}}/api/reviews/22",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
 								"reviews",
-								""
+								"22"
 							]
 						}
 					},
