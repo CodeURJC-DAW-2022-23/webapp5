@@ -397,3 +397,51 @@ Javier has mainly created the checkout functionalities and also the loading plus
 | #3            | [EmailDetails.java](backend/src/main/java/app/Email/EmailDetails.java)     | 
 | #4            | [EmailServiceImpl.java](backend/src/main/java/app/Email/EmailServiceImpl.java)     | 
 | #5            | [moreGames.html](backend/src/main/resources/templates/moreGames.html)     |
+
+# Phase 3
+## App deployed on Railway
+
+https://codeurjc-daw-2022-23-webapp5-production.up.railway.app/
+
+### Example users credentials
+
+**email**: user1lastname1@gmail.com  -  **Password**: 12345678.
+
+**Username**: admin1adminLastName1@gmail.com  -  **Password**: 12345678.
+
+## API REST Documentation
+
+https://github.com/url_de_la_movida_esta
+
+https://raw.githack.com/url_de_la_movida_esta
+
+## Instructions for executing the dockerized app
+In order to execute the dockerized app you should follow the next steps:
+1.	Install Docker Desktop or Docker in linux.
+2.	Open any shell of type "bash".
+3.	Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp5.git".
+4.	Execute the command cd/webapp5/code/docker.
+5.	Execute the command "docker-compose up" on the shell.
+6.	When the app is running, open any browser and search "https://localhost:8443".
+
+## Instructions for constructing the docker image
+In order to create the docker image you should follow the next steps:
+1.	Install Docker Desktop or Docker in linux.
+2.	Create and account on Dockerhub or connect to your account.
+3.	Open any shell of type "bash".
+4.	Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp5.git".
+5.	Execute the command cd/webapp5/code/docker.
+6.	Execute the command "./create_image.sh DockerhubUsername/ImageName".
+
+## Instructions for deploying the app on Railway
+In order to deploy the app on Railway you should follow the next steps:
+1.	Create an account on Railway.
+2.	Install Railway package.
+3.	Open any shell of type "bash".
+4.	Login on Railway using the command "railway login".
+5.  Execute the command "railway init" to create a new project.
+6.  Execute the command "railway add" and select the mysql option.
+7.  In the project dashboard in Railway page add the variable: SERVER_SSL_ENABLED=false
+8.  Execute the command "cd code".
+9.  Execute the command "railway up".
+10. In the project dashboard open the project and stablish a domain.
