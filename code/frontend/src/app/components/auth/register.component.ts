@@ -68,6 +68,7 @@ export class RegisterComponent{
   }
 
   checkPassword(){
+
     if (!this.checkEmpty(this.encodedPassword) || this.encodedPassword.length < 8){
       return "The password must be at least 8 characters long";
     }

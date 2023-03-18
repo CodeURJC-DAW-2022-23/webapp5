@@ -20,7 +20,7 @@
         <label>Upload image: </label><br>
     </ng-template>
 
-    <input #file type='file' name='imageFile' accept=".jpg, .jpeg" />
+    <input type="file" (change)="onFileSelected($event)" name="imageFile"><br>
 
     <p>
         <button (click)="cancel()">Cancel</button>

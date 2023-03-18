@@ -8,19 +8,28 @@ const BASE_URL = '/api/users/';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-
-	constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getMe(): Observable<UserProfile> {
-    return this.http.get(BASE_URL + '/me', { withCredentials: true }
-    ) as Observable<UserProfile>;}
+    return this.http.get(BASE_URL + '/me', {
+      withCredentials: true,
+    }) as Observable<UserProfile>;
+  }
 
   getRecomendations(n: number): Observable<any> {
-    return this.http.get(BASE_URL + '/recomended?numberOfGames=' + n)
+    return this.http.get(BASE_URL + '/recomended?numberOfGames=' + n);
   }
 
   getProfileImage(user: User) {
-    return user.profilePircture ? BASE_URL + user.id + '/imageProfile' : '/assets/images/no_image.png';
+    return user.profilePircture
+      ? BASE_URL + user.id + '/imageProfile'
+      : '/assets/images/no_image.png';
   }
 
-};
+  editUser(
+    id: number,
+    formData
+  ): Observable<any> {
+    return this.http.put(BASE_URL + id, formData);
+  }
+}

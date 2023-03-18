@@ -17,9 +17,10 @@ import { GamesComponent } from './components/games/games.component';
 import { SideBlockComponent } from './components/games/side-block.component';
 import { ProfileComponent } from './components/users/profile.component';
 import { ErrorComponent } from './components/error/error.component';
+import { EditUserComponent } from './components/users/edit-user.component';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent],
+  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule],
   bootstrap: [AppComponent]
 })

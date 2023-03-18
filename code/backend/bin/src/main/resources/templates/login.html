@@ -1,0 +1,44 @@
+<!-- @format -->
+
+{{>headerImport}} {{>navbar}}
+
+<!-- Main Content -->
+<section class="content-wrap full youplay-login">
+  <!-- Banner -->
+  <div class="youplay-banner banner-top">
+    <div
+      class="image"
+      style="background-image: url('/images/banner-bg.jpg')"
+    ></div>
+
+    <div class="info">
+      <div>
+        <div class="container align-center">
+          <div class="youplay-form">
+            <h1>Login</h1>
+
+            <form action="/login" method="post">
+              <div class="youplay-input">
+                <input type="text" name="username" placeholder="Email" />
+              </div>
+              <div class="youplay-input">
+                <input type="password" name="password" placeholder="Password" />
+              </div>
+              {{#error}}
+              <div class="alert alert-danger" role="alert">
+                <strong>Credentials are not correct!</strong> Please try again.
+              </div>
+              {{/error}}
+              <button class="btn btn-default db">Login</button>
+              <input type="hidden" name="_csrf" value="{{token}}" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+</section>
+<!-- /Main Content -->
+
+{{>footerImport}}

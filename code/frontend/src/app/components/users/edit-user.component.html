@@ -1,0 +1,91 @@
+<section class="content-wrap">
+
+  <!-- Banner -->
+  <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    <div class="image" style="background-image: url('assets/images/banner-blog-bg.jpg')">
+    </div>
+
+    <div class="info">
+      <div>
+        <div class="container">
+          <h1>Edit Profile</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+  <div class="container youplay-content">
+    <div class="align-right">
+      <a class="btn btn-lg" href="/profile/{{this.userProfile.user.id}}">Cancel</a>
+    </div>
+    <div class="col-md-12">
+      <!-- Billing Information -->
+      <h2 class="mt-0">Personal Information</h2>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Name:</p>
+          <div class="youplay-input">
+            <input type="text" [(ngModel)]="this.userProfile.user.name" placeholder="Name">
+          </div>
+          <div class="wrong" [class.display-div]="checkEmpty(this.userProfile.user.name)">
+            <p> The name cant be empty!</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>Last Name:</p>
+          <div class="youplay-input">
+            <input type="text" [(ngModel)]="this.userProfile.user.lastName" placeholder="Surname">
+          </div>
+          <div class="wrong" [class.display-div]="checkEmpty(this.userProfile.user.lastName)">
+            <p> The last name cant be empty!</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p>New Password:</p>
+          <div class="youplay-input">
+            <input type="password" [(ngModel)]="newPass" placeholder="Password">
+          </div>
+          <div class="wrong">
+            <p>{{checkPassword()}}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>Repeat Password:</p>
+          <div class="youplay-input">
+            <input type="password" [(ngModel)]="rPass" placeholder="Password">
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>About me:</p>
+    <div class="youplay-textarea">
+      <textarea rows="5" [(ngModel)]="this.userProfile.user.aboutMe" placeholder="Description"></textarea>
+    </div>
+
+
+
+      <label for="imageUpload">      <div class="align-left">
+        <a class="btn btn-lg">New Profile Picture</a>
+      </div></label>
+      <div class="imageInput">
+        <input type="file" accept="image/jpeg,image/png" (change)="onFileSelected($event)"  name="imageFile"><br>
+      </div>
+    <div class="align-right">
+      <a class="btn btn-lg" (click)="editUser($event)">Save Changes</a>
+    </div>
+    <!-- /Billing Information -->
+
+  </div>
+
+  <!-- Order Button -->
+
+  <!-- /Order Button -->
+
+  <!-- Footer -->
+  <!-- /Footer -->
+
+
+</section>
