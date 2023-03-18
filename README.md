@@ -448,7 +448,7 @@ In order to deploy the app on Railway you should follow the next steps:
 
 ## Class diagram and templates
 
-![diagram](screenshots/DiagramadeClases.png)
+![diagram](screenshots/DiagramaDeClases3.png)
 
 ## Group members participation
 ### Brais Cabo Felpete
