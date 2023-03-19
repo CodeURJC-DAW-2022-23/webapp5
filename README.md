@@ -506,20 +506,20 @@ In order to deploy the app on Railway you should follow the next steps:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            | 		   |  | 
-| #2            |  |  | 
-| #3            | |  | 
-| #4            |  | | 
-| #5            | | | 
+| #1            | ReviewRestController First Creation and GetMapping		   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ecdd779cf5e670b8d524a278014c849b1b4bfda7 | 
+| #2            | ReviewRestController Post Mapping	 | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/42067bcfad5ce6838b1e5ac9f0e4a509d91aa29d  | 
+| #3            | ReviewRestController Last Version with DeleteMapping	| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/3febca6d4894979c5bb6ae59eb53ca37254e0748 | 
+| #4            | GameRestController First Creation and API functions for create and show game| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4300fef5a840ffc0615f8eb58e7173692b13f5da | 
+| #5            | GameRestController Last version with API functions for edit game| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/14eb011f5282e8cd9e525aed1e40fd98a4a0fffd | 
 
 
 #### The five most participated files:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            | | 
-| #2            |     | 
-| #3            | | 
+| #1            | [ReviewRestController](code/backend/src/main/java/app/controller/restController/ReviewRestController.java) | 
+| #2            | [GameRestController](code/backend/src/main/java/app/controller/restController/GameRestController.java)   | 
+| #3            | [Readme](README.md) | 
 | #4            | | 
 | #5            | | 
 
