@@ -76,4 +76,39 @@ public class GameRestController {
         return ResponseEntity.created(location).body(saveNewGame);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<GameDetails> gameDetails(@PathVariable long id) {
+        Optional<Game> opGame = gameService.findById(id);
+        if (opGame.isPresent()) {
+            Game game = opGame.get();
+            GameDetails gameDetails = new GameDetails(game, reviewService.findByGame(game, PageRequest.of(0, 6)));
+            return new ResponseEntity<>(gameDetails, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Delete a game
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Game> deleteGame(@PathVariable long id) {
+        return gameService.deleteById(id);
+    }
+
+    // Edit a game
+    @PutMapping("/{id}")
+    public ResponseEntity<Game> editGame(Game game, MultipartFile imageField, List<MultipartFile> imageFields,
+            @PathVariable long id) throws IOException, SQLException {
+        return gameService.editGame(id, game, imageField, imageFields);
+    }
+
+    @GetMapping("/{id}/coverImage")
+    public ResponseEntity<Resource> downloadImageProfile(@PathVariable long id) throws SQLException {
+        return gameService.downloadImageProfile(id);
+    }
+
+    @GetMapping("/{id}/gameplayImage/{index}")
+    public ResponseEntity<Resource> downloadGameplayImages(@PathVariable long id, @PathVariable int index)
+            throws SQLException {
+        return gameService.downloadGameplayImages(id, index);
+    }
 }
