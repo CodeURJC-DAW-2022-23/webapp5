@@ -28,6 +28,7 @@ import app.service.GameService;
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewRestController {
+
     @Autowired
     private GameService gameService;
 
@@ -68,4 +69,27 @@ public class ReviewRestController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
+
+    @DeleteMapping("/{reviewId}")
+    public ResponseEntity<Review> deleteReview(@PathVariable long reviewId,
+            HttpServletRequest request) {
+        try {
+            User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
+            return reviewService.deleteReview(reviewId, user);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Review> getReview(@PathVariable long id) {
+        // Before returning a page it confirms that there are more left
+        Optional<Review> opReview = reviewService.findById(id);
+        if (opReview.isPresent()) {
+            return new ResponseEntity<>(opReview.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
