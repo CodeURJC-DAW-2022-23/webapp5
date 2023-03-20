@@ -51,7 +51,7 @@ public class ReviewRestController {
     @PostMapping("/{gameId}/{userId}")
     public ResponseEntity<Review> addReview(@PathVariable long gameId, @PathVariable long userId,
             HttpServletRequest request, String comment, int reviewRate) {
-        try {
+   
             User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
             ResponseEntity<Review> addReview = reviewService.addReview(gameId, user, userId, comment, reviewRate);
             if (addReview.getStatusCode() == HttpStatus.CREATED) {
@@ -65,20 +65,13 @@ public class ReviewRestController {
             } else {
                 return addReview;
             }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
     }
 
     @DeleteMapping("/{reviewId}")
     public ResponseEntity<Review> deleteReview(@PathVariable long reviewId,
             HttpServletRequest request) {
-        try {
             User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
             return reviewService.deleteReview(reviewId, user);
-        } catch (Exception e) {
-            return null;
-        }
     }
 
     @GetMapping("/{id}")
@@ -87,9 +80,7 @@ public class ReviewRestController {
         Optional<Review> opReview = reviewService.findById(id);
         if (opReview.isPresent()) {
             return new ResponseEntity<>(opReview.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        } 
     }
 
 }
