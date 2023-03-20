@@ -89,10 +89,12 @@ public class UserRestController {
 
 	@GetMapping("/{userId}/moreCartGames/{page}")
 	public Page<Game> getMoreCartGames(@PathVariable int page, HttpServletRequest request, @PathVariable long userId) {
-	
+		try {
 			User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
 			return userService.getMoreCartGames(userId, page, user);
-		
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@GetMapping("/{id}")
@@ -101,6 +103,8 @@ public class UserRestController {
 		Optional<User> opUser = userService.findById(id);
 		if (opUser.isPresent()) {
 			return new ResponseEntity<>(opUser.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -160,5 +164,25 @@ public class UserRestController {
 		}
 	}
 
-	
+	@GetMapping("/{userId}/purchase/{purchaseId}")
+	public ResponseEntity<Purchase> purchase(HttpServletRequest request, @PathVariable long userId,
+			@PathVariable long purchaseId) {
+		try {
+			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
+			return purchaseService.getPurchase(currentUser, userId, purchaseId);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+	}
+
+	@PutMapping("/{userId}")
+	public ResponseEntity<Object> editProfile(@PathVariable long userId, User newUser, HttpServletRequest request,
+			MultipartFile imageFile) throws IOException, SQLException {
+		try {
+			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
+			return userService.editProfile(userId, newUser, currentUser, imageFile);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+	}
 }
