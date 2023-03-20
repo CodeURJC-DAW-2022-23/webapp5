@@ -20,4 +20,20 @@ public class GameDetails {
         this.reviews = reviews;
     }
 
+    public Game getGame() {
+        return this.game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public Page<Review> getReviews() {
+        return this.reviews;
+    }
+
+    public void setReviews(Page<Review> reviews) {
+        this.reviews = reviews;
+    }
+    
 }
