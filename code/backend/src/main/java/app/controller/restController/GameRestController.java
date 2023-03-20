@@ -52,7 +52,15 @@ public class GameRestController {
         return gameService.getMoreIndexGames(page);
     }
 
-   
+    @GetMapping("/search")
+    public ResponseEntity<Page<Game>> search(String name, String category) {
+        Page<Game> searchGames = gameService.getSearchGames(0, name, category);
+        if (searchGames.getNumberOfElements() > 0) {
+            return new ResponseEntity<>(searchGames, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping("/moreFoundGames/{page}")
     public Page<Game> getMoreFoundGames(@PathVariable int page, String category, String name) {
@@ -80,7 +88,11 @@ public class GameRestController {
         }
     }
 
-   
+    // Delete a game
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Game> deleteGame(@PathVariable long id) {
+        return gameService.deleteById(id);
+    }
 
     // Edit a game
     @PutMapping("/{id}")
@@ -91,7 +103,7 @@ public class GameRestController {
 
     @GetMapping("/{id}/coverImage")
     public ResponseEntity<Resource> downloadImageProfile(@PathVariable long id) throws SQLException {
-     
+        return gameService.downloadImageProfile(id);
     }
 
     @GetMapping("/{id}/gameplayImage/{index}")
