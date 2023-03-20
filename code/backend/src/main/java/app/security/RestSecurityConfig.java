@@ -45,14 +45,21 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/api/**");
 
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/games/").hasRole("ADMIN");	
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/games/").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/games/**").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/games/**").hasRole("ADMIN");
+
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/reviews/**").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/reviews/**/**").hasRole("USER");
+
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/me").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/**/moreCartGames/**").hasRole("USER");		
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/**/moreCartGames/**").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/**/cart").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/**/cart/**").hasRole("USER");
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/users/**/cart/**").hasRole("USER");
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/users/**/checkout").hasRole("USER");
-		
+		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/users/**").hasRole("USER");
+
 
 		// Other URLs can be accessed without authentication
 		http.authorizeRequests().anyRequest().permitAll();
