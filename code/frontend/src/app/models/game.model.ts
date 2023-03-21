@@ -18,4 +18,5 @@ export interface Game {
   gameplayImages: string[];
   titleImage: string;
   reviewCount: number;
+  starDistributionInt: number[];
 }

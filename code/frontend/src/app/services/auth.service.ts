@@ -74,7 +74,7 @@ export class LoginService {
     }
 
     isAdmin() {
-        return this.userProfile.user && this.userProfile.user.roles.indexOf('ADMIN') !== -1;
+        return this.isLogged() && this.userProfile.user.roles.indexOf('ADMIN') !== -1;
     }
 
     currentUser() {

@@ -6,7 +6,7 @@
       <img [src]="gameImage(game)" alt="" class="carousel-image">
       <div class="carousel-caption">
         <h3>{{ game.name }}</h3>
-        <a class="btn btn-lg" href="/game/{{id}}">Purchase</a>
+        <a class="btn btn-lg" href="/game/{{game.id}}">Purchase</a>
       </div>
     </ng-template>
   </ngb-carousel>
@@ -20,7 +20,7 @@
 
       <div class="isotope-list row vertical-gutter">
         <div class="item col-lg-4 col-md-6 col-xs-12" *ngFor="let game of games">
-          <a href="/game/{{id}}" class="angled-img">
+          <a href="/game/{{game.id}}" class="angled-img">
             <div class="img img-offset">
               <img [src]="gameImage(game)" alt="">
             </div>

@@ -1,4 +1,4 @@
-import { Routes, RouterModule, CanActivate } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AuthGuard } from './services/auth-guard.service';
 import { RoleGuard as RoleGuard } from './services/role-guard.service';
@@ -12,6 +12,7 @@ import { GamesComponent } from './components/games/games.component';
 import { ProfileComponent } from './components/users/profile.component';
 import { ErrorComponent } from './components/error/error.component';
 import { EditUserComponent } from './components/users/edit-user.component';
+import { GamePageComponent } from './components/games/game-page.component';
 
 const appRoutes = [
     { path: 'books', component: BookListComponent },
@@ -24,6 +25,7 @@ const appRoutes = [
     { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard]},
     { path: 'error/:id', component: ErrorComponent },
     { path: 'editProfile/:id', component: EditUserComponent, canActivate: [AuthGuard]},
+    { path: 'game/:id', component: GamePageComponent},
     { path: '**', redirectTo: 'error/404' }
 ]
 

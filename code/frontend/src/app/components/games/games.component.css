@@ -45,3 +45,8 @@
 @keyframes spin {
   to {transform: rotate(360deg);}
 }
+
+.carousel-inner {
+  display: flex;
+  justify-content: center;
+}

@@ -92,4 +92,17 @@ public class ReviewRestController {
         }
     }
 
+    @GetMapping("/review/{userId}/{gameId}")
+    public ResponseEntity<Boolean> getReview(@PathVariable long userId, @PathVariable long gameId) {
+        // Before returning a page it confirms that there are more left
+        Optional<User> opUser = userService.findById(userId);
+        Optional<Game> opGame = gameService.findById(gameId);
+        try{
+            Boolean opReview = reviewService.reviewedByUser(opUser.get(), opGame.get());
+            return new ResponseEntity<>(opReview, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

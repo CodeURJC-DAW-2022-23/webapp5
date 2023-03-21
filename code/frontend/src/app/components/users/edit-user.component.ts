@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { UserProfile } from 'src/app/models/user.rest.model';
 
@@ -10,7 +9,7 @@ import { UserProfile } from 'src/app/models/user.rest.model';
 })
 export class EditUserComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private loginService: LoginService,
+  constructor(private userService: UserService, private router: Router,
     public activatedRoute: ActivatedRoute) { }
 
    userProfile: UserProfile;

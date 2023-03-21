@@ -18,10 +18,12 @@ import { SideBlockComponent } from './components/games/side-block.component';
 import { ProfileComponent } from './components/users/profile.component';
 import { ErrorComponent } from './components/error/error.component';
 import { EditUserComponent } from './components/users/edit-user.component';
+import { GamePageComponent } from './components/games/game-page.component';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule],
+  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent],
+  imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule, NgImageSliderModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
