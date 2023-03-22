@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserProfile } from '../models/user.rest.model';
@@ -11,8 +12,9 @@ export class LoginService {
 
     logged: boolean;
     userProfile : UserProfile;
+    currentCart: any;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private userService: UserService) {
         this.reqIsLogged();
     }
 
@@ -22,6 +24,11 @@ export class LoginService {
             response => {
                 this.userProfile = response as UserProfile;
                 this.logged = true;
+                this.userService.viewCart(this.userProfile.user.id).subscribe(
+                  response => {
+                    this.currentCart = response;
+                  }
+                );
             },
             _ => {
                   throw new Error('Something bad happened');
@@ -38,7 +45,6 @@ export class LoginService {
             return response;
           }),
           catchError((error: any) => {
-            console.error('Error during login:', error);
             return throwError('Something went wrong');
           })
         );
@@ -48,7 +54,6 @@ export class LoginService {
 
         return this.http.post(BASE_URL + '/logout', { withCredentials: true })
             .subscribe((resp: any) => {
-                console.log("LOGOUT: Successfully");
                 this.logged = false;
                 this.userProfile = undefined;
             });
@@ -59,11 +64,9 @@ export class LoginService {
       return this.http.post("/api/users/", {name: formName, lastName: formLastName, mail: formMail, encodedPassword: formPassword, aboutMe: formAboutMe})
         .pipe(
           map((response: any) => {
-            console.log(response);
             return response;
           }),
           catchError((error: any) => {
-            console.error('Error during login:', error);
             return throwError('Something went wrong');
           })
         );
@@ -83,5 +86,9 @@ export class LoginService {
 
     currentUserProfile(){
       return this.userProfile;
+    }
+
+    getCurrentCart(){
+      return this.currentCart;
     }
 }

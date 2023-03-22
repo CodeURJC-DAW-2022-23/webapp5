@@ -24,6 +24,7 @@ export class GamePageComponent implements OnInit {
   isReviewed : boolean = true;
   comment: string = "";
   reviewRate: number = 1;
+  inCart: boolean;
 
   images: Array<object> = [];
 
@@ -55,6 +56,7 @@ export class GamePageComponent implements OnInit {
             this.isReviewed = response;
           }
         );
+        this.inCart = this.gameInCart();
       },
       (error) => {
         this.router.navigate(['error/'+ error.status]);
@@ -107,7 +109,6 @@ export class GamePageComponent implements OnInit {
 
   setRate(rate: number){
     this.reviewRate = rate;
-    console.log(this.reviewRate);
   }
 
   reviewGame(){
@@ -117,6 +118,9 @@ export class GamePageComponent implements OnInit {
     this.reviewService.reviewGame(this.gameInfo.game.id, this.userProfile.user.id, formData).subscribe(
       (response) => {
         this.loadMainGame();
+      },
+      (error) => {
+        this.router.navigate(['error/'+ error.status]);
       }
     );
   }
@@ -129,5 +133,19 @@ export class GamePageComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  addToCart(event: any){
+    event.preventDefault();
+    this.userService.addToCart(this.gameInfo.game.id, this.userProfile.user.id).subscribe(
+      (response) => {
+        this.userProfile.user.cart = this.userProfile.user.cart.concat(response.content);
+        this.inCart = true;
+        this.authService.reqIsLogged();
+      },
+      (error) => {
+        this.router.navigate(['error/'+ error.status]);
+      }
+    );
   }
 }

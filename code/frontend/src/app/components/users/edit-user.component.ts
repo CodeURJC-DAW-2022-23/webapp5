@@ -1,3 +1,4 @@
+import { LoginService } from 'src/app/services/auth.service';
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
@@ -10,7 +11,7 @@ import { UserProfile } from 'src/app/models/user.rest.model';
 export class EditUserComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router,
-    public activatedRoute: ActivatedRoute) { }
+    public activatedRoute: ActivatedRoute, public authService: LoginService) { }
 
    userProfile: UserProfile;
    rPass: string ="";
@@ -73,7 +74,11 @@ export class EditUserComponent implements OnInit {
 
     this.userService.editUser(this.userProfile.user.id, formData).subscribe(
       response => {
+        this.authService.reqIsLogged();
         this.router.navigate(['/profile/' + this.userProfile.user.id]);
+      },
+      error => {
+        this.router.navigate(['error/'+ error.status]);
       }
     );
   }

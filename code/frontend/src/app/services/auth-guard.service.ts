@@ -19,7 +19,6 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.getMe().pipe(
       map((response: UserProfile) => {
-        console.log('Response:', response);
         if (!response) {
           this.router.navigate(['/login']);
           return false;
@@ -27,7 +26,6 @@ export class AuthGuard implements CanActivate {
         return true;
       }),
       catchError((error: any) => {
-        console.error('Error:', error);
         this.router.navigate(['/login']);
         return of(false);
       })

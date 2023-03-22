@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import {
   Component,
   ElementRef,
@@ -7,6 +8,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/auth.service';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'navbar',
@@ -38,8 +40,13 @@ export class NavbarComponent {
   constructor(
     public loginService: LoginService,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public userService: UserService,
+    public gameService: GameService,
   ) {}
+
+  ngOnInit(): void{
+  }
 
   ngAfterViewInit() {
     // Obtenemos la altura de la navbar
@@ -68,5 +75,20 @@ export class NavbarComponent {
   logout() {
     this.loginService.logOut();
     this.router.navigate(['/']);
+  }
+
+  totalPrice(){
+    return this.loginService.currentUser().totalPrice;
+  }
+
+  deleteFromCart(id: number){
+    this.userService.deleteFromCart(id, this.loginService.currentUser().id).subscribe(
+      _ => {
+        this.loginService.reqIsLogged();
+      },
+      error => {
+        this.router.navigate(['/error/'+ error.status]);
+      }
+    );
   }
 }

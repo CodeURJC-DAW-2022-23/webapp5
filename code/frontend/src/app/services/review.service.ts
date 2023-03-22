@@ -20,7 +20,6 @@ export class ReviewService {
     deleteReview(id: number): Observable<any>{
       return this.http.delete(BASE_URL + id).pipe(
         catchError((error) => {
-          console.error('Error:', error);
           return throwError(error);
         })
       ) as Observable<any>;;
@@ -33,7 +32,6 @@ export class ReviewService {
     reviewGame(idGame: number, idUser: number, formData: FormData){
       return this.http.post(BASE_URL + '/' + idGame+ "/" + idUser, formData).pipe(
         catchError((error) => {
-          console.error('Error:', error);
           return throwError(error);
         })
       ) as Observable<any>;

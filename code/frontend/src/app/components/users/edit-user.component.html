@@ -67,12 +67,14 @@
 
 
 
-      <label for="imageUpload">      <div class="align-left">
+    <label for="imageUpload">
+      <div class="align-left">
         <a class="btn btn-lg">New Profile Picture</a>
-      </div></label>
-      <div class="imageInput">
-        <input type="file" accept="image/jpeg,image/png" (change)="onFileSelected($event)"  name="imageFile"><br>
       </div>
+    </label>
+    <div class="imageInput">
+      <input type="file" id='imageUpload' accept="image/jpeg,image/png" (change)="onFileSelected($event)" name="imageFile"><br>
+    </div>
     <div class="align-right">
       <a class="btn btn-lg" (click)="editUser($event)">Save Changes</a>
     </div>

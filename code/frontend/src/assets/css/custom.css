@@ -9,3 +9,16 @@
 .white-text {
   color: white;
 }
+
+#imageUpload{
+  display: none;
+}
+
+.dropdown-menu {
+  color: white;
+}
+
+.dropdown-menu .btn {
+  color: white;
+}
+

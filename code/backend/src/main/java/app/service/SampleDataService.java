@@ -180,14 +180,24 @@ public class SampleDataService {
 
 	private void setGameplayImage(Game game, List<String> gameplayImages) {
 		List<Blob> auxArray = new ArrayList<>();
+		int index = 0;
 		try {
 			for (String string : gameplayImages) {
 				Resource image = new ClassPathResource(string);
 				auxArray.add(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
 				game.setGameplayImagesFiles(auxArray);
+				index++;
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				for (int i = index; i < gameplayImages.size(); i++) {
+				Resource image = new ClassPathResource(gameplayImages.get(0));
+				auxArray.add(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+				game.setGameplayImagesFiles(auxArray);
+				}
+			} catch (Exception e2) {
+				e.printStackTrace();
+			}
 		}
 	}
 
