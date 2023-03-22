@@ -1,0 +1,15 @@
+<div *ngIf="book">
+
+    <img [src]="bookImage()">
+
+    <h2>Book "{{book.title}}"</h2>
+    <div>
+        <p>{{book.description}}</p>
+    </div>
+    <p>
+        <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="removeBook()">Remove</button>
+        <button *ngIf="loginService.isLogged()" (click)="editBook()">Edit</button>
+        <br>
+        <button (click)="gotoBooks()">All Books</button>
+    </p>
+</div>

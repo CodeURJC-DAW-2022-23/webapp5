@@ -1,0 +1,33 @@
+<section class="content-wrap full youplay-login">
+  <!-- Banner -->
+  <div class="youplay-banner banner-top">
+    <div
+      class="image"
+      style="background-image: url('assets/images/banner-bg.jpg')"
+    ></div>
+
+    <div class="info">
+      <div>
+        <div class="container align-center">
+          <div class="youplay-form">
+            <h1>Login</h1>
+
+            <form action="/login" method="post">
+              <div class="youplay-input">
+                <input #user type="text" name="username" placeholder="Email" />
+              </div>
+              <div class="youplay-input">
+                <input #pass type="password" name="password" placeholder="Password" />
+              </div>
+              <div class="alert alert-danger" [class.display-div]="displayed"  role="alert">
+                <strong>Credentials are not correct!</strong> Please try again.
+              </div>
+              <button type="submit" (click)="logIn($event, user.value, pass.value)" class="btn btn-default db">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+</section>
