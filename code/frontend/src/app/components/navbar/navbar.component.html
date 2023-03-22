@@ -95,10 +95,10 @@
 
             <ng-template [ngIf]="loginService.isAdmin()">
               <li class="nav-item">
-                <a class="nav-link">NEW GAME</a>
+                <a class="nav-link" role="button">NEW GAME</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link">CONTROL PANEL</a>
+                <a class="nav-link" role="button" (click)="controlPanel()">CONTROL PANEL</a>
               </li>
             </ng-template>
           </ng-template>

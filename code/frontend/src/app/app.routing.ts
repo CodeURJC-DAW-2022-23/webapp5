@@ -1,3 +1,4 @@
+import { RoleGuard } from './services/role-guard.service';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard } from './services/auth-guard.service';
@@ -9,6 +10,7 @@ import { ProfileComponent } from './components/users/profile.component';
 import { ErrorComponent } from './components/error/error.component';
 import { EditUserComponent } from './components/users/edit-user.component';
 import { GamePageComponent } from './components/games/game-page.component';
+import { ControlPanelComponent } from './components/games/control-panel.component';
 
 const appRoutes = [
     { path: 'login', component: LoginComponent },
@@ -18,6 +20,7 @@ const appRoutes = [
     { path: 'error/:id', component: ErrorComponent },
     { path: 'editProfile/:id', component: EditUserComponent, canActivate: [AuthGuard]},
     { path: 'game/:id', component: GamePageComponent},
+    { path: 'controlPanel', component: ControlPanelComponent, canActivate: [RoleGuard]},
     { path: '**', redirectTo: 'error/404' }
 ]
 

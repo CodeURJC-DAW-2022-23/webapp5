@@ -1,4 +1,3 @@
-import { User } from './../models/user.model';
 import { Game } from './../models/game.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -38,5 +37,11 @@ export class GameService {
       ) as Observable<any>;
     }
 
-
+    deleteGame(id: number): Observable<any> {
+      return this.http.delete(BASE_URL + '/' + id).pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      ) as Observable<any>;
+    }
 };

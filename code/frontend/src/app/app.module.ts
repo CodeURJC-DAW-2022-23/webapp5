@@ -20,9 +20,10 @@ import { ErrorComponent } from './components/error/error.component';
 import { EditUserComponent } from './components/users/edit-user.component';
 import { GamePageComponent } from './components/games/game-page.component';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { ControlPanelComponent } from './components/games/control-panel.component';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent],
+  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent, ControlPanelComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule, NgImageSliderModule],
   bootstrap: [AppComponent]
 })

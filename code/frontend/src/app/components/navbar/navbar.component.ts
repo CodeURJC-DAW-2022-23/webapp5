@@ -91,4 +91,8 @@ export class NavbarComponent {
       }
     );
   }
+
+  controlPanel(){
+    this.router.navigate(['/controlPanel']);
+  }
 }
