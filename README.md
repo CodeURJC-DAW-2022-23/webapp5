@@ -475,29 +475,31 @@ In order to deploy the app on Railway you should follow the next steps:
 | #4            | [KeyWhale.postman_collection.json](KeyWhale.postman_collection.json) | 
 | #5            | [RestSecurityConfig.java](code/backend/src/main/java/app/security/RestSecurityConfig.java) |
 
+
 ### Sergio Octavio Mancebo
-#### Textual description: 
 
 #### The five most important commits:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            | 		   |  | 
-| #2            |  |  | 
-| #3            | |  | 
-| #4            |  | | 
-| #5            | | | 
+| #1            | Fix GameRestController errors		   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/80aeab57a302918b23d3e3515a859682c647704b| 
+| #2            | UserRestController GetMapping	 | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/16e7aae9c098bd2a16d02663f9be0e7b800d8fde  | 
+| #3            | GameDetails Last Version 	| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/f8f3e151be44edf8036383e6d5e6cdf80575faaa | 
+| #4            | Fix ReviewRestController getMapping id errors| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/94b51d1d3ccfb3967dde4cde2803bb1402475fd6 | 
+| #5            | RestSecurityConfig fix errors| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/e580597a7d3716014a71a2746cc1248d7fa79bb7 | 
 
 
 #### The five most participated files:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            | | 
-| #2            |     | 
-| #3            | | 
-| #4            | | 
-| #5            | | 
+| #1            | [GameRestController](code/backend/src/main/java/app/controller/restController/GameRestController.java) | 
+| #2            | [UserRestController](code/backend/src/main/java/app/controller/restController/UserRestController.java)   | 
+| #3            | [RestControllerConfig](code/backend/src/main/java/app/security/RestSecurityConfig.java) | 
+| #4            | [Readme](README.md) |
+
+
+
 
 ### Iker Pizarro Fernández
 #### Textual description: 
@@ -506,20 +508,20 @@ In order to deploy the app on Railway you should follow the next steps:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            | 		   |  | 
-| #2            |  |  | 
-| #3            | |  | 
-| #4            |  | | 
-| #5            | | | 
+| #1            | ReviewRestController First Creation and GetMapping		   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ecdd779cf5e670b8d524a278014c849b1b4bfda7 | 
+| #2            | ReviewRestController Post Mapping	 | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/42067bcfad5ce6838b1e5ac9f0e4a509d91aa29d  | 
+| #3            | ReviewRestController Last Version with DeleteMapping	| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/3febca6d4894979c5bb6ae59eb53ca37254e0748 | 
+| #4            | GameRestController First Creation (New game and Show game)| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4300fef5a840ffc0615f8eb58e7173692b13f5da | 
+| #5            | GameRestController Last version (Edit game and Delete game)| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/14eb011f5282e8cd9e525aed1e40fd98a4a0fffd | 
 
 
 #### The five most participated files:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            | | 
-| #2            |     | 
-| #3            | | 
+| #1            | [ReviewRestController](code/backend/src/main/java/app/controller/restController/ReviewRestController.java) | 
+| #2            | [GameRestController](code/backend/src/main/java/app/controller/restController/GameRestController.java)   | 
+| #3            | [Readme](README.md) | 
 | #4            | | 
 | #5            | | 
 
