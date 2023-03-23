@@ -12,7 +12,7 @@ export class GameService {
 
 	constructor(private http: HttpClient) { }
 
-  getIndexGames(): Observable<any> {
+    getIndexGames(): Observable<any> {
     return this.http.get(BASE_URL + '/'
     ) as Observable<any>;}
 
@@ -60,4 +60,12 @@ export class GameService {
         })
       ) as Observable<any>;
     }
-};
+
+    addGame(formData: FormData): Observable<any> {
+      return this.http.post(BASE_URL + '/', formData).pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      ) as Observable<any>;
+    }
+}
