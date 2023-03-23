@@ -1,6 +1,7 @@
 package app.service;
 
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -165,13 +166,14 @@ public class GameService {
 		if (imageFields != null && !imageFields.get(0).getOriginalFilename().equals("") && !imageFields.isEmpty()) {
 			game.setGameplayImagesFiles(imageFields.stream().map(file -> {
 				try {
-					return BlobProxy.generateProxy(file.getInputStream(), file.getSize());
+					Blob generateProxy = BlobProxy.generateProxy(file.getInputStream(), file.getSize());
+					game.getGameplayImages().add("isNice");
+					return generateProxy;
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				return null;
 			}).collect(Collectors.toList()));
-			game.setGameplayImages(imageFields.stream().map(file -> "").collect(Collectors.toList()));
 		} else {
 			Game dbGame = games.findById(game.getId()).orElseThrow();
 			game.setGameplayImagesFiles(dbGame.getGameplayImagesFiles());
@@ -181,7 +183,7 @@ public class GameService {
 	private void updateImageGame(Game game, MultipartFile imageField) throws IOException, SQLException {
 		if (imageField != null && !imageField.isEmpty()) {
 			game.setTitleImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-			game.setTitleImage("");
+			game.setTitleImage("isNice");
 		} else {
 			Game dbGame = games.findById(game.getId()).orElseThrow();
 			game.setTitleImageFile(dbGame.getTitleImageFile());
