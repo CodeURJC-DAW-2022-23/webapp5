@@ -37,10 +37,10 @@
             <option value="Simulation">Simulation</option>
             <option value="Strategy">Strategy</option>
           </select>
-          <div class="wrong" [class.display-div]="checkEmpty(category)">
-            <p> Select one category! </p>
-          </div>
         </label>
+        <div class="wrong" [class.display-div]="checkEmpty(category)">
+          <p> Select one category! </p>
+        </div>
         <div class="row">
           <div class="col-md-6">
             <p>Game Name:</p>
@@ -196,9 +196,7 @@
           </div></label
         >
         <div class="imageInput">
-          <input type="file" id='imagesUpload' accept="image/jpeg,image/png" (change)="onFilesSelected($event)" name="imageFiles"
-          multiple required/>
-          />
+          <input type="file" multiple id='imagesUploads' accept="image/jpeg,image/png" (change)="onFilesSelected($event)" name="imageFiles" required/>
         </div>
         <p>Description:</p>
         <div class="youplay-textarea">

@@ -34,15 +34,21 @@ export class AddGameComponent{
   }
 
   checkPrice() {
-    return typeof this.price === 'number' && !Number.isNaN(this.price) && Number.isFinite(this.price) && this.price % 1 !== 0;;
+   if (typeof this.price === 'number' && !Number.isNaN(this.price) && Number.isFinite(this.price) && this.price % 1 !== 0){
+      return;
+   }else{
+      return "Price must be a number";
+   }
   }
 
   onFilesSelected(event: any) {
-    this.imageFields = event.target.files;
+    if (event.target.files.length > 0) {
+      this.imageFields = event.target.files;
+    }
   }
 
   onFileSelected(event: any) {
-    this.imageField = <File> event.target.files[0];
+    this.imageField = event.target.files[0];
   }
 
   upload(event: any) {
@@ -53,7 +59,7 @@ export class AddGameComponent{
       return;
     }
 
-    if (!this.checkPrice()){
+    if (this.checkPrice() == "Price must be a number"){
       this.displayed = false;
       return;
     }
@@ -75,17 +81,21 @@ export class AddGameComponent{
 
 
     if (this.imageField != null) {
-      formData.append('imageFile', this.imageField , this.imageField.name);
+      formData.append('imageFile', this.imageField, this.imageField.name);
     }
 
-    if (this.imageFields != null) {
+    if (this.imageFields != null && this.imageFields.length > 0) {
       for (const element of this.imageFields) {
         formData.append('imageFiles', element, element.name);
       }
     }
 
-    this.gameService.addGame(formData).subscribe((data) => {
-      this.router.navigate(['/games']);
-    });
+    this.gameService.addGame(formData).subscribe( response => {
+      this.router.navigate(['/']);
+    },
+    error => {
+      this.displayed = false;
+    }
+    );
   }
 }
