@@ -103,4 +103,8 @@ export class NavbarComponent {
   checkout(){
     this.router.navigate(['/checkout/' + this.loginService.currentUser().id]);
   }
+
+  search(){
+    this.router.navigate(['/search']);
+  }
 }

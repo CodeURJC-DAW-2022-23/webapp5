@@ -1,16 +1,12 @@
 <div class="side-block">
 	<p>Search by Games:</p>
-
-	<form
-		action="/search"
-		method="post">
 		<div class="youplay-input">
 			<input
 				type="text"
-				name="name"
+				#name
+        (keyup.enter)="searchName(name.value)"
 				placeholder="Search..." />
 		</div>
-	</form>
 </div>
 <!-- /Side Search -->
 

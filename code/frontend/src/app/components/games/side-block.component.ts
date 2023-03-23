@@ -2,6 +2,7 @@ import { GameService } from './../../services/game.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/app/models/game.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-block',
@@ -11,7 +12,7 @@ export class SideBlockComponent implements OnInit {
 
   recomendedGames : Game[];
 
-  constructor(private userService: UserService, private gameService: GameService) {
+  constructor(private userService: UserService, private gameService: GameService, private router: Router) {
 
   }
 
@@ -23,6 +24,10 @@ export class SideBlockComponent implements OnInit {
 
   gameImage(game: Game){
     return this.gameService.getGameCoverImage(game);
+  }
+
+  searchName(name: string){
+    this.router.navigate(['/search'], { queryParams: { name: name } });
   }
 
 }

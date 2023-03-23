@@ -23,9 +23,10 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { ControlPanelComponent } from './components/games/control-panel.component';
 import { CartComponent } from './components/users/cart.component';
 import { CheckoutComponent } from './components/users/checkout.component';
+import { SearchComponent } from './components/games/search.component';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent, ControlPanelComponent, CartComponent, CheckoutComponent],
+  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent, ControlPanelComponent, CartComponent, CheckoutComponent, SearchComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule, NgImageSliderModule],
   bootstrap: [AppComponent]
 })

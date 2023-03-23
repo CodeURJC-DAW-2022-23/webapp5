@@ -44,4 +44,20 @@ export class GameService {
         })
       ) as Observable<any>;
     }
+
+    searchGames(category: String, name: String): Observable<any> {
+      return this.http.get(BASE_URL + '/search/?name=' + name + '&category=' + category).pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      ) as Observable<any>;
+    }
+
+    moreFoundGames(category: String, name: String, indexGames: number): Observable<any> {
+      return this.http.get(BASE_URL + 'moreFoundGames/' + indexGames + '/?name=' + name + '&category=' + category).pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      ) as Observable<any>;
+    }
 };

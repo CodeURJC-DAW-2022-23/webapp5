@@ -1,0 +1,88 @@
+<section class="content-wrap">
+  <!-- Banner -->
+  <div class="youplay-banner youplay-banner-parallax banner-top xsmall">
+    <div
+      class="image"
+      style="background-image: url('assets/images/banner-blog-bg.jpg')"
+    ></div>
+
+    <div class="info">
+      <div>
+        <div class="container">
+          <h1>Search</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+
+  <div class="container youplay-search">
+    <form action="/search">
+      <div class="youplay-input">
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="this.name"
+          placeholder="Search..."
+          autofocus
+        />
+      </div>
+
+      <label class="youplay-select">
+        <select name="category" [(ngModel)]="this.category">
+          <option value="">Select Category</option>
+          <option value="Action">Action</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Casual">Casual</option>
+          <option value="Indie">Indie</option>
+          <option value="Racing">Racing</option>
+          <option value="RPG">RPG</option>
+          <option value="Simulation">Simulation</option>
+          <option value="Strategy">Strategy</option>
+        </select>
+      </label>
+      <button class="btn btn-default navbar-btn" type="submit" (click)="searchGames()">Find</button>
+    </form>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div *ngIf="this.games.length > 0">
+        <h2>Games</h2>
+        </div>
+        <div *ngIf="!this.games.length">
+        <h2>No games found</h2>
+        </div>
+
+        <!-- Single Product Block -->
+        <a href="/game/{{game.id}}" class="angled-bg" *ngFor="let game of games">
+          <div class="row">
+            <div class="col-md-3 col-xs-4">
+              <div class="angled-img">
+                <div class="img">
+                  <img [src]="this.gameService.getGameCoverImage(game)" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9 col-xs-8">
+              <div class="row">
+                <div class="col-xs-6 col-md-9">
+                  <h4>{{game.name}}</h4>
+                  <ngb-rating [(rate)]="game.totalRating/game.reviewCount" [decimal]="1" readonly="true" max="5" class="my-custom-rating"></ngb-rating>
+                </div>
+                <div class="col-xs-6 col-md-3 align-right">
+                  <div class="price">${{game.price}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- /Single Product Block -->
+        <div [class.display-div]="!moreGames" *ngIf="!loading">
+          <button class="btn btn-default" (click)="searchMoreGames()">Load More Games</button>
+        </div>
+        <div *ngIf="loading" class="spinner"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
