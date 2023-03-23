@@ -14,6 +14,10 @@
   display: none;
 }
 
+#imageUploads{
+  display: none;
+}
+
 .dropdown-menu {
   color: white;
 }

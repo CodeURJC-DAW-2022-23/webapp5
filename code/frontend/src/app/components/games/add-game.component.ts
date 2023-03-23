@@ -64,38 +64,21 @@ export class AddGameComponent{
       return;
     }
 
-    const formData = new FormData();
-    formData.append('name', this.name);
-    formData.append('category', this.category);
-    formData.append('price', this.price.toString());
-    formData.append('os', this.os);
-    formData.append('processor', this.processor);
-    formData.append('memory', this.memory);
-    formData.append('directX', this.directX);
-    formData.append('network', this.network);
-    formData.append('hardDrive', this.hardDrive);
-    formData.append('soundcard', this.soundcard);
-    formData.append('graphics', this.graphics);
-    formData.append('description', this.description);
-
-
-
-    if (this.imageField != null) {
-      formData.append('imageFile', this.imageField, this.imageField.name);
+    if (this.imageField == null){
+      this.displayed = false;
+      return;
     }
 
-    if (this.imageFields != null && this.imageFields.length > 0) {
-      for (const element of this.imageFields) {
-        formData.append('imageFiles', element, element.name);
-      }
+    if (this.imageFields == null || this.imageFields.length == 0){
+      this.displayed = false;
+      return;
     }
 
-    this.gameService.addGame(formData).subscribe( response => {
-      this.router.navigate(['/']);
+    this.gameService.addGame(this.name, this.category, this.price, this.os, this.processor, this.memory, this.directX, this.network, this.hardDrive, this.soundcard, this.graphics, this.imageField, this.imageFields, this.description).subscribe((response) => {
+      this.router.navigate(['']);
     },
     error => {
       this.displayed = false;
-    }
-    );
+    });
   }
 }

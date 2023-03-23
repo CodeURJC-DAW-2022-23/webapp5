@@ -186,8 +186,7 @@
           </div></label
         >
         <div class="imageInput">
-          <input type="file" id='imageUpload' accept="image/jpeg,image/png" (change)="onFileSelected($event)" name="imageFile"
-           required/>
+          <input type="file" id='imageUpload' accept="image/jpeg,image/png" (change)="onFileSelected($event)" required/>
         </div>
 
         <label for="imageUploads">
@@ -196,7 +195,7 @@
           </div></label
         >
         <div class="imageInput">
-          <input type="file" multiple id='imagesUploads' accept="image/jpeg,image/png" (change)="onFilesSelected($event)" name="imageFiles" required/>
+          <input id='imageUploads'type="file" multiple accept="image/jpeg,image/png" (change)="onFilesSelected($event)" required/>
         </div>
         <p>Description:</p>
         <div class="youplay-textarea">

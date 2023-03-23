@@ -2,7 +2,7 @@ import { Game } from './../models/game.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 const BASE_URL = '/api/games/';
 
@@ -61,11 +61,30 @@ export class GameService {
       ) as Observable<any>;
     }
 
-    addGame(formData: FormData): Observable<any> {
-      return this.http.post(BASE_URL + '/', formData).pipe(
-        catchError((error) => {
-          return throwError(error);
-        })
+    addGame(name: string, category: string, price: number, os: string, processor: string, memory: string, directX: string, network: string, hardDrive: string, soundcard: string, graphics: string, imageField: File, imageFields: File[], description: string) {
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('category', category);
+      formData.append('price', price.toString());
+      formData.append('os', os);
+      formData.append('processor', processor);
+      formData.append('memory', memory);
+      formData.append('directX', directX);
+      formData.append('network', network);
+      formData.append('hardDrive', hardDrive);
+      formData.append('soundcard', soundcard);
+      formData.append('graphics', graphics);
+      formData.append('imageField', imageField);
+      for (let i = 0; i < imageFields.length; i++) {
+        formData.append('imageFields', imageFields[i]);
+      }
+      formData.append('description', description);
+      return this.http.post("/api/games/", formData).pipe( map((response: any) => {
+        return response;
+      }),
+      catchError((error: any) => {
+        return throwError('Something went wrong');
+      })
       ) as Observable<any>;
     }
 }
