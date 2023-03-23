@@ -95,4 +95,8 @@ export class NavbarComponent {
   controlPanel(){
     this.router.navigate(['/controlPanel']);
   }
+
+  cart(){
+    this.router.navigate(['/cart/' + this.loginService.currentUser().id]);
+  }
 }

@@ -21,10 +21,10 @@ import { EditUserComponent } from './components/users/edit-user.component';
 import { GamePageComponent } from './components/games/game-page.component';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { ControlPanelComponent } from './components/games/control-panel.component';
-import { AddGameComponent } from './components/games/add-game.component';
+import { CartComponent } from './components/users/cart.component';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent, ControlPanelComponent, AddGameComponent],
+  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent, ControlPanelComponent, CartComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule, NgImageSliderModule],
   bootstrap: [AppComponent]
 })

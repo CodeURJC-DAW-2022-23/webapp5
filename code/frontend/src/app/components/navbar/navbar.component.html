@@ -34,7 +34,7 @@
                   <li><a role="button" (click)="myProfile()">Profile <span
                         class="badge pull-right bg-warning">13</span></a>
                   </li>
-                  <li><a href="/cart/{{currentUser.id}}">My Cart <span class="badge pull-right bg-default">3</span></a>
+                  <li><a (click)="cart()" role="button">My Cart <span class="badge pull-right bg-default">3</span></a>
                   </li>
                   <li class="divider"></li>
 
@@ -47,7 +47,7 @@
             </li>
 
             <li class="dropdown dropdown-hover dropdown-cart nav-item">
-              <a class="fa fa-shopping-cart nav-link" role="button">
+              <a class="fa fa-shopping-cart nav-link" role="button" (click)="cart()">
               </a>
               <div class="dropdown-menu dropdown-menu-right dropdown-menu-scrollable" style="width: 300px;">
                 <ng-template [ngIf]="this.loginService.getCurrentCart().numberOfElements > 0">
@@ -75,20 +75,22 @@
 
 
 
-                  <div class="ml-20 mr-20 pull-left" *ngIf="!this.loginService.getCurrentCart().last"><strong>View cart to see all the games</strong> </div>
+                  <div class="ml-20 mr-20 pull-left" *ngIf="!this.loginService.getCurrentCart().last"><strong>View cart
+                      to see all the games</strong> </div>
 
                   <div class="ml-20 mr-20 pull-left"><strong>Subtotal:</strong> <span
                       class="amount">${{totalPrice()}}</span>
                   </div>
                   <div class="btn-group pull-right m-15">
-                    <a href="/cart/{{currentUser.id}}" class="btn btn-default btn-sm">View Cart</a>
+                    <a role="button" (click)="cart()" class="btn btn-default btn-sm">View Cart</a>
                     <a href="/checkout/{{currentUser.id}}" class="btn btn-default btn-sm">Checkout</a>
                   </div>
                 </ng-template>
 
 
                 <div class="ml-20 mr-20 pull-right" *ngIf="this.loginService.getCurrentCart().numberOfElements === 0">
-                  <strong>The cart is empty</strong></div>
+                  <strong>The cart is empty</strong>
+                </div>
 
               </div>
             </li>

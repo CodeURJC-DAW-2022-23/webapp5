@@ -58,4 +58,14 @@ export class UserService {
       })
     );
   }
+
+  getMoreCartGames(userId: number, index: number) : Observable<any> {
+    return this.http.get(BASE_URL + userId + '/moreCartGames/' + index).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
+
+
 }

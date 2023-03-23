@@ -11,6 +11,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { EditUserComponent } from './components/users/edit-user.component';
 import { GamePageComponent } from './components/games/game-page.component';
 import { ControlPanelComponent } from './components/games/control-panel.component';
+import { CartComponent } from './components/users/cart.component';
 
 const appRoutes = [
     { path: 'login', component: LoginComponent },
@@ -21,6 +22,7 @@ const appRoutes = [
     { path: 'editProfile/:id', component: EditUserComponent, canActivate: [AuthGuard]},
     { path: 'game/:id', component: GamePageComponent},
     { path: 'controlPanel', component: ControlPanelComponent, canActivate: [RoleGuard]},
+    { path: 'cart/:id', component: CartComponent, canActivate: [AuthGuard]},
     { path: '**', redirectTo: 'error/404' }
 ]
 
