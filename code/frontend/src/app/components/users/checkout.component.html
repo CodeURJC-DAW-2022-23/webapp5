@@ -1,0 +1,173 @@
+<section class="content-wrap">
+
+  <!-- Banner -->
+  <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    <div class="image" style="background-image: url('assets/images/banner-blog-bg.jpg')">
+    </div>
+
+    <div class="info">
+      <div>
+        <div class="container">
+          <h1>Checkout</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+
+
+  <div class="container youplay-content">
+    <div class="row">
+
+      <div class="col-md-9">
+        <!-- Billing Information -->
+        <div *ngIf="this.cart.length > 0">
+          <h2 class="mt-0">Billing Details</h2>
+
+          <!-- Country -->
+          <div *ngIf="!this.user.billingInformation">
+            <p>Country:</p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="youplay-input">
+                  <input type="text" [(ngModel)]="country" placeholder="Country">
+                </div>
+                <div class="wrong" [class.display-div]="checkEmpty(this.country)">
+                  <p> The country cant be empty!</p>
+                </div>
+              </div>
+            </div>
+
+            <p>Address:</p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="youplay-input">
+                  <input type="text" [(ngModel)]="street" placeholder="Street Address" required>
+                </div>
+                <div class="wrong" [class.display-div]="checkEmpty(this.street)">
+                  <p> The street cant be empty!</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="youplay-input">
+                  <input type="text" [(ngModel)]="apartment" placeholder="Apartment, suite, unit etc." required>
+                </div>
+                <div class="wrong" [class.display-div]="checkEmpty(this.apartment)">
+                  <p> The apartment cant be empty!</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <p>City:</p>
+                <div class="youplay-input">
+                  <input type="text" [(ngModel)]="city" placeholder="City" required>
+                </div>
+                <div class="wrong" [class.display-div]="checkEmpty(this.city)">
+                  <p> The city cant be empty!</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <p>Postcode:</p>
+                <div class="youplay-input">
+                  <input type="text" [(ngModel)]="postCode" placeholder="Postcode" required>
+                </div>
+                <div class="wrong" [class.display-div]="checkEmpty(this.postCode)">
+                  <p> The apartment cant be empty!</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <p>Phone:</p>
+                <div class="youplay-input">
+                  <input type="text" [(ngModel)]="phone" placeholder="Phone" required>
+                </div>
+                <div class="wrong" [class.display-div]="checkEmpty(this.phone)">
+                  <p> The phone cant be empty!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="user.billingInformation">
+            <div class="alert" role="alert">
+              <strong>{{user.billingInformation}}</strong>
+            </div>
+          </div>
+          <!-- /Billing Information -->
+
+
+          <!-- Cart -->
+          <h2>Your Games in Cart</h2>
+          <!-- Single Product Block -->
+          <div class="item angled-bg" *ngFor="let game of cart">
+            <div class="row">
+              <div class="col-xs-6 col-md-9">
+                <h4 class="ml-20">{{game.name}}</h4>
+              </div>
+              <div class="col-xs-6 col-md-3 align-right">
+                <div class="price">
+                  ${{game.price}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Single Product Block -->
+
+          <div [class.display-div]="!moreGames" *ngIf="!loading">
+            <button class="btn btn-default" (click)="getMoreGames()">Load More Games</button>
+          </div>
+          <div *ngIf="loading" class="spinner"></div>
+
+          <div class="align-right h3 mr-20 mb-20">
+            Total: <strong>${{user.totalPrice}}</strong>
+          </div>
+          <!-- Cart -->
+
+
+          <!-- Payment Type -->
+          <h2>Payment Type</h2>
+          <div class="youplay-radio">
+            <input type="radio" name="payment_type" value="bank" id="radio1">
+            <label for="radio1">Direct Bank Transfer</label>
+          </div>
+          <div class="youplay-radio">
+            <input type="radio" name="payment_type" value="cheque" id="radio2">
+            <label for="radio2">Cheque Payment</label>
+          </div>
+          <div class="youplay-radio">
+            <input type="radio" name="payment_type" value="paypal" id="radio3" checked>
+            <label for="radio3">PayPal</label>
+          </div>
+          <!-- /Payment Type -->
+
+
+          <div class="alert alert-danger" [class.display-div]="displayed" role="alert">
+            <strong>Checkout form data is not correct!</strong>
+          </div>
+          <!-- Order Button -->
+          <div class="align-right">
+            <div *ngIf="!checkoutLoading">
+              <button class="btn btn-default db" (click)="checkOut($event)" type="submit">Purchase</button>
+            </div>
+            <div *ngIf="checkoutLoading" class="spinner"></div>
+          </div>
+          <!-- /Order Button -->
+        </div>
+        <div *ngIf="this.cart.length == 0">
+          <h2 class="mt-0">Your cart is empty</h2>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+      <div class="col-md-3">
+        <app-side-block></app-side-block>
+      </div>
+    </div>
+    <!-- /Right Side -->
+
+  </div>
+</section>

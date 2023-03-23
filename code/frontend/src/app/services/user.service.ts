@@ -67,5 +67,13 @@ export class UserService {
     );
   }
 
+  checkOut(userId: number, formData): Observable<any> {
+    return this.http.post(BASE_URL + userId + '/checkout', formData).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
+  }
 
-}
+  }
+

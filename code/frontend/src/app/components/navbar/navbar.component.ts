@@ -99,4 +99,8 @@ export class NavbarComponent {
   cart(){
     this.router.navigate(['/cart/' + this.loginService.currentUser().id]);
   }
+
+  checkout(){
+    this.router.navigate(['/checkout/' + this.loginService.currentUser().id]);
+  }
 }
