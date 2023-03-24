@@ -25,9 +25,10 @@ import { CartComponent } from './components/users/cart.component';
 import { CheckoutComponent } from './components/users/checkout.component';
 import { SearchComponent } from './components/games/search.component';
 import { AddGameComponent } from './components/games/add-game.component';
+import { EditGameComponent } from './components/games/edit-game.component';
 
 @NgModule({
-  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent, ControlPanelComponent, CartComponent, CheckoutComponent, SearchComponent, AddGameComponent],
+  declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent, ControlPanelComponent, CartComponent, CheckoutComponent, SearchComponent, AddGameComponent, EditGameComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule, NgImageSliderModule],
   bootstrap: [AppComponent]
 })

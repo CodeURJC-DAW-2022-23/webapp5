@@ -29,7 +29,7 @@ export class EditGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameService.getGameById(+this.router.url.split('/')[2]).subscribe((response) => {
-      this.game = response;
+      this.game = response.game;
     }
     );
   }
