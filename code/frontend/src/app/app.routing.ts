@@ -15,6 +15,7 @@ import { CartComponent } from './components/users/cart.component';
 import { CheckoutComponent } from './components/users/checkout.component';
 import { SearchComponent } from './components/games/search.component';
 import { AddGameComponent } from './components/games/add-game.component';
+import { EditGameComponent } from './components/games/edit-game.component';
 
 const appRoutes = [
     { path: 'login', component: LoginComponent },
@@ -30,6 +31,7 @@ const appRoutes = [
     { path: 'search', component: SearchComponent, pathMatch: 'full' },
     { path: 'search/:name/:category', component: SearchComponent },
     { path: 'newGame', component: AddGameComponent, canActivate: [RoleGuard] },
+    { path: 'editGame/:id', component: EditGameComponent, canActivate: [RoleGuard] },
     { path: '**', redirectTo: 'error/404' }
 ]
 

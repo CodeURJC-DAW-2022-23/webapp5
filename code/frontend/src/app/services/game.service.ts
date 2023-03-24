@@ -87,11 +87,30 @@ export class GameService {
       ) as Observable<any>;
     }
 
-    editGame(game: Game){
-      return this.http.put(BASE_URL + game.id, game).pipe(
-        catchError((error) => {
-          return throwError(error);
-        })
+    editGame(name: string, category: string, price: number, os: string, processor: string, memory: string, directX: string, network: string, hardDrive: string, soundcard: string, graphics: string, imageField: File, imageFields: File[], description: string) {
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('category', category);
+      formData.append('price', price.toString());
+      formData.append('os', os);
+      formData.append('processor', processor);
+      formData.append('memory', memory);
+      formData.append('directX', directX);
+      formData.append('network', network);
+      formData.append('hardDrive', hardDrive);
+      formData.append('soundcard', soundcard);
+      formData.append('graphics', graphics);
+      formData.append('imageField', imageField);
+      for (let i = 0; i < imageFields.length; i++) {
+        formData.append('imageFields', imageFields[i]);
+      }
+      formData.append('description', description);
+      return this.http.put("/api/games/", formData).pipe( map((response: any) => {
+        return response;
+      }),
+      catchError((error: any) => {
+        return throwError('Something went wrong');
+      })
       ) as Observable<any>;
     }
 }
