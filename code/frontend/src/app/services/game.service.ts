@@ -100,11 +100,15 @@ export class GameService {
       formData.append('hardDrive', game.hardDrive);
       formData.append('soundcard', game.soundCard);
       formData.append('graphics', game.graphics);
-      formData.append('imageField', imageField);
-      for (let i = 0; i < imageFields.length; i++) {
-        formData.append('imageFields', imageFields[i]);
-      }
       formData.append('description', game.description);
+      if(imageField){
+        formData.append('imageField', imageField);
+      }
+      if(imageFields.length > 0){
+        for (let i = 0; i < imageFields.length; i++) {
+          formData.append('imageFields', imageFields[i]);
+        }
+      }
       return this.http.put("/api/games/" + game.id, formData).pipe( map((response: any) => {
         return response;
       }),

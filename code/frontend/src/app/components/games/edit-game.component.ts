@@ -63,16 +63,6 @@ export class EditGameComponent implements OnInit {
       return;
     }
 
-    if (this.imageField == null){
-      this.displayed = false;
-      return;
-    }
-
-    if (this.imageFields == null || this.imageFields.length == 0){
-      this.displayed = false;
-      return;
-    }
-
     this.gameService.editGame(this.game,this.imageField,this.imageFields).subscribe((response) => {
       this.router.navigate(['/game/' + this.game.id]);
     },
