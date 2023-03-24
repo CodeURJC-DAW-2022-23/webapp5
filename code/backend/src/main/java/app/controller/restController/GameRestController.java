@@ -41,7 +41,13 @@ public class GameRestController {
 
     @Autowired
     private ReviewService reviewService;
-
+    @Operation(summary = "Get a page of games")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Found the games",
+            content = { @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Game.class)) }),
+        @ApiResponse(responseCode = "404", description = "Games not found",
+            content = @Content) })
     @GetMapping("/")
     public ResponseEntity<Page<Game>> getGames() {
         Page<Game> findGames = gameService.findGames(PageRequest.of(0, 6));
@@ -51,12 +57,24 @@ public class GameRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @Operation(summary = "Get more games")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Found the games",
+            content = { @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Game.class)) }),
+        @ApiResponse(responseCode = "404", description = "Games not found",
+            content = @Content) })
     @GetMapping("/moreIndexGames/{page}")
     public Page<Game> getMoreIndexGames(@PathVariable int page) {
         return gameService.getMoreIndexGames(page);
     }
-
+    @Operation(summary = "Get a page of games by name or category")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Found the games by name or category",
+            content = { @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Game.class)) }),
+        @ApiResponse(responseCode = "404", description = "Games not found",
+            content = @Content) })
     @GetMapping("/search")
     public ResponseEntity<Page<Game>> search(String name, String category) {
         Page<Game> searchGames = gameService.getSearchGames(0, name, category);
@@ -66,7 +84,13 @@ public class GameRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @Operation(summary = "Get more games by name or category")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Found the games by name or category",
+            content = { @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Game.class)) }),
+        @ApiResponse(responseCode = "404", description = "Games not found",
+            content = @Content) })
     @GetMapping("/moreFoundGames/{page}")
     public Page<Game> getMoreFoundGames(@PathVariable int page, String category, String name) {
         return gameService.getSearchGames(page, name, category);
@@ -83,7 +107,17 @@ public class GameRestController {
         URI location = fromCurrentRequest().path("/{id}").buildAndExpand(game.getId()).toUri();
         return ResponseEntity.created(location).body(saveNewGame);
     }
-
+    @Operation(summary = "Get a game by its id")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Found the game",
+            content = { @Content(mediaType = "application/json",
+                schema = @Schema(implementation = GameDetails.class)) }),
+        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
+            content = @Content),
+        @ApiResponse(responseCode = "404", description = "Game not found",
+            content = @Content),
+        @ApiResponse(responseCode = "401", description = "Unauthorized",
+            content = @Content)})
     @GetMapping("/{id}")
     public ResponseEntity<GameDetails> gameDetails(@PathVariable long id) {
         Optional<Game> opGame = gameService.findById(id);
@@ -95,25 +129,61 @@ public class GameRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @Operation(summary = "Delete a game")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Game deleted",
+            content = { @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Game.class)) }),
+        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
+            content = @Content),
+        @ApiResponse(responseCode = "404", description = "Game not found",
+            content = @Content),
+        @ApiResponse(responseCode = "401", description = "Unauthorized",
+                content = @Content) })
     // Delete a game
     @DeleteMapping("/{id}")
     public ResponseEntity<Game> deleteGame(@PathVariable long id) {
         return gameService.deleteById(id);
     }
-
+    @Operation(summary = "Edit a game")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Game edited",
+            content = { @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Game.class)) }),
+        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
+            content = @Content),
+        @ApiResponse(responseCode = "404", description = "Game not found",
+            content = @Content),
+        @ApiResponse(responseCode = "401", description = "Unauthorized",
+                content = @Content) })
     // Edit a game
     @PutMapping("/{id}")
     public ResponseEntity<Game> editGame(Game game, MultipartFile imageField, List<MultipartFile> imageFields,
             @PathVariable long id) throws IOException, SQLException {
         return gameService.editGame(id, game, imageField, imageFields);
     }
-
+    @Operation(summary = "Get the cover image of a game")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Found the cover image",
+            content = { @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Game.class)) }),
+        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
+            content = @Content),
+        @ApiResponse(responseCode = "404", description = "Cover not found",
+            content = @Content) })
     @GetMapping("/{id}/coverImage")
     public ResponseEntity<Resource> downloadImageProfile(@PathVariable long id) throws SQLException {
         return gameService.downloadImageProfile(id);
     }
-
+    @Operation(summary = "Get the gameplay images of a game")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Found the gameplay images",
+            content = { @Content(mediaType = "application/json",
+                schema = @Schema(implementation = Game.class)) }),
+        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
+            content = @Content),
+        @ApiResponse(responseCode = "404", description = "Gameplay images not found",
+            content = @Content) })
     @GetMapping("/{id}/gameplayImage/{index}")
     public ResponseEntity<Resource> downloadGameplayImages(@PathVariable long id, @PathVariable int index)
             throws SQLException {

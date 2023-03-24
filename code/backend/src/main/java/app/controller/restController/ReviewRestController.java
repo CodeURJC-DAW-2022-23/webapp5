@@ -17,6 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import app.model.Game;
 import app.model.User;
@@ -37,7 +42,11 @@ public class ReviewRestController {
 
     @Autowired
     private UserService userService;
-
+    @Operation(summary = "Get more reviews of a game")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "More reviews", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
+            @ApiResponse(responseCode = "404", description = "Game not found", content = @Content) })
     @GetMapping("/more/{id}/{page}")
     public Page<Review> getMoreReviews(@PathVariable int page, @PathVariable long id) {
         // Before returning a page it confirms that there are more left
@@ -47,7 +56,13 @@ public class ReviewRestController {
         }
         return null;
     }
-
+    @Operation(summary = "Add a review to a game")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Review added", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Game not found", content = @Content),
+            @ApiResponse(responseCode = "409", description = "User already reviewed this game", content = @Content) })
     @PostMapping("/{gameId}/{userId}")
     public ResponseEntity<Review> addReview(@PathVariable long gameId, @PathVariable long userId,
             HttpServletRequest request, String comment, int reviewRate) {
@@ -69,7 +84,14 @@ public class ReviewRestController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
-
+    @Operation(summary = "Delete a review")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Review deleted", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
+            @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Review not found", content = @Content),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",
+                content = @Content) })
     @DeleteMapping("/{reviewId}")
     public ResponseEntity<Review> deleteReview(@PathVariable long reviewId,
             HttpServletRequest request) {
@@ -80,7 +102,12 @@ public class ReviewRestController {
             return null;
         }
     }
-
+    @Operation(summary = "Get a review")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Review", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
+            @ApiResponse(responseCode = "404", description = "Review not found", content = @Content) })
+    
     @GetMapping("/{id}")
     public ResponseEntity<Review> getReview(@PathVariable long id) {
         // Before returning a page it confirms that there are more left
