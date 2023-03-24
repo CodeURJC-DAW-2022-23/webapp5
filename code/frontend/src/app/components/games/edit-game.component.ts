@@ -10,6 +10,8 @@ import { GameService } from 'src/app/services/game.service';
 export class EditGameComponent implements OnInit {
   game: Game;
   displayed: boolean = true;
+  imageField: File = null;
+  imageFields: File[];
 
   constructor(private gameService: GameService, private router: Router) { }
 
@@ -40,12 +42,12 @@ export class EditGameComponent implements OnInit {
 
   onFilesSelected(event: any) {
     if (event.target.files.length > 0) {
-      this.game.gameplayImages = event.target.files;
+      this.imageFields = event.target.files;
     }
   }
 
   onFileSelected(event: any) {
-    this.game.titleImage = event.target.files[0];
+    this.imageField = event.target.files[0];
   }
 
   edit(event: any) {
@@ -61,17 +63,17 @@ export class EditGameComponent implements OnInit {
       return;
     }
 
-    if (this.game.titleImage == null){
+    if (this.imageField == null){
       this.displayed = false;
       return;
     }
 
-    if (this.game.gameplayImages == null || this.game.gameplayImages.length == 0){
+    if (this.imageFields == null || this.imageFields.length == 0){
       this.displayed = false;
       return;
     }
 
-    this.gameService.editGame(this.game).subscribe((response) => {
+    this.gameService.editGame(this.game,this.imageField,this.imageFields).subscribe((response) => {
       this.router.navigate(['/game/' + this.game.id]);
     },
     error => {

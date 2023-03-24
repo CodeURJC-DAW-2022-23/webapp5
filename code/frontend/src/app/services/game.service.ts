@@ -87,7 +87,7 @@ export class GameService {
       ) as Observable<any>;
     }
 
-    editGame(game: Game) {
+    editGame(game: Game, imageField: File, imageFields: File[]) {
       const formData = new FormData();
       formData.append('name', game.name);
       formData.append('category', game.category);
@@ -100,6 +100,10 @@ export class GameService {
       formData.append('hardDrive', game.hardDrive);
       formData.append('soundcard', game.soundCard);
       formData.append('graphics', game.graphics);
+      formData.append('imageField', imageField);
+      for (let i = 0; i < imageFields.length; i++) {
+        formData.append('imageFields', imageFields[i]);
+      }
       formData.append('description', game.description);
       return this.http.put("/api/games/" + game.id, formData).pipe( map((response: any) => {
         return response;
@@ -109,5 +113,4 @@ export class GameService {
       })
       ) as Observable<any>;
     }
-
 }
