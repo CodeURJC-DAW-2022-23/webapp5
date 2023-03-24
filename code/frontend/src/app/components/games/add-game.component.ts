@@ -54,7 +54,7 @@ export class AddGameComponent{
   upload(event: any) {
     event.preventDefault();
 
-    if (!this.checkEmpty(this.name) || !this.checkEmpty(this.category ) || !this.checkEmpty(this.category) || !this.checkEmpty(this.os) || !this.checkEmpty(this.processor) || !this.checkEmpty(this.memory) || !this.checkEmpty(this.directX) || !this.checkEmpty(this.network) || !this.checkEmpty(this.hardDrive) || !this.checkEmpty(this.soundcard) || !this.checkEmpty(this.graphics) || !this.checkEmpty(this.description)) {
+    if (!this.checkEmpty(this.name) || !this.checkEmpty(this.category ) || !this.checkEmpty(this.os) || !this.checkEmpty(this.processor) || !this.checkEmpty(this.memory) || !this.checkEmpty(this.directX) || !this.checkEmpty(this.network) || !this.checkEmpty(this.hardDrive) || !this.checkEmpty(this.soundcard) || !this.checkEmpty(this.graphics) || !this.checkEmpty(this.description)) {
       this.displayed = false;
       return;
     }

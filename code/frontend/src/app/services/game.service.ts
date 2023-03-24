@@ -9,7 +9,6 @@ const BASE_URL = '/api/games/';
 @Injectable({ providedIn: 'root' })
 export class GameService {
 
-
 	constructor(private http: HttpClient) { }
 
     getIndexGames(): Observable<any> {
@@ -85,6 +84,14 @@ export class GameService {
       catchError((error: any) => {
         return throwError('Something went wrong');
       })
+      ) as Observable<any>;
+    }
+
+    editGame(game: Game){
+      return this.http.put(BASE_URL + game.id, game).pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
       ) as Observable<any>;
     }
 }
