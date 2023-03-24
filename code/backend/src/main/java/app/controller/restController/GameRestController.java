@@ -21,6 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import app.model.Game;
 import app.model.modelRest.GameDetails;
@@ -66,7 +71,10 @@ public class GameRestController {
     public Page<Game> getMoreFoundGames(@PathVariable int page, String category, String name) {
         return gameService.getSearchGames(page, name, category);
     }
-
+    @Operation(summary = "Creates a new game")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Game created", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Game.class)) }),
+            @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content) })
     // Creates a game
     @PostMapping("/")
     public ResponseEntity<Game> newGameProcess(Game game, MultipartFile imageField, List<MultipartFile> imageFields)
