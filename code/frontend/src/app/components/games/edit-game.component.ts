@@ -9,20 +9,6 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class EditGameComponent implements OnInit {
   game: Game;
-  category:string;
-  name: string;
-  price: number;
-  os: string;
-  processor: string;
-  memory: string;
-  directX: string;
-  network: string;
-  hardDrive: string;
-  soundcard: string;
-  graphics: string;
-  imageField: File = null;
-  imageFields: File[];
-  description: string;
   displayed: boolean = true;
 
   constructor(private gameService: GameService, private router: Router) { }
@@ -30,6 +16,9 @@ export class EditGameComponent implements OnInit {
   ngOnInit(): void {
     this.gameService.getGameById(+this.router.url.split('/')[2]).subscribe((response) => {
       this.game = response.game;
+    },
+    (error) => {
+      this.router.navigate(['error/403']);
     }
     );
   }
@@ -42,7 +31,7 @@ export class EditGameComponent implements OnInit {
   }
 
   checkPrice() {
-   if (typeof this.price === 'number' && !Number.isNaN(this.price) && Number.isFinite(this.price) && this.price % 1 !== 0){
+   if (typeof this.game.price === 'number' && !Number.isNaN(this.game.price) && Number.isFinite(this.game.price) && this.game.price % 1 !== 0){
       return;
    }else{
       return "Price must be a number";
@@ -51,18 +40,18 @@ export class EditGameComponent implements OnInit {
 
   onFilesSelected(event: any) {
     if (event.target.files.length > 0) {
-      this.imageFields = event.target.files;
+      this.game.gameplayImages = event.target.files;
     }
   }
 
   onFileSelected(event: any) {
-    this.imageField = event.target.files[0];
+    this.game.titleImage = event.target.files[0];
   }
 
   edit(event: any) {
     event.preventDefault();
 
-    if (!this.checkEmpty(this.name) || !this.checkEmpty(this.category ) || !this.checkEmpty(this.os) || !this.checkEmpty(this.processor) || !this.checkEmpty(this.memory) || !this.checkEmpty(this.directX) || !this.checkEmpty(this.network) || !this.checkEmpty(this.hardDrive) || !this.checkEmpty(this.soundcard) || !this.checkEmpty(this.graphics) || !this.checkEmpty(this.description)) {
+    if (!this.checkEmpty(this.game.name) || !this.checkEmpty(this.game.category ) || !this.checkEmpty(this.game.os) || !this.checkEmpty(this.game.processor) || !this.checkEmpty(this.game.memory) || !this.checkEmpty(this.game.directX) || !this.checkEmpty(this.game.network) || !this.checkEmpty(this.game.hardDrive) || !this.checkEmpty(this.game.soundCard) || !this.checkEmpty(this.game.graphics) || !this.checkEmpty(this.game.description)) {
       this.displayed = false;
       return;
     }
@@ -72,17 +61,17 @@ export class EditGameComponent implements OnInit {
       return;
     }
 
-    if (this.imageField == null){
+    if (this.game.titleImage == null){
       this.displayed = false;
       return;
     }
 
-    if (this.imageFields == null || this.imageFields.length == 0){
+    if (this.game.gameplayImages == null || this.game.gameplayImages.length == 0){
       this.displayed = false;
       return;
     }
 
-    this.gameService.editGame(this.name, this.category, this.price, this.os, this.processor, this.memory, this.directX, this.network, this.hardDrive, this.soundcard, this.graphics, this.imageField, this.imageFields, this.description).subscribe((response) => {
+    this.gameService.editGame(this.game).subscribe((response) => {
       this.router.navigate(['/game/' + this.game.id]);
     },
     error => {
