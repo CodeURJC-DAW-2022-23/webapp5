@@ -12,11 +12,11 @@ export class GameService {
 	constructor(private http: HttpClient) { }
 
     getIndexGames(): Observable<any> {
-    return this.http.get(BASE_URL + '/'
+    return this.http.get(BASE_URL
     ) as Observable<any>;}
 
     getGameCoverImage(game: Game) {
-      return game.titleImage ? '/api/games/' + game.id + '/coverImage' : '/assets/images/no_image.png';
+      return game.titleImage ? BASE_URL + game.id + '/coverImage' : '/assets/images/no_image.png';
     }
 
     getGameplayImage(game: Game, index: number) {
@@ -24,12 +24,12 @@ export class GameService {
     }
 
     getMoreGames(indexGames: number): Observable<any> {
-      return this.http.get(BASE_URL + '/moreIndexGames/' + indexGames
+      return this.http.get(BASE_URL + 'moreIndexGames/' + indexGames
       ) as Observable<any>;
     }
 
     getGameById(id: number): Observable<any> {
-      return this.http.get(BASE_URL + '/' + id).pipe(
+      return this.http.get(BASE_URL  + id).pipe(
         catchError((error) => {
           return throwError(error);
         })
@@ -37,7 +37,7 @@ export class GameService {
     }
 
     deleteGame(id: number): Observable<any> {
-      return this.http.delete(BASE_URL + '/' + id).pipe(
+      return this.http.delete(BASE_URL + id).pipe(
         catchError((error) => {
           return throwError(error);
         })
@@ -45,7 +45,7 @@ export class GameService {
     }
 
     searchGames(category: String, name: String): Observable<any> {
-      return this.http.get(BASE_URL + '/search/?name=' + name + '&category=' + category).pipe(
+      return this.http.get(BASE_URL + 'search/?name=' + name + '&category=' + category).pipe(
         catchError((error) => {
           return throwError(error);
         })
@@ -78,7 +78,7 @@ export class GameService {
         formData.append('imageFields', imageFields[i]);
       }
       formData.append('description', description);
-      return this.http.post("/api/games/", formData).pipe( map((response: any) => {
+      return this.http.post(BASE_URL, formData).pipe( map((response: any) => {
         return response;
       }),
       catchError((error: any) => {
@@ -109,7 +109,7 @@ export class GameService {
           formData.append('imageFields', imageFields[i]);
         }
       }
-      return this.http.put("/api/games/" + game.id, formData).pipe( map((response: any) => {
+      return this.http.put(BASE_URL + game.id, formData).pipe( map((response: any) => {
         return response;
       }),
       catchError((error: any) => {

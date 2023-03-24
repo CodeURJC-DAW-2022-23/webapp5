@@ -148,4 +148,8 @@ export class GamePageComponent implements OnInit {
       }
     );
   }
+
+  goToEdit(){
+    this.router.navigate(['editGame/'+ this.gameInfo.game.id]);
+  }
 }

@@ -2,7 +2,7 @@
   <nav [ngClass]="{'custom-nav-semi': scrolled, 'custom-nav-very': !scrolled}" #navbar
     class="navbar navbar-expand-lg navbar-youplay fixed-top navbar-default bg-light mb-3 custom-nav">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" (click)="mainPage()" role="button">
         <img src="assets/images/logo.png" alt="">
       </a>
 
@@ -54,7 +54,7 @@
                   <div class="row youplay-side-news" *ngFor="let game of this.loginService.getCurrentCart().content">
                     <div class="col-xs-3 col-md-4">
 
-                      <a href="/game/{{game.id}}" class="angled-img">
+                      <a role="button" (click)="goToGame(game.id)" class="angled-img">
                         <div class="img">
 
                           <img [src]="this.gameService.getGameCoverImage(game)" alt="">
@@ -68,7 +68,7 @@
                         <i class="fa fa-times"></i>
                       </a>
 
-                      <h4 class="ellipsis"><a href="/game/{{game.id}}">{{game.name}}</a></h4>
+                      <h4 class="ellipsis"><a role="button" (click)="goToGame(game.id)">{{game.name}}</a></h4>
                       <span class="quantity">1 × <span class="amount">${{game.price}}</span></span>
                     </div>
                   </div>
@@ -97,7 +97,7 @@
 
             <ng-template [ngIf]="loginService.isAdmin()">
               <li class="nav-item">
-                <a class="nav-link" role="button" href="/newGame">NEW GAME</a>
+                <a class="nav-link" role="button" (click)="goToNewGame()">NEW GAME</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" role="button" (click)="controlPanel()">CONTROL PANEL</a>

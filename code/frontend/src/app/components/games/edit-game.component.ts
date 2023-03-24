@@ -70,4 +70,8 @@ export class EditGameComponent implements OnInit {
       this.displayed = false;
     });
   }
+
+  goToGame() {
+    this.router.navigate(['/game/' + this.game.id]);
+  }
 }

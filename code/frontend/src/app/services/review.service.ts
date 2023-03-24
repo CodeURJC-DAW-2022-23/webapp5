@@ -13,7 +13,7 @@ export class ReviewService {
 	constructor(private http: HttpClient) { }
 
     getMoreReviews(id: number, indexReview: number): Observable<any> {
-      return this.http.get(BASE_URL + '/more/' + id + "/" + indexReview
+      return this.http.get(BASE_URL + 'more/' + id + "/" + indexReview
       ) as Observable<any>;
     }
 
@@ -26,11 +26,11 @@ export class ReviewService {
     }
 
     isReviewed(idGame: number, idUser: number){
-      return this.http.get(BASE_URL + '/review/' + idUser+ "/" + idGame) as Observable<any>;
+      return this.http.get(BASE_URL + 'review/' + idUser+ "/" + idGame) as Observable<any>;
     }
 
     reviewGame(idGame: number, idUser: number, formData: FormData){
-      return this.http.post(BASE_URL + '/' + idGame+ "/" + idUser, formData).pipe(
+      return this.http.post(BASE_URL + idGame+ "/" + idUser, formData).pipe(
         catchError((error) => {
           return throwError(error);
         })

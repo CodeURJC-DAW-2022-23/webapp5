@@ -83,4 +83,8 @@ export class EditUserComponent implements OnInit {
     );
   }
 
+  goToProfile(){
+    this.router.navigate(['/profile/' + this.userProfile.user.id]);
+  }
+
 }

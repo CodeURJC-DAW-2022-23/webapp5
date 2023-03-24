@@ -24,7 +24,7 @@ export class AddGameComponent{
   description: string;
   displayed: boolean = true;
 
-  constructor(private gameService: GameService, private router: Router) { }
+  constructor(private gameService: GameService, public router: Router) { }
 
   checkEmpty(input:string){
     if(input == undefined || input == ""){

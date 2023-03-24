@@ -30,4 +30,12 @@ export class SideBlockComponent implements OnInit {
     this.router.navigate(['/search'], { queryParams: { name: name } });
   }
 
+  goToGame(id: number) {
+    this.router.navigate(['/game/' + id]);
+  }
+
+  searchCategory(category: string){
+    this.router.navigate(['/search'], { queryParams: { category: category } });
+  }
+
 }

@@ -64,4 +64,12 @@ export class CartComponent implements OnInit {
     );
   }
 
+  goToGame(id: number) {
+    this.router.navigate(['/game/' + id]);
+  }
+
+  goToCheckout(){
+    this.router.navigate(['/checkout/'+ this.user.id]);
+  }
+
 }

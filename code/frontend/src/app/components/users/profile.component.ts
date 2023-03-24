@@ -33,4 +33,12 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  goToGame(id: number) {
+    this.router.navigate(['/game/' + id]);
+  }
+
+  editProfile(){
+    this.router.navigate(['/editProfile/' + this.userProfile.user.id]);
+  }
+
 }

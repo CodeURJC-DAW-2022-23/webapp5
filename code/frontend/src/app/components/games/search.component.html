@@ -54,7 +54,7 @@
         </div>
 
         <!-- Single Product Block -->
-        <a href="/game/{{game.id}}" class="angled-bg" *ngFor="let game of games">
+        <a role="button" (click)="goToGame(game.id)" class="angled-bg" *ngFor="let game of games">
           <div class="row">
             <div class="col-md-3 col-xs-4">
               <div class="angled-img">

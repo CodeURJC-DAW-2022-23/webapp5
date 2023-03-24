@@ -5,7 +5,7 @@ import { UserProfile } from '../models/user.rest.model';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
-const BASE_URL = '/api/auth/';
+const BASE_URL = '/api/auth';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {

@@ -107,4 +107,17 @@ export class NavbarComponent {
   search(){
     this.router.navigate(['/search']);
   }
+
+  mainPage(){
+    this.router.navigate(['/']);
+  }
+
+  goToGame(id: number) {
+    this.router.navigate(['/game/' + id]);
+  }
+
+  goToNewGame(){
+    this.router.navigate(['/newGame']);
+  }
+
 }

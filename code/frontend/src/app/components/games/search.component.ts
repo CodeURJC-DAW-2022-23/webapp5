@@ -64,6 +64,8 @@ export class SearchComponent implements OnInit {
     );
   }
 
-
+  goToGame(id: number) {
+    this.router.navigate(['/game/' + id]);
+  }
 
   }

@@ -9,7 +9,7 @@
         <div class="container">
           <h1>{{gameInfo.game.name}}</h1>
           <div class="align-right" *ngIf="this.authService.isAdmin()">
-            <a class="btn btn-lg" href="/editGame/{{gameInfo.game.id}}"> Edit Game </a>
+            <a class="btn btn-lg" role="button" (click)="goToEdit()"> Edit Game </a>
           </div>
           <br />
           <div *ngIf="!this.gameInfo.game.deleted">
@@ -27,7 +27,7 @@
                   </div>
                 </div>
                 <ng-template #notInCart>
-                  <a href="" role="button" (click)="addToCart($event)" class="btn btn-lg" title="Add to Cart">Add to Cart</a>
+                  <a role="button" (click)="addToCart($event)" class="btn btn-lg" title="Add to Cart">Add to Cart</a>
                 </ng-template>
               </ng-template>
             </div>

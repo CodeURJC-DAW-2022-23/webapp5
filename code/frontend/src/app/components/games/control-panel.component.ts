@@ -42,4 +42,12 @@ export class ControlPanelComponent implements OnInit {
       this.loading = false; // establece loading a false después de recibir la respuesta
     });
   }
+
+  goToGame(id: number) {
+    this.router.navigate(['/game/' + id]);
+  }
+
+  goToEditGame(id: number) {
+    this.router.navigate(['/editGame/' + id]);
+  }
 }

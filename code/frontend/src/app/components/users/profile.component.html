@@ -16,7 +16,7 @@
     <div class="info">
       <div>
         <div class="align-right">
-          <a class="btn btn-lg" href="/editProfile/{{userProfile.user.id}}">Edit Profile</a>
+          <a class="btn btn-lg" role="button" (click)="editProfile()">Edit Profile</a>
         </div>
         <div class="container youplay-user">
           <a class="angled-img image-popup">
@@ -55,7 +55,7 @@
                 <td>
                   <p>
                     <a *ngFor="let game of userProfile.games">
-                      <a href="/game/{{game.id}}">{{game.name}}</a>
+                      <a role="button" (click)="goToGame(game.id)">{{game.name}}</a>
                       &nbsp;
                     </a>
                   </p>

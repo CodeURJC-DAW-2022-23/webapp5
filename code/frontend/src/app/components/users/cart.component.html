@@ -29,7 +29,7 @@
       <div class="item angled-bg" *ngFor="let game of cart">
         <div class="row">
           <div class="col-lg-2 col-md-3 col-xs-4">
-            <a href="/game/{{game.id}}" class="angled-img">
+            <a role="button" (click)="goToGame(game.id)" class="angled-img">
               <div class="img">
                 <img [src]="this.gameService.getGameCoverImage(game)" alt="" />
               </div>
@@ -38,7 +38,7 @@
           <div class="col-lg-10 col-md-9 col-xs-8">
             <div class="row">
               <div class="col-xs-6 col-md-9">
-                <h4><a href="/game/{{game.id}}">{{game.name}}</a></h4>
+                <h4><a role="button" (click)="goToGame(game.id)">{{game.name}}</a></h4>
                 <div class="rating hidden-xs">
                   <ngb-rating [(rate)]="game.totalRating/game.reviewCount" [decimal]="1" readonly="true" max="5" class="my-custom-rating"></ngb-rating>
                 </div>
@@ -69,7 +69,7 @@
         Total: <strong>${{this.user.totalPrice}}</strong>
       </div>
       <div class="align-right">
-        <a href="/checkout/{{this.user.id}}" class="btn btn-lg"
+        <a role="button" (click)="goToCheckout()" class="btn btn-lg"
           >Proceed to Checkout</a
         >
       </div>

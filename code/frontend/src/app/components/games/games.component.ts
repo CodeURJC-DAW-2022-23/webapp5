@@ -2,6 +2,7 @@ import { GameService } from './../../services/game.service';
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/app/models/game.model';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-games',
@@ -17,7 +18,8 @@ export class GamesComponent implements OnInit {
 
   constructor(
     private gameService: GameService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,5 +45,9 @@ export class GamesComponent implements OnInit {
       this.indexGames++;
       this.loading = false; // establece loading a false después de recibir la respuesta
     });
+  }
+
+  goToGame(id: number) {
+    this.router.navigate(['/game/' + id]);
   }
 }

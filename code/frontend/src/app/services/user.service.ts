@@ -12,13 +12,13 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getMe(): Observable<UserProfile> {
-    return this.http.get(BASE_URL + '/me', {
+    return this.http.get(BASE_URL + 'me', {
       withCredentials: true,
     }) as Observable<UserProfile>;
   }
 
   getRecomendations(n: number): Observable<any> {
-    return this.http.get(BASE_URL + '/recomended?numberOfGames=' + n);
+    return this.http.get(BASE_URL + 'recomended?numberOfGames=' + n);
   }
 
   getProfileImage(user: User) {
