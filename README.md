@@ -532,9 +532,9 @@ In order to deploy the app on Railway you should follow the next steps:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            | 		   |  | 
-| #2            |  |  | 
-| #3            | |  | 
+| #1            | 	  Docs final in local |  https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/8ab874203f8282441395f94a9d66f09ea3d6d536 | 
+| #2            |  Documentation| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/04011510cbfa7199c1c1022e9e222808c32cf743 | 
+| #3            | conect to open API|  https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/73ecd7b1534d0fc86ed4cc8786366893df417ca0| 
 | #4            |  | | 
 | #5            | | | 
 
@@ -543,11 +543,11 @@ In order to deploy the app on Railway you should follow the next steps:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            | | 
-| #2            |     | 
-| #3            | | 
-| #4            | | 
-| #5            | | 
+| #1            |[GameRestController](code/backend/src/main/java/app/controller/restController/GameRestController.java) | 
+| #2            |[ReviewRestController](code/backend/src/main/java/app/controller/restController/ReviewRestController.java)     | 
+| #3            | [UserRestController](code/backend/src/main/java/app/controller/restController/UserRestController.java)| 
+| #4            | [LoginRestController](code/backend/src/main/java/app/controller/restController/LoginRestController.java)| 
+| #5            | [Readme](README.md) | 
 
 ### Javier Gaspariño Muñoz
 #### Textual description: 
