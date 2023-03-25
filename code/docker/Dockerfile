@@ -5,9 +5,8 @@ WORKDIR /project
 
 COPY frontend/ .
 
-RUN npm install -g @angular/cli
 RUN npm install
-RUN ng build --prod --base-href=/new/
+RUN npm run build -- --prod --base-href=/new/
 
 
 # Stage 2 - Build Spring Boot app
