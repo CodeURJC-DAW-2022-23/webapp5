@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -56,9 +58,9 @@ public class UserRestController {
 			@ApiResponse(responseCode = "200", description = "Found the user",
 					content = { @Content(mediaType = "application/json",
 							schema = @Schema(implementation = UserProfile.class)) }),
-			@ApiResponse(responseCode = "404", description = "User not found or not have permissions",
+			@ApiResponse(responseCode = "404", description = "User not found ",
 					content = @Content),
-        @ApiResponse(responseCode = "401", description = "Unauthorized",
+        @ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
             content = @Content) })
 	@GetMapping("/me")
 	public ResponseEntity<UserProfile> profile(HttpServletRequest request) {
@@ -94,10 +96,10 @@ public class UserRestController {
 					content = { @Content(mediaType = "image/png") }),
 			@ApiResponse(responseCode = "404", description = "image profile not found",
 					content = @Content),
-			@ApiResponse(responseCode = "401", description = "Unauthorized",
+			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
 						content = @Content)})
 	@GetMapping("/{id}/imageProfile")
-	public ResponseEntity<Resource> downloadImageProfile(@PathVariable long id) throws SQLException {
+	public ResponseEntity<Resource> downloadImageProfile(@Parameter(description = "id of the current user")@PathVariable long id) throws SQLException {
 		return userService.downloadImageProfile(id);
 	}
 	@Operation(summary = "Register a new user")
@@ -105,8 +107,8 @@ public class UserRestController {
 			@ApiResponse(responseCode = "201", description = "User created",
 					content = { @Content(mediaType = "application/json",
 							schema = @Schema(implementation = User.class)) }),
-			@ApiResponse(responseCode = "400", description = "Bad request",
-					content = @Content) })
+			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
+							content = @Content) })
 	// Register users
 	@PostMapping("/")
 	public ResponseEntity<User> register(@RequestBody User user) throws IOException {
@@ -123,10 +125,11 @@ public class UserRestController {
 			@ApiResponse(responseCode = "200", description = "Found more games in the cart",
 					content = { @Content(mediaType = "application/json",
 							schema = @Schema(implementation = Game.class)) }),
-			@ApiResponse(responseCode = "404", description = "Games not found or not have permissions",
+			@ApiResponse(responseCode = "404", description = "Games not found in the cart",
 					content = @Content) })
 	@GetMapping("/{userId}/moreCartGames/{page}")
-	public Page<Game> getMoreCartGames(@PathVariable int page, HttpServletRequest request, @PathVariable long userId) {
+	public Page<Game> getMoreCartGames(@Parameter(description = "page of the games")@PathVariable int page, HttpServletRequest request,
+	@Parameter(description = "id of the current user")@PathVariable long userId) {
 		try {
 			User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
 			return userService.getMoreCartGames(userId, page, user);
@@ -141,10 +144,10 @@ public class UserRestController {
 							schema = @Schema(implementation = User.class)) }),
 			@ApiResponse(responseCode = "404", description = "User not found",
 					content = @Content),
-			@ApiResponse(responseCode = "401", description = "Unauthorized",
+			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
 						content = @Content) })
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getUser(@PathVariable long id) {
+	public ResponseEntity<User> getUser(@Parameter(description = "id of the user")@PathVariable long id) {
 		// Before returning a page it confirms that there are more left
 		Optional<User> opUser = userService.findById(id);
 		if (opUser.isPresent()) {
@@ -158,10 +161,10 @@ public class UserRestController {
 			@ApiResponse(responseCode = "200", description = "Found the cart",
 					content = { @Content(mediaType = "application/json",
 							schema = @Schema(implementation = UserProfile.class)) }),
-			@ApiResponse(responseCode = "404", description = "Cart not found or not have permissions",
+			@ApiResponse(responseCode = "404", description = "Cart not found",
 					content = @Content) })	
 	@GetMapping("/{userId}/cart")
-	public ResponseEntity<Page<Game>> cart(HttpServletRequest request, @PathVariable long userId) {
+	public ResponseEntity<Page<Game>> cart(HttpServletRequest request, @Parameter(description = "id of the current user") @PathVariable long userId) {
 		try {
 			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).get();
 			return userService.cart(currentUser, userId);
@@ -174,11 +177,13 @@ public class UserRestController {
 			@ApiResponse(responseCode = "201", description = "Game added to the cart",
 					content = { @Content(mediaType = "application/json",
 							schema = @Schema(implementation = UserProfile.class)) }),
-			@ApiResponse(responseCode = "404", description = "Game not found or not have permissions",
-					content = @Content) })
+			@ApiResponse(responseCode = "404", description = "Game not found ",
+					content = @Content),
+			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
+					content = @Content)})
 	@PostMapping("{userId}/cart/{id}")
-	public ResponseEntity<Object> addCart(HttpServletRequest request, @PathVariable long id,
-			@PathVariable long userId) {
+	public ResponseEntity<Object> addCart(HttpServletRequest request, @Parameter(description = "id of the game")@PathVariable long id,
+	@Parameter(description = "id of the current user") @PathVariable long userId) {
 		try {
 			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
 			return userService.addCart(currentUser, id, userId);
@@ -192,13 +197,13 @@ public class UserRestController {
 			@ApiResponse(responseCode = "200", description = "Game deleted to the cart",
 					content = { @Content(mediaType = "application/json",
 							schema = @Schema(implementation = UserProfile.class)) }),
-			@ApiResponse(responseCode = "404", description = "Game not found or not have permissions",
+			@ApiResponse(responseCode = "404", description = "Game not found ",
 					content = @Content),
-			@ApiResponse(responseCode = "401", description = "Unauthorized",
+			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
 						content = @Content) })
 	@DeleteMapping("/{userId}/cart/{id}")
-	public ResponseEntity<Object> deleteCart(HttpServletRequest request, @PathVariable long id,
-			@PathVariable long userId) {
+	public ResponseEntity<Object> deleteCart(HttpServletRequest request,@Parameter(description = "id of the game")  @PathVariable long id,
+	@Parameter(description = "id of the current user")@PathVariable long userId) {
 		try {
 			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
 			return userService.deleteCart(currentUser, id, userId);
@@ -206,19 +211,19 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 	}
-	@Operation(summary = "Add to checkout of the user")
+	@Operation(summary = "make a purchase")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "201", description = "Game added to the checkout",
+			@ApiResponse(responseCode = "201", description = "the purchase has been successfully completed",
 					content = { @Content(mediaType = "application/json",
 							schema = @Schema(implementation = UserProfile.class)) }),
-			@ApiResponse(responseCode = "404", description = "Game not found or not have permissions",
+			@ApiResponse(responseCode = "404", description = "Game not found ",
 					content = @Content),
-			@ApiResponse(responseCode = "401", description = "Unauthorized",
+			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
 						content = @Content) })
 	@PostMapping("/{userId}/checkout")
 	public ResponseEntity<Purchase> checkoutProcess(HttpServletRequest request, String billing_street,
 			String billing_apartment, String billing_city, String billing_country, String billing_postcode,
-			String billing_phone, @PathVariable long userId) {
+			String billing_phone, @Parameter(description = "id of the current user") @PathVariable long userId) {
 		try {
 			User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
 			ResponseEntity<Purchase> doPurchase = purchaseService.checkoutProcess(user, billing_street,
@@ -242,13 +247,13 @@ public class UserRestController {
 			@ApiResponse(responseCode = "200", description = "Found the purchase",
 					content = { @Content(mediaType = "application/json",
 							schema = @Schema(implementation = UserProfile.class)) }),
-			@ApiResponse(responseCode = "404", description = "Purchase not found or not have permissions",
+			@ApiResponse(responseCode = "404", description = "Purchase not found ",
 					content = @Content),
-			@ApiResponse(responseCode = "401", description = "Unauthorized",
+			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
 						content = @Content) })
 	@GetMapping("/{userId}/purchase/{purchaseId}")
-	public ResponseEntity<Purchase> purchase(HttpServletRequest request, @PathVariable long userId,
-			@PathVariable long purchaseId) {
+	public ResponseEntity<Purchase> purchase(HttpServletRequest request, @Parameter(description = "id of the current user")@PathVariable long userId,
+	@Parameter(description = "id of the purchase") @PathVariable long purchaseId) {
 		try {
 			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
 			return purchaseService.getPurchase(currentUser, userId, purchaseId);
@@ -261,12 +266,12 @@ public class UserRestController {
 			@ApiResponse(responseCode = "200", description = "Profile updated",
 					content = { @Content(mediaType = "application/json",
 							schema = @Schema(implementation = UserProfile.class)) }),
-			@ApiResponse(responseCode = "404", description = "Profile not found or not have permissions",
+			@ApiResponse(responseCode = "404", description = "Profile not found ",
 					content = @Content),
-			@ApiResponse(responseCode = "401", description = "Unauthorized",
+			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
 						content = @Content) })
 	@PutMapping("/{userId}")
-	public ResponseEntity<Object> editProfile(@PathVariable long userId, User newUser, HttpServletRequest request,
+	public ResponseEntity<Object> editProfile(@Parameter(description = "id of the current user")@PathVariable long userId, User newUser, HttpServletRequest request,
 			MultipartFile imageFile) throws IOException, SQLException {
 		try {
 			User currentUser = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();

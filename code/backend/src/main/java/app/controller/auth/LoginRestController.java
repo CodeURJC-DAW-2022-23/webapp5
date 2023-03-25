@@ -28,12 +28,10 @@ public class LoginRestController {
 
 	@Autowired
 	private UserLoginService userService;
-	@Operation(summary = "Login")
+	@Operation(summary = "log in to the application")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Login successful", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = AuthResponse.class)) }),
-			@ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
-			@ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content) })
+					@Content(mediaType = "application/json", schema = @Schema(implementation = AuthResponse.class)) })})
 	@PostMapping("/login")
 	public ResponseEntity<AuthResponse> login(
 			@CookieValue(name = "accessToken", required = false) String accessToken,
@@ -42,11 +40,10 @@ public class LoginRestController {
 		
 		return userService.login(loginRequest, accessToken, refreshToken);
 	}
-	@Operation(summary = "Logout")
+	@Operation(summary = "Log out ")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Logout successful", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = AuthResponse.class)) }),
-			@ApiResponse(responseCode = "400", description = "Bad request", content = @Content)})
+					@Content(mediaType = "application/json", schema = @Schema(implementation = AuthResponse.class)) })})
 	@PostMapping("/logout")
 	public ResponseEntity<AuthResponse> logOut(HttpServletRequest request, HttpServletResponse response) {
 

@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -92,13 +94,12 @@ public class GameRestController {
         @ApiResponse(responseCode = "404", description = "Games not found",
             content = @Content) })
     @GetMapping("/moreFoundGames/{page}")
-    public Page<Game> getMoreFoundGames(@PathVariable int page, String category, String name) {
+    public Page<Game> getMoreFoundGames(@Parameter(description= "page of games")@PathVariable int page, String category, String name) {
         return gameService.getSearchGames(page, name, category);
     }
     @Operation(summary = "Creates a new game")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Game created", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Game.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid input", content = @Content) })
+            @ApiResponse(responseCode = "201", description = "Game created", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Game.class)) }) })
     // Creates a game
     @PostMapping("/")
     public ResponseEntity<Game> newGameProcess(Game game, MultipartFile imageField, List<MultipartFile> imageFields)
@@ -112,16 +113,16 @@ public class GameRestController {
         @ApiResponse(responseCode = "200", description = "Found the game",
             content = { @Content(mediaType = "application/json",
                 schema = @Schema(implementation = GameDetails.class)) }),
-        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
-            content = @Content),
         @ApiResponse(responseCode = "404", description = "Game not found",
             content = @Content),
-        @ApiResponse(responseCode = "401", description = "Unauthorized",
+        @ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
             content = @Content)})
+
     @GetMapping("/{id}")
-    public ResponseEntity<GameDetails> gameDetails(@PathVariable long id) {
+    public ResponseEntity<GameDetails> gameDetails( @Parameter (description = "id of the game")@PathVariable long id) {
         Optional<Game> opGame = gameService.findById(id);
         if (opGame.isPresent()) {
+
             Game game = opGame.get();
             GameDetails gameDetails = new GameDetails(game, reviewService.findByGame(game, PageRequest.of(0, 6)));
             return new ResponseEntity<>(gameDetails, HttpStatus.OK);
@@ -134,15 +135,11 @@ public class GameRestController {
         @ApiResponse(responseCode = "200", description = "Game deleted",
             content = { @Content(mediaType = "application/json",
                 schema = @Schema(implementation = Game.class)) }),
-        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
-            content = @Content),
         @ApiResponse(responseCode = "404", description = "Game not found",
-            content = @Content),
-        @ApiResponse(responseCode = "401", description = "Unauthorized",
-                content = @Content) })
+            content = @Content) })
     // Delete a game
     @DeleteMapping("/{id}")
-    public ResponseEntity<Game> deleteGame(@PathVariable long id) {
+    public ResponseEntity<Game> deleteGame(@Parameter (description = "id of the game")@PathVariable long id) {
         return gameService.deleteById(id);
     }
     @Operation(summary = "Edit a game")
@@ -150,16 +147,13 @@ public class GameRestController {
         @ApiResponse(responseCode = "200", description = "Game edited",
             content = { @Content(mediaType = "application/json",
                 schema = @Schema(implementation = Game.class)) }),
-        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
-            content = @Content),
         @ApiResponse(responseCode = "404", description = "Game not found",
-            content = @Content),
-        @ApiResponse(responseCode = "401", description = "Unauthorized",
-                content = @Content) })
+            content = @Content) })
+
     // Edit a game
     @PutMapping("/{id}")
     public ResponseEntity<Game> editGame(Game game, MultipartFile imageField, List<MultipartFile> imageFields,
-            @PathVariable long id) throws IOException, SQLException {
+    @Parameter (description = "id of the game")@PathVariable long id) throws IOException, SQLException {
         return gameService.editGame(id, game, imageField, imageFields);
     }
     @Operation(summary = "Get the cover image of a game")
@@ -167,12 +161,10 @@ public class GameRestController {
         @ApiResponse(responseCode = "200", description = "Found the cover image",
             content = { @Content(mediaType = "application/json",
                 schema = @Schema(implementation = Game.class)) }),
-        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
-            content = @Content),
         @ApiResponse(responseCode = "404", description = "Cover not found",
             content = @Content) })
     @GetMapping("/{id}/coverImage")
-    public ResponseEntity<Resource> downloadImageProfile(@PathVariable long id) throws SQLException {
+    public ResponseEntity<Resource> downloadImageProfile( @Parameter (description = "id of the game")@PathVariable long id) throws SQLException {
         return gameService.downloadImageProfile(id);
     }
     @Operation(summary = "Get the gameplay images of a game")
@@ -180,12 +172,10 @@ public class GameRestController {
         @ApiResponse(responseCode = "200", description = "Found the gameplay images",
             content = { @Content(mediaType = "application/json",
                 schema = @Schema(implementation = Game.class)) }),
-        @ApiResponse(responseCode = "400", description = "Invalid id supplied",
-            content = @Content),
         @ApiResponse(responseCode = "404", description = "Gameplay images not found",
             content = @Content) })
     @GetMapping("/{id}/gameplayImage/{index}")
-    public ResponseEntity<Resource> downloadGameplayImages(@PathVariable long id, @PathVariable int index)
+    public ResponseEntity<Resource> downloadGameplayImages(@Parameter (description = "id of the game")@PathVariable long id, @Parameter (description = "index of the gameplay image")@PathVariable int index)
             throws SQLException {
         return gameService.downloadGameplayImages(id, index);
     }
