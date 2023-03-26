@@ -399,9 +399,6 @@ Javier has mainly created the checkout functionalities and also the loading plus
 | #5            | [moreGames.html](backend/src/main/resources/templates/moreGames.html)     |
 
 # Phase 3
-## App deployed on Railway
-
-https://codeurjc-daw-2022-23-webapp5-production.up.railway.app/
 
 ### Example users credentials
 
@@ -411,9 +408,9 @@ https://codeurjc-daw-2022-23-webapp5-production.up.railway.app/
 
 ## API REST Documentation
 
-https://github.com/url_de_la_movida_esta
+https://github.com/CodeURJC-DAW-2022-23/webapp5/blob/development/code/backend/api-docs/api-docs.html
 
-https://raw.githack.com/url_de_la_movida_esta
+https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp5/98da0456bd1be30150277e92aed9853ddee64f08/code/backend/api-docs/api-docs.html
 
 ## Instructions for executing the dockerized app
 In order to execute the dockerized app you should follow the next steps:
@@ -433,26 +430,14 @@ In order to create the docker image you should follow the next steps:
 5.	Execute the command cd/webapp5/code/docker.
 6.	Execute the command "./create_image.sh DockerhubUsername/ImageName".
 
-## Instructions for deploying the app on Railway
-In order to deploy the app on Railway you should follow the next steps:
-1.	Create an account on Railway.
-2.	Install Railway package.
-3.	Open any shell of type "bash".
-4.	Login on Railway using the command "railway login".
-5.  Execute the command "railway init" to create a new project.
-6.  Execute the command "railway add" and select the mysql option.
-7.  In the project dashboard in Railway page add the variable: SERVER_SSL_ENABLED=false
-8.  Execute the command "cd code".
-9.  Execute the command "railway up".
-10. In the project dashboard open the project and stablish a domain.
-
 ## Class diagram and templates
 
 ![diagram](screenshots/DiagramaDeClases3.png)
 
 ## Group members participation
 ### Brais Cabo Felpete
-#### Textual description: 
+#### Textual description:
+Brais has created the postman collection, everything necesary to dockerize the application and the security of the Api Rest.
 
 #### The five most important commits:
 
@@ -461,8 +446,8 @@ In order to deploy the app on Railway you should follow the next steps:
 | #1            | Postman Collection | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4d95a15a725d74cd0e0506cce1de7a8bdd8170f5 |
 | #2            | DockerFile Creation  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/3524e64406457b8f26686f8bf8d5a1410784ac89  | 
 | #3            | Docker-Compose | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/c67963e6ae822ee53a09b7d1f833f0e649e8f463 | 
-| #4            | Railway Deployment | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4a1c9331a04f5389e03d0df519fbd5eaf01ebc81 | 
-| #5            | Api Rest Security | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/955e908e5a60719a830d9aca754e02c71e2ce358 | 
+| #4            | Api Rest Security | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/955e908e5a60719a830d9aca754e02c71e2ce358 | 
+| #5            |  |  | 
 
 
 #### The five most participated files:
@@ -479,6 +464,7 @@ In order to deploy the app on Railway you should follow the next steps:
 ### Sergio Octavio Mancebo
 
 #### The five most important commits:
+Sergio has created some of the methods of the games in the rest api, also some of the user and the review.
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
@@ -503,6 +489,7 @@ In order to deploy the app on Railway you should follow the next steps:
 
 ### Iker Pizarro Fernández
 #### Textual description: 
+Iker has created some method of the review rest api and the game.
 
 #### The five most important commits:
 
@@ -527,6 +514,7 @@ In order to deploy the app on Railway you should follow the next steps:
 
 ### Sergio Pérez Sampedro
 #### Textual description: 
+Sergio has documented the application with open-api.
 
 #### The five most important commits:
 
@@ -551,6 +539,7 @@ In order to deploy the app on Railway you should follow the next steps:
 
 ### Javier Gaspariño Muñoz
 #### Textual description: 
+Javier has created the class diagram updated with rest api and necesary methods for the user rest api.
 
 #### The five most important commits:
 
