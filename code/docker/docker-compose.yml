@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  web:
+    build: 
+      context: ..
+      dockerfile: docker/Dockerfile
+    restart: on-failure
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/keywhale
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL-AUTO=create-drop
+    ports:
+      - 8443:8443
+  db:
+    image: mysql:8.0.22
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=keywhale
+    volumes:
+      - ../backend/.mysql:/var/lib/mysql

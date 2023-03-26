@@ -1,0 +1,1016 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8443
+  description: Generated server url
+paths:
+  /api/users/{userId}:
+    put:
+      tags:
+      - user-rest-controller
+      summary: Update the profile of the user
+      operationId: editProfile
+      parameters:
+      - name: userId
+        in: path
+        description: id of the current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: newUser
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/User'
+      - name: imageFile
+        in: query
+        required: true
+        schema:
+          type: string
+          format: binary
+      responses:
+        "404":
+          description: 'Profile not found '
+          content: {}
+        "403":
+          description: forbiden o dont have permissions
+        "200":
+          description: Profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+  /api/games/{id}:
+    get:
+      tags:
+      - game-rest-controller
+      summary: Get a game by its id
+      operationId: gameDetails
+      parameters:
+      - name: id
+        in: path
+        description: id of the game
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Game not found
+          content: {}
+        "403":
+          description: forbiden o dont have permissions
+        "200":
+          description: Found the game
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameDetails'
+    put:
+      tags:
+      - game-rest-controller
+      summary: Edit a game
+      operationId: editGame
+      parameters:
+      - name: game
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Game'
+      - name: imageField
+        in: query
+        required: true
+        schema:
+          type: string
+          format: binary
+      - name: imageFields
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            format: binary
+      - name: id
+        in: path
+        description: id of the game
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Game not found
+          content: {}
+        "200":
+          description: Game edited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+    delete:
+      tags:
+      - game-rest-controller
+      summary: Delete a game
+      operationId: deleteGame
+      parameters:
+      - name: id
+        in: path
+        description: id of the game
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Game not found
+          content: {}
+        "200":
+          description: Game deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /api/users/{userId}/checkout:
+    post:
+      tags:
+      - user-rest-controller
+      summary: make a purchase
+      operationId: checkoutProcess
+      parameters:
+      - name: billing_street
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: billing_apartment
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: billing_city
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: billing_country
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: billing_postcode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: billing_phone
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: path
+        description: id of the current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: 'Game not found '
+          content: {}
+        "201":
+          description: the purchase has been successfully completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        "403":
+          description: forbiden o dont have permissions
+  /api/users/{userId}/cart/{id}:
+    post:
+      tags:
+      - user-rest-controller
+      summary: Add a game to the cart of the user
+      operationId: addCart
+      parameters:
+      - name: id
+        in: path
+        description: id of the game
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        description: id of the current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: 'Game not found '
+          content: {}
+        "403":
+          description: forbiden o dont have permissions
+        "201":
+          description: Game added to the cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+    delete:
+      tags:
+      - user-rest-controller
+      summary: Delete a game to the cart of the user
+      operationId: deleteCart
+      parameters:
+      - name: id
+        in: path
+        description: id of the game
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        description: id of the current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: 'Game not found '
+          content: {}
+        "403":
+          description: forbiden o dont have permissions
+        "200":
+          description: Game deleted to the cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+  /api/users/:
+    post:
+      tags:
+      - user-rest-controller
+      summary: Register a new user
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "403":
+          description: forbiden o dont have permissions
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/reviews/{gameId}/{userId}:
+    post:
+      tags:
+      - review-rest-controller
+      summary: Add a review to a game
+      operationId: addReview
+      parameters:
+      - name: gameId
+        in: path
+        description: Id of the game
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: userId
+        in: path
+        description: Id of the user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: comment
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: reviewRate
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "404":
+          description: Game not found
+          content: {}
+        "201":
+          description: Review added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        "403":
+          description: forbiden o dont have permissions
+  /api/games/:
+    get:
+      tags:
+      - game-rest-controller
+      summary: Get a page of games
+      operationId: getGames
+      responses:
+        "404":
+          description: Games not found
+          content: {}
+        "200":
+          description: Found the games
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+    post:
+      tags:
+      - game-rest-controller
+      summary: Creates a new game
+      operationId: newGameProcess
+      parameters:
+      - name: game
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Game'
+      - name: imageField
+        in: query
+        required: true
+        schema:
+          type: string
+          format: binary
+      - name: imageFields
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            format: binary
+      responses:
+        "404":
+          description: Not Found
+        "201":
+          description: Game created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /api/auth/logout:
+    post:
+      tags:
+      - login-rest-controller
+      summary: 'Log out '
+      operationId: logOut
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/auth/login:
+    post:
+      tags:
+      - login-rest-controller
+      summary: log in to the application
+      operationId: login
+      parameters:
+      - name: accessToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/users/{userId}/purchase/{purchaseId}:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get the purchase of the user
+      operationId: purchase
+      parameters:
+      - name: userId
+        in: path
+        description: id of the current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: purchaseId
+        in: path
+        description: id of the purchase
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: 'Purchase not found '
+          content: {}
+        "403":
+          description: forbiden o dont have permissions
+        "200":
+          description: Found the purchase
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+  /api/users/{userId}/moreCartGames/{page}:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get more cart games of the user
+      operationId: getMoreCartGames
+      parameters:
+      - name: page
+        in: path
+        description: page of the games
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: path
+        description: id of the current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Games not found in the cart
+          content: {}
+        "200":
+          description: Found more games in the cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /api/users/{userId}/cart:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get the cart of the user
+      operationId: cart
+      parameters:
+      - name: userId
+        in: path
+        description: id of the current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Cart not found
+          content: {}
+        "200":
+          description: Found the cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+  /api/users/{id}:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get user
+      operationId: getUser
+      parameters:
+      - name: id
+        in: path
+        description: id of the user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: User not found
+          content: {}
+        "403":
+          description: forbiden o dont have permissions
+        "200":
+          description: Found the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/users/{id}/imageProfile:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get the image profile of the user
+      operationId: downloadImageProfile
+      parameters:
+      - name: id
+        in: path
+        description: id of the current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: image profile not found
+          content: {}
+        "403":
+          description: forbiden o dont have permissions
+        "200":
+          description: Found the image profile
+          content:
+            image/png: {}
+  /api/users/recomended:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get recomendation tothe current user
+      operationId: recomendations
+      parameters:
+      - name: numberOfGames
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "404":
+          description: Not found games recomendation
+          content: {}
+        "200":
+          description: Found games recomendations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+  /api/users/me:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get information about the current user
+      operationId: profile
+      responses:
+        "404":
+          description: 'User not found '
+          content: {}
+        "200":
+          description: Found the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        "403":
+          description: forbiden o dont have permissions
+  /api/reviews/{id}:
+    get:
+      tags:
+      - review-rest-controller
+      summary: Get a review
+      operationId: getReview
+      parameters:
+      - name: id
+        in: path
+        description: Id of the user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Review not found
+          content: {}
+        "200":
+          description: Review
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+  /api/reviews/more/{id}/{page}:
+    get:
+      tags:
+      - review-rest-controller
+      summary: Get more reviews of a game
+      operationId: getMoreReviews
+      parameters:
+      - name: page
+        in: path
+        description: Page number
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        description: Game id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Game not found
+          content: {}
+        "200":
+          description: More reviews
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+  /api/games/{id}/gameplayImage/{index}:
+    get:
+      tags:
+      - game-rest-controller
+      summary: Get the gameplay images of a game
+      operationId: downloadGameplayImages
+      parameters:
+      - name: id
+        in: path
+        description: id of the game
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: index
+        in: path
+        description: index of the gameplay image
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "404":
+          description: Gameplay images not found
+          content: {}
+        "200":
+          description: Found the gameplay images
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /api/games/{id}/coverImage:
+    get:
+      tags:
+      - game-rest-controller
+      summary: Get the cover image of a game
+      operationId: downloadImageProfile_1
+      parameters:
+      - name: id
+        in: path
+        description: id of the game
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Cover not found
+          content: {}
+        "200":
+          description: Found the cover image
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /api/games/search:
+    get:
+      tags:
+      - game-rest-controller
+      summary: Get a page of games by name or category
+      operationId: search
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Games not found
+          content: {}
+        "200":
+          description: Found the games by name or category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /api/games/moreIndexGames/{page}:
+    get:
+      tags:
+      - game-rest-controller
+      summary: Get more games
+      operationId: getMoreIndexGames
+      parameters:
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "404":
+          description: Games not found
+          content: {}
+        "200":
+          description: Found the games
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /api/games/moreFoundGames/{page}:
+    get:
+      tags:
+      - game-rest-controller
+      summary: Get more games by name or category
+      operationId: getMoreFoundGames
+      parameters:
+      - name: page
+        in: path
+        description: page of games
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: category
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Games not found
+          content: {}
+        "200":
+          description: Found the games by name or category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+  /api/reviews/{reviewId}:
+    delete:
+      tags:
+      - review-rest-controller
+      summary: Delete a review
+      operationId: deleteReview
+      parameters:
+      - name: reviewId
+        in: path
+        description: Id of the review
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Review not found
+          content: {}
+        "403":
+          description: forbiden o dont have permissions
+        "200":
+          description: Review deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        mail:
+          type: string
+        encodedPassword:
+          type: string
+        name:
+          type: string
+        lastName:
+          type: string
+        aboutMe:
+          type: string
+        billingInformation:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        profilePircture:
+          type: string
+        totalPrice:
+          type: number
+          format: float
+    Game:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          format: float
+        category:
+          type: string
+        os:
+          type: string
+        processor:
+          type: string
+        memory:
+          type: string
+        graphics:
+          type: string
+        directX:
+          type: string
+        network:
+          type: string
+        hardDrive:
+          type: string
+        soundCard:
+          type: string
+        deleted:
+          type: boolean
+        totalRating:
+          type: integer
+          format: int32
+        starDistribution:
+          type: array
+          items:
+            type: integer
+            format: int32
+        gameplayImages:
+          type: array
+          items:
+            type: string
+        titleImage:
+          type: string
+        reviewCount:
+          type: integer
+          format: int32
+        starDistributionInt:
+          type: array
+          items:
+            type: integer
+            format: int32
+    UserProfile:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        games:
+          type: array
+          items:
+            $ref: '#/components/schemas/Game'
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/User'
+        game:
+          $ref: '#/components/schemas/Game'
+        date:
+          type: string
+          format: date
+        rating:
+          type: integer
+          format: int32
+        comment:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    GameDetails:
+      type: object
+      properties:
+        game:
+          $ref: '#/components/schemas/Game'
+        reviews:
+          $ref: '#/components/schemas/PageReview'
+    PageReview:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        empty:
+          type: boolean
+    Pageable:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/Sort'
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        paged:
+          type: boolean
+        unpaged:
+          type: boolean
+    Sort:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean

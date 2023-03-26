@@ -24,5 +24,8 @@ hs_err_pid*
 /.metadata/
 .vscode/
 .idea/
-backend/.idea/
-backend/.classpath
+code/backend/.idea/
+code/backend/.classpath
+code/backend/.mysql
+code/docker/.mysql
+code/backend/target/

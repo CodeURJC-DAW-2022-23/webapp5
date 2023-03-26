@@ -397,3 +397,167 @@ Javier has mainly created the checkout functionalities and also the loading plus
 | #3            | [EmailDetails.java](backend/src/main/java/app/Email/EmailDetails.java)     | 
 | #4            | [EmailServiceImpl.java](backend/src/main/java/app/Email/EmailServiceImpl.java)     | 
 | #5            | [moreGames.html](backend/src/main/resources/templates/moreGames.html)     |
+
+# Phase 3
+
+### Example users credentials
+
+**email**: user1lastname1@gmail.com  -  **Password**: 12345678.
+
+**Username**: admin1adminLastName1@gmail.com  -  **Password**: 12345678.
+
+## API REST Documentation
+
+https://github.com/CodeURJC-DAW-2022-23/webapp5/blob/development/code/backend/api-docs/api-docs.html
+
+https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp5/98da0456bd1be30150277e92aed9853ddee64f08/code/backend/api-docs/api-docs.html
+
+## Instructions for executing the dockerized app
+In order to execute the dockerized app you should follow the next steps:
+1.	Install Docker Desktop or Docker in linux.
+2.	Open any shell of type "bash".
+3.	Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp5.git".
+4.	Execute the command cd/webapp5/code/docker.
+5.	Execute the command "docker-compose up" on the shell.
+6.	When the app is running, open any browser and search "https://localhost:8443".
+
+## Instructions for constructing the docker image
+In order to create the docker image you should follow the next steps:
+1.	Install Docker Desktop or Docker in linux.
+2.	Create and account on Dockerhub or connect to your account.
+3.	Open any shell of type "bash".
+4.	Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp5.git".
+5.	Execute the command cd/webapp5/code/docker.
+6.	Execute the command "./create_image.sh DockerhubUsername/ImageName".
+
+## Class diagram and templates
+
+![diagram](screenshots/DiagramaDeClases3.png)
+
+## Group members participation
+### Brais Cabo Felpete
+#### Textual description:
+Brais has created the postman collection, everything necesary to dockerize the application and the security of the Api Rest.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Postman Collection | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4d95a15a725d74cd0e0506cce1de7a8bdd8170f5 |
+| #2            | DockerFile Creation  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/3524e64406457b8f26686f8bf8d5a1410784ac89  | 
+| #3            | Docker-Compose | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/c67963e6ae822ee53a09b7d1f833f0e649e8f463 | 
+| #4            | Api Rest Security | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/955e908e5a60719a830d9aca754e02c71e2ce358 | 
+| #5            |  |  | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [Dockerfile](code/docker/Dockerfile) | 
+| #2            | [docker-compose.yml](code/docker/docker-compose.yml)     | 
+| #3            | [railway.toml](code/railway.toml) | 
+| #4            | [KeyWhale.postman_collection.json](KeyWhale.postman_collection.json) | 
+| #5            | [RestSecurityConfig.java](code/backend/src/main/java/app/security/RestSecurityConfig.java) |
+
+
+### Sergio Octavio Mancebo
+
+#### The five most important commits:
+Sergio has created some of the methods of the games in the rest api, also some of the user and the review.
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Fix GameRestController errors		   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/80aeab57a302918b23d3e3515a859682c647704b| 
+| #2            | UserRestController GetMapping	 | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/16e7aae9c098bd2a16d02663f9be0e7b800d8fde  | 
+| #3            | GameDetails Last Version 	| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/f8f3e151be44edf8036383e6d5e6cdf80575faaa | 
+| #4            | Fix ReviewRestController getMapping id errors| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/94b51d1d3ccfb3967dde4cde2803bb1402475fd6 | 
+| #5            | RestSecurityConfig fix errors| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/e580597a7d3716014a71a2746cc1248d7fa79bb7 | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [GameRestController](code/backend/src/main/java/app/controller/restController/GameRestController.java) | 
+| #2            | [UserRestController](code/backend/src/main/java/app/controller/restController/UserRestController.java)   | 
+| #3            | [RestControllerConfig](code/backend/src/main/java/app/security/RestSecurityConfig.java) | 
+| #4            | [Readme](README.md) |
+
+
+
+
+### Iker Pizarro Fernández
+#### Textual description: 
+Iker has created some method of the review rest api and the game.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | ReviewRestController First Creation and GetMapping		   | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ecdd779cf5e670b8d524a278014c849b1b4bfda7 | 
+| #2            | ReviewRestController Post Mapping	 | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/42067bcfad5ce6838b1e5ac9f0e4a509d91aa29d  | 
+| #3            | ReviewRestController Last Version with DeleteMapping	| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/3febca6d4894979c5bb6ae59eb53ca37254e0748 | 
+| #4            | GameRestController First Creation (New game and Show game)| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/4300fef5a840ffc0615f8eb58e7173692b13f5da | 
+| #5            | GameRestController Last version (Edit game and Delete game)| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/14eb011f5282e8cd9e525aed1e40fd98a4a0fffd | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [ReviewRestController](code/backend/src/main/java/app/controller/restController/ReviewRestController.java) | 
+| #2            | [GameRestController](code/backend/src/main/java/app/controller/restController/GameRestController.java)   | 
+| #3            | [Readme](README.md) | 
+| #4            | | 
+| #5            | | 
+
+### Sergio Pérez Sampedro
+#### Textual description: 
+Sergio has documented the application with open-api.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | 	  Docs final in local |  https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/8ab874203f8282441395f94a9d66f09ea3d6d536 | 
+| #2            |  Documentation| https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/04011510cbfa7199c1c1022e9e222808c32cf743 | 
+| #3            | conect to open API|  https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/73ecd7b1534d0fc86ed4cc8786366893df417ca0| 
+| #4            |  | | 
+| #5            | | | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |[GameRestController](code/backend/src/main/java/app/controller/restController/GameRestController.java) | 
+| #2            |[ReviewRestController](code/backend/src/main/java/app/controller/restController/ReviewRestController.java)     | 
+| #3            | [UserRestController](code/backend/src/main/java/app/controller/restController/UserRestController.java)| 
+| #4            | [LoginRestController](code/backend/src/main/java/app/controller/restController/LoginRestController.java)| 
+| #5            | [Readme](README.md) | 
+
+### Javier Gaspariño Muñoz
+#### Textual description: 
+Javier has created the class diagram updated with rest api and necesary methods for the user rest api.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | UserRestController First Creation and Changes | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/602f03779c8c08938a3da5c7b11c5dc35f0a7009 | 
+| #2            | UserRestController Functions and More Changes | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/664ef2ac3158651ce3cd7e858d4c6c72571390eb | 
+| #3            | UserRestController Ultimate Changes | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/71c876c20ec859c71d7d1b67f984fa2f4b0bd0d9 | 
+| #4            | UserProfile | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/e0e05ff92be04c1f84f163c7b81545f9c48bc8ce | 
+| #5            | Class Diagram Updated Added | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/517eb57ccc78b8034b3e431eb30cb6e060b4c3b0 | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [UserRestController](code/backend/src/main/java/app/controller/restController/UserRestController.java) | 
+| #2            | [UserProfile](code/backend/src/main/java/app/model/modelRest/UserProfile.java) |
+| #3            | [ClassDiagram](screenshots/DiagramaDeClases3.png)| 
+| #4            | [Readme](README.md) | 
+| #5            | | 

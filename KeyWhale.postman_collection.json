@@ -1,0 +1,862 @@
+{
+	"info": {
+		"_postman_id": "fdc62b19-5629-4a6b-bc0e-4703f1133275",
+		"name": "KeyWhale",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25971845"
+	},
+	"item": [
+		{
+			"name": "UserRestController",
+			"item": [
+				{
+					"name": "LoginNormalUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\":\"user1lastname1@gmail.com\",\r\n \"password\": \"12345678\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\":\"admin1adminLastName1@gmail.com\",\r\n \"password\": \"12345678\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Brais\",\r\n    \"lastName\": \"Cabo\",\r\n    \"mail\": \"braiscabofelpete@gmail.com\",\r\n    \"encodedPassword\": \"pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginNewUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\":\"braiscabofelpete@gmail.com\",\r\n \"password\": \"pass\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogOut",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ImageProfile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/1/imageProfile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1",
+								"imageProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "brais",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "cabo",
+									"type": "text"
+								},
+								{
+									"key": "encodedPassword",
+									"value": "\"hola\"",
+									"type": "text"
+								},
+								{
+									"key": "aboutMe",
+									"value": "adios",
+									"type": "text"
+								},
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recomendations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/users/recomended?numberOfGames=3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"recomended"
+							],
+							"query": [
+								{
+									"key": "numberOfGames",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ViewCart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/206/cart",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"206",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddToCart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/206/cart/21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"206",
+								"cart",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteFromCart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/206/cart/21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"206",
+								"cart",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/206/checkout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"206",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MoreCartGames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/206/moreCartGames/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"206",
+								"moreCartGames",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GameController",
+			"item": [
+				{
+					"name": "IndexGames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IdGame",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GameImage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/21/coverImage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"21",
+								"coverImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GameplayImages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/21/gameplayImage/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"21",
+								"gameplayImage",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddGame",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Hollow Knight",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "A good game",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "32.33",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "CASUAL",
+									"type": "text"
+								},
+								{
+									"key": "os",
+									"value": "Windows",
+									"type": "text"
+								},
+								{
+									"key": "graphics",
+									"value": "Nvidia",
+									"type": "text"
+								},
+								{
+									"key": "processor",
+									"value": "Intel",
+									"type": "text"
+								},
+								{
+									"key": "memory",
+									"value": "4 gb",
+									"type": "text"
+								},
+								{
+									"key": "directX",
+									"value": "Have",
+									"type": "text"
+								},
+								{
+									"key": "network",
+									"value": "Dual band",
+									"type": "text"
+								},
+								{
+									"key": "hardDrive",
+									"value": "500 gb",
+									"type": "text"
+								},
+								{
+									"key": "soundCard",
+									"value": "Realtek",
+									"type": "text"
+								},
+								{
+									"key": "imageField",
+									"type": "file",
+									"src": "/C:/Users/brais/Downloads/return_label (1).png"
+								},
+								{
+									"key": "imageFields",
+									"type": "file",
+									"src": "/C:/Users/brais/Downloads/return_label (1).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/games/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchNameCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/search/?name=dar&category=ACTION",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "dar"
+								},
+								{
+									"key": "category",
+									"value": "ACTION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/search/?category=ACTION",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "ACTION"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/search/?name=blood",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "blood"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchNoParameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/search/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"search",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditGame",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Hollow Knight",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "A good game",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "32.33",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "CASUAL",
+									"type": "text"
+								},
+								{
+									"key": "os",
+									"value": "Windows",
+									"type": "text"
+								},
+								{
+									"key": "graphics",
+									"value": "Nvidia",
+									"type": "text"
+								},
+								{
+									"key": "processor",
+									"value": "Intel",
+									"type": "text"
+								},
+								{
+									"key": "memory",
+									"value": "4 gb",
+									"type": "text"
+								},
+								{
+									"key": "directX",
+									"value": "Have",
+									"type": "text"
+								},
+								{
+									"key": "network",
+									"value": "Dual band",
+									"type": "text"
+								},
+								{
+									"key": "hardDrive",
+									"value": "500 gb",
+									"type": "text"
+								},
+								{
+									"key": "soundCard",
+									"value": "Realtek",
+									"type": "text"
+								},
+								{
+									"key": "imageField",
+									"type": "file",
+									"src": "/C:/Users/brais/Desktop/Ingenieria/DAW/webapp5/juegosnuevos/crash/crashw.jpg"
+								},
+								{
+									"key": "imageFields",
+									"type": "file",
+									"src": "/C:/Users/brais/Downloads/return_label (1).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/games/21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteGame",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MoreFoundGames",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/moreFoundGames/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"moreFoundGames",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ReviewController",
+			"item": [
+				{
+					"name": "DeleteReview",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/reviews/22",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MoreReviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/reviews/more/21/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"more",
+								"21",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddReview",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "comment",
+									"value": "Nice game",
+									"type": "text"
+								},
+								{
+									"key": "reviewRate",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/reviews/21/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"21",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
