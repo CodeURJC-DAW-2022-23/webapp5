@@ -2,7 +2,9 @@ version: "3.9"
 
 services:
   web:
-    image: braiscabo/webapp5
+    build: 
+      context: ..
+      dockerfile: docker/Dockerfile
     restart: on-failure
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/keywhale
