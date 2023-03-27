@@ -251,7 +251,7 @@ public class UserRestController {
 	@Operation(summary = "Get the purchase of the user")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Found the purchase", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = UserProfile.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Purchase.class)) }),
 			@ApiResponse(responseCode = "404", description = "Purchase not found ", content = @Content),
 			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions", content = @Content) })
 	@GetMapping("/{userId}/purchase/{purchaseId}")

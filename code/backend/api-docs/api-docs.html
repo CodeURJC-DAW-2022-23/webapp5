@@ -1035,6 +1035,28 @@ ul.nav-tabs {
     }
   }
 };
+    defs["Purchase"] = {
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : "integer",
+      "format" : "int64"
+    },
+    "games" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/Game"
+      }
+    },
+    "user" : {
+      "$ref" : "#/components/schemas/User"
+    },
+    "date" : {
+      "type" : "string",
+      "format" : "date"
+    }
+  }
+};
     defs["Review"] = {
   "type" : "object",
   "properties" : {
@@ -1083,9 +1105,6 @@ ul.nav-tabs {
       "format" : "int64"
     },
     "mail" : {
-      "type" : "string"
-    },
-    "encodedPassword" : {
       "type" : "string"
     },
     "name" : {
@@ -1165,6 +1184,9 @@ ul.nav-tabs {
                     </li>
                     <li data-group="GameRestController" data-name="getGames" class="">
                       <a href="#api-GameRestController-getGames">getGames</a>
+                    </li>
+                    <li data-group="GameRestController" data-name="getGraphics" class="">
+                      <a href="#api-GameRestController-getGraphics">getGraphics</a>
                     </li>
                     <li data-group="GameRestController" data-name="getMoreFoundGames" class="">
                       <a href="#api-GameRestController-getMoreFoundGames">getMoreFoundGames</a>
@@ -3158,28 +3180,6 @@ id of the game
 
                             <div class="tab-content" id="responses-GameRestController-gameDetails-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-GameRestController-gameDetails-title-403"></h3>
-                            <p id="examples-GameRestController-gameDetails-description-403" class="marked"></p>
-                            <script>
-                              var responseGameRestController403_description = `forbiden o dont have permissions`;
-                              var responseGameRestController403_description_break = responseGameRestController403_description.indexOf('\n');
-                              if (responseGameRestController403_description_break == -1) {
-                                $("#examples-GameRestController-gameDetails-title-403").text("Status: 403 - " + responseGameRestController403_description);
-                              } else {
-                                $("#examples-GameRestController-gameDetails-title-403").text("Status: 403 - " + responseGameRestController403_description.substring(0, responseGameRestController403_description_break));
-                                $("#examples-GameRestController-gameDetails-description-403").html(responseGameRestController403_description.substring(responseGameRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-GameRestController-gameDetails-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-GameRestController-gameDetails-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                             <h3 id="examples-GameRestController-gameDetails-title-200"></h3>
                             <p id="examples-GameRestController-gameDetails-description-200" class="marked"></p>
                             <script>
@@ -3245,6 +3245,28 @@ id of the game
                                   </div>
                                   <input id='responses-GameRestController-gameDetails-200-schema-data' type='hidden' value=''></input>
                                 </div>
+                            </div>
+                            <h3 id="examples-GameRestController-gameDetails-title-403"></h3>
+                            <p id="examples-GameRestController-gameDetails-description-403" class="marked"></p>
+                            <script>
+                              var responseGameRestController403_description = `forbiden o dont have permissions`;
+                              var responseGameRestController403_description_break = responseGameRestController403_description.indexOf('\n');
+                              if (responseGameRestController403_description_break == -1) {
+                                $("#examples-GameRestController-gameDetails-title-403").text("Status: 403 - " + responseGameRestController403_description);
+                              } else {
+                                $("#examples-GameRestController-gameDetails-title-403").text("Status: 403 - " + responseGameRestController403_description.substring(0, responseGameRestController403_description_break));
+                                $("#examples-GameRestController-gameDetails-description-403").html(responseGameRestController403_description.substring(responseGameRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-GameRestController-gameDetails-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-GameRestController-gameDetails-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -3567,6 +3589,369 @@ pub fn main() {
                                     </script>
                                   </div>
                                   <input id='responses-GameRestController-getGames-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-GameRestController-getGraphics">
+                      <article id="api-GameRestController-getGraphics-0" data-group="User" data-name="getGraphics" data-version="0">
+                        <div class="pull-left">
+                          <h1>getGraphics</h1>
+                          <p>Get the graphics of a game</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/games/{id}/graphics</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-GameRestController-getGraphics-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-GameRestController-getGraphics-0-java">Java</a></li>
+                          <li class=""><a href="#examples-GameRestController-getGraphics-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-GameRestController-getGraphics-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-GameRestController-getGraphics-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-GameRestController-getGraphics-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-GameRestController-getGraphics-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-GameRestController-getGraphics-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-GameRestController-getGraphics-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-GameRestController-getGraphics-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-GameRestController-getGraphics-0-python">Python</a></li>
+                          <li class=""><a href="#examples-GameRestController-getGraphics-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-GameRestController-getGraphics-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET \
+ -H "Accept: application/json" \
+ "http://localhost:8443/api/games/{id}/graphics"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-GameRestController-getGraphics-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.GameRestControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class GameRestControllerApiExample {
+    public static void main(String[] args) {
+
+        // Create an instance of the API class
+        GameRestControllerApi apiInstance = new GameRestControllerApi();
+        Long id = 789; // Long | 
+
+        try {
+            'String' result = apiInstance.getGraphics(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling GameRestControllerApi#getGraphics");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-GameRestController-getGraphics-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.GameRestControllerApi;
+
+public class GameRestControllerApiExample {
+    public static void main(String[] args) {
+        GameRestControllerApi apiInstance = new GameRestControllerApi();
+        Long id = 789; // Long | 
+
+        try {
+            'String' result = apiInstance.getGraphics(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling GameRestControllerApi#getGraphics");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-GameRestController-getGraphics-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-GameRestController-getGraphics-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+GameRestControllerApi *apiInstance = [[GameRestControllerApi alloc] init];
+Long *id = 789; //  (default to null)
+
+// Get the graphics of a game
+[apiInstance getGraphicsWith:id
+              completionHandler: ^('String' output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-GameRestController-getGraphics-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var OpenApiDefinition = require('open_api_definition');
+
+// Create an instance of the API class
+var api = new OpenApiDefinition.GameRestControllerApi()
+var id = 789; // {Long} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getGraphics(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-GameRestController-getGraphics-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-GameRestController-getGraphics-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class getGraphicsExample
+    {
+        public void main()
+        {
+
+            // Create an instance of the API class
+            var apiInstance = new GameRestControllerApi();
+            var id = 789;  // Long |  (default to null)
+
+            try {
+                // Get the graphics of a game
+                'String' result = apiInstance.getGraphics(id);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling GameRestControllerApi.getGraphics: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-GameRestController-getGraphics-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\GameRestControllerApi();
+$id = 789; // Long | 
+
+try {
+    $result = $api_instance->getGraphics($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling GameRestControllerApi->getGraphics: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-GameRestController-getGraphics-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::GameRestControllerApi;
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::GameRestControllerApi->new();
+my $id = 789; # Long | 
+
+eval {
+    my $result = $api_instance->getGraphics(id => $id);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling GameRestControllerApi->getGraphics: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-GameRestController-getGraphics-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Create an instance of the API class
+api_instance = openapi_client.GameRestControllerApi()
+id = 789 # Long |  (default to null)
+
+try:
+    # Get the graphics of a game
+    api_response = api_instance.get_graphics(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling GameRestControllerApi->getGraphics: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-GameRestController-getGraphics-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate GameRestControllerApi;
+
+pub fn main() {
+    let id = 789; // Long
+
+    let mut context = GameRestControllerApi::Context::default();
+    let result = client.getGraphics(id, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_getGraphics_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-GameRestController-getGraphics-title-404"></h3>
+                            <p id="examples-GameRestController-getGraphics-description-404" class="marked"></p>
+                            <script>
+                              var responseGameRestController404_description = `Game not found`;
+                              var responseGameRestController404_description_break = responseGameRestController404_description.indexOf('\n');
+                              if (responseGameRestController404_description_break == -1) {
+                                $("#examples-GameRestController-getGraphics-title-404").text("Status: 404 - " + responseGameRestController404_description);
+                              } else {
+                                $("#examples-GameRestController-getGraphics-title-404").text("Status: 404 - " + responseGameRestController404_description.substring(0, responseGameRestController404_description_break));
+                                $("#examples-GameRestController-getGraphics-description-404").html(responseGameRestController404_description.substring(responseGameRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-GameRestController-getGraphics-404" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-GameRestController-getGraphics-404-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-GameRestController-getGraphics-title-200"></h3>
+                            <p id="examples-GameRestController-getGraphics-description-200" class="marked"></p>
+                            <script>
+                              var responseGameRestController200_description = `Found the praphics of the game`;
+                              var responseGameRestController200_description_break = responseGameRestController200_description.indexOf('\n');
+                              if (responseGameRestController200_description_break == -1) {
+                                $("#examples-GameRestController-getGraphics-title-200").text("Status: 200 - " + responseGameRestController200_description);
+                              } else {
+                                $("#examples-GameRestController-getGraphics-title-200").text("Status: 200 - " + responseGameRestController200_description.substring(0, responseGameRestController200_description_break));
+                                $("#examples-GameRestController-getGraphics-description-200").html(responseGameRestController200_description.substring(responseGameRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-GameRestController-getGraphics-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-GameRestController-getGraphics-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-GameRestController-getGraphics-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-GameRestController-getGraphics-200-schema">
+                                  <div id="responses-GameRestController-getGraphics-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Found the praphics of the game",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "string"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-GameRestController-getGraphics-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-GameRestController-getGraphics-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-GameRestController-getGraphics-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
                         </article>
@@ -6322,6 +6707,28 @@ Id of the user
 
                             <div class="tab-content" id="responses-ReviewRestController-addReview-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
+                            <h3 id="examples-ReviewRestController-addReview-title-403"></h3>
+                            <p id="examples-ReviewRestController-addReview-description-403" class="marked"></p>
+                            <script>
+                              var responseReviewRestController403_description = `forbiden o dont have permissions`;
+                              var responseReviewRestController403_description_break = responseReviewRestController403_description.indexOf('\n');
+                              if (responseReviewRestController403_description_break == -1) {
+                                $("#examples-ReviewRestController-addReview-title-403").text("Status: 403 - " + responseReviewRestController403_description);
+                              } else {
+                                $("#examples-ReviewRestController-addReview-title-403").text("Status: 403 - " + responseReviewRestController403_description.substring(0, responseReviewRestController403_description_break));
+                                $("#examples-ReviewRestController-addReview-description-403").html(responseReviewRestController403_description.substring(responseReviewRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-ReviewRestController-addReview-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-ReviewRestController-addReview-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-ReviewRestController-addReview-title-201"></h3>
                             <p id="examples-ReviewRestController-addReview-description-201" class="marked"></p>
                             <script>
@@ -6387,28 +6794,6 @@ Id of the user
                                   </div>
                                   <input id='responses-ReviewRestController-addReview-201-schema-data' type='hidden' value=''></input>
                                 </div>
-                            </div>
-                            <h3 id="examples-ReviewRestController-addReview-title-403"></h3>
-                            <p id="examples-ReviewRestController-addReview-description-403" class="marked"></p>
-                            <script>
-                              var responseReviewRestController403_description = `forbiden o dont have permissions`;
-                              var responseReviewRestController403_description_break = responseReviewRestController403_description.indexOf('\n');
-                              if (responseReviewRestController403_description_break == -1) {
-                                $("#examples-ReviewRestController-addReview-title-403").text("Status: 403 - " + responseReviewRestController403_description);
-                              } else {
-                                $("#examples-ReviewRestController-addReview-title-403").text("Status: 403 - " + responseReviewRestController403_description.substring(0, responseReviewRestController403_description_break));
-                                $("#examples-ReviewRestController-addReview-description-403").html(responseReviewRestController403_description.substring(responseReviewRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-ReviewRestController-addReview-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-ReviewRestController-addReview-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -8846,6 +9231,28 @@ id of the current user
 
                             <div class="tab-content" id="responses-UserRestController-checkoutProcess-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
+                            <h3 id="examples-UserRestController-checkoutProcess-title-403"></h3>
+                            <p id="examples-UserRestController-checkoutProcess-description-403" class="marked"></p>
+                            <script>
+                              var responseUserRestController403_description = `forbiden o dont have permissions`;
+                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
+                              if (responseUserRestController403_description_break == -1) {
+                                $("#examples-UserRestController-checkoutProcess-title-403").text("Status: 403 - " + responseUserRestController403_description);
+                              } else {
+                                $("#examples-UserRestController-checkoutProcess-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
+                                $("#examples-UserRestController-checkoutProcess-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-checkoutProcess-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-checkoutProcess-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-UserRestController-checkoutProcess-title-201"></h3>
                             <p id="examples-UserRestController-checkoutProcess-description-201" class="marked"></p>
                             <script>
@@ -8911,28 +9318,6 @@ id of the current user
                                   </div>
                                   <input id='responses-UserRestController-checkoutProcess-201-schema-data' type='hidden' value=''></input>
                                 </div>
-                            </div>
-                            <h3 id="examples-UserRestController-checkoutProcess-title-403"></h3>
-                            <p id="examples-UserRestController-checkoutProcess-description-403" class="marked"></p>
-                            <script>
-                              var responseUserRestController403_description = `forbiden o dont have permissions`;
-                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
-                              if (responseUserRestController403_description_break == -1) {
-                                $("#examples-UserRestController-checkoutProcess-title-403").text("Status: 403 - " + responseUserRestController403_description);
-                              } else {
-                                $("#examples-UserRestController-checkoutProcess-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
-                                $("#examples-UserRestController-checkoutProcess-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-UserRestController-checkoutProcess-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-UserRestController-checkoutProcess-403-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -11198,6 +11583,28 @@ pub fn main() {
 
                             <div class="tab-content" id="responses-UserRestController-profile-404-wrapper" style='margin-bottom: 10px;'>
                             </div>
+                            <h3 id="examples-UserRestController-profile-title-403"></h3>
+                            <p id="examples-UserRestController-profile-description-403" class="marked"></p>
+                            <script>
+                              var responseUserRestController403_description = `forbiden o dont have permissions`;
+                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
+                              if (responseUserRestController403_description_break == -1) {
+                                $("#examples-UserRestController-profile-title-403").text("Status: 403 - " + responseUserRestController403_description);
+                              } else {
+                                $("#examples-UserRestController-profile-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
+                                $("#examples-UserRestController-profile-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-profile-403" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-profile-403-wrapper" style='margin-bottom: 10px;'>
+                            </div>
                             <h3 id="examples-UserRestController-profile-title-200"></h3>
                             <p id="examples-UserRestController-profile-description-200" class="marked"></p>
                             <script>
@@ -11264,28 +11671,6 @@ pub fn main() {
                                   <input id='responses-UserRestController-profile-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
-                            <h3 id="examples-UserRestController-profile-title-403"></h3>
-                            <p id="examples-UserRestController-profile-description-403" class="marked"></p>
-                            <script>
-                              var responseUserRestController403_description = `forbiden o dont have permissions`;
-                              var responseUserRestController403_description_break = responseUserRestController403_description.indexOf('\n');
-                              if (responseUserRestController403_description_break == -1) {
-                                $("#examples-UserRestController-profile-title-403").text("Status: 403 - " + responseUserRestController403_description);
-                              } else {
-                                $("#examples-UserRestController-profile-title-403").text("Status: 403 - " + responseUserRestController403_description.substring(0, responseUserRestController403_description_break));
-                                $("#examples-UserRestController-profile-description-403").html(responseUserRestController403_description.substring(responseUserRestController403_description_break));
-                              }
-                            </script>
-
-
-                            <ul id="responses-detail-UserRestController-profile-403" class="nav nav-tabs nav-tabs-examples" >
-
-
-                            </ul>
-
-
-                            <div class="tab-content" id="responses-UserRestController-profile-403-wrapper" style='margin-bottom: 10px;'>
-                            </div>
                         </article>
                       </div>
                       <hr>
@@ -11345,7 +11730,7 @@ public class UserRestControllerApiExample {
         Long purchaseId = 789; // Long | id of the purchase
 
         try {
-            UserProfile result = apiInstance.purchase(userId, purchaseId);
+            Purchase result = apiInstance.purchase(userId, purchaseId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UserRestControllerApi#purchase");
@@ -11366,7 +11751,7 @@ public class UserRestControllerApiExample {
         Long purchaseId = 789; // Long | id of the purchase
 
         try {
-            UserProfile result = apiInstance.purchase(userId, purchaseId);
+            Purchase result = apiInstance.purchase(userId, purchaseId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UserRestControllerApi#purchase");
@@ -11390,7 +11775,7 @@ Long *purchaseId = 789; // id of the purchase (default to null)
 // Get the purchase of the user
 [apiInstance purchaseWith:userId
     purchaseId:purchaseId
-              completionHandler: ^(UserProfile output, NSError* error) {
+              completionHandler: ^(Purchase output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
     }
@@ -11444,7 +11829,7 @@ namespace Example
 
             try {
                 // Get the purchase of the user
-                UserProfile result = apiInstance.purchase(userId, purchaseId);
+                Purchase result = apiInstance.purchase(userId, purchaseId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling UserRestControllerApi.purchase: " + e.Message );
@@ -11679,7 +12064,7 @@ id of the purchase
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/UserProfile"
+        "$ref" : "#/components/schemas/Purchase"
       }
     }
   }
@@ -12111,20 +12496,7 @@ pub fn main() {
                           <div class="tab-pane active" id="examples-UserRestController-register-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST \
  -H "Accept: application/json" \
- -H "Content-Type: application/json" \
- "http://localhost:8443/api/users/" \
- -d '{
-  &quot;lastName&quot; : &quot;lastName&quot;,
-  &quot;mail&quot; : &quot;mail&quot;,
-  &quot;totalPrice&quot; : 6.0274563,
-  &quot;profilePircture&quot; : &quot;profilePircture&quot;,
-  &quot;encodedPassword&quot; : &quot;encodedPassword&quot;,
-  &quot;roles&quot; : [ &quot;roles&quot;, &quot;roles&quot; ],
-  &quot;name&quot; : &quot;name&quot;,
-  &quot;id&quot; : 0,
-  &quot;billingInformation&quot; : &quot;billingInformation&quot;,
-  &quot;aboutMe&quot; : &quot;aboutMe&quot;
-}'
+ "http://localhost:8443/api/users/?name=name_example&lastName=lastName_example&mail=mail_example&password=password_example&aboutMe=aboutMe_example"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-UserRestController-register-0-java">
@@ -12141,10 +12513,14 @@ public class UserRestControllerApiExample {
 
         // Create an instance of the API class
         UserRestControllerApi apiInstance = new UserRestControllerApi();
-        User user = ; // User | 
+        String name = name_example; // String | 
+        String lastName = lastName_example; // String | 
+        String mail = mail_example; // String | 
+        String password = password_example; // String | 
+        String aboutMe = aboutMe_example; // String | 
 
         try {
-            User result = apiInstance.register(user);
+            User result = apiInstance.register(name, lastName, mail, password, aboutMe);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UserRestControllerApi#register");
@@ -12161,10 +12537,14 @@ public class UserRestControllerApiExample {
 public class UserRestControllerApiExample {
     public static void main(String[] args) {
         UserRestControllerApi apiInstance = new UserRestControllerApi();
-        User user = ; // User | 
+        String name = name_example; // String | 
+        String lastName = lastName_example; // String | 
+        String mail = mail_example; // String | 
+        String password = password_example; // String | 
+        String aboutMe = aboutMe_example; // String | 
 
         try {
-            User result = apiInstance.register(user);
+            User result = apiInstance.register(name, lastName, mail, password, aboutMe);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UserRestControllerApi#register");
@@ -12182,10 +12562,18 @@ public class UserRestControllerApiExample {
 
 // Create an instance of the API class
 UserRestControllerApi *apiInstance = [[UserRestControllerApi alloc] init];
-User *user = ; // 
+String *name = name_example; //  (default to null)
+String *lastName = lastName_example; //  (default to null)
+String *mail = mail_example; //  (default to null)
+String *password = password_example; //  (default to null)
+String *aboutMe = aboutMe_example; //  (default to null)
 
 // Register a new user
-[apiInstance registerWith:user
+[apiInstance registerWith:name
+    lastName:lastName
+    mail:mail
+    password:password
+    aboutMe:aboutMe
               completionHandler: ^(User output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -12202,7 +12590,11 @@ User *user = ; //
 
 // Create an instance of the API class
 var api = new OpenApiDefinition.UserRestControllerApi()
-var user = ; // {User} 
+var name = name_example; // {String} 
+var lastName = lastName_example; // {String} 
+var mail = mail_example; // {String} 
+var password = password_example; // {String} 
+var aboutMe = aboutMe_example; // {String} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -12211,7 +12603,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.register(user, callback);
+api.register(name, lastName, mail, password, aboutMe, callback);
 </code></pre>
                             </div>
 
@@ -12234,11 +12626,15 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new UserRestControllerApi();
-            var user = new User(); // User | 
+            var name = name_example;  // String |  (default to null)
+            var lastName = lastName_example;  // String |  (default to null)
+            var mail = mail_example;  // String |  (default to null)
+            var password = password_example;  // String |  (default to null)
+            var aboutMe = aboutMe_example;  // String |  (default to null)
 
             try {
                 // Register a new user
-                User result = apiInstance.register(user);
+                User result = apiInstance.register(name, lastName, mail, password, aboutMe);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling UserRestControllerApi.register: " + e.Message );
@@ -12255,10 +12651,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\UserRestControllerApi();
-$user = ; // User | 
+$name = name_example; // String | 
+$lastName = lastName_example; // String | 
+$mail = mail_example; // String | 
+$password = password_example; // String | 
+$aboutMe = aboutMe_example; // String | 
 
 try {
-    $result = $api_instance->register($user);
+    $result = $api_instance->register($name, $lastName, $mail, $password, $aboutMe);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserRestControllerApi->register: ', $e->getMessage(), PHP_EOL;
@@ -12273,10 +12673,14 @@ use WWW::OPenAPIClient::UserRestControllerApi;
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::UserRestControllerApi->new();
-my $user = WWW::OPenAPIClient::Object::User->new(); # User | 
+my $name = name_example; # String | 
+my $lastName = lastName_example; # String | 
+my $mail = mail_example; # String | 
+my $password = password_example; # String | 
+my $aboutMe = aboutMe_example; # String | 
 
 eval {
-    my $result = $api_instance->register(user => $user);
+    my $result = $api_instance->register(name => $name, lastName => $lastName, mail => $mail, password => $password, aboutMe => $aboutMe);
     print Dumper($result);
 };
 if ($@) {
@@ -12293,11 +12697,15 @@ from pprint import pprint
 
 # Create an instance of the API class
 api_instance = openapi_client.UserRestControllerApi()
-user =  # User | 
+name = name_example # String |  (default to null)
+lastName = lastName_example # String |  (default to null)
+mail = mail_example # String |  (default to null)
+password = password_example # String |  (default to null)
+aboutMe = aboutMe_example # String |  (default to null)
 
 try:
     # Register a new user
-    api_response = api_instance.register(user)
+    api_response = api_instance.register(name, lastName, mail, password, aboutMe)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UserRestControllerApi->register: %s\n" % e)</code></pre>
@@ -12307,10 +12715,14 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate UserRestControllerApi;
 
 pub fn main() {
-    let user = ; // User
+    let name = name_example; // String
+    let lastName = lastName_example; // String
+    let mail = mail_example; // String
+    let password = password_example; // String
+    let aboutMe = aboutMe_example; // String
 
     let mut context = UserRestControllerApi::Context::default();
-    let result = client.register(user, &context).wait();
+    let result = client.register(name, lastName, mail, password, aboutMe, &context).wait();
 
     println!("{:?}", result);
 }
@@ -12327,54 +12739,115 @@ pub fn main() {
 
 
 
-                            <div class="methodsubtabletitle">Body parameters</div>
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
                             <table id="methodsubtable">
                               <tr>
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">user <span style="color:red;">*</span></td>
+                                <tr><td style="width:150px;">name*</td>
 <td>
-<p class="marked"></p>
-<script>
-$(document).ready(function() {
-  var schemaWrapper = {
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/User"
-      }
-    }
-  },
-  "required" : true
-};
 
-  var schema = findNode('schema',schemaWrapper).schema;
-  if (!schema) {
-    schema = schemaWrapper.schema;
-  }
-  if (schema.$ref != null) {
-    schema = defsParser.$refs.get(schema.$ref);
-  } else {
-    schemaWrapper.definitions = Object.assign({}, defs);
-    $RefParser.dereference(schemaWrapper).catch(function(err) {
-      console.log(err);
-    });
-  }
 
-  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_register_user');
-  result.empty();
-  result.append(view.render());
-});
-</script>
-<div id="d2e199_register_user"></div>
+    <div id="d2e199_register_name">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">lastName*</td>
+<td>
+
+
+    <div id="d2e199_register_lastName">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">mail*</td>
+<td>
+
+
+    <div id="d2e199_register_mail">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">password*</td>
+<td>
+
+
+    <div id="d2e199_register_password">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                <tr><td style="width:150px;">aboutMe*</td>
+<td>
+
+
+    <div id="d2e199_register_aboutMe">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
 </td>
 </tr>
 
                             </table>
-
-
 
                           <h2>Responses</h2>
                             <h3 id="examples-UserRestController-register-title-404"></h3>

@@ -183,7 +183,7 @@ public class GameRestController {
         @Operation(summary = "Get the graphics of a game")
         @ApiResponses(value = {
                         @ApiResponse(responseCode = "200", description = "Found the praphics of the game", content = {
-                                        @Content(mediaType = "application/json", schema = @Schema(implementation = Game.class)) }),
+                                        @Content(mediaType = "application/json", schema = @Schema(type = "array", format = "int32")) }),
                         @ApiResponse(responseCode = "404", description = "Game not found", content = @Content) })
         public ResponseEntity<Object> getGraphics(@PathVariable long id) {
                 Optional<Game> opGame = gameService.findById(id);
