@@ -410,7 +410,7 @@ Javier has mainly created the checkout functionalities and also the loading plus
 
 https://github.com/CodeURJC-DAW-2022-23/webapp5/blob/development/code/backend/api-docs/api-docs.html
 
-https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp5/98da0456bd1be30150277e92aed9853ddee64f08/code/backend/api-docs/api-docs.html
+https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp5/0857efbd8e0b582e0feb4df1078bb3c5616205f0/code/backend/api-docs/api-docs.html
 
 ## Instructions for executing the dockerized app
 In order to execute the dockerized app you should follow the next steps:
