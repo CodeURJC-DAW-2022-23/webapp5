@@ -111,7 +111,8 @@ public class UserRestController {
 							content = @Content) })
 	// Register users
 	@PostMapping("/")
-	public ResponseEntity<User> register(@RequestBody User user) throws IOException {
+	public ResponseEntity<User> register(@RequestParam String name, @RequestParam String lastName, @RequestParam String mail, @RequestParam String password, @RequestParam String aboutMe) throws IOException {
+		User user = new User(name,lastName, mail, password, aboutMe);
 		ResponseEntity<User> response = userService.register(user);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
 			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();

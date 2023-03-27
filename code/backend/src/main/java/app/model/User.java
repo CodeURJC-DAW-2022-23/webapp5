@@ -28,6 +28,8 @@ public class User{
 
     @JsonIgnore
     private String encodedPassword;
+
+    
     private String name;
     private String lastName;
 
