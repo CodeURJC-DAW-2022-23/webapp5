@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fdc62b19-5629-4a6b-bc0e-4703f1133275",
+		"_postman_id": "c49b64e7-d811-49f4-b65a-e3a823c96973",
 		"name": "KeyWhale",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25971845"
@@ -71,13 +71,34 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Brais\",\r\n    \"lastName\": \"Cabo\",\r\n    \"mail\": \"braiscabofelpete@gmail.com\",\r\n    \"encodedPassword\": \"pass\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Brais",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Cabo",
+									"type": "text"
+								},
+								{
+									"key": "mail",
+									"value": "braiscabofelpete@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "text"
+								},
+								{
+									"key": "aboutMe",
+									"value": "Hola soy brais",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{url}}/api/users/",
@@ -358,6 +379,46 @@
 								"206",
 								"moreCartGames",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPurchase",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/206/purchase/207",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"206",
+								"purchase",
+								"207"
 							]
 						}
 					},
@@ -775,6 +836,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Graphics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/games/21/graphics",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"21",
+								"graphics"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -851,6 +932,25 @@
 								"reviews",
 								"21",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetReview",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/reviews/22",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"22"
 							]
 						}
 					},

@@ -178,4 +178,19 @@ public class GameRestController {
                         throws SQLException {
                 return gameService.downloadGameplayImages(id, index);
         }
+
+        @GetMapping("/{id}/graphics")
+        @Operation(summary = "Get the graphics of a game")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Found the praphics of the game", content = {
+                                        @Content(mediaType = "application/json", schema = @Schema(implementation = Game.class)) }),
+                        @ApiResponse(responseCode = "404", description = "Game not found", content = @Content) })
+        public ResponseEntity<Object> getGraphics(@PathVariable long id) {
+                Optional<Game> opGame = gameService.findById(id);
+                if (opGame.isPresent()) {
+                        return new ResponseEntity<>(opGame.get().getStarDistributionInt(), HttpStatus.OK);
+                } else {
+                        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                }
+        }
 }

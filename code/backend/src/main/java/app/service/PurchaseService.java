@@ -57,7 +57,7 @@ public class PurchaseService {
 		if (opUser.isPresent() && opPurchase.isPresent()) {
 			User currentUser = opUser.get();
 			Purchase purchase = opPurchase.get();
-			if (currentUser.equals(user) && purchase.getUser().equals(user)) {
+			if ((currentUser.equals(user) && purchase.getUser().equals(user)) || user.getRoles().contains("ADMIN")) {
 				return new ResponseEntity<>(purchase, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.FORBIDDEN);

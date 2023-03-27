@@ -143,11 +143,24 @@ public class UserRestController {
 			@ApiResponse(responseCode = "404", description = "User not found", content = @Content),
 			@ApiResponse(responseCode = "403", description = "forbiden o dont have permissions", content = @Content) })
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getUser(@Parameter(description = "id of the user") @PathVariable long id) {
+	public ResponseEntity<User> getUser(HttpServletRequest request, @Parameter(description = "id of the user") @PathVariable long id) {
 		// Before returning a page it confirms that there are more left
 		Optional<User> opUser = userService.findById(id);
 		if (opUser.isPresent()) {
-			return new ResponseEntity<>(opUser.get(), HttpStatus.OK);
+			if (request.getUserPrincipal() != null) {
+				try {
+					User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
+					if (user.getId() != id && !user.getRoles().contains("ADMIN")) {
+						return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+					}else{
+						return new ResponseEntity<>(opUser.get(), HttpStatus.OK);
+					}
+				} catch (Exception e) {
+					return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+				}
+			}else{
+				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+			}
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
