@@ -44,13 +44,15 @@ public class ReviewRestController {
 
     @Autowired
     private UserService userService;
+
     @Operation(summary = "Get more reviews of a game")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "More reviews", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
             @ApiResponse(responseCode = "404", description = "Game not found", content = @Content) })
     @GetMapping("/more/{id}/{page}")
-    public Page<Review> getMoreReviews(@Parameter(description = "Page number")@PathVariable int page,@Parameter(description = "Game id")@PathVariable long id) {
+    public Page<Review> getMoreReviews(@Parameter(description = "Page number") @PathVariable int page,
+            @Parameter(description = "Game id") @PathVariable long id) {
         // Before returning a page it confirms that there are more left
         Game game = gameService.findById(id).orElseThrow();
         if (page <= (int) Math.ceil(reviewService.countByGame(game) / 6)) {
@@ -58,15 +60,16 @@ public class ReviewRestController {
         }
         return null;
     }
+
     @Operation(summary = "Add a review to a game")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Review added", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
             @ApiResponse(responseCode = "404", description = "Game not found", content = @Content),
-            @ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
-            content = @Content)})
+            @ApiResponse(responseCode = "403", description = "forbiden o dont have permissions", content = @Content) })
     @PostMapping("/{gameId}/{userId}")
-    public ResponseEntity<Review> addReview( @Parameter(description = "Id of the game")@PathVariable long gameId,@Parameter(description = "Id of the user")@PathVariable long userId,
+    public ResponseEntity<Review> addReview(@Parameter(description = "Id of the game") @PathVariable long gameId,
+            @Parameter(description = "Id of the user") @PathVariable long userId,
             HttpServletRequest request, String comment, int reviewRate) {
         try {
             User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
@@ -86,16 +89,16 @@ public class ReviewRestController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
+
     @Operation(summary = "Delete a review")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Review deleted", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
             @ApiResponse(responseCode = "404", description = "Review not found", content = @Content),
-            @ApiResponse(responseCode = "403", description = "forbiden o dont have permissions",
-                content = @Content) })
+            @ApiResponse(responseCode = "403", description = "forbiden o dont have permissions", content = @Content) })
 
     @DeleteMapping("/{reviewId}")
-    public ResponseEntity<Review> deleteReview(@Parameter( description = "Id of the review")@PathVariable long reviewId,
+    public ResponseEntity<Review> deleteReview(@Parameter(description = "Id of the review") @PathVariable long reviewId,
             HttpServletRequest request) {
         try {
             User user = userService.findByMail(request.getUserPrincipal().getName()).orElseThrow();
@@ -104,13 +107,14 @@ public class ReviewRestController {
             return null;
         }
     }
+
     @Operation(summary = "Get a review")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Review", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Review.class)) }),
             @ApiResponse(responseCode = "404", description = "Review not found", content = @Content) })
     @GetMapping("/{id}")
-    public ResponseEntity<Review> getReview(@Parameter( description = "Id of the user")@PathVariable long id) {
+    public ResponseEntity<Review> getReview(@Parameter(description = "Id of the user") @PathVariable long id) {
         // Before returning a page it confirms that there are more left
         Optional<Review> opReview = reviewService.findById(id);
         if (opReview.isPresent()) {
