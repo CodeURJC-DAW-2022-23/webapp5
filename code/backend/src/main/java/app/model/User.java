@@ -26,6 +26,7 @@ public class User{
 
     private String mail;
 
+    @JsonIgnore
     private String encodedPassword;
     private String name;
     private String lastName;
