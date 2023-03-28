@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import app.model.Game;
 import app.model.User;
 import app.repository.GameRepository;
+import java.util.ArrayList;
 
 @Service
 public class GameService {
@@ -164,6 +165,7 @@ public class GameService {
 
 	private void updateGameplayImages(Game game, List<MultipartFile> imageFields) {
 		if (imageFields != null && !imageFields.get(0).getOriginalFilename().equals("") && !imageFields.isEmpty()) {
+			game.setGameplayImages(new ArrayList<>());
 			game.setGameplayImagesFiles(imageFields.stream().map(file -> {
 				try {
 					Blob generateProxy = BlobProxy.generateProxy(file.getInputStream(), file.getSize());
