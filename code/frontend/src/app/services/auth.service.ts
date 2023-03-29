@@ -60,8 +60,8 @@ export class LoginService {
 
     }
 
-    register(formName: string, formLastName: string, formMail: string, formPassword: string, formAboutMe: string): Observable<any> {
-      return this.http.post("/api/users/", {name: formName, lastName: formLastName, mail: formMail, encodedPassword: formPassword, aboutMe: formAboutMe})
+    register(formData): Observable<any> {
+      return this.http.post("/api/users/", formData)
         .pipe(
           map((response: any) => {
             return response;

@@ -34,7 +34,16 @@ export class RegisterComponent{
       return;
     }
 
-    this.LoginService.register(name, lastName, this.email, this.encodedPassword, this.aboutMe).subscribe(
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('lastName', lastName);
+    formData.append('mail', this.email);
+    formData.append('password', this.encodedPassword);
+    formData.append('aboutMe', this.aboutMe);
+
+
+    this.LoginService.register(formData).subscribe(
       response => {
         this.router.navigate(['/login']);
       },
