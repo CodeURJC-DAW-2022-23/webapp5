@@ -64,10 +64,10 @@ export class EditGameComponent implements OnInit {
     }
 
     this.gameService.editGame(this.game,this.imageField,this.imageFields).subscribe((response) => {
-      this.router.navigate(['/game/' + this.game.id]);
+      this.goToGame();
     },
     error => {
-      this.displayed = false;
+      this.router.navigate(['error/' + error.status]);
     });
   }
 

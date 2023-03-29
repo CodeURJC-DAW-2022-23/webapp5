@@ -98,13 +98,13 @@ export class GameService {
       formData.append('directX', game.directX);
       formData.append('network', game.network);
       formData.append('hardDrive', game.hardDrive);
-      formData.append('soundcard', game.soundCard);
+      formData.append('soundCard', game.soundCard);
       formData.append('graphics', game.graphics);
       formData.append('description', game.description);
       if(imageField){
         formData.append('imageField', imageField);
       }
-      if(imageFields.length > 0){
+      if(imageFields){
         for (let i = 0; i < imageFields.length; i++) {
           formData.append('imageFields', imageFields[i]);
         }
