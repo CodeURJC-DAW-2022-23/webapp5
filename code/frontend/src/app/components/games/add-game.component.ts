@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Game } from 'src/app/models/game.model';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -78,7 +77,7 @@ export class AddGameComponent{
       this.router.navigate(['']);
     },
     error => {
-      this.displayed = false;
+      this.router.navigate(['error/' + error.status]);
     });
   }
 }

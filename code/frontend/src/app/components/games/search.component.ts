@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
         this.games = response.content;
         this.moreGames = !response.last;
       },
-      (error) => {
+      (_) => {
         this.games = [];
         this.moreGames = false;
       }

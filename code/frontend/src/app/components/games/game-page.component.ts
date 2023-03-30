@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserProfile } from 'src/app/models/user.rest.model';
-import { User } from 'src/app/models/user.model';
+import { Game } from 'src/app/models/game.model';
 
 @Component({
   selector: 'app-game-page',
@@ -25,6 +25,7 @@ export class GamePageComponent implements OnInit {
   comment: string = "";
   reviewRate: number = 1;
   inCart: boolean;
+  recomendedGames : Game[];
 
   images: Array<object> = [];
 
@@ -39,29 +40,15 @@ export class GamePageComponent implements OnInit {
       }
     );
 
+    this.userService.getRecomendations(5).subscribe((response) => {
+      this.recomendedGames = response;
+    });
+
     this.loadMainGame();
   }
 
   loadMainGame(){
-    this.gameService.getGameById(this.activatedRoute.snapshot.params['id']).subscribe(
-      (response) => {
-        this.gameInfo = response;
-        this.moreReviews = !response.reviews.last;
-        this.gameInfo.reviews = response.reviews.content;
-        this.gameplayImages().forEach(element => {
-          this.images.push({image: element, thumbImage: element});
-        });
-        this.reviewService.isReviewed(this.gameInfo.game.id, this.userProfile.user.id).subscribe(
-          (response) => {
-            this.isReviewed = response;
-          }
-        );
-        this.inCart = this.gameInCart();
-      },
-      (error) => {
-        this.router.navigate(['error/'+ error.status]);
-      }
-    );
+    this.loadGame(this.activatedRoute.snapshot.params['id']);
   }
 
   isAdmin(){
@@ -71,7 +58,7 @@ export class GamePageComponent implements OnInit {
   gameplayImages(){
     let index: number = 0;
     let images: string[] = [];
-    this.gameInfo.game.gameplayImages.forEach(element => {
+    this.gameInfo.game.gameplayImages.forEach(_ => {
       images.push(this.gameService.getGameplayImage(this.gameInfo.game, index + 1));
       index++;
     });
@@ -90,7 +77,7 @@ export class GamePageComponent implements OnInit {
 
   deleteReview(id:number){
     this.reviewService.deleteReview(id).subscribe(
-      (response) => {
+      (_) => {
         this.loadMainGame();
       },
       (error) => {
@@ -125,7 +112,7 @@ export class GamePageComponent implements OnInit {
     );
   }
 
-  checkIfDelete(user: UserProfile, review: Review){
+  checkIfDelete( review: Review){
     if (!this.authService.isLogged()){
       return false;
     }
@@ -152,4 +139,37 @@ export class GamePageComponent implements OnInit {
   goToEdit(){
     this.router.navigate(['editGame/'+ this.gameInfo.game.id]);
   }
+
+  getCoverImage(){
+    return this.gameService.getGameCoverImage(this.gameInfo.game);
+  }
+
+  loadGame(id: number){
+    this.gameService.getGameById(id).subscribe(
+      (response) => {
+        this.gameInfo = response;
+        this.moreReviews = !response.reviews.last;
+        this.gameInfo.reviews = response.reviews.content;
+        this.images = [];
+        this.gameplayImages().forEach(element => {
+          this.images.push({image: element, thumbImage: element});
+        });
+        this.reviewService.isReviewed(this.gameInfo.game.id, this.userProfile.user.id).subscribe(
+          (response) => {
+            this.isReviewed = response;
+          }
+        );
+        this.inCart = this.gameInCart();
+      },
+      (error) => {
+        this.router.navigate(['error/'+ error.status]);
+      }
+    );
+  }
+
+  goToGame(id: number) {
+    this.router.navigate(['/game/' + id]);
+    this.loadGame(id);
+  }
+
 }

@@ -32,7 +32,7 @@ export class NavbarComponent {
     if (scrollPosition > 100) {
       // si el usuario ha desplazado más de 100px
       this.scrolled = true; // cambia la opacidad a 1
-    }else{
+    } else {
       this.scrolled = false; // cambia la opacidad a 0.3
     } // actualiza el valor de color de fondo
   }
@@ -42,11 +42,10 @@ export class NavbarComponent {
     private router: Router,
     private renderer: Renderer2,
     public userService: UserService,
-    public gameService: GameService,
+    public gameService: GameService
   ) {}
 
-  ngOnInit(): void{
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit() {
     // Obtenemos la altura de la navbar
@@ -64,7 +63,7 @@ export class NavbarComponent {
     this.router.navigate(['/register']);
   }
 
-  myProfile(){
+  myProfile() {
     this.router.navigate(['/profile/' + this.loginService.currentUser().id]);
   }
 
@@ -77,38 +76,40 @@ export class NavbarComponent {
     this.router.navigate(['/']);
   }
 
-  totalPrice(){
+  totalPrice() {
     return this.loginService.currentUser().totalPrice;
   }
 
-  deleteFromCart(id: number){
-    this.userService.deleteFromCart(id, this.loginService.currentUser().id).subscribe(
-      _ => {
-        this.loginService.reqIsLogged();
-      },
-      error => {
-        this.router.navigate(['/error/'+ error.status]);
-      }
-    );
+  deleteFromCart(id: number) {
+    this.userService
+      .deleteFromCart(id, this.loginService.currentUser().id)
+      .subscribe(
+        (_) => {
+          this.loginService.reqIsLogged();
+        },
+        (error) => {
+          this.router.navigate(['/error/' + error.status]);
+        }
+      );
   }
 
-  controlPanel(){
+  controlPanel() {
     this.router.navigate(['/controlPanel']);
   }
 
-  cart(){
+  cart() {
     this.router.navigate(['/cart/' + this.loginService.currentUser().id]);
   }
 
-  checkout(){
+  checkout() {
     this.router.navigate(['/checkout/' + this.loginService.currentUser().id]);
   }
 
-  search(){
+  search() {
     this.router.navigate(['/search']);
   }
 
-  mainPage(){
+  mainPage() {
     this.router.navigate(['/']);
   }
 
@@ -116,8 +117,7 @@ export class NavbarComponent {
     this.router.navigate(['/game/' + id]);
   }
 
-  goToNewGame(){
+  goToNewGame() {
     this.router.navigate(['/newGame']);
   }
-
 }

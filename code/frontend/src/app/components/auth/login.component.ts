@@ -18,10 +18,10 @@ export class LoginComponent {
 
     this.loginService.logIn(user, pass)
   .subscribe(
-    (response) => {
+    _ => {
       this.router.navigate(['/']);
     },
-    (error) => {
+    _ => {
       this.displayed = false;
     }
   );

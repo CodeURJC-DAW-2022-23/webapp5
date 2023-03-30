@@ -8,8 +8,7 @@ import { Game } from 'src/app/models/game.model';
   templateUrl: './control-panel.component.html',
 })
 export class ControlPanelComponent implements OnInit {
-
-  constructor(public gameService: GameService, public router: Router) { }
+  constructor(public gameService: GameService, public router: Router) {}
 
   games: Game[] = [];
   moreGames: boolean = false;
@@ -24,12 +23,13 @@ export class ControlPanelComponent implements OnInit {
   }
 
   deleteGame(id: number) {
-    this.gameService.deleteGame(id).subscribe((response) => {
-      this.games = this.games.filter(game => game.id !== id);
-    },
-    (error) => {
-      this.router.navigate(['/error']+ error.status);
-    }
+    this.gameService.deleteGame(id).subscribe(
+      (_) => {
+        this.games = this.games.filter((game) => game.id !== id);
+      },
+      (error) => {
+        this.router.navigate(['error/' + error.status]);
+      }
     );
   }
 

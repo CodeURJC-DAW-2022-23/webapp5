@@ -1,39 +1,35 @@
-import { Component, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { encode } from 'querystring';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
 })
-export class RegisterComponent{
-
-  name:string;
+export class RegisterComponent {
+  name: string;
   lastName: string;
-  encodedPassword:string = "";
-  email:string;
+  encodedPassword: string = '';
+  email: string;
   aboutMe: string;
   rPassword: string;
   rEmail: String;
   displayed: boolean = true;
   displayedRegister: boolean = true;
 
-  constructor(public LoginService: LoginService, private router: Router) { }
+  constructor(public LoginService: LoginService, private router: Router) {}
 
-  register(event: any, name: string, lastName: string){
-
+  register(event: any, name: string, lastName: string) {
     event.preventDefault();
 
-    if (!this.checkEmpty(name) || !this.checkEmpty(lastName)){
+    if (!this.checkEmpty(name) || !this.checkEmpty(lastName)) {
       this.displayed = false;
       return;
     }
-    if (this.checkEmail() != "" || this.checkPassword() != ""){
+    if (this.checkEmail() != '' || this.checkPassword() != '') {
       this.displayed = false;
       return;
     }
-
 
     const formData = new FormData();
     formData.append('name', name);
@@ -42,53 +38,52 @@ export class RegisterComponent{
     formData.append('password', this.encodedPassword);
     formData.append('aboutMe', this.aboutMe);
 
-
     this.LoginService.register(formData).subscribe(
-      response => {
+      (_) => {
         this.router.navigate(['/login']);
       },
-      error => {
+      (_) => {
         this.displayedRegister = false;
       }
     );
   }
 
-  checkEmpty(input:string){
-    if(input == undefined || input == ""){
+  checkEmpty(input: string) {
+    if (input == undefined || input == '') {
       return false;
     }
     return true;
   }
 
-  checkEmail(){
-    if (!this.checkEmpty(this.email)){
+  checkEmail() {
+    if (!this.checkEmpty(this.email)) {
       return "The email can't be empty";
     }
-    if (! this.email.toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    )){
-      return "The email is not valid";
+    if (
+      !this.email
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) {
+      return 'The email is not valid';
     }
-    if (this.email != this.rEmail){
+    if (this.email != this.rEmail) {
       return "The emails don't match";
     }
-    return "";
+    return '';
   }
 
-  checkPassword(){
-
-    if (!this.checkEmpty(this.encodedPassword) || this.encodedPassword.length < 8){
-      return "The password must be at least 8 characters long";
+  checkPassword() {
+    if (
+      !this.checkEmpty(this.encodedPassword) ||
+      this.encodedPassword.length < 8
+    ) {
+      return 'The password must be at least 8 characters long';
     }
-    if (this.encodedPassword != this.rPassword){
+    if (this.encodedPassword != this.rPassword) {
       return "The passwords doesn't match";
     }
-    return "";
+    return '';
   }
-
-
-
-
-
 }

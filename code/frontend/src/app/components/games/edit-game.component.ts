@@ -19,7 +19,7 @@ export class EditGameComponent implements OnInit {
     this.gameService.getGameById(+this.router.url.split('/')[2]).subscribe((response) => {
       this.game = response.game;
     },
-    (error) => {
+    (_) => {
       this.router.navigate(['error/403']);
     }
     );
@@ -63,7 +63,7 @@ export class EditGameComponent implements OnInit {
       return;
     }
 
-    this.gameService.editGame(this.game,this.imageField,this.imageFields).subscribe((response) => {
+    this.gameService.editGame(this.game,this.imageField,this.imageFields).subscribe((_) => {
       this.goToGame();
     },
     error => {

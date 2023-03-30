@@ -1,6 +1,6 @@
 import { GameService } from './../../services/game.service';
 import { UserService } from './../../services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Game } from 'src/app/models/game.model';
 import { Router } from '@angular/router';
 
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class SideBlockComponent implements OnInit {
 
   recomendedGames : Game[];
+  @Input() show: boolean = true;
 
   constructor(private userService: UserService, private gameService: GameService, private router: Router) {
 
