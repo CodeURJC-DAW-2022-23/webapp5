@@ -1,6 +1,6 @@
 # Key Whale
 
-**Video: 
+### Video: 
 
 ## Table of contents
 
@@ -571,7 +571,7 @@ Javier has created the class diagram updated with rest api and necesary methods 
 
 ## SPA class diagram and templates
 
-
+![diagram](screenshots/DiagramaClases3.png)
 
 ## Group members participation
 ### Brais Cabo Felpete
