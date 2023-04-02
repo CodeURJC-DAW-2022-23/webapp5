@@ -1,5 +1,7 @@
 # Key Whale
 
+**Video: 
+
 ## Table of contents
 
 - [Phase 0](#phase-0)
@@ -560,4 +562,142 @@ Javier has created the class diagram updated with rest api and necesary methods 
 | #2            | [UserProfile](code/backend/src/main/java/app/model/modelRest/UserProfile.java) |
 | #3            | [ClassDiagram](screenshots/DiagramaDeClases3.png)| 
 | #4            | [Readme](README.md) | 
-| #5            | | 
+
+# Phase 4
+
+## Preparation of the development environment
+
+
+
+## SPA class diagram and templates
+
+
+
+## Group members participation
+### Brais Cabo Felpete
+#### Textual description:
+
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            |  |  |
+| #2            |  |  | 
+| #3            |  |  | 
+| #4            |  |  | 
+| #5            |  |  | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |  | 
+| #2            |  | 
+| #3            |  | 
+| #4            |  | 
+| #5            |  |
+
+
+### Sergio Octavio Mancebo
+#### Textual description: 
+
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            |  |  | 
+| #2            |  |  | 
+| #3            |  |  | 
+| #4            |  |  | 
+| #5            |  |  | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |  | 
+| #2            |  | 
+| #3            |  | 
+| #4            |  |
+| #5            |  | 
+
+
+
+### Iker Pizarro Fernández
+#### Textual description: 
+
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            |  |  | 
+| #2            |  |  | 
+| #3            |  |  | 
+| #4            |  |  | 
+| #5            |  |  | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |  | 
+| #2            |  | 
+| #3            |  | 
+| #4            |  | 
+| #5            |  | 
+
+### Sergio Pérez Sampedro
+#### Textual description: 
+
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            |  |  | 
+| #2            |  |  | 
+| #3            |  |  | 
+| #4            |  |  | 
+| #5            |  |  | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |  | 
+| #2            |  | 
+| #3            |  | 
+| #4            |  | 
+| #5            |  | 
+
+### Javier Gaspariño Muñoz
+#### Textual description: 
+
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            |  |  | 
+| #2            |  |  | 
+| #3            |  |  | 
+| #4            |  |  | 
+| #5            |  |  | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |  | 
+| #2            |  | 
+| #3            |  | 
+| #4            |  | 
+| #5            |  | 
