@@ -1,3 +1,4 @@
+import { ScrollToTopService } from './ScrollTopService.component';
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
@@ -7,9 +8,10 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'KeyWhale';
-  constructor(private titleService:Title) {
+  constructor(private titleService:Title, private scrollToTopService: ScrollToTopService) {
   }
   ngOnInit() {
     this.titleService.setTitle(this.title);
+    this.scrollToTopService.init();
   }
 }
