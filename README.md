@@ -567,7 +567,16 @@ Javier has created the class diagram updated with rest api and necesary methods 
 
 ## Preparation of the development environment
 
-
+1. Install Docker Desktop.
+2. Create and account on Dockerhub.
+3. Open any shell of type "bash".
+4. Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp5.git".
+5. Use command "cd webapp5/code/docker" .
+6. Execute the command "docker-compose up" on the shell.
+7. Open another shell in the root of the project.
+8. Execute the command "cd code/frontend".
+9. Execute the command "npm install".
+10. Execute the command "npm start".
 
 ## SPA class diagram and templates
 
@@ -576,28 +585,28 @@ Javier has created the class diagram updated with rest api and necesary methods 
 ## Group members participation
 ### Brais Cabo Felpete
 #### Textual description:
-
+Brais has done the dockerfile to deploy the angular app, in the angular project he seted the project up and did the register and the navbar. He also implemented the register, the app routing, the security and the component to edit the user.
 
 #### The five most important commits:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            |  |  |
-| #2            |  |  | 
-| #3            |  |  | 
-| #4            |  |  | 
-| #5            |  |  | 
+| #1            | Docker Deployment  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/e8485fb155545a3ee90ab826b286ea44467c1cf8 |
+| #2            | App Routing | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/66330871e3426344c839093b7cdc8d054a1ee0ee | 
+| #3            | Register Page | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/bcdd6f965cc4c2a14274b78d3a24b472b9caefb9 | 
+| #4            | Login | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/bcdd6f965cc4c2a14274b78d3a24b472b9caefb9 | 
+| #5            | Edit Profile | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/281f73454c09c08278e825306e6028a0bad08de7 | 
 
 
 #### The five most participated files:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            |  | 
-| #2            |  | 
-| #3            |  | 
-| #4            |  | 
-| #5            |  |
+| #1            | [Dockerfile](code/docker/Dockerfile) | 
+| #2            | [docker-compose.yml](code/docker/docker-compose.yml) | 
+| #3            | [GameComponent](code/frontend/src/app/components/games/game-page.component.ts) |
+| #4            | [MainPage](code/frontend/src/app/components/games/games.component.ts) |
+| #5            | [Register](code/frontend/src/app/components/auth/register.component.html) |
 
 
 ### Sergio Octavio Mancebo
