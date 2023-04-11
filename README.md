@@ -688,25 +688,25 @@ Brais has done the dockerfile to deploy the angular app, in the angular project 
 
 ### Javier Gaspariño Muñoz
 #### Textual description: 
-
+Javier has made the navbar cart improvements, the checkout. He also collaborated in the edit game and made the class diagram.
 
 #### The five most important commits:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            |  |  | 
-| #2            |  |  | 
-| #3            |  |  | 
-| #4            |  |  | 
-| #5            |  |  | 
+| #1            | Navbar Cart Improvement | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/327dccd752e1f9d340c7aa626487c3dceafccfb8 | 
+| #2            | Checkout | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/2e4868ffd6959bb6fb9170eed566eb452faf351b#diff-6b8da21fcb1421857b98413e6f40d52d14596e393cf766d992ef47c7404a7104 | 
+| #3            | Edit Game Components and Service creation | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/9b8a2ef6a55856efe58dae181b0888acf61bee85 | 
+| #4            | Updates and Finish Edit Game | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ae9e463df5fdfe173c0fc352264220bc0aa03202 | 
+| #5            | Class Diagram Phase 4 | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/596175b91f985003cd3d980c1da9270c0231852b | 
 
 
 #### The five most participated files:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            |  | 
-| #2            |  | 
-| #3            |  | 
-| #4            |  | 
-| #5            |  | 
+| #1            | [Navbar ts](code/frontend/src/app/components/navbar/navbar.component.ts) | 
+| #2            | [Edit game ts](code/frontend/src/app/components/games/edit-game.component.ts) | 
+| #3            | [Checkout html](code/frontend/src/app/components/users/checkout.component.html) | 
+| #4            | [Checkout html](code/frontend/src/app/components/users/checkout.component.ts) | 
+| #5            | [Class Diagram](screenshots/DiagramaClases3.png) | 
