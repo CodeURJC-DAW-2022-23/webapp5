@@ -708,5 +708,5 @@ Javier has made the navbar cart improvements, the checkout. He also collaborated
 | #1            | [Navbar ts](code/frontend/src/app/components/navbar/navbar.component.ts) | 
 | #2            | [Edit game ts](code/frontend/src/app/components/games/edit-game.component.ts) | 
 | #3            | [Checkout html](code/frontend/src/app/components/users/checkout.component.html) | 
-| #4            | [Checkout html](code/frontend/src/app/components/users/checkout.component.ts) | 
+| #4            | [Checkout ts](code/frontend/src/app/components/users/checkout.component.ts) | 
 | #5            | [Class Diagram](screenshots/DiagramaClases3.png) | 
