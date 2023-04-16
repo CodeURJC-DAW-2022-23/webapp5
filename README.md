@@ -638,28 +638,28 @@ Brais has done the dockerfile to deploy the angular app, in the angular project 
 
 ### Iker Pizarro Fernández
 #### Textual description: 
-
+Iker has made the edit-game and add-game front with Angular.
 
 #### The five most important commits:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            |  |  | 
-| #2            |  |  | 
-| #3            |  |  | 
-| #4            |  |  | 
-| #5            |  |  | 
+| #1            | Add Game Front | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/a16d707c8004a322223b3491e721bf24889f9e28#diff-eb715df54195b66df020ea446cf297ad03657233f1d17269bee9d20502a7e75f | 
+| #2            | Add Game Front Final Release  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ffbc429d9ad8e827bded2bb0c9fa86d990acfe5e | 
+| #3            | Edit Game Front | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/9b8a2ef6a55856efe58dae181b0888acf61bee85 | 
+| #4            | Edit Game Front Final Release  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ae9e463df5fdfe173c0fc352264220bc0aa03202#diff-44db907bfdc2a278fb08caa5a50449ccaf6654550f0cb91012a061be29182787 | 
+| #5            | Edit Game Images Fix | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/6ca4957b7fcdb7eddf5dd81d7604313df13b6e18 | 
 
 
 #### The five most participated files:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            |  | 
-| #2            |  | 
-| #3            |  | 
-| #4            |  | 
-| #5            |  | 
+| #1            | [Add game ts](code/frontend/src/app/components/games/add-game.component.ts) | 
+| #2            | [Add game html](code/frontend/src/app/components/games/add-game.component.html) | 
+| #3            | [Edit game ts](code/frontend/src/app/components/games/edit-game.component.ts) | 
+| #4            | [Edit game html](code/frontend/src/app/components/games/edit-game.component.html) | 
+| #5            | [Game Service ts](code/frontend/src/app/services/game.service.ts) | 
 
 ### Sergio Pérez Sampedro
 #### Textual description: 
