@@ -585,6 +585,7 @@ Javier has created the class diagram updated with rest api and necesary methods 
 ## Deployment link
 
 https://10.100.139.196:8443/new/
+https://10.100.139.196:8443/
 
 ## Group members participation
 ### Brais Cabo Felpete
