@@ -615,28 +615,30 @@ Brais has done the dockerfile to deploy the angular app, in the angular project 
 
 ### Sergio Octavio Mancebo
 #### Textual description: 
-
+Sergio Octavio has made the Control Panel and Search with Angular.
 
 #### The five most important commits:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            |  |  | 
-| #2            |  |  | 
-| #3            |  |  | 
-| #4            |  |  | 
-| #5            |  |  | 
+| #1            | Control Panel |https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/65ac78844f41f5bc7c35c3dae8aacc242d0e76a8 | 
+| #2            | Search  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/5889e1eb4cbc245909734cabeca714400e9f7a45 | 
+| #3            | Readme|https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/bad5529eb4c6e402161205f6487bffd4660da4ed | 
+| #4            |   | | 
+| #5            |   | | 
 
 
 #### The five most participated files:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            |  | 
-| #2            |  | 
-| #3            |  | 
-| #4            |  |
-| #5            |  | 
+| #1            | [App Module ts](code/frontend/src/app/app.module.ts) | 
+| #2            | [App Routing ts](code/frontend/src/app/app.routing.ts) | 
+| #3            | [Control Panel Component](code/frontend/src/app/components/games/control-panel.component.html) | 
+| #4            | [Side Search Block](backend/target/classes/templates/sideSearchBlock.html) | 
+| #5            | [Search Component](code/frontend/src/app/components/games/search.component.html) | 
+
+
 
 
 
