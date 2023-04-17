@@ -660,31 +660,33 @@ Iker has made the edit-game and add-game front with Angular.
 | #3            | [Edit game ts](code/frontend/src/app/components/games/edit-game.component.ts) | 
 | #4            | [Edit game html](code/frontend/src/app/components/games/edit-game.component.html) | 
 | #5            | [Game Service ts](code/frontend/src/app/services/game.service.ts) | 
+ 
 
 ### Sergio Pérez Sampedro
 #### Textual description: 
-
+Sergio has made the carrusel the cart and video.
 
 #### The five most important commits:
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            |  |  | 
-| #2            |  |  | 
-| #3            |  |  | 
-| #4            |  |  | 
-| #5            |  |  | 
+| #1            | 	  Video |   | 
+| #2            |  Carrusel | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/5528ac9bfe5be0a9597c15931d35817d9f30fbd4 | 
+| #3            | Cart |  https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/422991cd842e4834c3da9c2120cb7885557e08c1 | 
+| #4            |  | | 
+| #5            | | | 
 
 
 #### The five most participated files:
 
 | File number | File               |
 | ------------- | ------------------ |
-| #1            |  | 
-| #2            |  | 
-| #3            |  | 
-| #4            |  | 
-| #5            |  | 
+| #1            |[ReviewRestController](code/backend/src/main/java/app/controller/restController/ReviewRestController.java) | 
+| #2            |[game-page.component](code/frontend/src/app/components/games/game-page.component.html)     | 
+| #3            | [game.service](code/frontend/src/app/services/game.service.ts)| 
+| #4            | [cart.component](code/frontend/src/app/components/users/cart.component.html)| 
+| #5            | [Readme](README.md) | 
+
 
 ### Javier Gaspariño Muñoz
 #### Textual description: 
