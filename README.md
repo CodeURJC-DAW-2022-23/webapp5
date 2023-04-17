@@ -674,7 +674,7 @@ Sergio has made the carrusel the cart and video.
 
 | Commit number | Description                                      | Link                                                                                            |
 | ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| #1            | 	  Video |   | 
+| #1            | 	Video | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/bad5529eb4c6e402161205f6487bffd4660da4ed | 
 | #2            |  Carrusel | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/5528ac9bfe5be0a9597c15931d35817d9f30fbd4 | 
 | #3            | Cart |  https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/422991cd842e4834c3da9c2120cb7885557e08c1 | 
 | #4            |  | | 
