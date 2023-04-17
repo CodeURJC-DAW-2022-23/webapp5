@@ -1,5 +1,5 @@
-import { Game } from "./game.model";
-import { User } from "./user.model";
+import { Game } from './game.model';
+import { User } from './user.model';
 
 export interface Review {
   id?: number;
