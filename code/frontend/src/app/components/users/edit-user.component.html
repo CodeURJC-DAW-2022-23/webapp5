@@ -73,9 +73,10 @@
       </div>
     </label>
     <div class="imageInput">
-      <input type="file" id='imageUpload' accept="image/jpeg,image/png" (change)="onFileSelected($event)" name="imageFile"><br>
+      <input type="file" id='imageUpload' accept="image/jpeg,image/png" (change)="onFileSelected($event)"
+        name="imageFile"><br>
     </div>
-    <div class="alert alert-danger" [class.display-div]="displayed"  role="alert">
+    <div class="alert alert-danger" [class.display-div]="displayed" role="alert">
       <strong>Edit form data is not correct!</strong>
     </div>
     <div class="align-right">

@@ -5,7 +5,7 @@ import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-edit-game',
-  templateUrl: './edit-game.component.html'
+  templateUrl: './edit-game.component.html',
 })
 export class EditGameComponent implements OnInit {
   game: Game;
@@ -13,31 +13,37 @@ export class EditGameComponent implements OnInit {
   imageField: File = null;
   imageFields: File[];
 
-  constructor(private gameService: GameService, private router: Router) { }
+  constructor(private gameService: GameService, private router: Router) {}
 
   ngOnInit(): void {
-    this.gameService.getGameById(+this.router.url.split('/')[2]).subscribe((response) => {
-      this.game = response.game;
-    },
-    (_) => {
-      this.router.navigate(['error/403']);
-    }
+    this.gameService.getGameById(+this.router.url.split('/')[2]).subscribe(
+      (response) => {
+        this.game = response.game;
+      },
+      (_) => {
+        this.router.navigate(['error/403']);
+      }
     );
   }
 
-  checkEmpty(input:string){
-    if(input == undefined || input == ""){
+  checkEmpty(input: string) {
+    if (input == undefined || input == '') {
       return false;
     }
     return true;
   }
 
   checkPrice() {
-   if (typeof this.game.price === 'number' && !Number.isNaN(this.game.price) && Number.isFinite(this.game.price) && this.game.price % 1 !== 0){
+    if (
+      typeof this.game.price === 'number' &&
+      !Number.isNaN(this.game.price) &&
+      Number.isFinite(this.game.price) &&
+      this.game.price % 1 !== 0
+    ) {
       return;
-   }else{
-      return "Price must be a number";
-   }
+    } else {
+      return 'Price must be a number';
+    }
   }
 
   onFilesSelected(event: any) {
@@ -53,22 +59,38 @@ export class EditGameComponent implements OnInit {
   edit(event: any) {
     event.preventDefault();
 
-    if (!this.checkEmpty(this.game.name) || !this.checkEmpty(this.game.category ) || !this.checkEmpty(this.game.os) || !this.checkEmpty(this.game.processor) || !this.checkEmpty(this.game.memory) || !this.checkEmpty(this.game.directX) || !this.checkEmpty(this.game.network) || !this.checkEmpty(this.game.hardDrive) || !this.checkEmpty(this.game.soundCard) || !this.checkEmpty(this.game.graphics) || !this.checkEmpty(this.game.description)) {
+    if (
+      !this.checkEmpty(this.game.name) ||
+      !this.checkEmpty(this.game.category) ||
+      !this.checkEmpty(this.game.os) ||
+      !this.checkEmpty(this.game.processor) ||
+      !this.checkEmpty(this.game.memory) ||
+      !this.checkEmpty(this.game.directX) ||
+      !this.checkEmpty(this.game.network) ||
+      !this.checkEmpty(this.game.hardDrive) ||
+      !this.checkEmpty(this.game.soundCard) ||
+      !this.checkEmpty(this.game.graphics) ||
+      !this.checkEmpty(this.game.description)
+    ) {
       this.displayed = false;
       return;
     }
 
-    if (this.checkPrice() == "Price must be a number"){
+    if (this.checkPrice() == 'Price must be a number') {
       this.displayed = false;
       return;
     }
 
-    this.gameService.editGame(this.game,this.imageField,this.imageFields).subscribe((_) => {
-      this.goToGame();
-    },
-    error => {
-      this.router.navigate(['error/' + error.status]);
-    });
+    this.gameService
+      .editGame(this.game, this.imageField, this.imageFields)
+      .subscribe(
+        (_) => {
+          this.goToGame();
+        },
+        (error) => {
+          this.router.navigate(['error/' + error.status]);
+        }
+      );
   }
 
   goToGame() {

@@ -8,7 +8,6 @@ import { Game } from 'src/app/models/game.model';
   templateUrl: './search.component.html',
 })
 export class SearchComponent implements OnInit {
-
   name: string;
   category: string;
   games: Game[];
@@ -16,25 +15,29 @@ export class SearchComponent implements OnInit {
   indexGames: number = 1;
   loading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, public gameService: GameService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public gameService: GameService
+  ) {}
 
   ngOnInit(): void {
     this.name = this.route.snapshot.queryParamMap.get('name');
-    if (this.name == null){
+    if (this.name == null) {
       this.name = '';
     }
     this.category = this.route.snapshot.queryParamMap.get('category');
-    if (this.category == null){
+    if (this.category == null) {
       this.category = '';
     }
 
     this.router.navigate([], {
       queryParams: {
         name: null,
-        category: null
+        category: null,
       },
       queryParamsHandling: 'merge',
-      replaceUrl: true
+      replaceUrl: true,
     });
     this.searchGames();
   }
@@ -52,20 +55,19 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  searchMoreGames(){
+  searchMoreGames() {
     this.loading = true;
-    this.gameService.moreFoundGames(this.category, this.name, this.indexGames).subscribe(
-      (response) => {
+    this.gameService
+      .moreFoundGames(this.category, this.name, this.indexGames)
+      .subscribe((response) => {
         this.games = this.games.concat(response.content);
         this.moreGames = !response.last;
         this.indexGames++;
         this.loading = false;
-      }
-    );
+      });
   }
 
   goToGame(id: number) {
     this.router.navigate(['/game/' + id]);
   }
-
-  }
+}

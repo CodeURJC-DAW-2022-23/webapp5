@@ -1,10 +1,9 @@
-
 <section class="content-wrap">
   <!-- Banner -->
   <div class="youplay-banner youplay-banner-parallax banner-top">
 
     <div class="image">
-      <img [src]="this.getCoverImage()" class="carousel-image"/>
+      <img [src]="this.getCoverImage()" class="carousel-image" />
     </div>
 
     <div class="info">
@@ -46,7 +45,8 @@
 
   <!-- Images With Text -->
 
-  <ng-image-slider [infinite]="true" [showArrow]="false" [animationSpeed]="0.1" [autoSlide]="1" [lazyLoading]="true" [images]="images" #nav></ng-image-slider>
+  <ng-image-slider [infinite]="true" [showArrow]="false" [animationSpeed]="0.1" [autoSlide]="1" [lazyLoading]="true"
+    [images]="images" #nav></ng-image-slider>
 
   <!-- /Images With Text -->
 
@@ -172,23 +172,15 @@
             <!-- Single News Block -->
             <div class="row youplay-side-news" *ngFor="let game of recomendedGames">
               <div class="col-xs-3 col-md-4">
-                <a
-                role="button" (click)="goToGame(game.id)"
-                  class="angled-img">
+                <a role="button" (click)="goToGame(game.id)" class="angled-img">
                   <div class="img">
-                    <img
-                      [src]="this.gameService.getGameCoverImage(game)"
-                      alt="" />
+                    <img [src]="this.gameService.getGameCoverImage(game)" alt="" />
                   </div>
                 </a>
               </div>
               <div class="col-xs-9 col-md-8">
                 <h4 class="ellipsis">
-                  <a
-                  role="button" (click)="goToGame(game.id)"
-                    title="{{game.name}}"
-                    >{{game.name}}</a
-                  >
+                  <a role="button" (click)="goToGame(game.id)" title="{{game.name}}">{{game.name}}</a>
                 </h4>
                 <span class="price">${{game.price}}</span>
               </div>

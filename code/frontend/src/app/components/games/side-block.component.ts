@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
   templateUrl: './side-block.component.html',
 })
 export class SideBlockComponent implements OnInit {
-
-  recomendedGames : Game[];
+  recomendedGames: Game[];
   @Input() show: boolean = true;
 
-  constructor(private userService: UserService, private gameService: GameService, private router: Router) {
-
-  }
+  constructor(
+    private userService: UserService,
+    private gameService: GameService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.userService.getRecomendations(5).subscribe((response) => {
@@ -23,11 +24,11 @@ export class SideBlockComponent implements OnInit {
     });
   }
 
-  gameImage(game: Game){
+  gameImage(game: Game) {
     return this.gameService.getGameCoverImage(game);
   }
 
-  searchName(name: string){
+  searchName(name: string) {
     this.router.navigate(['/search'], { queryParams: { name: name } });
   }
 
@@ -35,8 +36,7 @@ export class SideBlockComponent implements OnInit {
     this.router.navigate(['/game/' + id]);
   }
 
-  searchCategory(category: string){
+  searchCategory(category: string) {
     this.router.navigate(['/search'], { queryParams: { category: category } });
   }
-
 }

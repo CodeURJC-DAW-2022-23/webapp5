@@ -1,5 +1,5 @@
 import { LoginService } from 'src/app/services/auth.service';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { UserProfile } from 'src/app/models/user.rest.model';
@@ -9,56 +9,63 @@ import { UserProfile } from 'src/app/models/user.rest.model';
   templateUrl: './edit-user.component.html',
 })
 export class EditUserComponent implements OnInit {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    public activatedRoute: ActivatedRoute,
+    public authService: LoginService
+  ) {}
 
-  constructor(private userService: UserService, private router: Router,
-    public activatedRoute: ActivatedRoute, public authService: LoginService) { }
+  userProfile: UserProfile;
+  rPass: string = '';
+  newPass: string = '';
+  displayed: boolean = true;
+  selectedFile: File = null;
 
-   userProfile: UserProfile;
-   rPass: string ="";
-   newPass: string = "";
-   displayed: boolean = true;
-   selectedFile: File = null;
-
-
-   ngOnInit(): void {
-     this.userService.getMe().subscribe((response) => {
-       this.userProfile = response;
-       if (this.userProfile.user.id.toString() != this.activatedRoute.snapshot.params['id']) {
-         this.router.navigate(['error/403']);
-       }
-     });
-   }
-   checkEmpty(input:string){
-    if(input == undefined || input == ""){
+  ngOnInit(): void {
+    this.userService.getMe().subscribe((response) => {
+      this.userProfile = response;
+      if (
+        this.userProfile.user.id.toString() !=
+        this.activatedRoute.snapshot.params['id']
+      ) {
+        this.router.navigate(['error/403']);
+      }
+    });
+  }
+  checkEmpty(input: string) {
+    if (input == undefined || input == '') {
       return false;
     }
     return true;
   }
 
-  checkPassword(){
-    if (this.newPass.length > 0 && this.newPass.length < 8){
-      return "The password must be at least 8 characters long";
+  checkPassword() {
+    if (this.newPass.length > 0 && this.newPass.length < 8) {
+      return 'The password must be at least 8 characters long';
     }
-    if (this.newPass != this.rPass){
+    if (this.newPass != this.rPass) {
       return "The passwords doesn't match";
     }
-    return "";
+    return '';
   }
 
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
   }
 
-  editUser(event: any){
-
+  editUser(event: any) {
     event.preventDefault();
 
-    if (!this.checkEmpty(this.userProfile.user.name) || !this.checkEmpty(this.userProfile.user.lastName)){
+    if (
+      !this.checkEmpty(this.userProfile.user.name) ||
+      !this.checkEmpty(this.userProfile.user.lastName)
+    ) {
       this.displayed = false;
       return;
     }
 
-    if (this.checkPassword() != ""){
+    if (this.checkPassword() != '') {
       this.displayed = false;
       return;
     }
@@ -73,18 +80,17 @@ export class EditUserComponent implements OnInit {
     }
 
     this.userService.editUser(this.userProfile.user.id, formData).subscribe(
-      response => {
+      (response) => {
         this.authService.reqIsLogged();
         this.router.navigate(['/profile/' + this.userProfile.user.id]);
       },
-      error => {
-        this.router.navigate(['error/'+ error.status]);
+      (error) => {
+        this.router.navigate(['error/' + error.status]);
       }
     );
   }
 
-  goToProfile(){
+  goToProfile() {
     this.router.navigate(['/profile/' + this.userProfile.user.id]);
   }
-
 }

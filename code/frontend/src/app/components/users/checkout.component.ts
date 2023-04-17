@@ -89,10 +89,18 @@ export class CheckoutComponent implements OnInit {
     return true;
   }
 
-  checkOut(event: any){
+  checkOut(event: any) {
     event.preventDefault();
     this.checkoutLoading = true;
-    if((this.checkEmpty(this.country) && this.checkEmpty(this.street) && this.checkEmpty(this.apartment) && this.checkEmpty(this.city) && this.checkEmpty(this.postCode) && this.checkEmpty(this.phone) || this.checkEmpty(this.user.billingInformation))){
+    if (
+      (this.checkEmpty(this.country) &&
+        this.checkEmpty(this.street) &&
+        this.checkEmpty(this.apartment) &&
+        this.checkEmpty(this.city) &&
+        this.checkEmpty(this.postCode) &&
+        this.checkEmpty(this.phone)) ||
+      this.checkEmpty(this.user.billingInformation)
+    ) {
       const formData = new FormData();
       formData.append('billing_country', this.country);
       formData.append('billing_street', this.street);
@@ -111,7 +119,7 @@ export class CheckoutComponent implements OnInit {
           this.router.navigate(['error/' + error.status]);
         }
       );
-    }else{
+    } else {
       this.displayed = false;
       this.checkoutLoading = false;
     }

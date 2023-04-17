@@ -4,27 +4,23 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
 })
 export class LoginComponent {
-
-  constructor(public loginService: LoginService, private router: Router) { }
+  constructor(public loginService: LoginService, private router: Router) {}
 
   displayed: boolean = true;
 
   logIn(event: any, user: string, pass: string) {
-
     event.preventDefault();
 
-    this.loginService.logIn(user, pass)
-  .subscribe(
-    _ => {
-      this.router.navigate(['/']);
-    },
-    _ => {
-      this.displayed = false;
-    }
-  );
+    this.loginService.logIn(user, pass).subscribe(
+      (_) => {
+        this.router.navigate(['/']);
+      },
+      (_) => {
+        this.displayed = false;
+      }
+    );
   }
-
 }

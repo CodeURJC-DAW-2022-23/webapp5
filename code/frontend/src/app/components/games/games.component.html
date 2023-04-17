@@ -1,5 +1,3 @@
-
-
 <section class="content-wrap">
   <ngb-carousel *ngIf="recomendedGames" class="center-carousel">
     <ng-template ngbSlide *ngFor="let game of recomendedGames">
@@ -13,48 +11,49 @@
 
   <div class="container youplay-store store-grid">
     <div class="row">
-    <!-- Games List -->
-    <div class="col-md-9 isotope">
-      <!-- Sort Categories -->
-      <!-- /Sort Categories -->
+      <!-- Games List -->
+      <div class="col-md-9 isotope">
+        <!-- Sort Categories -->
+        <!-- /Sort Categories -->
 
-      <div class="isotope-list row vertical-gutter">
-        <div class="item col-lg-4 col-md-6 col-xs-12" *ngFor="let game of games">
-          <a role="button" (click)="goToGame(game.id)" class="angled-img">
-            <div class="img img-offset">
-              <img [src]="gameImage(game)" alt="">
-            </div>
-            <div class="bottom-info">
-              <h4>{{game.name}}</h4>
-              <div class="row">
-                <div class="col-xs-6">
-                    <ngb-rating [(rate)]="game.totalRating/game.reviewCount" [decimal]="1" readonly="true" max="5" class="my-custom-rating"></ngb-rating>
-                </div>
-                <div class="col-xs-6">
-                  <div class="price my-price">
-                    ${{game.price}}
+        <div class="isotope-list row vertical-gutter">
+          <div class="item col-lg-4 col-md-6 col-xs-12" *ngFor="let game of games">
+            <a role="button" (click)="goToGame(game.id)" class="angled-img">
+              <div class="img img-offset">
+                <img [src]="gameImage(game)" alt="">
+              </div>
+              <div class="bottom-info">
+                <h4>{{game.name}}</h4>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <ngb-rating [(rate)]="game.totalRating/game.reviewCount" [decimal]="1" readonly="true" max="5"
+                      class="my-custom-rating"></ngb-rating>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="price my-price">
+                      ${{game.price}}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
+          <!-- /Single Product Block -->
         </div>
-        <!-- /Single Product Block -->
+
+        <div [class.display-div]="!moreGames" *ngIf="!loading">
+          <button class="btn btn-default" (click)="getMoreGames()">Load More Games</button>
+        </div>
+        <div *ngIf="loading" class="spinner"></div>
       </div>
+      <!-- /Games List -->
 
-      <div [class.display-div]="!moreGames" *ngIf="!loading">
-        <button class="btn btn-default" (click)="getMoreGames()">Load More Games</button>
+      <!-- Right Side -->
+      <div class="col-md-3">
+
+        <app-side-block></app-side-block>
+
       </div>
-      <div *ngIf="loading" class="spinner"></div>
-    </div>
-    <!-- /Games List -->
-
-    <!-- Right Side -->
-    <div class="col-md-3">
-
-      <app-side-block></app-side-block>
-
-    </div>
     </div>
     <!-- /Right Side -->
   </div>

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -25,8 +25,33 @@ import { AddGameComponent } from './components/games/add-game.component';
 import { EditGameComponent } from './components/games/edit-game.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NavbarComponent, RegisterComponent, AppFooterComponent, GamesComponent, SideBlockComponent, ProfileComponent, ErrorComponent, EditUserComponent, GamePageComponent, ControlPanelComponent, CartComponent, CheckoutComponent, SearchComponent, AddGameComponent, EditGameComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule, routing, NgbModule, NgImageSliderModule],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    NavbarComponent,
+    RegisterComponent,
+    AppFooterComponent,
+    GamesComponent,
+    SideBlockComponent,
+    ProfileComponent,
+    ErrorComponent,
+    EditUserComponent,
+    GamePageComponent,
+    ControlPanelComponent,
+    CartComponent,
+    CheckoutComponent,
+    SearchComponent,
+    AddGameComponent,
+    EditGameComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    routing,
+    NgbModule,
+    NgImageSliderModule,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
