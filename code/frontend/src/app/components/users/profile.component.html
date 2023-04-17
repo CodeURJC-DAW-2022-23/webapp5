@@ -1,0 +1,81 @@
+<section class="content-wrap">
+  <!-- Banner -->
+  <div class="youplay-banner banner-top youplay-banner-parallax small">
+    <div class="image" style="
+				background-image: url('assets/images/game-diablo-iii-1400x656.jpg');
+			"></div>
+
+    <div class="youplay-user-navigation">
+      <div class="container">
+        <ul>
+          <li class="active"><a href="user-profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info">
+      <div>
+        <div class="align-right">
+          <a class="btn btn-lg" role="button" (click)="editProfile()">Edit Profile</a>
+        </div>
+        <div class="container youplay-user">
+          <a class="angled-img image-popup">
+            <div class="img">
+              <img [src]="getProfileImage()" alt="" />
+            </div>
+          </a>
+          <!--
+                -->
+          <div class="user-data">
+            <h2>{{userProfile.user.name}} {{userProfile.user.lastName}}</h2>
+            <div class="activity">
+              <div>
+                <div class="num">{{userProfile.games.length}}</div>
+                <div class="title">Games</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+
+  <div class="container youplay-content">
+    <div class="row">
+      <div class="col-md-9">
+        <h3 class="mt-40 mb-20">Personal Information</h3>
+        <table class="table table-bordered white-text">
+          <tbody>
+            <ng-template [ngIf]="userProfile.games.length > 0">
+              <tr>
+                <td>
+                  <p>Purchased games</p>
+                </td>
+                <td>
+                  <p>
+                    <a *ngFor="let game of userProfile.games">
+                      <a role="button" (click)="goToGame(game.id)">{{game.name}}</a>
+                      &nbsp;
+                    </a>
+                  </p>
+                </td>
+              </tr>
+            </ng-template>
+
+            <tr>
+              <td>
+                <p>About Me</p>
+              </td>
+              <td>
+                <p>{{userProfile.user.aboutMe}}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+          <button class="btn btn-default navbar-btn" (click)="logout()">Log
+            Out</button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,7 @@
 # Key Whale
 
+### Video: 
+https://youtu.be/EwkY_QF8p4E
 ## Table of contents
 
 - [Phase 0](#phase-0)
@@ -560,4 +562,160 @@ Javier has created the class diagram updated with rest api and necesary methods 
 | #2            | [UserProfile](code/backend/src/main/java/app/model/modelRest/UserProfile.java) |
 | #3            | [ClassDiagram](screenshots/DiagramaDeClases3.png)| 
 | #4            | [Readme](README.md) | 
-| #5            | | 
+
+# Phase 4
+
+## Preparation of the development environment
+
+1. Install Docker Desktop.
+2. Create and account on Dockerhub.
+3. Open any shell of type "bash".
+4. Clone this repository using the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp5.git".
+5. Use command "cd webapp5/code/docker" .
+6. Execute the command "docker-compose up" on the shell.
+7. Open another shell in the root of the project.
+8. Execute the command "cd code/frontend".
+9. Execute the command "npm install".
+10. Execute the command "npm start".
+
+## SPA class diagram and templates
+
+![diagram](screenshots/DiagramaClases3.png)
+
+## Deployment link
+
+https://10.100.139.196:8443/new/
+https://10.100.139.196:8443/
+
+## Group members participation
+### Brais Cabo Felpete
+#### Textual description:
+Brais has done the dockerfile to deploy the angular app, in the angular project he seted the project up and did the register and the navbar. He also implemented the register, the app routing, the security and the component to edit the user.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Docker Deployment  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/e8485fb155545a3ee90ab826b286ea44467c1cf8 |
+| #2            | App Routing | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/66330871e3426344c839093b7cdc8d054a1ee0ee | 
+| #3            | Register Page | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/bcdd6f965cc4c2a14274b78d3a24b472b9caefb9 | 
+| #4            | Login | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/bcdd6f965cc4c2a14274b78d3a24b472b9caefb9 | 
+| #5            | Edit Profile | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/281f73454c09c08278e825306e6028a0bad08de7 | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [Dockerfile](code/docker/Dockerfile) | 
+| #2            | [docker-compose.yml](code/docker/docker-compose.yml) | 
+| #3            | [GameComponent](code/frontend/src/app/components/games/game-page.component.ts) |
+| #4            | [MainPage](code/frontend/src/app/components/games/games.component.ts) |
+| #5            | [Register](code/frontend/src/app/components/auth/register.component.html) |
+
+
+### Sergio Octavio Mancebo
+#### Textual description: 
+Sergio Octavio has made the Control Panel and Search with Angular.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Control Panel |https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/65ac78844f41f5bc7c35c3dae8aacc242d0e76a8 | 
+| #2            | Search  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/5889e1eb4cbc245909734cabeca714400e9f7a45 | 
+| #3            | Readme|https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/bad5529eb4c6e402161205f6487bffd4660da4ed | 
+| #4            |   | | 
+| #5            |   | | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [App Module ts](code/frontend/src/app/app.module.ts) | 
+| #2            | [App Routing ts](code/frontend/src/app/app.routing.ts) | 
+| #3            | [Control Panel Component](code/frontend/src/app/components/games/control-panel.component.html) | 
+| #4            | [Side Search Block](backend/target/classes/templates/sideSearchBlock.html) | 
+| #5            | [Search Component](code/frontend/src/app/components/games/search.component.html) | 
+
+
+
+
+
+### Iker Pizarro Fernández
+#### Textual description: 
+Iker has made the edit-game and add-game front with Angular.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Add Game Front | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/a16d707c8004a322223b3491e721bf24889f9e28#diff-eb715df54195b66df020ea446cf297ad03657233f1d17269bee9d20502a7e75f | 
+| #2            | Add Game Front Final Release  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ffbc429d9ad8e827bded2bb0c9fa86d990acfe5e | 
+| #3            | Edit Game Front | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/9b8a2ef6a55856efe58dae181b0888acf61bee85 | 
+| #4            | Edit Game Front Final Release  | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ae9e463df5fdfe173c0fc352264220bc0aa03202#diff-44db907bfdc2a278fb08caa5a50449ccaf6654550f0cb91012a061be29182787 | 
+| #5            | Edit Game Images Fix | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/6ca4957b7fcdb7eddf5dd81d7604313df13b6e18 | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [Add game ts](code/frontend/src/app/components/games/add-game.component.ts) | 
+| #2            | [Add game html](code/frontend/src/app/components/games/add-game.component.html) | 
+| #3            | [Edit game ts](code/frontend/src/app/components/games/edit-game.component.ts) | 
+| #4            | [Edit game html](code/frontend/src/app/components/games/edit-game.component.html) | 
+| #5            | [Game Service ts](code/frontend/src/app/services/game.service.ts) | 
+ 
+
+### Sergio Pérez Sampedro
+#### Textual description: 
+Sergio has made the carrusel the cart and video.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | 	Video | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/bad5529eb4c6e402161205f6487bffd4660da4ed | 
+| #2            |  Carrusel | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/5528ac9bfe5be0a9597c15931d35817d9f30fbd4 | 
+| #3            | Cart |  https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/422991cd842e4834c3da9c2120cb7885557e08c1 | 
+| #4            |  | | 
+| #5            | | | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            |[ReviewRestController](code/backend/src/main/java/app/controller/restController/ReviewRestController.java) | 
+| #2            |[game-page.component](code/frontend/src/app/components/games/game-page.component.html)     | 
+| #3            | [game.service](code/frontend/src/app/services/game.service.ts)| 
+| #4            | [cart.component](code/frontend/src/app/components/users/cart.component.html)| 
+| #5            | [Readme](README.md) | 
+
+
+### Javier Gaspariño Muñoz
+#### Textual description: 
+Javier has made the navbar cart improvements, the checkout. He also collaborated in the edit game and made the class diagram.
+
+#### The five most important commits:
+
+| Commit number | Description                                      | Link                                                                                            |
+| ------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| #1            | Navbar Cart Improvement | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/327dccd752e1f9d340c7aa626487c3dceafccfb8 | 
+| #2            | Checkout | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/2e4868ffd6959bb6fb9170eed566eb452faf351b#diff-6b8da21fcb1421857b98413e6f40d52d14596e393cf766d992ef47c7404a7104 | 
+| #3            | Edit Game Components and Service creation | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/9b8a2ef6a55856efe58dae181b0888acf61bee85 | 
+| #4            | Updates and Finish Edit Game | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/ae9e463df5fdfe173c0fc352264220bc0aa03202 | 
+| #5            | Class Diagram Phase 4 | https://github.com/CodeURJC-DAW-2022-23/webapp5/commit/596175b91f985003cd3d980c1da9270c0231852b | 
+
+
+#### The five most participated files:
+
+| File number | File               |
+| ------------- | ------------------ |
+| #1            | [Navbar ts](code/frontend/src/app/components/navbar/navbar.component.ts) | 
+| #2            | [Edit game ts](code/frontend/src/app/components/games/edit-game.component.ts) | 
+| #3            | [Checkout html](code/frontend/src/app/components/users/checkout.component.html) | 
+| #4            | [Checkout ts](code/frontend/src/app/components/users/checkout.component.ts) | 
+| #5            | [Class Diagram](screenshots/DiagramaClases3.png) | 

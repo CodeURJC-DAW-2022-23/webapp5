@@ -1,0 +1,46 @@
+.display-div{
+    display: none;
+}
+
+.wrong{
+   color: red;
+}
+
+.white-text {
+  color: white;
+}
+
+#imageUpload{
+  display: none;
+}
+
+#imageUploads{
+  display: none;
+}
+
+.dropdown-menu {
+  color: white;
+}
+
+.dropdown-menu .btn {
+  color: white;
+}
+
+.fa {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #7983ff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {transform: rotate(360deg);}
+}
+

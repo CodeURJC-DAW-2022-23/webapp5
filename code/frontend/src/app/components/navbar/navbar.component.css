@@ -1,0 +1,20 @@
+.custom-nav-semi {
+  background-color: rgba(16, 4, 36, 0.95) !important;
+}
+
+.custom-nav-very {
+  background-color: rgba(16, 4, 36, 0.3) !important;
+}
+
+.custom-nav .navbar-toggler {
+  color: #fff;
+  border-color: #fff;
+}
+
+.custom-nav .nav-item .nav-link {
+  color: #fff;
+}
+
+.custom-nav .navbar-brand{
+  color: #fff;
+}

@@ -1,0 +1,223 @@
+<!-- Main Content -->
+<section class="content-wrap">
+  <!-- Banner -->
+  <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    <div
+      class="image"
+      style="background-image: url('assets/images/banner-blog-bg.jpg')"
+    ></div>
+    <div class="info">
+      <div>
+        <div class="container">
+          <h1>Game Form</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+  <div class="container youplay-content">
+      <div class="align-right">
+        <a class="btn btn-lg" role="button" (click)="this.router.navigate([''])">Cancel</a>
+      </div>
+      <div class="col-md-12">
+        <!-- Billing Information -->
+        <h2 class="mt-0">Game Details</h2>
+
+        <!-- Country -->
+        <p>Categories:</p>
+        <label class="youplay-select">
+          <select [(ngModel)]="category" required>
+            <option value="">Select Category</option>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Casual">Casual</option>
+            <option value="Indie">Indie</option>
+            <option value="Racing">Racing</option>
+            <option value="RPG">RPG</option>
+            <option value="Simulation">Simulation</option>
+            <option value="Strategy">Strategy</option>
+          </select>
+        </label>
+        <div class="wrong" [class.display-div]="checkEmpty(category)">
+          <p> Select one category! </p>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Game Name:</p>
+            <div class="youplay-input">
+              <input [(ngModel)]="name" placeholder="Game Name" required />
+            </div>
+            <div class="wrong" [class.display-div]="checkEmpty(name)">
+              <p> The name cant be empty! </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>Price:</p>
+            <div class="youplay-input">
+              <input
+                type="number"
+                step="0.01"
+                [(ngModel)]="price"
+                placeholder="Price"
+                required
+              />
+            </div>
+            <div class="wrong">
+              <p> {{checkPrice()}} </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <p>OS:</p>
+            <div class="youplay-input">
+              <input type="text" [(ngModel)]="os" placeholder="OS" required />
+            </div>
+            <div class="wrong" [class.display-div]="checkEmpty(os)">
+              <p> The OS cant be empty! </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <p>Processor:</p>
+            <div class="youplay-input">
+              <input
+                type="text"
+                [(ngModel)]="processor"
+                placeholder="Processor"
+                required
+              />
+            </div>
+            <div class="wrong" [class.display-div]="checkEmpty(processor)">
+              <p> The processor cant be empty! </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <p>Memory:</p>
+            <div class="youplay-input">
+              <input type="text" [(ngModel)]="memory" placeholder="Memory" required />
+            </div>
+            <div class="wrong" [class.display-div]="checkEmpty(memory)">
+              <p> The Memory cant be empty! </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <p>DirectX:</p>
+            <div class="youplay-input">
+              <input
+                type="text"
+                [(ngModel)]="directX"
+                placeholder="DirectX"
+                required
+              />
+            </div>
+            <div class="wrong" [class.display-div]="checkEmpty(directX)">
+              <p> The DirectX cant be empty! </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>Network:</p>
+            <div class="youplay-input">
+              <input
+                type="text"
+                [(ngModel)]="network"
+                placeholder="Network"
+                required
+              />
+            </div>
+            <div class="wrong" [class.display-div]="checkEmpty(network)">
+              <p> The network cant be empty! </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Hard Drive:</p>
+            <div class="youplay-input">
+              <input
+                type="text"
+                [(ngModel)]="hardDrive"
+                placeholder="Hard drive"
+                required
+              />
+            </div>
+            <div class="wrong" [class.display-div]="checkEmpty(hardDrive)">
+              <p> The Hard Drive cant be empty! </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>Sound Card:</p>
+            <div class="youplay-input">
+              <input
+                type="text"
+                [(ngModel)]="soundcard"
+                placeholder="Sound Card"
+                required
+              />
+            </div>
+            <div class="wrong" [class.display-div]="checkEmpty(soundcard)">
+              <p> The Sound Card cant be empty! </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Graphic:</p>
+            <div class="youplay-input">
+              <input
+                type="text"
+                [(ngModel)]="graphics"
+                placeholder="Graphic"
+                required
+              />
+            </div>
+            <div class="wrong" [class.display-div]="checkEmpty(graphics)">
+              <p> The Graphic cant be empty! </p>
+            </div>
+          </div>
+        </div>
+
+        <p>Images:</p>
+        <label for="imageUpload">
+          <div class="align-left">
+            <a class="btn btn-lg">Gamecover Picture</a>
+          </div></label
+        >
+        <div class="imageInput">
+          <input type="file" id='imageUpload' accept="image/jpeg,image/png" (change)="onFileSelected($event)" required/>
+        </div>
+
+        <label for="imageUploads">
+          <div class="align-left">
+            <a class="btn btn-lg">Gameplay Pictures</a>
+          </div></label
+        >
+        <div class="imageInput">
+          <input id='imageUploads'type="file" multiple accept="image/jpeg,image/png" (change)="onFilesSelected($event)" required/>
+        </div>
+        <p>Description:</p>
+        <div class="youplay-textarea">
+          <textarea
+            [(ngModel)]="description"
+            rows="5"
+            placeholder="Description"
+            required
+          ></textarea>
+        </div>
+        <div class="wrong" [class.display-div]="checkEmpty(description)">
+          <p> The Description cant be empty! </p>
+        </div>
+        <!-- /Billing Information -->
+        <div class="alert alert-danger" [class.display-div]="displayed"  role="alert">
+          <strong>Register form data is not correct!</strong>
+        </div>
+        <!-- Order Button -->
+        <div class="align-right">
+          <a class="btn btn-default db" (click)="upload($event)">Create Game</a>
+        </div>
+        <!-- /Order Button -->
+      </div>
+    </div>
+</section>

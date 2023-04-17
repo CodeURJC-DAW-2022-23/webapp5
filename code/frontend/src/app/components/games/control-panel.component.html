@@ -1,0 +1,72 @@
+<section class="content-wrap">
+  <!-- Banner -->
+  <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    <div
+      class="image"
+      style="background-image: url('assets/images/banner-blog-bg.jpg')"
+    ></div>
+
+    <div class="info">
+      <div>
+        <div class="container">
+          <h1>Control panel</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+
+  <div class="container youplay-content">
+    <div class="row">
+    <div class="col-md-9">
+      <h2 class="mt-0">Games uploaded</h2>
+
+      <!-- Single Product Block -->
+      <div class="item angled-bg" *ngFor="let game of games">
+        <div class="row">
+          <div class="col-lg-2 col-md-3 col-xs-4">
+            <a role="button" (click)="goToGame(game.id)" class="angled-img">
+              <div class="img">
+                <img [src]="this.gameService.getGameCoverImage(game)" alt="" />
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-10 col-md-9 col-xs-8">
+            <div class="row">
+              <div class="col-xs-6 col-md-9">
+                <h4><a role="button" (click)="goToGame(game.id)" >{{game.name}}</a></h4>
+                <div class="rating hidden-xs">
+                  <ngb-rating [(rate)]="game.totalRating/game.reviewCount" [decimal]="1" readonly="true" max="5" class="my-custom-rating"></ngb-rating>
+                </div>
+              </div>
+              <div class="col-xs-6 col-md-3 align-right">
+                <a
+                  role="button"
+                  class="fa fa-close"
+                  (click)="deleteGame(game.id)"
+                ></a>
+                <a
+                  role="button"
+                  (click)="goToEditGame(game.id)"
+                  class="fa fa-pencil"
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [class.display-div]="!moreGames" *ngIf="!loading">
+        <button class="btn btn-default" (click)="getMoreGames()">Load More Games</button>
+      </div>
+      <div *ngIf="loading" class="spinner"></div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="col-md-3">
+      <app-side-block></app-side-block>
+    </div>
+    <!-- /Right Side -->
+  </div>
+  </div>
+
+</section>

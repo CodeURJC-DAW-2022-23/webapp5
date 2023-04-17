@@ -1,0 +1,86 @@
+<section class="content-wrap">
+  <!-- Banner -->
+  <div class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    <div
+      class="image"
+      style="background-image: url('assets/images/banner-blog-bg.jpg')"
+    ></div>
+
+    <div class="info">
+      <div>
+        <div class="container">
+          <h1>Cart</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+
+  <div class="container youplay-content">
+    <div class="row">
+    <div class="col-md-9">
+      <div *ngIf="this.cart.length > 0">
+      <h2 class="mt-0">Your Games in Cart</h2>
+      </div>
+      <div *ngIf="this.cart.length == 0">
+      <h2 class="mt-0">Your Cart is Empty</h2>
+      </div>
+      <!-- Single Product Block -->
+      <div class="item angled-bg" *ngFor="let game of cart">
+        <div class="row">
+          <div class="col-lg-2 col-md-3 col-xs-4">
+            <a role="button" (click)="goToGame(game.id)" class="angled-img">
+              <div class="img">
+                <img [src]="this.gameService.getGameCoverImage(game)" alt="" />
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-10 col-md-9 col-xs-8">
+            <div class="row">
+              <div class="col-xs-6 col-md-9">
+                <h4><a role="button" (click)="goToGame(game.id)">{{game.name}}</a></h4>
+                <div class="rating hidden-xs">
+                  <ngb-rating [(rate)]="game.totalRating/game.reviewCount" [decimal]="1" readonly="true" max="5" class="my-custom-rating"></ngb-rating>
+                </div>
+              </div>
+              <div class="col-xs-6 col-md-3 align-right">
+                <div class="price">${{game.price}}</div>
+                <a
+                  role="button"
+                  class="fa fa-close"
+                  (click)="deleteCartGame(game.id)"
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div [class.display-div]="!moreGames" *ngIf="!loading">
+        <button class="btn btn-default" (click)="getMoreGames()">Load More Games</button>
+      </div>
+      <div *ngIf="loading" class="spinner"></div>
+      <!-- /Single Product Block -->
+
+
+      <div *ngIf="this.cart.length > 0">
+      <div class="align-right h3 mr-20 mb-20">
+        Total: <strong>${{this.user.totalPrice}}</strong>
+      </div>
+      <div class="align-right">
+        <a role="button" (click)="goToCheckout()" class="btn btn-lg"
+          >Proceed to Checkout</a
+        >
+      </div>
+      </div>
+
+    </div>
+
+    <!-- Right Side -->
+    <div class="col-md-3"><app-side-block></app-side-block></div>
+    <!-- /Right Side -->
+  </div>
+</div>
+
+</section>

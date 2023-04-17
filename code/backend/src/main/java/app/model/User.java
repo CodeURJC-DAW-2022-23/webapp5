@@ -43,7 +43,6 @@ public class User{
 	private List<String> roles;
     
     @ManyToMany
-    @JsonIgnore
 	private List<Game> cart = new ArrayList<>();
 
     @Lob

@@ -1,0 +1,223 @@
+
+<section class="content-wrap">
+  <!-- Banner -->
+  <div class="youplay-banner youplay-banner-parallax banner-top">
+
+    <div class="image">
+      <img [src]="this.getCoverImage()" class="carousel-image"/>
+    </div>
+
+    <div class="info">
+      <div>
+        <div class="container">
+          <h1>{{gameInfo.game.name}}</h1>
+          <div class="align-right" *ngIf="this.authService.isAdmin()">
+            <a class="btn btn-lg" role="button" (click)="goToEdit()"> Edit Game </a>
+          </div>
+          <br />
+          <div *ngIf="!this.gameInfo.game.deleted">
+            <h2><span class="label label-default">${{gameInfo.game.price}}</span></h2>
+            <div *ngIf="this.authService.isLogged()">
+              <div *ngIf="gameBought(); else notBought">
+                <div class="alert" role="alert">
+                  <strong>You already bought this game</strong>
+                </div>
+              </div>
+              <ng-template #notBought>
+                <div *ngIf="inCart; else notInCart">
+                  <div class="alert" role="alert">
+                    <strong>This game is already in your cart</strong>
+                  </div>
+                </div>
+                <ng-template #notInCart>
+                  <a role="button" (click)="addToCart($event)" class="btn btn-lg" title="Add to Cart">Add to Cart</a>
+                </ng-template>
+              </ng-template>
+            </div>
+          </div>
+          <div class="alert" role="alert" *ngIf="this.gameInfo.game.deleted">
+            <strong>This game is no longer available</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Banner -->
+
+  <!-- Images With Text -->
+
+  <ng-image-slider [infinite]="true" [showArrow]="false" [animationSpeed]="0.1" [autoSlide]="1" [lazyLoading]="true" [images]="images" #nav></ng-image-slider>
+
+  <!-- /Images With Text -->
+
+  <div class="container youplay-store">
+    <div class="row">
+      <div class="col-md-9">
+        <!-- Post Info -->
+        <article>
+          <!-- Description -->
+          <h2 class="mt-0">Description</h2>
+          <div class="description">
+            <p>{{this.gameInfo.game.description}}</p>
+          </div>
+          <!-- /Description -->
+        </article>
+        <!-- /Post Info -->
+
+        <!-- Information -->
+        <div class="requirements-block">
+          <h2>System Requirements</h2>
+          <div><strong>OS:</strong> {{gameInfo.game.os}}</div>
+          <div><strong>Processor:</strong> {{gameInfo.game.processor}}</div>
+          <div><strong>Memory:</strong> {{gameInfo.game.memory}}</div>
+          <div><strong>Graphics:</strong> {{gameInfo.game.graphics}}</div>
+          <div><strong>DirectX:</strong> {{gameInfo.game.directX}}</div>
+          <div><strong>Network:</strong> {{gameInfo.game.network}}</div>
+          <div><strong>Hard Drive:</strong> {{gameInfo.game.hardDrive}}</div>
+          <div><strong>Sound Card:</strong> {{gameInfo.game.soundCard}}</div>
+        </div>
+        <!-- /Information -->
+
+        <!-- Reviews -->
+
+        <div class="reviews-block mb-0">
+          <h2>Reviews <small>({{this.gameInfo.game.reviewCount}})</small></h2>
+          <!-- Reviews List -->
+          <ul class="reviews-list">
+            <li *ngFor="let review of this.gameInfo.reviews">
+              <article>
+                <div class="review-avatar pull-left">
+                  <img [src]="userService.getProfileImage(review.user)" />
+                </div>
+                <div class="review-cont clearfix">
+                  <div class="rating pull-right">
+                    <ngb-rating [(rate)]="review.rating" [decimal]="1" readonly="true" max="5"
+                      class="my-custom-rating"></ngb-rating>
+                  </div>
+                  <div class="d-flex">
+                    <a class="review-author h4">{{review.user.name}} {{review.user.lastName}}</a>
+                    <div *ngIf="checkIfDelete(review)">
+                      <button type="button" class="close" aria-label="Close" (click)="deleteReview(review.id)">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="date">
+                    <i class="fa">
+                      <i class="fa fa-calendar"></i>
+                    </i>
+                    {{review.date}}
+                  </div>
+                  <div class="review-text">
+                    <p>{{review.comment}}</p>
+                  </div>
+                </div>
+              </article>
+            </li>
+            <!-- Kristen Bradley review -->
+
+            <div [class.display-div]="!moreReviews" *ngIf="!loading">
+              <button class="btn btn-default" (click)="getMoreReviews()">Load More Reviews</button>
+            </div>
+            <div *ngIf="loading" class="spinner"></div>
+          </ul>
+
+          <!-- /Reviews List -->
+
+          <div *ngIf="authService.isLogged() && gameBought() && !isReviewed">
+            <h2>Add a Review</h2>
+            <div class="review-cont clearfix">
+              <div class="youplay-textarea">
+                <textarea [(ngModel)]="comment" rows="5" placeholder="Your Review..."></textarea>
+              </div>
+              <div class="youplay-rating pull-right">
+                <input type="radio" id="review-rate-5" name="reviewRate" value="5" (click)="setRate(5)" />
+                <label for="review-rate-5">
+                  <i class="fa fa-star"></i>
+                </label>
+                <input type="radio" id="review-rate-4" name="reviewRate" value="4" (click)="setRate(4)" />
+                <label for="review-rate-4">
+                  <i class="fa fa-star"></i>
+                </label>
+                <input type="radio" id="review-rate-3" name="reviewRate" (click)="setRate(3)" />
+                <label for="review-rate-3">
+                  <i class="fa fa-star"></i>
+                </label>
+                <input type="radio" id="review-rate-2" name="reviewRate" value="2" (click)="setRate(2)" />
+                <label for="review-rate-2">
+                  <i class="fa fa-star"></i>
+                </label>
+                <input type="radio" id="review-rate-1" name="reviewRate" value="1" checked (click)="setRate(1)" />
+                <label for="review-rate-1">
+                  <i class="fa fa-star"></i>
+                </label>
+              </div>
+              <div class="clearfix"></div>
+              <button class="btn btn-default pull-right" (click)="reviewGame()">Submit</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- /Reviews -->
+      </div>
+
+      <!-- Right Side -->
+      <div class="col-md-3">
+
+        <app-side-block [show]="false"></app-side-block>
+        <div class="side-block">
+          <h4 class="block-title">Popular Games</h4>
+          <div class="block-content p-0">
+            <!-- Single News Block -->
+            <div class="row youplay-side-news" *ngFor="let game of recomendedGames">
+              <div class="col-xs-3 col-md-4">
+                <a
+                role="button" (click)="goToGame(game.id)"
+                  class="angled-img">
+                  <div class="img">
+                    <img
+                      [src]="this.gameService.getGameCoverImage(game)"
+                      alt="" />
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-9 col-md-8">
+                <h4 class="ellipsis">
+                  <a
+                  role="button" (click)="goToGame(game.id)"
+                    title="{{game.name}}"
+                    >{{game.name}}</a
+                  >
+                </h4>
+                <span class="price">${{game.price}}</span>
+              </div>
+            </div>
+            <!-- /Single News Block -->
+          </div>
+        </div>
+
+        <div class="side-block" class="rating-film">
+          <div class="block-content p-0" *ngIf="gameInfo.reviews.length > 0">
+            <h4 class="block-title">Average Stars: {{(gameInfo.game.totalRating/gameInfo.game.reviewCount) |
+              number:'1.1-1'}}</h4>
+            <div class="container" *ngFor="let percentaje of gameInfo.game.starDistributionInt; let i = index">
+              <div class="row">
+                <div class="col-md-2">
+                  <span>{{i + 1}}</span>
+                </div>
+                <div class="col-md-10">
+                  <ngb-progressbar [showValue]="true" type="info" [value]="percentaje"></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="block-content p-0" *ngIf="gameInfo.reviews.length === 0">
+            <h4 class="block-title">This game has no reviews yet</h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- /Right Side -->
+  </div>
