@@ -1,7 +1,7 @@
 # Key Whale
 
 ### Video: 
-
+https://youtu.be/EwkY_QF8p4E
 ## Table of contents
 
 - [Phase 0](#phase-0)
