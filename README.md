@@ -584,8 +584,17 @@ Javier has created the class diagram updated with rest api and necesary methods 
 
 ## Deployment link
 
-https://10.100.139.196:8443/new/
-https://10.100.139.196:8443/
+SPA: "https://10.100.139.196:8443/new/"
+MUSTACHE: "https://10.100.139.196:8443/"
+
+## Deployment Instructions
+
+1. Connect to the machine with the command: "ssh -i appWeb-05 vmuser@10.100.139.196".
+2. We have to install docker and docker-compose following the instructions at the link: "https://docs.docker.com/engine/install/ubuntu/".
+3. Clone the repository with the command "git clone https://github.com/CodeURJC-DAW-2022-23/webapp5.git".
+4. Execute the command "cd webapp5/code/docker".
+5. Execute the command "sudo docker-compose up -d".
+6. Open the deployment links in the browser.
 
 ## Group members participation
 ### Brais Cabo Felpete
